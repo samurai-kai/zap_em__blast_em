@@ -14,11 +14,6 @@ void game_task_run(GameTask *game_task)
     {
         // Index the list of state functions and then call the appropriate
         // method while passing in (this) task_1 object
-
-    	// game_task is a pointer right now
-    	// -> dereferences pointer and accesses class member in one step
-    	// the same as (*ptr).member
-
         game_task->state_list[game_task->state](game_task);
 
     }
