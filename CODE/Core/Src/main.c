@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "game_task.h"
+#include "sound_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,15 +54,30 @@ TIM_HandleTypeDef htim5;
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
 
-game_task_cfg_t game_task = {.state = 0,
+GameTask game_task = {.state = 0,
                       .num_states = 4,
 					  .play_flg = 0,
 					  .score_red = 0,
 					  .score_blue = 0,
+					  .score_thresh = 5,
                       .state_list = {&game_task_state_0_init,
                                      &game_task_state_1_home,
                                      &game_task_state_2_play,
 									 &game_task_state_3_end}
+
+};
+SoundTask sound_task = {.state = 0,
+                      .num_states = 6,
+					  .laser_snd_flg = 0,
+					  .hit_snd_flg = 0,
+					  .start_snd_flg = 0,
+					  .win_snd_flg = 0,
+                      .state_list = {&sound_task_state_0_init,
+									 &sound_task_state_1_wait,
+									 &sound_task_state_2_laser,
+									 &sound_task_state_3_hit,
+									 &sound_task_state_4_win,
+									 &sound_task_state_5_start}
 
 };
 /* USER CODE END PV */
@@ -123,14 +139,14 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   //inits
-  game_task_state_0_init();
+  //game_task_state_0_init(&game_task); just gunna run this as in the fsm directly
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  game_task_run();
+	  game_task_run(&game_task);
 
 	  //add delay
 
