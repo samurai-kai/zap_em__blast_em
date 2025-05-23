@@ -9,6 +9,7 @@
 #define INC_GAME_TASK_H_
 
 #include <stdint.h> // Allows use of standard integer types
+#include "stm32f4xx_hal.h"  // or your STM32 family
 
 typedef struct SoundTask SoundTask; // forward declaration
 typedef struct GameTask GameTask; // forward declaration
@@ -26,6 +27,7 @@ struct GameTask
     int32_t		score_blue;
     int32_t		score_thresh;
     SoundTask	*sound_task_ptr;
+    I2C_HandleTypeDef *i2c_handle;
     game_fcn_t state_list[];
 };
 

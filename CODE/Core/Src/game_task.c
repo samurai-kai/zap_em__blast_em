@@ -7,6 +7,7 @@
 
 #include "game_task.h"
 #include "sound_task.h"
+#include "lcd.h"
 
 // A function to run the appropriate state of the task
 void game_task_run(GameTask *game_task)
@@ -37,6 +38,7 @@ void game_task_run(GameTask *game_task)
 void game_task_state_0_init(GameTask *game_task)
 {
     //add init stuff, display
+	lcd_init(game_task->i2c_handle);
 
 }
 // A function to implement state 1 of the task
@@ -45,7 +47,7 @@ void game_task_state_0_init(GameTask *game_task)
 void game_task_state_1_home(GameTask *game_task)
 {
     //play_flg enabled from button task within shoot task?? or make button task
-
+	lcd_write(0, 0, "Hello World");
 	if (game_task->play_flg == 1){
     	game_task->state = 2;
     	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it

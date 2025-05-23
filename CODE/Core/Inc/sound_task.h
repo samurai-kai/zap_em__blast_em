@@ -10,7 +10,7 @@
 
 #include <stdint.h> // Allows use of standard integer types
 
-typedef struct SoundTask SoundTask;
+typedef struct SoundTask SoundTask; // forward declaration
 // function must have no input arguments and have no return
 typedef void (*sound_fcn_t)(SoundTask *sound_task);
 
