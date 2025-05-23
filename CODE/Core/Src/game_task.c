@@ -47,7 +47,8 @@ void game_task_state_0_init(GameTask *game_task)
 void game_task_state_1_home(GameTask *game_task)
 {
     //play_flg enabled from button task within shoot task?? or make button task
-	lcd_write(0, 0, "Hello World");
+	lcd_write(0, 0, "Hello World"); // x,y,message, display is 20 wide 4 tall
+	lcd_write(0,1,"Game test, game test");// 20 long message
 	if (game_task->play_flg == 1){
     	game_task->state = 2;
     	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it
@@ -59,8 +60,12 @@ void game_task_state_1_home(GameTask *game_task)
 void game_task_state_2_play(GameTask *game_task)
 {
 	// add thing that prints score of each on the LCD
-
-
+	//maybe only do once then adjust the score through a direct print index
+	lcd_write(0,0,"Zap'em Shoot'em     ");
+	lcd_write(0,1,"     First to 5     ");
+	lcd_write(0,2,"Red:  0  Zaps       ");
+	lcd_write(0,3,"Blue: 0  Zaps       ");
+	//             01234567890123456789
 	//when the game is over
 	if (game_task->score_red > game_task->score_thresh || game_task->score_blue > game_task->score_thresh){
 		// print win message and set end sound

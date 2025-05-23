@@ -7,6 +7,7 @@
 
 // chatgpt conversion of supplied sunfounder .c file, beware
 // did adjust some stuff
+// display is 20x4
 
 #include "lcd.h"
 
@@ -41,7 +42,7 @@ void lcd_send_data(uint8_t data) {
 
 void lcd_init(I2C_HandleTypeDef *hi2c) {
     lcd_hi2c = hi2c;
-    HAL_Delay(50);
+    HAL_Delay(50); // could be blocking, might need to fix
     lcd_send_command(0x33);
     lcd_send_command(0x32);
     lcd_send_command(0x28);
@@ -52,7 +53,7 @@ void lcd_init(I2C_HandleTypeDef *hi2c) {
 
 void lcd_clear(void) {
     lcd_send_command(0x01);
-    HAL_Delay(2);
+    HAL_Delay(2); // could be blocking, might need to fix
 }
 
 void lcd_write(uint8_t x, uint8_t y, const char *str) {
