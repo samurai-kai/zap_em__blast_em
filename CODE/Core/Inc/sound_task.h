@@ -21,10 +21,10 @@ struct SoundTask
 {
     int32_t     state;
     int32_t     num_states;
-    int32_t		laser_snd_flg;
-    int32_t		hit_snd_flg;
-    int32_t		start_snd_flg;
-    int32_t		win_snd_flg;
+    int32_t		laser_snd;
+    int32_t		hit_snd;
+    int32_t		start_snd;
+    int32_t		win_snd;
     sound_fcn_t state_list[];
 };
 

@@ -35,16 +35,16 @@ void sound_task_state_0_init(SoundTask *sound_task)
 
 void sound_task_state_1_wait(SoundTask *sound_task)
 {
-	if (sound_task->laser_snd_flg == 1){
+	if (sound_task->laser_snd == 1){
 		sound_task->state = 2;
 	}
-	else if(sound_task->hit_snd_flg == 1){
+	else if(sound_task->hit_snd == 1){
 		sound_task->state = 3;
 	}
-	else if(sound_task->win_snd_flg == 1){
+	else if(sound_task->win_snd == 1){
 		sound_task->state = 4;
 	}
-	else if(sound_task->start_snd_flg == 1){
+	else if(sound_task->start_snd == 1){
 		sound_task->state = 5;
 	}
 

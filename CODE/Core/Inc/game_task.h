@@ -25,6 +25,7 @@ struct GameTask
     int32_t		score_red;
     int32_t		score_blue;
     int32_t		score_thresh;
+    SoundTask	sound_task_ptr;
     game_fcn_t state_list[];
 };
 

@@ -54,24 +54,13 @@ TIM_HandleTypeDef htim5;
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
 
-GameTask game_task = {.state = 0,
-                      .num_states = 4,
-					  .play_flg = 0,
-					  .score_red = 0,
-					  .score_blue = 0,
-					  .score_thresh = 5,
-                      .state_list = {&game_task_state_0_init,
-                                     &game_task_state_1_home,
-                                     &game_task_state_2_play,
-									 &game_task_state_3_end}
-
-};
+// sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
                       .num_states = 6,
-					  .laser_snd_flg = 0,
-					  .hit_snd_flg = 0,
-					  .start_snd_flg = 0,
-					  .win_snd_flg = 0,
+					  .laser_snd = 0,
+					  .hit_snd = 0,
+					  .start_snd = 0,
+					  .win_snd = 0,
                       .state_list = {&sound_task_state_0_init,
 									 &sound_task_state_1_wait,
 									 &sound_task_state_2_laser,
@@ -80,6 +69,20 @@ SoundTask sound_task = {.state = 0,
 									 &sound_task_state_5_start}
 
 };
+GameTask game_task = {.state = 0,
+                      .num_states = 4,
+					  .play_flg = 0,
+					  .score_red = 0,
+					  .score_blue = 0,
+					  .score_thresh = 5,
+					  .sound_task_ptr = &sound_task,
+                      .state_list = {&game_task_state_0_init,
+                                     &game_task_state_1_home,
+                                     &game_task_state_2_play,
+									 &game_task_state_3_end}
+
+};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

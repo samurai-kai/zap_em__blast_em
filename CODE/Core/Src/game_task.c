@@ -47,6 +47,7 @@ void game_task_state_1_home(GameTask *game_task)
 
 	if (game_task->play_flg == 1){
     	game_task->state = 2;
+    	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it
     }
 
 }
