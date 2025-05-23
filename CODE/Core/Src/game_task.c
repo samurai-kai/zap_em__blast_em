@@ -6,6 +6,7 @@
  */
 
 #include "game_task.h"
+#include "sound_task.h"
 
 // A function to run the appropriate state of the task
 void game_task_run(GameTask *game_task)

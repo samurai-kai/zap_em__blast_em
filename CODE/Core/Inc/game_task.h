@@ -10,8 +10,8 @@
 
 #include <stdint.h> // Allows use of standard integer types
 
-
-typedef struct GameTask GameTask;
+typedef struct SoundTask SoundTask; // forward declaration
+typedef struct GameTask GameTask; // forward declaration
 // all states take in a GameTask pointer
 typedef void (*game_fcn_t)(GameTask *game_task);
 
@@ -25,7 +25,7 @@ struct GameTask
     int32_t		score_red;
     int32_t		score_blue;
     int32_t		score_thresh;
-    SoundTask	sound_task_ptr;
+    SoundTask	*sound_task_ptr;
     game_fcn_t state_list[];
 };
 

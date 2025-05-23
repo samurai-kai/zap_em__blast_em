@@ -1,5 +1,5 @@
-../Core/Src/game_task.c:11:6:game_task_run	16	static
-../Core/Src/game_task.c:31:6:game_task_state_0_init	16	static
-../Core/Src/game_task.c:39:6:game_task_state_1_home	16	static
-../Core/Src/game_task.c:50:6:game_task_state_2_play	16	static
-../Core/Src/game_task.c:65:6:game_task_state_3_end	16	static
+../Core/Src/game_task.c:12:6:game_task_run	16	static
+../Core/Src/game_task.c:37:6:game_task_state_0_init	16	static
+../Core/Src/game_task.c:45:6:game_task_state_1_home	16	static
+../Core/Src/game_task.c:57:6:game_task_state_2_play	16	static
+../Core/Src/game_task.c:72:6:game_task_state_3_end	16	static

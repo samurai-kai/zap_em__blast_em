@@ -1,0 +1,39 @@
+/*
+ * game_task.h
+ *
+ *  Created on: May 22, 2025
+ *      Author: andrewcarr
+ */
+
+#ifndef INC_GAME_TASK_H_
+#define INC_GAME_TASK_H_
+
+#include <stdint.h> // Allows use of standard integer types
+
+
+typedef struct GameTask GameTask;
+// all states take in a GameTask pointer
+typedef void (*game_fcn_t)(GameTask *game_task);
+
+// A datatype for a structure to hold task configuration and state.
+// Additional fields can be added as desired.
+struct GameTask
+{
+    int32_t     state;
+    int32_t     num_states;
+    int32_t		play_flg;
+    int32_t		score_red;
+    int32_t		score_blue;
+    int32_t		score_thresh;
+    SoundTask	sound_task_ptr;
+    game_fcn_t state_list[];
+};
+
+// A prototype for each function implemented in task_1.c
+void game_task_state_0_init(GameTask *game_task);
+void game_task_run(GameTask *game_task);
+void game_task_state_1_home(GameTask *game_task);
+void game_task_state_2_play(GameTask *game_task);
+void game_task_state_3_end(GameTask *game_task);
+
+#endif /* INC_GAME_TASK_H_ */

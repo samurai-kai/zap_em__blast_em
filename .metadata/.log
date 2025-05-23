@@ -157,3 +157,63 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/andre
 
 !ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-05-22 16:42:25.890
 !MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-05-22 17:07:33.696
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-05-22 17:07:33.699
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-05-22 17:07:33.699
+!MESSAGE /Users/andrewcarr/Documents/zap_em__shoot_em/CODE overlaps the location of another project: 'CODE'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-05-22 17:07:33.710
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-05-22 17:09:52.150
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-05-22 17:09:52.150
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-05-22 17:09:52.150
+!MESSAGE /Users/andrewcarr/Documents/zap_em__shoot_em/CODE overlaps the location of another project: 'CODE'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-05-22 17:09:52.152
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-05-22 17:12:33.263
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-05-22 17:12:33.263
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-05-22 17:12:33.263
+!MESSAGE /Users/andrewcarr/Documents/zap_em__shoot_em/CODE overlaps the location of another project: 'CODE'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-05-22 17:12:33.266
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-05-22 17:13:01.126
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-05-22 17:13:01.126
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-05-22 17:13:01.126
+!MESSAGE /Users/andrewcarr/Documents/zap_em__shoot_em/CODE overlaps the location of another project: 'CODE'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-05-22 17:13:01.128
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-05-22 17:13:17.638
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-05-22 17:13:17.642
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-05-22 17:13:17.643
+!MESSAGE /Users/andrewcarr/Documents/zap_em__shoot_em/CODE overlaps the location of another project: 'CODE'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-05-22 17:13:17.655
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-05-22 17:13:43.946
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-05-22 17:13:43.946
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-05-22 17:13:43.946
+!MESSAGE /Users/andrewcarr/Documents/zap_em__shoot_em/CODE overlaps the location of another project: 'CODE'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-05-22 17:13:43.948
+!MESSAGE Project is null
