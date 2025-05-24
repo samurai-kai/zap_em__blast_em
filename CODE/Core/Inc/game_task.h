@@ -25,7 +25,10 @@ struct GameTask
     int32_t		play_flg;
     int32_t		score_red;
     int32_t		score_blue;
+    int32_t 	score_red_prev;
+    int32_t 	score_blue_prev;
     int32_t		score_thresh;
+    int32_t		num;
     SoundTask	*sound_task_ptr;
     I2C_HandleTypeDef *i2c_handle;
     game_fcn_t state_list[];
