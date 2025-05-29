@@ -17,11 +17,11 @@ static I2C_HandleTypeDef *lcd_hi2c = NULL;
 #define LCD_BACKLIGHT 0x08
 #define LCD_ENABLE    0x04
 
-
+/*
 static void lcd_write_word(uint8_t data) {
 	// might need to change to interrupt version
-    HAL_I2C_Master_Transmit(lcd_hi2c, LCD_ADDR, &data, 1, HAL_MAX_DELAY);
-    HAL_Delay(1);
+    HAL_I2C_Master_Transmit(lcd_hi2c, LCD_ADDR, &data, 1, 100);
+    HAL_Delay(5);
 }
 
 static void lcd_send_half(uint8_t data, uint8_t mode) {
@@ -44,10 +44,13 @@ void lcd_init(I2C_HandleTypeDef *hi2c) {
     lcd_hi2c = hi2c;
     HAL_Delay(50); // could be blocking, might need to fix
     lcd_send_command(0x33);
+    HAL_Delay(50);
     lcd_send_command(0x32);
+    HAL_Delay(50);
     lcd_send_command(0x28);
+    HAL_Delay(50);
     lcd_send_command(0x0C);
-    lcd_send_command(0x06);
+    HAL_Delay(50);
     lcd_clear();
 }
 
@@ -63,4 +66,15 @@ void lcd_write(uint8_t x, uint8_t y, const char *str) {
         lcd_send_data(*str++);
     }
 }
+*/
 
+// my try
+/*
+
+
+void write_word(int data){
+	int temp = data;
+	HAL_I2C_Master_Transmit(lcd_hi2c, LCD_ADDR, &data, 1, 100);
+}
+
+*/

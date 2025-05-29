@@ -23,6 +23,8 @@
 /* USER CODE BEGIN Includes */
 #include "game_task.h"
 #include "sound_task.h"
+#include "lcd.h"
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -86,6 +88,7 @@ GameTask game_task = {.state = 0,
 									 &game_task_state_3_end}
 
 };
+int a = 0;
 
 /* USER CODE END PV */
 
@@ -144,8 +147,10 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   MX_TIM2_Init();
+
   /* USER CODE BEGIN 2 */
   //inits
+  lcd_init(&hi2c1);
   //game_task_state_0_init(&game_task); just gunna run this as in the fsm directly
   /* USER CODE END 2 */
 
@@ -154,6 +159,13 @@ int main(void)
   while (1)
   {
 	  //game_task_run(&game_task);
+	  if(a == 0){
+		  lcd_write(0,0,"Zap'em Shoot'em     ");
+		  lcd_write(0,1,"     First to 5     ");
+		  lcd_write(0,2,"Red:  0  Zaps       ");
+		  lcd_write(0,3,"Blue: 0  Zaps       ");
+//		  a++;
+	  }
 
 	  //add delay
 

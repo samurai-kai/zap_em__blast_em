@@ -595,3 +595,9 @@ Project's 'CODE' active one is 'CODE.ioc' file
 !MESSAGE Invalid Input: Must be project's active .ioc file.
 
 Project's 'CODE' active one is 'CODE.ioc' file
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-29 09:05:39.873
+!MESSAGE Indexed 'test_blank' (0 sources, 0 headers) in 0.006 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-05-29 09:05:48.973
+!MESSAGE Indexed 'test_blank' (19 sources, 81 headers) in 5.16 sec: 4,306 declarations; 18,187 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0089%)
