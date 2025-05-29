@@ -153,7 +153,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  game_task_run(&game_task);
+	  //game_task_run(&game_task);
 
 	  //add delay
 
