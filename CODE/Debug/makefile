@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := CODE
+BUILD_ARTIFACT_NAME := Zap_em Blast_em
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-CODE.elf \
+Zap_em\ Blast_em.elf \
 
 MAP_FILES += \
-CODE.map \
+Zap_em\ Blast_em.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-CODE.list \
+Zap_em\ Blast_em.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: CODE.elf secondary-outputs
+main-build: Zap_em\ Blast_em.elf secondary-outputs
 
 # Tool invocations
-CODE.elf CODE.map: $(OBJS) $(USER_OBJS) C:\Users\kaidc\OneDrive\ -\ Cal\ Poly\Documents\GitHub\ZapEmShootEm\zap_em__shoot_em\CODE\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "CODE.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\kaidc\OneDrive - Cal Poly\Documents\GitHub\ZapEmShootEm\zap_em__shoot_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Zap_em\ Blast_em.elf Zap_em\ Blast_em.map: $(OBJS) $(USER_OBJS) C:\Users\Andrew\ Carr\Downloads\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Zap_em Blast_em.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Andrew Carr\Downloads\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Zap_em Blast_em.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-CODE.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "CODE.list"
+Zap_em\ Blast_em.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Zap_em Blast_em.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) CODE.elf CODE.list CODE.map default.size.stdout
+	-$(RM) Zap_em\ Blast_em.elf Zap_em\ Blast_em.list Zap_em\ Blast_em.map Zap_em\\ Blast_em.elf default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

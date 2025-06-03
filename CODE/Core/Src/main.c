@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "game_task.h"
 #include "sound_task.h"
+#include "shoot_task.h"
 #include "lcd.h"
 #include <stdint.h>
 /* USER CODE END Includes */
@@ -55,8 +56,8 @@ TIM_HandleTypeDef htim5;
 
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
-motor_t mred = {&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2};
-motor_t mblue = {&htim1,TIM_CHANNEL_3,TIM_CHANNEL_4};
+//motor_t mred = {&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2};
+//motor_t mblue = {&htim1,TIM_CHANNEL_3,TIM_CHANNEL_4};
 // sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
                       .num_states = 6,
@@ -89,6 +90,33 @@ GameTask game_task = {.state = 0,
 									 &game_task_state_3_end}
 
 };
+ShootTask red_shoot_task = {.state = 0,
+							.num_states = 4,
+   							.button = 0,
+							.servo_tim = &htim4,
+							.channel = TIM_CHANNEL_1, // make sure this is red
+							.shield_val = 0, // tune
+							.unshield_val = 1000, // tune
+							.laser_gpio = GPIO_PIN_14, // make sure this is red
+							.state_list = {&shoot_task_state_0_init,
+										   &shoot_task_state_1_wait,
+										   &shoot_task_state_2_unshield,
+										   &shoot_task_state_3_shoot}
+};
+ShootTask blue_shoot_task = {.state = 0,
+							.num_states = 4,
+   							.button = 0,
+							.servo_tim = &htim4,
+							.channel = TIM_CHANNEL_2, // make sure this is blue
+							.shield_val = 0, // tune
+							.unshield_val = 1000, // tune
+							.laser_gpio = GPIO_PIN_15, // make sure this is blue, 15 and chan 2 are tied
+							.state_list = {&shoot_task_state_0_init,
+										   &shoot_task_state_1_wait,
+										   &shoot_task_state_2_unshield,
+										   &shoot_task_state_3_shoot}
+};
+
 int a = 0;
 
 /* USER CODE END PV */
@@ -151,7 +179,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   //inits
-  lcd_init(&hi2c1);
+  //lcd_init(&hi2c1);
   //game_task_state_0_init(&game_task); just gunna run this as in the fsm directly
   /* USER CODE END 2 */
 
@@ -160,13 +188,13 @@ int main(void)
   while (1)
   {
 	  //game_task_run(&game_task);
-	  if(a == 0){
-		  lcd_write(0,0,"Zap'em Shoot'em     ");
-		  lcd_write(0,1,"     First to 5     ");
-		  lcd_write(0,2,"Red:  0  Zaps       ");
-		  lcd_write(0,3,"Blue: 0  Zaps       ");
-//		  a++;
-	  }
+//	  if(a == 0){
+//		  lcd_write(0,0,"Zap'em Shoot'em     ");
+//		  lcd_write(0,1,"     First to 5     ");
+//		  lcd_write(0,2,"Red:  0  Zaps       ");
+//		  lcd_write(0,3,"Blue: 0  Zaps       ");
+////		  a++;
+//	  }
 
 	  //add delay
 
