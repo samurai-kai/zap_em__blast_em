@@ -25,6 +25,7 @@
 #include "sound_task.h"
 #include "shoot_task.h"
 #include "lcd.h"
+#include "motor_driver.h"
 #include <stdint.h>
 /* USER CODE END Includes */
 
@@ -56,8 +57,8 @@ TIM_HandleTypeDef htim5;
 
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
-//motor_t mred = {&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2};
-//motor_t mblue = {&htim1,TIM_CHANNEL_3,TIM_CHANNEL_4};
+motor_t mred = {&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2};
+motor_t mblue = {&htim1,TIM_CHANNEL_3,TIM_CHANNEL_4};
 // sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
                       .num_states = 6,
