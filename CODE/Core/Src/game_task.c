@@ -66,7 +66,7 @@ void game_task_state_2_play(GameTask *game_task)
 	// add thing that prints score of each on the LCD
 	//maybe only do once then adjust the score through a direct print index
 	if (game_task->num == 0){
-		lcd_write(0,0,"Zap'em Shoot'em     ");
+		lcd_write(0,0,"Zap'em Blast'em     ");
 		lcd_write(0,1,"     First to 5     ");
 		lcd_write(0,2,"Red:  0  Zaps       ");
 		lcd_write(0,3,"Blue: 0  Zaps       ");
@@ -92,7 +92,7 @@ void game_task_state_2_play(GameTask *game_task)
 	// check if someone won
 	if (game_task->score_red > game_task->score_thresh || game_task->score_blue > game_task->score_thresh){
 		// print win message and set end sound
-		lcd_write(0,0,"Zap'em Shoot'em     ");
+		lcd_write(0,0,"Zap'em Blast'em     ");
 		lcd_write(0,1,"     GAME OVER!     ");
 		game_task->state = 3;
 	}
