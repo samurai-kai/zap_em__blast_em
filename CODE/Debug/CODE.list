@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0000506c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000d308  00000000  00000000  0000509c  2**0
+ 12 .debug_info   0000d419  00000000  00000000  0000509c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001c83  00000000  00000000  000123a4  2**0
+ 13 .debug_abbrev 00001c84  00000000  00000000  000124b5  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000da0  00000000  00000000  00014028  2**3
+ 14 .debug_aranges 00000da0  00000000  00000000  00014140  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000ab7  00000000  00000000  00014dc8  2**0
+ 15 .debug_rnglists 00000ab7  00000000  00000000  00014ee0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00001de4  00000000  00000000  0001587f  2**0
+ 16 .debug_macro  00001d65  00000000  00000000  00015997  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000fbb6  00000000  00000000  00017663  2**0
+ 17 .debug_line   00010132  00000000  00000000  000176fc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00099f0e  00000000  00000000  00027219  2**0
+ 18 .debug_str    0009a008  00000000  00000000  0002782e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000c1127  2**0
+ 19 .comment      00000043  00000000  00000000  000c1836  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00003a40  00000000  00000000  000c116c  2**2
+ 20 .debug_frame  00003a40  00000000  00000000  000c187c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000060  00000000  00000000  000c4bac  2**0
+ 21 .debug_line_str 00000060  00000000  00000000  000c52bc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -85,8 +85,8 @@ Disassembly of section .text:
  80001de:	bf08      	it	eq
  80001e0:	2800      	cmpeq	r0, #0
  80001e2:	bf1c      	itt	ne
- 80001e4:	f04f 31ff 	movne.w	r1, #4294967295	@ 0xffffffff
- 80001e8:	f04f 30ff 	movne.w	r0, #4294967295	@ 0xffffffff
+ 80001e4:	f04f 31ff 	movne.w	r1, #4294967295
+ 80001e8:	f04f 30ff 	movne.w	r0, #4294967295
  80001ec:	f000 b988 	b.w	8000500 <__aeabi_idiv0>
  80001f0:	f1ad 0c08 	sub.w	ip, sp, #8
  80001f4:	e96d ce04 	strd	ip, lr, [sp, #-16]!
@@ -125,7 +125,7 @@ Disassembly of section .text:
  8000252:	429a      	cmp	r2, r3
  8000254:	d909      	bls.n	800026a <__udivmoddi4+0x62>
  8000256:	18fb      	adds	r3, r7, r3
- 8000258:	f101 30ff 	add.w	r0, r1, #4294967295	@ 0xffffffff
+ 8000258:	f101 30ff 	add.w	r0, r1, #4294967295
  800025c:	f080 80ea 	bcs.w	8000434 <__udivmoddi4+0x22c>
  8000260:	429a      	cmp	r2, r3
  8000262:	f240 80e7 	bls.w	8000434 <__udivmoddi4+0x22c>
@@ -140,7 +140,7 @@ Disassembly of section .text:
  800027e:	459c      	cmp	ip, r3
  8000280:	d909      	bls.n	8000296 <__udivmoddi4+0x8e>
  8000282:	18fb      	adds	r3, r7, r3
- 8000284:	f100 32ff 	add.w	r2, r0, #4294967295	@ 0xffffffff
+ 8000284:	f100 32ff 	add.w	r2, r0, #4294967295
  8000288:	f080 80d6 	bcs.w	8000438 <__udivmoddi4+0x230>
  800028c:	459c      	cmp	ip, r3
  800028e:	f240 80d3 	bls.w	8000438 <__udivmoddi4+0x230>
@@ -194,7 +194,7 @@ Disassembly of section .text:
  8000312:	429a      	cmp	r2, r3
  8000314:	d907      	bls.n	8000326 <__udivmoddi4+0x11e>
  8000316:	18fb      	adds	r3, r7, r3
- 8000318:	f10c 38ff 	add.w	r8, ip, #4294967295	@ 0xffffffff
+ 8000318:	f10c 38ff 	add.w	r8, ip, #4294967295
  800031c:	d202      	bcs.n	8000324 <__udivmoddi4+0x11c>
  800031e:	429a      	cmp	r2, r3
  8000320:	f200 80e0 	bhi.w	80004e4 <__udivmoddi4+0x2dc>
@@ -207,7 +207,7 @@ Disassembly of section .text:
  8000338:	429c      	cmp	r4, r3
  800033a:	d907      	bls.n	800034c <__udivmoddi4+0x144>
  800033c:	18fb      	adds	r3, r7, r3
- 800033e:	f102 30ff 	add.w	r0, r2, #4294967295	@ 0xffffffff
+ 800033e:	f102 30ff 	add.w	r0, r2, #4294967295
  8000342:	d202      	bcs.n	800034a <__udivmoddi4+0x142>
  8000344:	429c      	cmp	r4, r3
  8000346:	f200 80ca 	bhi.w	80004de <__udivmoddi4+0x2d6>
@@ -235,7 +235,7 @@ Disassembly of section .text:
  800038e:	fa02 f201 	lsl.w	r2, r2, r1
  8000392:	d909      	bls.n	80003a8 <__udivmoddi4+0x1a0>
  8000394:	193c      	adds	r4, r7, r4
- 8000396:	f100 3aff 	add.w	sl, r0, #4294967295	@ 0xffffffff
+ 8000396:	f100 3aff 	add.w	sl, r0, #4294967295
  800039a:	f080 809c 	bcs.w	80004d6 <__udivmoddi4+0x2ce>
  800039e:	45a6      	cmp	lr, r4
  80003a0:	f240 8099 	bls.w	80004d6 <__udivmoddi4+0x2ce>
@@ -250,7 +250,7 @@ Disassembly of section .text:
  80003c0:	45a4      	cmp	ip, r4
  80003c2:	d908      	bls.n	80003d6 <__udivmoddi4+0x1ce>
  80003c4:	193c      	adds	r4, r7, r4
- 80003c6:	f103 3eff 	add.w	lr, r3, #4294967295	@ 0xffffffff
+ 80003c6:	f103 3eff 	add.w	lr, r3, #4294967295
  80003ca:	f080 8082 	bcs.w	80004d2 <__udivmoddi4+0x2ca>
  80003ce:	45a4      	cmp	ip, r4
  80003d0:	d97f      	bls.n	80004d2 <__udivmoddi4+0x2ca>
@@ -312,7 +312,7 @@ Disassembly of section .text:
  800046e:	b280      	uxth	r0, r0
  8000470:	d93e      	bls.n	80004f0 <__udivmoddi4+0x2e8>
  8000472:	1879      	adds	r1, r7, r1
- 8000474:	f108 3cff 	add.w	ip, r8, #4294967295	@ 0xffffffff
+ 8000474:	f108 3cff 	add.w	ip, r8, #4294967295
  8000478:	d201      	bcs.n	800047e <__udivmoddi4+0x276>
  800047a:	4589      	cmp	r9, r1
  800047c:	d81f      	bhi.n	80004be <__udivmoddi4+0x2b6>
@@ -325,7 +325,7 @@ Disassembly of section .text:
  8000494:	4542      	cmp	r2, r8
  8000496:	d229      	bcs.n	80004ec <__udivmoddi4+0x2e4>
  8000498:	18ba      	adds	r2, r7, r2
- 800049a:	f109 31ff 	add.w	r1, r9, #4294967295	@ 0xffffffff
+ 800049a:	f109 31ff 	add.w	r1, r9, #4294967295
  800049e:	d2c4      	bcs.n	800042a <__udivmoddi4+0x222>
  80004a0:	4542      	cmp	r2, r8
  80004a2:	d2c2      	bcs.n	800042a <__udivmoddi4+0x222>
@@ -1018,7 +1018,7 @@ static void MX_TIM2_Init(void)
  8000898:	609a      	str	r2, [r3, #8]
   htim2.Init.Period = 4294967295;
  800089a:	4b1d      	ldr	r3, [pc, #116]	@ (8000910 <MX_TIM2_Init+0xac>)
- 800089c:	f04f 32ff 	mov.w	r2, #4294967295	@ 0xffffffff
+ 800089c:	f04f 32ff 	mov.w	r2, #4294967295
  80008a0:	60da      	str	r2, [r3, #12]
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  80008a2:	4b1b      	ldr	r3, [pc, #108]	@ (8000910 <MX_TIM2_Init+0xac>)
@@ -1401,7 +1401,7 @@ static void MX_TIM5_Init(void)
  8000ab0:	609a      	str	r2, [r3, #8]
   htim5.Init.Period = 4294967295;
  8000ab2:	4b1c      	ldr	r3, [pc, #112]	@ (8000b24 <MX_TIM5_Init+0xa0>)
- 8000ab4:	f04f 32ff 	mov.w	r2, #4294967295	@ 0xffffffff
+ 8000ab4:	f04f 32ff 	mov.w	r2, #4294967295
  8000ab8:	60da      	str	r2, [r3, #12]
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  8000aba:	4b1a      	ldr	r3, [pc, #104]	@ (8000b24 <MX_TIM5_Init+0xa0>)
@@ -2884,104 +2884,46 @@ void SystemInit(void)
  8001308:	e000ed00 	.word	0xe000ed00
 
 0800130c <Reset_Handler>:
-
-    .section  .text.Reset_Handler
-  .weak  Reset_Handler
-  .type  Reset_Handler, %function
-Reset_Handler:  
-  ldr   sp, =_estack    		 /* set stack pointer */
  800130c:	f8df d034 	ldr.w	sp, [pc, #52]	@ 8001344 <LoopFillZerobss+0xe>
-
-/* Call the clock system initialization function.*/
-  bl  SystemInit   
  8001310:	f7ff ffea 	bl	80012e8 <SystemInit>
-
-/* Copy the data segment initializers from flash to SRAM */  
-  ldr r0, =_sdata
  8001314:	480c      	ldr	r0, [pc, #48]	@ (8001348 <LoopFillZerobss+0x12>)
-  ldr r1, =_edata
  8001316:	490d      	ldr	r1, [pc, #52]	@ (800134c <LoopFillZerobss+0x16>)
-  ldr r2, =_sidata
  8001318:	4a0d      	ldr	r2, [pc, #52]	@ (8001350 <LoopFillZerobss+0x1a>)
-  movs r3, #0
  800131a:	2300      	movs	r3, #0
-  b LoopCopyDataInit
  800131c:	e002      	b.n	8001324 <LoopCopyDataInit>
 
 0800131e <CopyDataInit>:
-
-CopyDataInit:
-  ldr r4, [r2, r3]
  800131e:	58d4      	ldr	r4, [r2, r3]
-  str r4, [r0, r3]
  8001320:	50c4      	str	r4, [r0, r3]
-  adds r3, r3, #4
  8001322:	3304      	adds	r3, #4
 
 08001324 <LoopCopyDataInit>:
-
-LoopCopyDataInit:
-  adds r4, r0, r3
  8001324:	18c4      	adds	r4, r0, r3
-  cmp r4, r1
  8001326:	428c      	cmp	r4, r1
-  bcc CopyDataInit
  8001328:	d3f9      	bcc.n	800131e <CopyDataInit>
-  
-/* Zero fill the bss segment. */
-  ldr r2, =_sbss
  800132a:	4a0a      	ldr	r2, [pc, #40]	@ (8001354 <LoopFillZerobss+0x1e>)
-  ldr r4, =_ebss
  800132c:	4c0a      	ldr	r4, [pc, #40]	@ (8001358 <LoopFillZerobss+0x22>)
-  movs r3, #0
  800132e:	2300      	movs	r3, #0
-  b LoopFillZerobss
  8001330:	e001      	b.n	8001336 <LoopFillZerobss>
 
 08001332 <FillZerobss>:
-
-FillZerobss:
-  str  r3, [r2]
  8001332:	6013      	str	r3, [r2, #0]
-  adds r2, r2, #4
  8001334:	3204      	adds	r2, #4
 
 08001336 <LoopFillZerobss>:
-
-LoopFillZerobss:
-  cmp r2, r4
  8001336:	42a2      	cmp	r2, r4
-  bcc FillZerobss
  8001338:	d3fb      	bcc.n	8001332 <FillZerobss>
-
-/* Call static constructors */
-    bl __libc_init_array
  800133a:	f002 f813 	bl	8003364 <__libc_init_array>
-/* Call the application's entry point.*/
-  bl  main
  800133e:	f7ff f8e1 	bl	8000504 <main>
-  bx  lr    
  8001342:	4770      	bx	lr
-  ldr   sp, =_estack    		 /* set stack pointer */
  8001344:	20020000 	.word	0x20020000
-  ldr r0, =_sdata
  8001348:	20000000 	.word	0x20000000
-  ldr r1, =_edata
  800134c:	2000006c 	.word	0x2000006c
-  ldr r2, =_sidata
  8001350:	080033ec 	.word	0x080033ec
-  ldr r2, =_sbss
  8001354:	2000006c 	.word	0x2000006c
-  ldr r4, =_ebss
  8001358:	20000290 	.word	0x20000290
 
 0800135c <ADC_IRQHandler>:
- * @retval None       
-*/
-    .section  .text.Default_Handler,"ax",%progbits
-Default_Handler:
-Infinite_Loop:
-  b  Infinite_Loop
  800135c:	e7fe      	b.n	800135c <ADC_IRQHandler>
 	...
 
@@ -3086,7 +3028,7 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
     HAL_NVIC_SetPriority(SysTick_IRQn, TickPriority, 0U);
  80013d8:	2200      	movs	r2, #0
  80013da:	6879      	ldr	r1, [r7, #4]
- 80013dc:	f04f 30ff 	mov.w	r0, #4294967295	@ 0xffffffff
+ 80013dc:	f04f 30ff 	mov.w	r0, #4294967295
  80013e0:	f000 fba1 	bl	8001b26 <HAL_NVIC_SetPriority>
     uwTickPrio = TickPriority;
  80013e4:	4a06      	ldr	r2, [pc, #24]	@ (8001400 <HAL_InitTick+0x5c>)
@@ -3179,7 +3121,7 @@ __weak void HAL_Delay(uint32_t Delay)
   /* Add a freq to guarantee minimum wait */
   if (wait < HAL_MAX_DELAY)
  8001456:	68fb      	ldr	r3, [r7, #12]
- 8001458:	f1b3 3fff 	cmp.w	r3, #4294967295	@ 0xffffffff
+ 8001458:	f1b3 3fff 	cmp.w	r3, #4294967295
  800145c:	d005      	beq.n	800146a <HAL_Delay+0x26>
   {
     wait += (uint32_t)(uwTickFreq);
@@ -4249,7 +4191,7 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t P
 
   return (
            ((PreemptPriority & (uint32_t)((1UL << (PreemptPriorityBits)) - 1UL)) << SubPriorityBits) |
- 8001a98:	f04f 32ff 	mov.w	r2, #4294967295	@ 0xffffffff
+ 8001a98:	f04f 32ff 	mov.w	r2, #4294967295
  8001a9c:	69bb      	ldr	r3, [r7, #24]
  8001a9e:	fa02 f303 	lsl.w	r3, r2, r3
  8001aa2:	43da      	mvns	r2, r3
@@ -4258,7 +4200,7 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t P
  8001aa8:	697b      	ldr	r3, [r7, #20]
  8001aaa:	409a      	lsls	r2, r3
            ((SubPriority     & (uint32_t)((1UL << (SubPriorityBits    )) - 1UL)))
- 8001aac:	f04f 31ff 	mov.w	r1, #4294967295	@ 0xffffffff
+ 8001aac:	f04f 31ff 	mov.w	r1, #4294967295
  8001ab0:	697b      	ldr	r3, [r7, #20]
  8001ab2:	fa01 f303 	lsl.w	r3, r1, r3
  8001ab6:	43d9      	mvns	r1, r3
@@ -4304,7 +4246,7 @@ __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
  8001ae8:	6053      	str	r3, [r2, #4]
   NVIC_SetPriority (SysTick_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
  8001aea:	210f      	movs	r1, #15
- 8001aec:	f04f 30ff 	mov.w	r0, #4294967295	@ 0xffffffff
+ 8001aec:	f04f 30ff 	mov.w	r0, #4294967295
  8001af0:	f7ff ff8e 	bl	8001a10 <__NVIC_SetPriority>
   SysTick->VAL   = 0UL;                                             /* Load the SysTick Counter Value */
  8001af4:	4b05      	ldr	r3, [pc, #20]	@ (8001b0c <SysTick_Config+0x40>)
