@@ -21,8 +21,14 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "controller_task.h"
+#include "motor_driver.h"
 #include "game_task.h"
 #include "sound_task.h"
+#include "shoot_task.h"
+#include "lcd.h"
+#include "motor_driver.h"
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,8 +59,17 @@ TIM_HandleTypeDef htim5;
 
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
-motor_t mred = {&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2};
-motor_t mblue = {&htim1,TIM_CHANNEL_3,TIM_CHANNEL_4};
+motor_t mred = {
+		&htim1,
+		TIM_CHANNEL_1,
+		TIM_CHANNEL_2
+};
+
+motor_t mblue = {
+		&htim1,
+		TIM_CHANNEL_3,
+		TIM_CHANNEL_4
+};
 // sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
                       .num_states = 6,
@@ -87,6 +102,56 @@ GameTask game_task = {.state = 0,
 									 &game_task_state_3_end}
 
 };
+ShootTask red_shoot_task = {.state = 0,
+							.num_states = 4,
+   							.button = 0,
+							.servo_tim = &htim4,
+							.channel = TIM_CHANNEL_1, // make sure this is red
+							.shield_val = 0, // tune
+							.unshield_val = 1000, // tune
+							.laser_gpio = GPIO_PIN_14, // make sure this is red
+							.state_list = {&shoot_task_state_0_init,
+										   &shoot_task_state_1_wait,
+										   &shoot_task_state_2_unshield,
+										   &shoot_task_state_3_shoot}
+};
+ShootTask blue_shoot_task = {.state = 0,
+							.num_states = 4,
+   							.button = 0,
+							.servo_tim = &htim4,
+							.channel = TIM_CHANNEL_2, // make sure this is blue
+							.shield_val = 0, // tune
+							.unshield_val = 1000, // tune
+							.laser_gpio = GPIO_PIN_15, // make sure this is blue, 15 and chan 2 are tied
+							.state_list = {&shoot_task_state_0_init,
+										   &shoot_task_state_1_wait,
+										   &shoot_task_state_2_unshield,
+										   &shoot_task_state_3_shoot}
+};
+ControllerTask blue_controller_task = {
+    .state = 0,
+    .num_states = 2,
+    .chan1 = TIM_CHANNEL_3,
+    .chan2 = TIM_CHANNEL_4,
+    .htim_encoder = &htim5,      // encoder timer for blue motor
+    .hadc = &hadc1,              // ADC handle for blue motor potentiometer input WE NEED ANOTHER ADC CHANNEL
+    .motor = &mblue,
+    .state_list = {&controller_task_state_0_init,
+                   controller_task_state_1_calc_vel}
+};
+ControllerTask red_controller_task = {
+    .state = 0,
+    .num_states = 2,
+    .chan1 = TIM_CHANNEL_1,
+    .chan2 = TIM_CHANNEL_2,
+    .htim_encoder = &htim3,
+    .hadc = &hadc1,
+    .motor = &mred,
+    .state_list = {&controller_task_state_0_init,
+    			controller_task_state_1_calc_vel,}
+    };
+
+int a = 0;
 
 /* USER CODE END PV */
 
@@ -147,6 +212,7 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   //inits
+  //lcd_init(&hi2c1);
   //game_task_state_0_init(&game_task); just gunna run this as in the fsm directly
   /* USER CODE END 2 */
 
@@ -154,7 +220,19 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  game_task_run(&game_task);
+	  //game_task_run(&game_task);
+	  //shoot_task_run(&red_shoot_task);
+	  //shoot_task_run(&blue_shoot_task);
+//	  if(a == 0){
+//		  lcd_write(0,0,"Zap'em Shoot'em     ");
+//		  lcd_write(n 0,1,"     First to 5     ");
+//		  lcd_write(0,2,"Red:  0  Zaps       ");
+//		  lcd_write(0,3,"Blue: 0  Zaps       ");
+////		  a++;
+//	  }
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+	  HAL_Delay(1);
 
 	  //add delay
 
@@ -617,7 +695,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PB12 PB13 */
   GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
@@ -628,13 +706,45 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    if (GPIO_Pin == GPIO_PIN_12)
+    {
+        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == GPIO_PIN_RESET)
+        {
+            // turn on laser
+        	blue_shoot_task.button = 1;
+        }
+        else
+        {
+            // turn off laser
+        	blue_shoot_task.button = 0;
+        }
+    }
+    if (GPIO_Pin == GPIO_PIN_13)
+	{
+		if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13) == GPIO_PIN_RESET)
+		{
+			// turn on laser
+			red_shoot_task.button = 1;
+		}
+		else
+		{
+			// turn off laser
+			red_shoot_task.button = 0;
+		}
+	}
+}
 /* USER CODE END 4 */
 
 /**
