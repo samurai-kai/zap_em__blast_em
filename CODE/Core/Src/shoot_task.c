@@ -28,7 +28,7 @@ void shoot_task_run(ShootTask *shoot_task)
     }
 
 }
-
+// servo -- 300 at shiel
 
 // A function to initialize the task
 // init button, laser and photoresistor
@@ -43,6 +43,7 @@ void shoot_task_state_0_init(ShootTask *shoot_task)
 void shoot_task_state_1_wait(ShootTask *shoot_task)
 {
 	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
+	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
 	if (shoot_task->button == 1){
 		shoot_task->state = 2;
 	}

@@ -61,15 +61,15 @@ TIM_HandleTypeDef htim5;
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
 motor_t mred = {
-		&htim1,
-		TIM_CHANNEL_1,
-		TIM_CHANNEL_2
+		.tim = &htim1,
+		.chan1 = TIM_CHANNEL_3,
+		.chan2 = TIM_CHANNEL_4
 };
 
 motor_t mblue = {
-		&htim1,
-		TIM_CHANNEL_3,
-		TIM_CHANNEL_4
+		.tim = &htim1,
+		.chan1 = TIM_CHANNEL_1,
+		.chan2 = TIM_CHANNEL_2
 };
 // sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
@@ -123,9 +123,9 @@ ShootTask red_shoot_task = {.state = 0,
 							.num_states = 4,
    							.button = 0,
 							.servo_tim = &htim4,
-							.channel = TIM_CHANNEL_1, // make sure this is red
-							.shield_val = 0, // tune
-							.unshield_val = 1000, // tune
+							.channel = TIM_CHANNEL_2, // make sure this is red
+							.shield_val = 2900, // tune
+							.unshield_val = 400, // tune
 							.laser_gpio = GPIO_PIN_14, // make sure this is red
 							.state_list = {&shoot_task_state_0_init,
 										   &shoot_task_state_1_wait,
@@ -136,9 +136,9 @@ ShootTask blue_shoot_task = {.state = 0,
 							.num_states = 4,
    							.button = 0,
 							.servo_tim = &htim4,
-							.channel = TIM_CHANNEL_2, // make sure this is blue
-							.shield_val = 0, // tune
-							.unshield_val = 1000, // tune
+							.channel = TIM_CHANNEL_1, // make sure this is blue
+							.shield_val = 2900, // tune
+							.unshield_val = 400, // tune
 							.laser_gpio = GPIO_PIN_15, // make sure this is blue, 15 and chan 2 are tied
 							.state_list = {&shoot_task_state_0_init,
 										   &shoot_task_state_1_wait,
@@ -167,6 +167,7 @@ ControllerTask red_controller_task = {.state = 0,
 };
 
 int a = 0;
+int b = 0;
 
 /* USER CODE END PV */
 
@@ -229,6 +230,18 @@ int main(void)
   //inits
   //lcd_init(&hi2c1);
   //game_task_state_0_init(&game_task); just gunna run this as in the fsm directly
+  HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_2);
+  HAL_TIM_Base_Start(&htim4);
+
+  HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_4);
+  HAL_TIM_Base_Start(&htim1);
+  enable(&mred);
+  enable(&mblue);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -240,8 +253,8 @@ int main(void)
 //	  controller_task_run(&red_controller_task);
 //	  controller_task_run(&blue_controller_task);
 //	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
-//		  shoot_task_run(&red_shoot_task);
-//		  shoot_task_run(&blue_shoot_task);
+	  //shoot_task_run(&red_shoot_task);
+	  //shoot_task_run(&blue_shoot_task);
 //		  photoresistor_task_run(&red_photoresistor_task);
 //		  photoresistor_task_run(&blue_photoresistor_task);
 //	  }
@@ -255,8 +268,16 @@ int main(void)
 //	  }
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
-	  // out of 65535
-	  __HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
+	  // a from 1000 to 2000
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
+//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, a);
+//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, b);
+//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, a);
+//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, b);
+	  set_duty(&mred,a);
+	  set_duty(&mblue,b);
+	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
+	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
 	  HAL_Delay(1);
 
 	  //add delay
@@ -421,7 +442,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
+  htim1.Init.Period = 4799;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -435,7 +456,7 @@ static void MX_TIM1_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.OCMode = TIM_OCMODE_PWM2;
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
@@ -593,9 +614,9 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 1 */
   htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 0;
+  htim4.Init.Prescaler = 83;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 4799;
+  htim4.Init.Period = 19999;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim4) != HAL_OK)
