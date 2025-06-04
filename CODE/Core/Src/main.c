@@ -149,7 +149,8 @@ ControllerTask blue_controller_task = {.state = 0,
 									   .num_states = 2,
 									   .chan1 = TIM_CHANNEL_3,
 									   .chan2 = TIM_CHANNEL_4,
-									   .htim_encoder = &htim5,      // encoder timer for blue motor
+									   .pot_zero = 0,
+									   .htim_encoder = &htim3,      // encoder timer for blue motor
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input WE NEED ANOTHER ADC CHANNEL
 									   .motor = &mblue,
 									   .state_list = {&controller_task_state_0_init,
@@ -159,7 +160,8 @@ ControllerTask red_controller_task = {.state = 0,
 									  .num_states = 2,
 									  .chan1 = TIM_CHANNEL_1,
 									  .chan2 = TIM_CHANNEL_2,
-									  .htim_encoder = &htim3,
+									  .pot_zero = 0,
+									  .htim_encoder = &htim5,
 									  .hadc = &hadc1,
 									  .motor = &mred,
 									  .state_list = {&controller_task_state_0_init,
@@ -168,6 +170,8 @@ ControllerTask red_controller_task = {.state = 0,
 
 int a = 0;
 int b = 0;
+uint32_t adc_val_6 = 0;
+uint32_t adc_val_7 = 0;
 
 /* USER CODE END PV */
 
@@ -250,8 +254,7 @@ int main(void)
   {
 //	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
-//	  controller_task_run(&red_controller_task);
-//	  controller_task_run(&blue_controller_task);
+//	  contoller_task_run(&blue_controller_task);
 //	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
 	  //shoot_task_run(&red_shoot_task);
 	  //shoot_task_run(&blue_shoot_task);
@@ -276,6 +279,22 @@ int main(void)
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, b);
 	  set_duty(&mred,a);
 	  set_duty(&mblue,b);
+
+	  HAL_ADC_Start(&hadc1);
+//	  HAL_ADC_PollForConversion(&hadc1, 10);
+//	  adc_val_6 = HAL_ADC_GetValue(&hadc1);
+//	  HAL_ADC_PollForConversion(&hadc1, 10);
+//	  adc_val_7 = HAL_ADC_GetValue(&hadc1);
+//	  HAL_ADC_Stop(&hadc1);
+	  HAL_ADC_PollForConversion(&hadc1, 10);
+	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
+	      adc_val_6 = HAL_ADC_GetValue(&hadc1);  // First result (Channel 6)
+
+	  HAL_ADC_PollForConversion(&hadc1, 10);
+	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
+	      adc_val_7 = HAL_ADC_GetValue(&hadc1);  // Second result (Channel 7)
+
+	  HAL_ADC_Stop(&hadc1);
 	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
 	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
 	  HAL_Delay(1);
@@ -357,13 +376,13 @@ static void MX_ADC1_Init(void)
   hadc1.Instance = ADC1;
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc1.Init.ScanConvMode = DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ScanConvMode = ENABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.NbrOfConversion = 2;
   hadc1.Init.DMAContinuousRequests = DISABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
@@ -380,8 +399,17 @@ static void MX_ADC1_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN ADC1_Init 2 */
 
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
+  */
+  sConfig.Channel = ADC_CHANNEL_7;
+  sConfig.Rank = 2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
+  //sConfigInjected.InjectedChannel = ADC_CHANNEL_7;
   /* USER CODE END ADC1_Init 2 */
 
 }
