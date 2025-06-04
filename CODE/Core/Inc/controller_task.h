@@ -20,12 +20,14 @@ typedef void (*controller_fcn_t)(ControllerTask *controller_task);
 
 struct ControllerTask
 {
+	int32_t				color;
     int32_t 			state;
     int32_t 			num_states;
     uint32_t 			chan1;
     uint32_t 			chan2;
     int32_t				pot_zero;
     TIM_HandleTypeDef 	*htim_encoder;
+    TIM_HandleTypeDef 	*htim_dt;  		// for encoder feedback delta time
     ADC_HandleTypeDef 	*hadc;          // ADC handle pointer to potentiometer
     motor_t 			*motor;         // Pointer to  motor struct
 

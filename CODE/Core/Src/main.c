@@ -145,23 +145,27 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
-ControllerTask blue_controller_task = {.state = 0,
+ControllerTask blue_controller_task = {.color = 0,
+									   .state = 0,
 									   .num_states = 2,
 									   .chan1 = TIM_CHANNEL_3,
 									   .chan2 = TIM_CHANNEL_4,
 									   .pot_zero = 0,
-									   .htim_encoder = &htim3,      // encoder timer for blue motor
-									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input WE NEED ANOTHER ADC CHANNEL
+									   .htim_encoder = &htim3,		// encoder timer for blue motor
+									   .htim_dt = &htim2,
+									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
 									   .motor = &mblue,
 									   .state_list = {&controller_task_state_0_init,
 									    			  &controller_task_state_1_calc_vel}
 };
-ControllerTask red_controller_task = {.state = 0,
+ControllerTask red_controller_task = {.color = 1,
+									  .state = 0,
 									  .num_states = 2,
 									  .chan1 = TIM_CHANNEL_1,
 									  .chan2 = TIM_CHANNEL_2,
 									  .pot_zero = 0,
 									  .htim_encoder = &htim5,
+									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
 									  .motor = &mred,
 									  .state_list = {&controller_task_state_0_init,
@@ -237,7 +241,7 @@ int main(void)
   HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_2);
   HAL_TIM_Base_Start(&htim4);
-
+  HAL_TIM_Base_Start(&htim2);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_3);
@@ -277,29 +281,30 @@ int main(void)
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, b);
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, a);
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, b);
-	  set_duty(&mred,a);
-	  set_duty(&mblue,b);
-
-	  HAL_ADC_Start(&hadc1);
+//	  set_duty(&mred,a);
+//	  set_duty(&mblue,b);
+//
+//	  HAL_ADC_Start(&hadc1);
 //	  HAL_ADC_PollForConversion(&hadc1, 10);
 //	  adc_val_6 = HAL_ADC_GetValue(&hadc1);
 //	  HAL_ADC_PollForConversion(&hadc1, 10);
 //	  adc_val_7 = HAL_ADC_GetValue(&hadc1);
 //	  HAL_ADC_Stop(&hadc1);
-	  HAL_ADC_PollForConversion(&hadc1, 10);
-	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
-	      adc_val_6 = HAL_ADC_GetValue(&hadc1);  // First result (Channel 6)
-
-	  HAL_ADC_PollForConversion(&hadc1, 10);
-	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
-	      adc_val_7 = HAL_ADC_GetValue(&hadc1);  // Second result (Channel 7)
-
-	  HAL_ADC_Stop(&hadc1);
+//	  HAL_ADC_PollForConversion(&hadc1, 10);
+//	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
+//	      adc_val_6 = HAL_ADC_GetValue(&hadc1);  // First result (Channel 6)
+//
+//	  HAL_ADC_PollForConversion(&hadc1, 10);
+//	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
+//	      adc_val_7 = HAL_ADC_GetValue(&hadc1);  // Second result (Channel 7)
+//
+//	  HAL_ADC_Stop(&hadc1);
 	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
 	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
-	  HAL_Delay(1);
-
+	  controller_task_run(&blue_controller_task);
+	  controller_task_run(&red_controller_task);
 	  //add delay
+	  HAL_Delay(1);
 
     /* USER CODE END WHILE */
 
@@ -377,7 +382,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = ENABLE;
-  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
@@ -394,7 +399,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -537,6 +542,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 0 */
 
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
   TIM_OC_InitTypeDef sConfigOC = {0};
 
@@ -544,11 +550,20 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 0;
+  htim2.Init.Prescaler = 95;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 4294967295;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
   if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
   {
     Error_Handler();
