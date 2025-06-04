@@ -12,7 +12,9 @@
 #include "stm32f4xx_hal.h"  // or your STM32 family
 
 typedef struct SoundTask SoundTask; // forward declaration
+typedef struct PhotoresistorTask PhotoresistorTask;
 typedef struct GameTask GameTask; // forward declaration
+
 // all states take in a GameTask pointer
 typedef void (*game_fcn_t)(GameTask *game_task);
 
@@ -22,7 +24,7 @@ struct GameTask
 {
     int32_t     state;
     int32_t     num_states;
-    int32_t		play_flg;
+    int32_t		play_flag;
     int32_t		score_red;
     int32_t		score_blue;
     int32_t 	score_red_prev;
@@ -30,6 +32,8 @@ struct GameTask
     int32_t		score_thresh;
     int32_t		num;
     SoundTask	*sound_task_ptr;
+    PhotoresistorTask *red_photoresistor_task_ptr;
+    PhotoresistorTask *blue_photoresistor_task_ptr;
     I2C_HandleTypeDef *i2c_handle;
     game_fcn_t state_list[];
 };

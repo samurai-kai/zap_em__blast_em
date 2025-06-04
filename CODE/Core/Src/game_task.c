@@ -7,6 +7,7 @@
 
 #include "game_task.h"
 #include "sound_task.h"
+#include "photoresistor_task.h"
 #include "lcd.h"
 
 #include <stdio.h>
@@ -51,7 +52,7 @@ void game_task_state_1_home(GameTask *game_task)
     //play_flg enabled from button task within shoot task?? or make button task
 	lcd_write(0, 0, "Hello World"); // x,y,message, display is 20 wide 4 tall
 	lcd_write(0,1,"Game test, game test");// 20 long message
-	if (game_task->play_flg == 1){
+	if (game_task->play_flag == 1){
     	game_task->state = 2;
     	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it
     }
@@ -63,6 +64,19 @@ void game_task_state_2_play(GameTask *game_task)
 {
 	char r_score[5];
 	char b_score[5];
+
+
+	if (game_task->red_photoresistor_task_ptr->hit_flag){
+		game_task->score_red++;
+		game_task->red_photoresistor_task_ptr->hit_flag = 0;
+		//might need to add delay so that won't get extra hits for extended period of hitting
+	}
+	if (game_task->blue_photoresistor_task_ptr->hit_flag){
+		game_task->score_blue++;
+		game_task->blue_photoresistor_task_ptr->hit_flag = 0;
+		//might need to add delay so that won't get extra hits for extended period of hitting
+	}
+
 	// add thing that prints score of each on the LCD
 	//maybe only do once then adjust the score through a direct print index
 	if (game_task->num == 0){
@@ -105,6 +119,7 @@ void game_task_state_3_end(GameTask *game_task)
 {
 	// lowkey might not be needed
 	// does need to reset everything but could do in above
+	game_task->play_flag == 0;
 	game_task->state = 1;
 }
 

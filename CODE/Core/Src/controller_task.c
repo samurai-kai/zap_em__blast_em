@@ -66,7 +66,7 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 
     float desired_velocity = ((float)adc_val / MAX_ADC) * MAX_VELOCITY;
 
-    // --- Calculate actual velocity from encoder ticks ---
+    // --- Calculate actual velocity from encoder ticks --- ** might need to account for overload on timer
     static int32_t last_ticks = 0;
     int32_t current_ticks = __HAL_TIM_GET_COUNTER(controller_task->htim_encoder);
     int32_t delta_ticks = current_ticks - last_ticks;

@@ -3,6 +3,7 @@
 "./Core/Src/lcd.o"
 "./Core/Src/main.o"
 "./Core/Src/motor_driver.o"
+"./Core/Src/photoresistor_task.o"
 "./Core/Src/shoot_task.o"
 "./Core/Src/sound_task.o"
 "./Core/Src/stm32f4xx_hal_msp.o"

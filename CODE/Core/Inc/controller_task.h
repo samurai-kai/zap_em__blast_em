@@ -20,16 +20,16 @@ typedef void (*controller_fcn_t)(ControllerTask *controller_task);
 
 struct ControllerTask
 {
-    int32_t state;
-    int32_t num_states;
-    uint32_t chan1;
-    uint32_t chan2;
-    TIM_HandleTypeDef *htim_encoder;
-    ADC_HandleTypeDef *hadc;          // ADC handle pointer to potentiometer
-    motor_t *motor;                   // Pointer to  motor struct
+    int32_t 			state;
+    int32_t 			num_states;
+    uint32_t 			chan1;
+    uint32_t 			chan2;
+    TIM_HandleTypeDef 	*htim_encoder;
+    ADC_HandleTypeDef 	*hadc;          // ADC handle pointer to potentiometer
+    motor_t 			*motor;         // Pointer to  motor struct
 
     // PID control variables
-    float prev_error;
+    float prev_error; //could be dangerous
 
     controller_fcn_t state_list[];
 };

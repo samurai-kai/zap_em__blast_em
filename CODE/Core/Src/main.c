@@ -28,6 +28,7 @@
 #include "shoot_task.h"
 #include "lcd.h"
 #include "motor_driver.h"
+#include "photoresistor_task.h"
 #include <stdint.h>
 /* USER CODE END Includes */
 
@@ -85,9 +86,23 @@ SoundTask sound_task = {.state = 0,
 									 &sound_task_state_5_start}
 
 };
+PhotoresistorTask red_photoresistor_task = {.state = 0,
+											.num_states = 3,
+											.hit_flag = 0,
+											.state_list = {&photoresistor_task_state_0_init,
+													       &photoresistor_task_state_1_look,
+														   &photoresistor_task_state_2_hit}
+};
+PhotoresistorTask blue_photoresistor_task = {.state = 0,
+											.num_states = 3,
+											.hit_flag = 0,
+											.state_list = {&photoresistor_task_state_0_init,
+													       &photoresistor_task_state_1_look,
+														   &photoresistor_task_state_2_hit}
+};
 GameTask game_task = {.state = 0,
                       .num_states = 4,
-					  .play_flg = 0,
+					  .play_flag = 0,
 					  .score_red = 0,
 					  .score_blue = 0,
 					  .score_red_prev = 0,
@@ -95,6 +110,8 @@ GameTask game_task = {.state = 0,
 					  .score_thresh = 5,
 					  .num = 0,
 					  .sound_task_ptr = &sound_task,
+					  .red_photoresistor_task_ptr = &red_photoresistor_task,
+					  .blue_photoresistor_task_ptr = &blue_photoresistor_task,
 					  .i2c_handle = &hi2c1,
                       .state_list = {&game_task_state_0_init,
                                      &game_task_state_1_home,
@@ -128,28 +145,26 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
-ControllerTask blue_controller_task = {
-    .state = 0,
-    .num_states = 2,
-    .chan1 = TIM_CHANNEL_3,
-    .chan2 = TIM_CHANNEL_4,
-    .htim_encoder = &htim5,      // encoder timer for blue motor
-    .hadc = &hadc1,              // ADC handle for blue motor potentiometer input WE NEED ANOTHER ADC CHANNEL
-    .motor = &mblue,
-    .state_list = {&controller_task_state_0_init,
-                   controller_task_state_1_calc_vel}
+ControllerTask blue_controller_task = {.state = 0,
+									   .num_states = 2,
+									   .chan1 = TIM_CHANNEL_3,
+									   .chan2 = TIM_CHANNEL_4,
+									   .htim_encoder = &htim5,      // encoder timer for blue motor
+									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input WE NEED ANOTHER ADC CHANNEL
+									   .motor = &mblue,
+									   .state_list = {&controller_task_state_0_init,
+									    			  &controller_task_state_1_calc_vel}
 };
-ControllerTask red_controller_task = {
-    .state = 0,
-    .num_states = 2,
-    .chan1 = TIM_CHANNEL_1,
-    .chan2 = TIM_CHANNEL_2,
-    .htim_encoder = &htim3,
-    .hadc = &hadc1,
-    .motor = &mred,
-    .state_list = {&controller_task_state_0_init,
-    			controller_task_state_1_calc_vel,}
-    };
+ControllerTask red_controller_task = {.state = 0,
+									  .num_states = 2,
+									  .chan1 = TIM_CHANNEL_1,
+									  .chan2 = TIM_CHANNEL_2,
+									  .htim_encoder = &htim3,
+									  .hadc = &hadc1,
+									  .motor = &mred,
+									  .state_list = {&controller_task_state_0_init,
+												     &controller_task_state_1_calc_vel,}
+};
 
 int a = 0;
 
@@ -220,9 +235,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //game_task_run(&game_task);
-	  //shoot_task_run(&red_shoot_task);
-	  //shoot_task_run(&blue_shoot_task);
+//	  game_task_run(&game_task);
+//	  sound_task_run(&sound_task);
+//	  controller_task_run(&red_controller_task);
+//	  controller_task_run(&blue_controller_task);
+//	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
+//		  shoot_task_run(&red_shoot_task);
+//		  shoot_task_run(&blue_shoot_task);
+//		  photoresistor_task_run(&red_photoresistor_task);
+//		  photoresistor_task_run(&blue_photoresistor_task);
+//	  }
+
 //	  if(a == 0){
 //		  lcd_write(0,0,"Zap'em Shoot'em     ");
 //		  lcd_write(n 0,1,"     First to 5     ");
@@ -744,7 +767,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			red_shoot_task.button = 0;
 		}
 	}
+    if (GPIO_Pin == GPIO_PIN_4){
+
+    }
 }
+
 /* USER CODE END 4 */
 
 /**
