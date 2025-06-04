@@ -2,4 +2,4 @@
 ../Core/Src/shoot_task.c:35:6:shoot_task_state_0_init	16	static
 ../Core/Src/shoot_task.c:43:6:shoot_task_state_1_wait	16	static
 ../Core/Src/shoot_task.c:52:6:shoot_task_state_2_unshield	16	static
-../Core/Src/shoot_task.c:61:6:shoot_task_state_3_laser	16	static
+../Core/Src/shoot_task.c:64:6:shoot_task_state_3_shoot	16	static

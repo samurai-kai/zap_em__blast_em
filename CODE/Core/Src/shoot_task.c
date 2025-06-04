@@ -55,15 +55,19 @@ void shoot_task_state_2_unshield(ShootTask *shoot_task)
 	if (1){ // add delay using some ticks and tune it
 		shoot_task->state = 3;
 	}
+	if(shoot_task->button == 0){
+		shoot_task->state = 1;
+	}
 }
 // A function to implement state 3
 
-void shoot_task_state_3_laser(ShootTask *shoot_task)
+void shoot_task_state_3_shoot(ShootTask *shoot_task)
 {
 	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
 	if(shoot_task->button == 0){
-		shoot_task->state = 0;
+		shoot_task->state = 1;
 	}
+
 }
 
 

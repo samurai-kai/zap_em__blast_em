@@ -177,7 +177,6 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   MX_TIM2_Init();
-
   /* USER CODE BEGIN 2 */
   //inits
   //lcd_init(&hi2c1);
@@ -189,13 +188,18 @@ int main(void)
   while (1)
   {
 	  //game_task_run(&game_task);
+	  //shoot_task_run(&red_shoot_task);
+	  //shoot_task_run(&blue_shoot_task);
 //	  if(a == 0){
 //		  lcd_write(0,0,"Zap'em Shoot'em     ");
-//		  lcd_write(0,1,"     First to 5     ");
+//		  lcd_write(n 0,1,"     First to 5     ");
 //		  lcd_write(0,2,"Red:  0  Zaps       ");
 //		  lcd_write(0,3,"Blue: 0  Zaps       ");
 ////		  a++;
 //	  }
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+	  HAL_Delay(1);
 
 	  //add delay
 
@@ -658,7 +662,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PB12 PB13 */
   GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
@@ -669,13 +673,45 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    if (GPIO_Pin == GPIO_PIN_12)
+    {
+        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == GPIO_PIN_RESET)
+        {
+            // turn on laser
+        	blue_shoot_task.button = 1;
+        }
+        else
+        {
+            // turn off laser
+        	blue_shoot_task.button = 0;
+        }
+    }
+    if (GPIO_Pin == GPIO_PIN_13)
+	{
+		if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13) == GPIO_PIN_RESET)
+		{
+			// turn on laser
+			red_shoot_task.button = 1;
+		}
+		else
+		{
+			// turn off laser
+			red_shoot_task.button = 0;
+		}
+	}
+}
 /* USER CODE END 4 */
 
 /**
