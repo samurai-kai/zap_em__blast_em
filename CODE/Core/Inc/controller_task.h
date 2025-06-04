@@ -24,6 +24,7 @@ struct ControllerTask
     int32_t 			num_states;
     uint32_t 			chan1;
     uint32_t 			chan2;
+    int32_t				pot_zero;
     TIM_HandleTypeDef 	*htim_encoder;
     ADC_HandleTypeDef 	*hadc;          // ADC handle pointer to potentiometer
     motor_t 			*motor;         // Pointer to  motor struct

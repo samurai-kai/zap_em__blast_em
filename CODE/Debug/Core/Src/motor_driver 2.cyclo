@@ -1,0 +1,3 @@
+../Core/Src/motor_driver.c:11:6:set_duty	15
+../Core/Src/motor_driver.c:27:6:disable	7
+../Core/Src/motor_driver.c:34:6:enable	7

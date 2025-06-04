@@ -45,6 +45,13 @@ void controller_task_state_0_init(ControllerTask *controller_task)
 
 	// Enable motor
 	enable(controller_task->motor);
+
+	HAL_ADC_Start(controller_task->hadc);
+	HAL_ADC_PollForConversion(controller_task->hadc, 10);
+	uint32_t adc_val = HAL_ADC_GetValue(controller_task->hadc);
+	HAL_ADC_Stop(controller_task->hadc);
+	controller_task->pot_zero = adc_val;
+
 }
 
 //stays in state 1
@@ -53,7 +60,7 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
     // Constants for PID and sampling time
     const float delta_time = 0.02f;  // Adjust to control loop frequency from encoder sampling(seconds)
     const float Kp = 1.0f;
-    const float Kd = 0.01f;
+    const float Kd = 0.0f;
 
     // --- Read desired velocity from ADC (potentiometer) ---
     HAL_ADC_Start(controller_task->hadc);
@@ -61,8 +68,10 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
     uint32_t adc_val = HAL_ADC_GetValue(controller_task->hadc);
     HAL_ADC_Stop(controller_task->hadc);
 
+    adc_val -= controller_task->pot_zero;
+
     const float MAX_ADC = 4095.0f;       // 12-bit ADC max value
-    const float MAX_VELOCITY = 1000.0f;  // Adjust based on system units
+    const float MAX_VELOCITY = 1.0f;  // Adjust based on system units
 
     float desired_velocity = ((float)adc_val / MAX_ADC) * MAX_VELOCITY;
 
