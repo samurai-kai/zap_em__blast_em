@@ -21,6 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "controller_task.h"
+#include "motor_driver.h"
 #include "game_task.h"
 #include "sound_task.h"
 #include "shoot_task.h"
@@ -57,8 +59,17 @@ TIM_HandleTypeDef htim5;
 
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
-motor_t mred = {&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2};
-motor_t mblue = {&htim1,TIM_CHANNEL_3,TIM_CHANNEL_4};
+motor_t mred = {
+		&htim1,
+		TIM_CHANNEL_1,
+		TIM_CHANNEL_2
+};
+
+motor_t mblue = {
+		&htim1,
+		TIM_CHANNEL_3,
+		TIM_CHANNEL_4
+};
 // sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
                       .num_states = 6,
@@ -117,6 +128,28 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
+ControllerTask blue_controller_task = {
+    .state = 0,
+    .num_states = 2,
+    .chan1 = TIM_CHANNEL_3,
+    .chan2 = TIM_CHANNEL_4,
+    .htim_encoder = &htim5,      // encoder timer for blue motor
+    .hadc = &hadc1,              // ADC handle for blue motor potentiometer input WE NEED ANOTHER ADC CHANNEL
+    .motor = &mblue,
+    .state_list = {&controller_task_state_0_init,
+                   controller_task_state_1_calc_vel}
+};
+ControllerTask red_controller_task = {
+    .state = 0,
+    .num_states = 2,
+    .chan1 = TIM_CHANNEL_1,
+    .chan2 = TIM_CHANNEL_2,
+    .htim_encoder = &htim3,
+    .hadc = &hadc1,
+    .motor = &mred,
+    .state_list = {&controller_task_state_0_init,
+    			controller_task_state_1_calc_vel,}
+    };
 
 int a = 0;
 
