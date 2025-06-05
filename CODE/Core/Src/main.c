@@ -29,6 +29,7 @@
 #include "lcd.h"
 #include "motor_driver.h"
 #include "photoresistor_task.h"
+#include "adc_task.h"
 #include <stdint.h>
 /* USER CODE END Includes */
 
@@ -157,6 +158,7 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .prev_ticks = 0,
 									   .k_p = 50,
 									   .k_d = 0,
+									   .adc_val = 0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
@@ -176,6 +178,7 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .prev_ticks = 0,
 									  .k_p = 12.0,
 									  .k_d = 0.0,
+									  .adc_val = 0,
 									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
@@ -183,7 +186,15 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .state_list = {&controller_task_state_0_init,
 												     &controller_task_state_1_calc_vel}
 };
+ADCTask adc_task = {.state = 0,
+					.num_states = 2,
+					.red_contr_ptr = &red_controller_task,
+					.blue_contr_ptr = &blue_controller_task,
+					.hadc = &hadc1,
+					.state_list = {&adc_task_state_0_init,
+								   &adc_task_state_1_read}
 
+};
 int a = 0;
 int b = 0;
 uint32_t adc_val_6 = 0;
@@ -273,6 +284,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  adc_task_run(&adc_task);
 //	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
 //	  contoller_task_run(&blue_controller_task);
