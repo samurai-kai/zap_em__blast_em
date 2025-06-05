@@ -158,8 +158,8 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .prev_ticks = 0,
 									   .k_p = -6,
 									   .k_d = 0,
-									   .left_deadzone = 150,		// good at 150
-									   .right_deadzone = 300,		// good at 600
+									   .cw_deadzone = 150,		// good at 150
+									   .ccw_deadzone = 800,		// good at 600
 									   .adc_val = 0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
@@ -180,8 +180,8 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .prev_ticks = 0,
 									  .k_p = -10.0,
 									  .k_d = 0.0,
-									  .left_deadzone = 400,			// good at 400
-									  .right_deadzone = 300,		// good at 300
+									  .cw_deadzone = 400,			// good at 400
+									  .ccw_deadzone = 300,		// good at 300
 									  .adc_val = 0,
 									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
@@ -796,6 +796,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4|GPIO_PIN_5, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2|GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PC13 */
@@ -815,8 +818,9 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PA4 PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PB2 */
@@ -840,12 +844,6 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI4_IRQn, 2, 0);
-  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
-
-  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 2, 0);
-  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
-
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
@@ -883,6 +881,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			red_shoot_task.button = 0;
 		}
 	}
+
     if (GPIO_Pin == GPIO_PIN_4){
     	red_photoresistor_task.hit_flag = 1;
     }

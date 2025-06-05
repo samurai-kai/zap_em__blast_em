@@ -84,7 +84,7 @@ void game_task_state_2_play(GameTask *game_task)
 		lcd_write(0,0,"Zap'em Blast'em     ");
 		lcd_write(0,1,"     First to 5     ");
 		lcd_write(0,2,"Red:  0  Zaps       ");
-		lcd_write(0,3,"Blue: 0  Zaps       ");
+		lcd_write(0,3,"Blue: 0  Blasts     ");
 		//             01234567890123456789
 		game_task->num++;
 	}
