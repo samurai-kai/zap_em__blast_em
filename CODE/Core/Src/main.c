@@ -145,12 +145,13 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
-ControllerTask blue_controller_task = {.color = 0,
+ControllerTask blue_controller_task = {.color = 1,
 									   .state = 0,
 									   .num_states = 2,
 									   .chan1 = TIM_CHANNEL_3,
 									   .chan2 = TIM_CHANNEL_4,
 									   .pot_zero = 0,
+									   .control_signal = 0.0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
@@ -158,18 +159,19 @@ ControllerTask blue_controller_task = {.color = 0,
 									   .state_list = {&controller_task_state_0_init,
 									    			  &controller_task_state_1_calc_vel}
 };
-ControllerTask red_controller_task = {.color = 1,
+ControllerTask red_controller_task = {.color = 0,
 									  .state = 0,
 									  .num_states = 2,
 									  .chan1 = TIM_CHANNEL_1,
 									  .chan2 = TIM_CHANNEL_2,
 									  .pot_zero = 0,
 									  .htim_encoder = &htim5,
+									  .control_signal = 0.0,
 									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
 									  .motor = &mred,
 									  .state_list = {&controller_task_state_0_init,
-												     &controller_task_state_1_calc_vel,}
+												     &controller_task_state_1_calc_vel}
 };
 
 int a = 0;
@@ -301,7 +303,7 @@ int main(void)
 //	  HAL_ADC_Stop(&hadc1);
 	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
 	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
-	  controller_task_run(&blue_controller_task);
+//	  controller_task_run(&blue_controller_task);
 	  controller_task_run(&red_controller_task);
 	  //add delay
 	  HAL_Delay(1);
