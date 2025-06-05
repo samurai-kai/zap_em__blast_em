@@ -6,3 +6,11 @@ blue_controller_task.color
 blue_controller_task.pot_zero
 red_controller_task.control_signal
 blue_controller_task.control_signal
+blue_controller_task.k_p
+red_controller_task.k_p
+red_controller_task.high_deadzone
+blue_controller_task.high_deadzone
+blue_controller_task.low_deadzone
+red_controller_task.low_deadzone
+red_shoot_task.state
+blue_shoot_task.state

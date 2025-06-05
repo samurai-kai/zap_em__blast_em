@@ -103,7 +103,7 @@ PhotoresistorTask blue_photoresistor_task = {.state = 0,
 };
 GameTask game_task = {.state = 0,
                       .num_states = 4,
-					  .play_flag = 0,
+					  .play_flag = 1,
 					  .score_red = 0,
 					  .score_blue = 0,
 					  .score_red_prev = 0,
@@ -156,10 +156,10 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .prev_time = 0,
 									   .current_time = 0,
 									   .prev_ticks = 0,
-									   .k_p = -20,
+									   .k_p = -6,
 									   .k_d = 0,
-									   .high_deadzone = 600,
-									   .low_deadzone = 500,
+									   .left_deadzone = 150,		// good at 150
+									   .right_deadzone = 300,		// good at 600
 									   .adc_val = 0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
@@ -178,10 +178,10 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .prev_time = 0,
 									  .current_time = 0,
 									  .prev_ticks = 0,
-									  .k_p = -150.0,
+									  .k_p = -10.0,
 									  .k_d = 0.0,
-									  .high_deadzone = 300,
-									  .low_deadzone = 350,
+									  .left_deadzone = 400,			// good at 400
+									  .right_deadzone = 300,		// good at 300
 									  .adc_val = 0,
 									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
@@ -293,9 +293,9 @@ int main(void)
 //	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
 //	  contoller_task_run(&blue_controller_task);
-//	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
-//	  shoot_task_run(&red_shoot_task);
-//	  shoot_task_run(&blue_shoot_task);
+////	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
+	  shoot_task_run(&red_shoot_task);
+	  shoot_task_run(&blue_shoot_task);
 //		  photoresistor_task_run(&red_photoresistor_task);
 //		  photoresistor_task_run(&blue_photoresistor_task);
 //	  }
@@ -335,8 +335,8 @@ int main(void)
 //	  HAL_ADC_Stop(&hadc1);
 	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
 	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
-//	  controller_task_run(&blue_controller_task);
-//	  controller_task_run(&red_controller_task);
+	  controller_task_run(&blue_controller_task);
+	  controller_task_run(&red_controller_task);
 	  //add delay
 	  HAL_Delay(1);
 
