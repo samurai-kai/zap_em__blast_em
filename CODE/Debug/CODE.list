@@ -544,7 +544,7 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
  80005fa:	b094      	sub	sp, #80	@ 0x50
  80005fc:	af00      	add	r7, sp, #0
  80005fe:	6078      	str	r0, [r7, #4]
-    const float Kp = 20.0f;
+    const float Kp = 12.0f;
  8000600:	4b60      	ldr	r3, [pc, #384]	@ (8000784 <controller_task_state_1_calc_vel+0x18c>)
  8000602:	64bb      	str	r3, [r7, #72]	@ 0x48
     const float Kd = 0.0f;
@@ -721,7 +721,7 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
  800077e:	3750      	adds	r7, #80	@ 0x50
  8000780:	46bd      	mov	sp, r7
  8000782:	bd80      	pop	{r7, pc}
- 8000784:	41a00000 	.word	0x41a00000
+ 8000784:	41400000 	.word	0x41400000
  8000788:	457ff000 	.word	0x457ff000
  800078c:	200000d8 	.word	0x200000d8
  8000790:	49559f80 	.word	0x49559f80

@@ -174,3 +174,18 @@ Reason: (5) Unknown MCU found on target.
 !SUBENTRY 2 com.st.stm32cube.ide.mcu.toolchain 4 0 2025-06-04 16:42:26.570
 !MESSAGE Error in initializing ST-LINK device.
 Reason: (5) Unknown MCU found on target.
+!SESSION 2025-06-04 17:13:36.063 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-04 17:13:46.129
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-04 17:13:46.130
+!MESSAGE Log4j2 initialized with config file C:\Users\kaidc\Documents\Github\zap_em__blast_em\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-04 17:13:51.981
+!MESSAGE Started RMI Server, listening on port 41337

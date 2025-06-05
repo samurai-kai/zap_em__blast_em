@@ -69,7 +69,7 @@ void controller_task_state_0_init(ControllerTask *controller_task)
 
 void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 {
-    const float Kp = 20.0f;
+    const float Kp = 12.0f;
     const float Kd = 0.0f;
     uint32_t t0 = __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
 
