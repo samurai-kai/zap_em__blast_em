@@ -30,6 +30,8 @@ struct ControllerTask
     uint32_t			prev_time;
     uint32_t			current_time;
     uint32_t			prev_ticks;
+    float				k_p;
+    float				k_d;
     TIM_HandleTypeDef 	*htim_encoder;
     TIM_HandleTypeDef 	*htim_dt;  		// for encoder feedback delta time
     ADC_HandleTypeDef 	*hadc;          // ADC handle pointer to potentiometer

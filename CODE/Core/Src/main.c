@@ -155,6 +155,8 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .prev_time = 0,
 									   .current_time = 0,
 									   .prev_ticks = 0,
+									   .k_p = 50,
+									   .k_d = 0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
@@ -172,6 +174,8 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .prev_time = 0,
 									  .current_time = 0,
 									  .prev_ticks = 0,
+									  .k_p = 12.0,
+									  .k_d = 0.0,
 									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
@@ -314,7 +318,7 @@ int main(void)
 //	  HAL_ADC_Stop(&hadc1);
 	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
 	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
-//	  controller_task_run(&blue_controller_task);
+	  controller_task_run(&blue_controller_task);
 	  controller_task_run(&red_controller_task);
 	  //add delay
 	  HAL_Delay(1);
