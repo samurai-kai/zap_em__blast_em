@@ -35,14 +35,14 @@ void shoot_task_run(ShootTask *shoot_task)
 void shoot_task_state_0_init(ShootTask *shoot_task)
 {
 	shoot_task->state = 1;
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
 	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
 }
 // A function to implement state 1 of the task
 // wait for button to be pressed which should be on an interrupt that changes a flag
 void shoot_task_state_1_wait(ShootTask *shoot_task)
 {
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
 	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
 	if (shoot_task->button == 1){
 		shoot_task->state = 2;
@@ -64,7 +64,7 @@ void shoot_task_state_2_unshield(ShootTask *shoot_task)
 
 void shoot_task_state_3_shoot(ShootTask *shoot_task)
 {
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
 	if(shoot_task->button == 0){
 		shoot_task->state = 1;
 	}

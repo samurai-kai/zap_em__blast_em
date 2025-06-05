@@ -17,7 +17,7 @@ static I2C_HandleTypeDef *lcd_hi2c = NULL;
 #define LCD_BACKLIGHT 0x08
 #define LCD_ENABLE    0x04
 
-/*
+
 static void lcd_write_word(uint8_t data) {
 	// might need to change to interrupt version
     HAL_I2C_Master_Transmit(lcd_hi2c, LCD_ADDR, &data, 1, 100);
@@ -66,7 +66,7 @@ void lcd_write(uint8_t x, uint8_t y, const char *str) {
         lcd_send_data(*str++);
     }
 }
-*/
+
 
 // my try
 /*

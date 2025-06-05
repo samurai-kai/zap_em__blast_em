@@ -103,7 +103,7 @@ PhotoresistorTask blue_photoresistor_task = {.state = 0,
 };
 GameTask game_task = {.state = 0,
                       .num_states = 4,
-					  .play_flag = 0,
+					  .play_flag = 1,
 					  .score_red = 0,
 					  .score_blue = 0,
 					  .score_red_prev = 0,
@@ -127,7 +127,7 @@ ShootTask red_shoot_task = {.state = 0,
 							.channel = TIM_CHANNEL_2, // make sure this is red
 							.shield_val = 2900, // tune
 							.unshield_val = 400, // tune
-							.laser_gpio = GPIO_PIN_14, // make sure this is red
+							.laser_gpio = GPIO_PIN_15, // make sure this is red
 							.state_list = {&shoot_task_state_0_init,
 										   &shoot_task_state_1_wait,
 										   &shoot_task_state_2_unshield,
@@ -140,7 +140,7 @@ ShootTask blue_shoot_task = {.state = 0,
 							.channel = TIM_CHANNEL_1, // make sure this is blue
 							.shield_val = 2900, // tune
 							.unshield_val = 400, // tune
-							.laser_gpio = GPIO_PIN_15, // make sure this is blue, 15 and chan 2 are tied
+							.laser_gpio = GPIO_PIN_14, // make sure this is blue, 15 and chan 2 are tied
 							.state_list = {&shoot_task_state_0_init,
 										   &shoot_task_state_1_wait,
 										   &shoot_task_state_2_unshield,
@@ -156,8 +156,10 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .prev_time = 0,
 									   .current_time = 0,
 									   .prev_ticks = 0,
-									   .k_p = 50,
+									   .k_p = -6,
 									   .k_d = 0,
+									   .left_deadzone = 150,		// good at 150
+									   .right_deadzone = 300,		// good at 600
 									   .adc_val = 0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
@@ -176,8 +178,10 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .prev_time = 0,
 									  .current_time = 0,
 									  .prev_ticks = 0,
-									  .k_p = 12.0,
+									  .k_p = -10.0,
 									  .k_d = 0.0,
+									  .left_deadzone = 400,			// good at 400
+									  .right_deadzone = 300,		// good at 300
 									  .adc_val = 0,
 									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
@@ -285,12 +289,13 @@ int main(void)
   while (1)
   {
 	  adc_task_run(&adc_task);
+
 //	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
 //	  contoller_task_run(&blue_controller_task);
-//	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
-	  //shoot_task_run(&red_shoot_task);
-	  //shoot_task_run(&blue_shoot_task);
+////	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
+	  shoot_task_run(&red_shoot_task);
+	  shoot_task_run(&blue_shoot_task);
 //		  photoresistor_task_run(&red_photoresistor_task);
 //		  photoresistor_task_run(&blue_photoresistor_task);
 //	  }

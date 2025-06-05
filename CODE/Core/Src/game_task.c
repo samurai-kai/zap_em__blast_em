@@ -42,6 +42,7 @@ void game_task_state_0_init(GameTask *game_task)
 {
     //add init stuff, display
 	lcd_init(game_task->i2c_handle);
+	game_task->state = 1;
 
 }
 // A function to implement state 1 of the task
