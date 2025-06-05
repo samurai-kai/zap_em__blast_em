@@ -145,13 +145,16 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
-ControllerTask blue_controller_task = {.color = 1,
+ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .state = 0,
 									   .num_states = 2,
 									   .chan1 = TIM_CHANNEL_3,
 									   .chan2 = TIM_CHANNEL_4,
 									   .pot_zero = 0,
 									   .control_signal = 0.0,
+									   .prev_time = 0,
+									   .current_time = 0,
+									   .prev_ticks = 0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
@@ -159,14 +162,17 @@ ControllerTask blue_controller_task = {.color = 1,
 									   .state_list = {&controller_task_state_0_init,
 									    			  &controller_task_state_1_calc_vel}
 };
-ControllerTask red_controller_task = {.color = 0,
+ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .state = 0,
 									  .num_states = 2,
 									  .chan1 = TIM_CHANNEL_1,
 									  .chan2 = TIM_CHANNEL_2,
 									  .pot_zero = 0,
-									  .htim_encoder = &htim5,
 									  .control_signal = 0.0,
+									  .prev_time = 0,
+									  .current_time = 0,
+									  .prev_ticks = 0,
+									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
 									  .motor = &mred,
@@ -240,18 +246,23 @@ int main(void)
   //inits
   //lcd_init(&hi2c1);
   //game_task_state_0_init(&game_task); just gunna run this as in the fsm directly
-  HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_2);
-  HAL_TIM_Base_Start(&htim4);
-  HAL_TIM_Base_Start(&htim2);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_4);
+
+  HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_2);
+
   HAL_TIM_Base_Start(&htim1);
+  HAL_TIM_Base_Start(&htim2);
+  HAL_TIM_Base_Start(&htim4);
+
   enable(&mred);
   enable(&mblue);
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
+
+  HAL_Delay(2000); // 2 second delay to let stuff get set up
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -278,7 +289,7 @@ int main(void)
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 	  // a from 1000 to 2000
-	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
+	  //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, a);
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, b);
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, a);
@@ -852,8 +863,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		}
 	}
     if (GPIO_Pin == GPIO_PIN_4){
-
+    	red_photoresistor_task.hit_flag = 1;
     }
+    if (GPIO_Pin == GPIO_PIN_5){
+    	blue_photoresistor_task.hit_flag = 1;
+	}
 }
 
 /* USER CODE END 4 */
