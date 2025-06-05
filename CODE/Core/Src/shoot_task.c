@@ -64,7 +64,7 @@ void shoot_task_state_2_unshield(ShootTask *shoot_task)
 
 void shoot_task_state_3_shoot(ShootTask *shoot_task)
 {
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
 	if(shoot_task->button == 0){
 		shoot_task->state = 1;
 	}

@@ -1,10 +1,10 @@
-17:09:43 **** Incremental Build of configuration Debug for project CODE ****
+10:49:16 **** Incremental Build of configuration Debug for project CODE ****
 make -j20 all 
 arm-none-eabi-size  CODE.elf 
    text	   data	    bss	    dec	    hex	filename
-  17596	    188	   2092	  19876	   4da4	CODE.elf
+  17996	    384	   2088	  20468	   4ff4	CODE.elf
 Finished building: default.size.stdout
  
 
-17:09:43 Build Finished. 0 errors, 0 warnings. (took 318ms)
+10:49:16 Build Finished. 0 errors, 0 warnings. (took 318ms)
 
