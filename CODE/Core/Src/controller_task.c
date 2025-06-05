@@ -50,6 +50,7 @@ void read_adc_channels_scan_mode(ADC_HandleTypeDef *hadc, int32_t *adc_val_6, in
     }
 
     HAL_ADC_Stop(hadc);
+
 }
 // init stuff and zero pot
 void controller_task_state_0_init(ControllerTask *controller_task)
@@ -69,8 +70,7 @@ void controller_task_state_0_init(ControllerTask *controller_task)
 // run state for velocity controller based on pot input
 void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 {
-    const float Kp = 12.0f;
-    const float Kd = 0.0f;
+
 
     // read adc
     int32_t adc_val_6 = 0, adc_val_7 = 0;
@@ -82,7 +82,7 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 
     // calc vel des
     const float MAX_ADC = 4095.0f;
-    const float MAX_VELOCITY = 1.0f;
+    const float MAX_VELOCITY = 5.0f;
     float desired_velocity = ((float)adc_val / MAX_ADC) * MAX_VELOCITY;
 
     // read encoder
@@ -103,7 +103,7 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
     controller_task->prev_error = error;
 
     // calc control signal and do saturation stuff
-    controller_task->control_signal = Kp * error + Kd * derivative;
+    controller_task->control_signal = controller_task->k_p * error + controller_task->k_d * derivative;
     float control_signal = controller_task->control_signal;
     if (control_signal > 100.0f) control_signal = 100.0f;
     else if (control_signal < -100.0f) control_signal = -100.0f;
