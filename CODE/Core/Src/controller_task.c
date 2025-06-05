@@ -35,23 +35,33 @@ void controller_task_run(ControllerTask *controller_task)
 
 }
 
-void read_adc_channels_scan_mode(ADC_HandleTypeDef *hadc, int32_t *adc_val_6, int32_t *adc_val_7)
+void read_adc_channels_scan_mode(ADC_HandleTypeDef *hadc,
+                                  int32_t *adc_val_6,
+                                  int32_t *adc_val_7)
 {
     HAL_ADC_Start(hadc);
 
-    // Wait for first conversion (ADC6)
-    if (HAL_ADC_PollForConversion(hadc, 10) == HAL_OK) {
-        *adc_val_6 = HAL_ADC_GetValue(hadc);
-    }
 
-    // Wait for second conversion (ADC7)
-    if (HAL_ADC_PollForConversion(hadc, 10) == HAL_OK) {
+//    // Discard ADC4
+//    if (HAL_ADC_PollForConversion(hadc, 10) == HAL_OK)
+//        (void)HAL_ADC_GetValue(hadc);
+//
+//    // Discard ADC5
+//    if (HAL_ADC_PollForConversion(hadc, 10) == HAL_OK)
+//        (void)HAL_ADC_GetValue(hadc);
+
+    // Read ADC6
+    if (HAL_ADC_PollForConversion(hadc, 10) == HAL_OK)
+        *adc_val_6 = HAL_ADC_GetValue(hadc);
+
+    // Read ADC7
+    if (HAL_ADC_PollForConversion(hadc, 10) == HAL_OK)
         *adc_val_7 = HAL_ADC_GetValue(hadc);
-    }
 
     HAL_ADC_Stop(hadc);
-
 }
+
+
 // init stuff and zero pot
 void controller_task_state_0_init(ControllerTask *controller_task)
 {
@@ -70,8 +80,8 @@ void controller_task_state_0_init(ControllerTask *controller_task)
 // run state for velocity controller based on pot input
 void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 {
-	int32_t high_thres = controller_task->pot_zero + controller_task->right_deadzone;
-	int32_t low_thres = controller_task->pot_zero - controller_task->left_deadzone;
+	int32_t high_thres = controller_task->pot_zero + controller_task->ccw_deadzone;
+	int32_t low_thres = controller_task->pot_zero - controller_task->cw_deadzone;
 
     // read adc
     int32_t adc_val_6 = 0, adc_val_7 = 0;
