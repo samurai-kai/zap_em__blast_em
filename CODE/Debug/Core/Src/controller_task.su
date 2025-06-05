@@ -1,4 +1,4 @@
 ../Core/Src/controller_task.c:15:6:controller_task_run	16	static
 ../Core/Src/controller_task.c:38:6:read_adc_channels_scan_mode	24	static
 ../Core/Src/controller_task.c:55:6:controller_task_state_0_init	24	static
-../Core/Src/controller_task.c:67:6:controller_task_state_1_calc_vel	88	static
+../Core/Src/controller_task.c:70:6:controller_task_state_1_calc_vel	88	static

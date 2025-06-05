@@ -1,0 +1,8 @@
+red_controller_task.state
+red_controller_task.color
+red_controller_task.pot_zero
+blue_controller_task.state
+blue_controller_task.color
+blue_controller_task.pot_zero
+red_controller_task.control_signal
+blue_controller_task.control_signal

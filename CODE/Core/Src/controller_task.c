@@ -59,18 +59,22 @@ void controller_task_state_0_init(ControllerTask *controller_task)
     enable(controller_task->motor);
 
     int32_t adc_val_6 = 0, adc_val_7 = 0;
+    HAL_Delay(1);
     read_adc_channels_scan_mode(controller_task->hadc, &adc_val_6, &adc_val_7);
 
     controller_task->pot_zero = (controller_task->color == 0) ? adc_val_7 : adc_val_6;
+
+    controller_task->state = 1;
 }
 
 void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 {
-    const float Kp = 1.0f;
+    const float Kp = 20.0f;
     const float Kd = 0.0f;
     uint32_t t0 = __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
 
     int32_t adc_val_6 = 0, adc_val_7 = 0;
+    HAL_Delay(1);
     read_adc_channels_scan_mode(controller_task->hadc, &adc_val_6, &adc_val_7);
 
     int32_t adc_val = (controller_task->color == 0) ? adc_val_7 : adc_val_6;
@@ -87,14 +91,15 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 
     uint32_t t1 = __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
     uint32_t dt_ticks = (t1 >= t0) ? (t1 - t0) : (0xFFFFFFFF - t0 + t1);
-    float delta_time = dt_ticks * 1e-6f;
+    float delta_time = dt_ticks / 875000.0f;;
 
     float current_velocity = (float)delta_ticks / delta_time;
     float error = desired_velocity - current_velocity;
     float derivative = (error - controller_task->prev_error) / delta_time;
     controller_task->prev_error = error;
 
-    float control_signal = Kp * error + Kd * derivative;
+    controller_task->control_signal = Kp * error + Kd * derivative;
+    float control_signal = controller_task->control_signal;
     if (control_signal > 100.0f) control_signal = 100.0f;
     else if (control_signal < -100.0f) control_signal = -100.0f;
 
