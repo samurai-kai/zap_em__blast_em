@@ -51,10 +51,10 @@ void read_adc_channels_scan_mode(ADC_HandleTypeDef *hadc, int32_t *adc_val_6, in
 
     HAL_ADC_Stop(hadc);
 }
-
+// init stuff and zero pot
 void controller_task_state_0_init(ControllerTask *controller_task)
 {
-    controller_task->prev_error = 0;
+	controller_task->prev_error = 0;
     HAL_TIM_Encoder_Start(controller_task->htim_encoder, TIM_CHANNEL_ALL);
     enable(controller_task->motor);
 
@@ -66,13 +66,13 @@ void controller_task_state_0_init(ControllerTask *controller_task)
 
     controller_task->state = 1;
 }
-
+// run state for velocity controller based on pot input
 void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 {
     const float Kp = 20.0f;
     const float Kd = 0.0f;
-    uint32_t t0 = __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
 
+    // read adc
     int32_t adc_val_6 = 0, adc_val_7 = 0;
     HAL_Delay(1);
     read_adc_channels_scan_mode(controller_task->hadc, &adc_val_6, &adc_val_7);
@@ -80,28 +80,37 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
     int32_t adc_val = (controller_task->color == 0) ? adc_val_7 : adc_val_6;
     adc_val -= controller_task->pot_zero;
 
+    // calc vel des
     const float MAX_ADC = 4095.0f;
     const float MAX_VELOCITY = 1.0f;
     float desired_velocity = ((float)adc_val / MAX_ADC) * MAX_VELOCITY;
 
-    static volatile int32_t last_ticks = 0;
+    // read encoder
     int32_t current_ticks = __HAL_TIM_GET_COUNTER(controller_task->htim_encoder);
-    int32_t delta_ticks = current_ticks - last_ticks;
-    last_ticks = current_ticks;
+    int32_t delta_ticks = current_ticks - controller_task->prev_ticks;
+    controller_task->prev_ticks = current_ticks;
 
-    uint32_t t1 = __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
-    uint32_t dt_ticks = (t1 >= t0) ? (t1 - t0) : (0xFFFFFFFF - t0 + t1);
-    float delta_time = dt_ticks / 875000.0f;;
+    controller_task->current_time = __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
+    uint32_t dt_ticks = (controller_task->current_time >= controller_task->prev_time) ? // calcs time diff in ticks
+    		(controller_task->current_time - controller_task->prev_time) :
+			(0xFFFFFFFF - controller_task->prev_time + controller_task->current_time); // overflow
+    float delta_time = dt_ticks / 875.0f; // ms -- could set up so its just microseconds, if this was 1000 instead of 875
 
+    // calc actual vel, error, derivative part
     float current_velocity = (float)delta_ticks / delta_time;
     float error = desired_velocity - current_velocity;
     float derivative = (error - controller_task->prev_error) / delta_time;
     controller_task->prev_error = error;
 
+    // calc control signal and do saturation stuff
     controller_task->control_signal = Kp * error + Kd * derivative;
     float control_signal = controller_task->control_signal;
     if (control_signal > 100.0f) control_signal = 100.0f;
     else if (control_signal < -100.0f) control_signal = -100.0f;
 
+    // set duty on the motor
     set_duty(controller_task->motor, (int32_t)control_signal);
+
+    // remember the time that was used this time
+    controller_task->prev_time = controller_task->current_time;
 }
