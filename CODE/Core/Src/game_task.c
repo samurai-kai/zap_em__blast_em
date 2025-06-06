@@ -81,36 +81,36 @@ void game_task_state_2_play(GameTask *game_task)
 	// add thing that prints score of each on the LCD
 	//maybe only do once then adjust the score through a direct print index
 	if (game_task->num == 0){
-		lcd_write(0,0,"Zap'em Blast'em     ");
-		lcd_write(0,1,"     First to 5     ");
-		lcd_write(0,2,"Red:  0  Zaps       ");
-		lcd_write(0,3,"Blue: 0  Blasts     ");
+//		lcd_write(0,0,"Zap'em Blast'em     ");
+//		lcd_write(0,1,"     First to 5     ");
+//		lcd_write(0,2,"Red:  0  Zaps       ");
+//		lcd_write(0,3,"Blue: 0  Blasts     ");
 		//             01234567890123456789
 		game_task->num++;
 	}
 
 	// check to see if score changed for the lcd
 	if (game_task->score_red != game_task->score_red_prev){
-
-		sprintf(r_score,"%ld",game_task->score_red);
-		lcd_write(6,2,r_score);
-		game_task->score_red_prev = game_task->score_red;
+//
+//		sprintf(r_score,"%ld",game_task->score_red);
+//		lcd_write(6,2,r_score);
+//		game_task->score_red_prev = game_task->score_red;
 	}
 	if (game_task->score_blue != game_task->score_blue_prev){
-
-		sprintf(b_score,"%ld",game_task->score_blue);
-		lcd_write(6,3,b_score);
-		game_task->score_blue_prev = game_task->score_blue;
+//
+//		sprintf(b_score,"%ld",game_task->score_blue);
+//		lcd_write(6,3,b_score);
+//		game_task->score_blue_prev = game_task->score_blue;
 	}
 
 
 	// check if someone won
-	if (game_task->score_red > game_task->score_thresh || game_task->score_blue > game_task->score_thresh){
-		// print win message and set end sound
-		lcd_write(0,0,"Zap'em Blast'em     ");
-		lcd_write(0,1,"     GAME OVER!     ");
-		game_task->state = 3;
-	}
+//	if (game_task->score_red > game_task->score_thresh || game_task->score_blue > game_task->score_thresh){
+//		// print win message and set end sound
+//		lcd_write(0,0,"Zap'em Blast'em     ");
+//		lcd_write(0,1,"     GAME OVER!     ");
+//		game_task->state = 3;
+//	}
 
 }
 // A function to implement state 3
@@ -122,5 +122,7 @@ void game_task_state_3_end(GameTask *game_task)
 	// does need to reset everything but could do in above
 	game_task->play_flag == 0;
 	game_task->state = 1;
+	game_task->score_blue = 0;
+	game_task->score_red = 0;
 }
 

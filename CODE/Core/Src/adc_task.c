@@ -9,6 +9,7 @@
 #include "stm32f4xx_hal_tim.h"
 #include <stdio.h>
 #include "controller_task.h"
+#include "photoresistor_task.h"
 
 // A function to run the appropriate state of the task
 void adc_task_run(ADCTask *adc_task)
@@ -51,6 +52,16 @@ void adc_task_state_1_read(ADCTask *adc_task){
 	if (HAL_ADC_PollForConversion(adc_task->hadc, 10) == HAL_OK) {
 		adc_task->red_contr_ptr->adc_val = HAL_ADC_GetValue(adc_task->hadc);
 	}
+//	// Wait for first conversion (ADC4)
+//	if (HAL_ADC_PollForConversion(adc_task->hadc, 10) == HAL_OK) {
+//		adc_task->red_photor_ptr->adc_val = HAL_ADC_GetValue(adc_task->hadc); //
+//	}
+//
+//	// Wait for second conversion (ADC5)
+//	if (HAL_ADC_PollForConversion(adc_task->hadc, 10) == HAL_OK) {
+//		adc_task->blue_photor_ptr->adc_val = HAL_ADC_GetValue(adc_task->hadc);
+//	}
+
 
 	HAL_ADC_Stop(adc_task->hadc);
 

@@ -14,6 +14,7 @@
 #include <stdint.h> // Allows use of standard integer types
 
 typedef struct ControllerTask ControllerTask;
+typedef struct PhotoresistorTask PhotoresistorTask;
 typedef struct ADCTask ADCTask; // forward declaration
 
 // all states take in a GameTask pointer
@@ -27,6 +28,8 @@ struct ADCTask
     int32_t     		num_states;
     ControllerTask		*red_contr_ptr;
     ControllerTask		*blue_contr_ptr;
+    PhotoresistorTask	*red_photor_ptr;
+    PhotoresistorTask	*blue_photor_ptr;
     ADC_HandleTypeDef 	*hadc;
     adc_fcn_t 			state_list[];
 };

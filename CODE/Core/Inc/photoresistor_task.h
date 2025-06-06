@@ -23,6 +23,8 @@ struct PhotoresistorTask
     int32_t     			state;
     int32_t     			num_states;
     int32_t					hit_flag;
+    int32_t					adc_val;
+    int32_t					thresh;
     photoresistor_fcn_t 	state_list[];
 };
 

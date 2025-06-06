@@ -31,7 +31,8 @@ Core/Src/adc_task.o: ../Core/Src/adc_task.c ../Core/Inc/adc_task.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Core/Inc/controller_task.h ../Core/Inc/motor_driver.h
+ ../Core/Inc/controller_task.h ../Core/Inc/motor_driver.h \
+ ../Core/Inc/photoresistor_task.h
 ../Core/Inc/adc_task.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -67,3 +68,4 @@ Core/Src/adc_task.o: ../Core/Src/adc_task.c ../Core/Inc/adc_task.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Core/Inc/controller_task.h:
 ../Core/Inc/motor_driver.h:
+../Core/Inc/photoresistor_task.h:

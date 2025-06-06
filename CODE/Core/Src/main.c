@@ -90,6 +90,8 @@ SoundTask sound_task = {.state = 0,
 PhotoresistorTask red_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
+											.adc_val = 0,
+											.thresh = 3000,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
 														   &photoresistor_task_state_2_hit}
@@ -97,6 +99,8 @@ PhotoresistorTask red_photoresistor_task = {.state = 0,
 PhotoresistorTask blue_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
+											.adc_val = 0,
+											.thresh = 3000,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
 														   &photoresistor_task_state_2_hit}
@@ -194,6 +198,8 @@ ADCTask adc_task = {.state = 0,
 					.num_states = 2,
 					.red_contr_ptr = &red_controller_task,
 					.blue_contr_ptr = &blue_controller_task,
+					.red_photor_ptr = &red_photoresistor_task,
+					.blue_photor_ptr = &red_photoresistor_task,
 					.hadc = &hadc1,
 					.state_list = {&adc_task_state_0_init,
 								   &adc_task_state_1_read}
@@ -209,13 +215,13 @@ uint32_t adc_val_7 = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_ADC1_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -254,13 +260,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_ADC1_Init();
   MX_I2C1_Init();
   MX_TIM1_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_TIM5_Init();
   MX_TIM2_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
   //inits
   //lcd_init(&hi2c1);
@@ -290,16 +296,18 @@ int main(void)
   {
 	  adc_task_run(&adc_task);
 
-//	  game_task_run(&game_task);
+	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
-//	  contoller_task_run(&blue_controller_task);
-////	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
-	  shoot_task_run(&red_shoot_task);
-	  shoot_task_run(&blue_shoot_task);
-//		  photoresistor_task_run(&red_photoresistor_task);
-//		  photoresistor_task_run(&blue_photoresistor_task);
-//	  }
-
+//	  controller_task_run(&blue_controller_task);
+//	  controller_task_run(&red_controller_task);
+	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
+		  shoot_task_run(&red_shoot_task);
+		  shoot_task_run(&blue_shoot_task);
+		  photoresistor_task_run(&red_photoresistor_task);
+		  photoresistor_task_run(&blue_photoresistor_task);
+	  }
+	  a = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
+	  b = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
 //	  if(a == 0){
 //		  lcd_write(0,0,"Zap'em Shoot'em     ");
 //		  lcd_write(n 0,1,"     First to 5     ");
@@ -335,8 +343,8 @@ int main(void)
 //	  HAL_ADC_Stop(&hadc1);
 	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
 	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
-	  controller_task_run(&blue_controller_task);
-	  controller_task_run(&red_controller_task);
+	  //controller_task_run(&blue_controller_task);
+	  //controller_task_run(&red_controller_task);
 	  //add delay
 	  HAL_Delay(1);
 
@@ -416,7 +424,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = ENABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
@@ -433,7 +441,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -448,7 +456,7 @@ static void MX_ADC1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC1_Init 2 */
-  //sConfigInjected.InjectedChannel = ADC_CHANNEL_7;
+
   /* USER CODE END ADC1_Init 2 */
 
 }
@@ -576,7 +584,6 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 0 */
 
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
   TIM_OC_InitTypeDef sConfigOC = {0};
 
@@ -584,20 +591,11 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 95;
+  htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 4294967295;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
   if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
   {
     Error_Handler();
@@ -796,9 +794,6 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4|GPIO_PIN_5, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2|GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PC13 */
@@ -818,9 +813,8 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PA4 PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PB2 */
@@ -844,6 +838,12 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
