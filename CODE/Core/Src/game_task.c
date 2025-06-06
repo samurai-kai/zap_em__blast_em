@@ -41,7 +41,9 @@ void game_task_run(GameTask *game_task)
 void game_task_state_0_init(GameTask *game_task)
 {
     //add init stuff, display
-	lcd_init(game_task->i2c_handle);
+	lcd_init();
+	HAL_Delay(100);
+	lcd_clear();
 	game_task->state = 1;
 
 }
@@ -50,9 +52,12 @@ void game_task_state_0_init(GameTask *game_task)
 // Prints message and sets sound flag when game starts
 void game_task_state_1_home(GameTask *game_task)
 {
+	lcd_clear();
+	lcd_set_cursor(1, 0);
+	lcd_print("  Zap'em Blast'em   ");
+	lcd_set_cursor(2, 0);
+	lcd_print("       Robots       ");
     //play_flg enabled from button task within shoot task?? or make button task
-	lcd_write(0, 0, "Hello World"); // x,y,message, display is 20 wide 4 tall
-	lcd_write(0,1,"Game test, game test");// 20 long message
 	if (game_task->play_flag == 1){
     	game_task->state = 2;
     	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it
@@ -65,7 +70,6 @@ void game_task_state_2_play(GameTask *game_task)
 {
 	char r_score[5];
 	char b_score[5];
-
 
 	if (game_task->red_photoresistor_task_ptr->hit_flag){
 		game_task->score_red++;
@@ -81,36 +85,44 @@ void game_task_state_2_play(GameTask *game_task)
 	// add thing that prints score of each on the LCD
 	//maybe only do once then adjust the score through a direct print index
 	if (game_task->num == 0){
-//		lcd_write(0,0,"Zap'em Blast'em     ");
-//		lcd_write(0,1,"     First to 5     ");
-//		lcd_write(0,2,"Red:  0  Zaps       ");
-//		lcd_write(0,3,"Blue: 0  Blasts     ");
-		//             01234567890123456789
+		lcd_clear();
+		lcd_set_cursor(0, 0);
+		lcd_print("  Zap'em Blast'em   ");
+		lcd_set_cursor(1, 0);
+		lcd_print("     First to 5     ");
+		lcd_set_cursor(2, 0);
+		lcd_print("Red:  0  Zaps       ");
+		lcd_set_cursor(3, 0);
+		lcd_print("Blue: 0  Blasts     ");
+		//         01234567890123456789
 		game_task->num++;
 	}
 
 	// check to see if score changed for the lcd
 	if (game_task->score_red != game_task->score_red_prev){
-//
-//		sprintf(r_score,"%ld",game_task->score_red);
-//		lcd_write(6,2,r_score);
-//		game_task->score_red_prev = game_task->score_red;
+		sprintf(r_score,"%ld",game_task->score_red);
+		lcd_set_cursor(2, 6);
+		lcd_print(r_score);
+		game_task->score_red_prev = game_task->score_red;
 	}
 	if (game_task->score_blue != game_task->score_blue_prev){
-//
-//		sprintf(b_score,"%ld",game_task->score_blue);
-//		lcd_write(6,3,b_score);
-//		game_task->score_blue_prev = game_task->score_blue;
+		sprintf(b_score,"%ld",game_task->score_blue);
+		lcd_set_cursor(3, 6);
+		lcd_print(b_score);
+		game_task->score_blue_prev = game_task->score_blue;
 	}
 
 
 	// check if someone won
-//	if (game_task->score_red > game_task->score_thresh || game_task->score_blue > game_task->score_thresh){
+	if (game_task->score_red >= game_task->score_thresh || game_task->score_blue >= game_task->score_thresh){
 //		// print win message and set end sound
-//		lcd_write(0,0,"Zap'em Blast'em     ");
-//		lcd_write(0,1,"     GAME OVER!     ");
-//		game_task->state = 3;
-//	}
+		lcd_clear();
+		lcd_set_cursor(1, 0);
+		lcd_print("  Zap'em Blast'em   ");
+		lcd_set_cursor(2, 0);
+		lcd_print("     GAME OVER!     ");
+		game_task->state = 3;
+	}
 
 }
 // A function to implement state 3
@@ -120,9 +132,10 @@ void game_task_state_3_end(GameTask *game_task)
 {
 	// lowkey might not be needed
 	// does need to reset everything but could do in above
-	game_task->play_flag == 0;
+//	game_task->play_flag == 0;
 	game_task->state = 1;
 	game_task->score_blue = 0;
 	game_task->score_red = 0;
+	HAL_Delay(5000);
 }
 
