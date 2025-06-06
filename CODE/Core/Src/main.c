@@ -281,8 +281,12 @@ int main(void)
 
   enable(&mred);
   enable(&mblue);
+  //
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-
+  // sleep pins
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+  adc_task_run(&adc_task);
   HAL_Delay(2000); // 2 second delay to let stuff get set up
   /* USER CODE END 2 */
 
@@ -294,8 +298,8 @@ int main(void)
 
 	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
-//	  controller_task_run(&blue_controller_task);
-//	  controller_task_run(&red_controller_task);
+	  controller_task_run(&blue_controller_task);
+	  controller_task_run(&red_controller_task);
 	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
 		  shoot_task_run(&red_shoot_task);
 		  shoot_task_run(&blue_shoot_task);
@@ -304,8 +308,7 @@ int main(void)
 	  }
 
 //	  }
-//	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-//	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+
 	  // a from 1000 to 2000
 	  //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, a);
