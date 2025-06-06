@@ -205,10 +205,6 @@ ADCTask adc_task = {.state = 0,
 								   &adc_task_state_1_read}
 
 };
-int a = 0;
-int b = 0;
-uint32_t adc_val_6 = 0;
-uint32_t adc_val_7 = 0;
 
 /* USER CODE END PV */
 
@@ -268,9 +264,7 @@ int main(void)
   MX_TIM2_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  //inits
-  //lcd_init(&hi2c1);
-  //game_task_state_0_init(&game_task); just gunna run this as in the fsm directly
+
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start_IT(&htim1, TIM_CHANNEL_3);
@@ -306,14 +300,7 @@ int main(void)
 		  photoresistor_task_run(&red_photoresistor_task);
 		  photoresistor_task_run(&blue_photoresistor_task);
 	  }
-	  a = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4);
-	  b = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
-//	  if(a == 0){
-//		  lcd_write(0,0,"Zap'em Shoot'em     ");
-//		  lcd_write(n 0,1,"     First to 5     ");
-//		  lcd_write(0,2,"Red:  0  Zaps       ");
-//		  lcd_write(0,3,"Blue: 0  Zaps       ");
-////		  a++;
+
 //	  }
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
@@ -813,7 +800,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PA4 PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
