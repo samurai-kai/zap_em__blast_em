@@ -40,7 +40,7 @@ void controller_task_run(ControllerTask *controller_task)
 void controller_task_state_0_init(ControllerTask *controller_task)
 {
 	controller_task->prev_error = 0;
-    HAL_TIM_Encoder_Start(controller_task->htim_encoder, TIM_CHANNEL_ALL);
+
     enable(controller_task->motor);
 
     controller_task->pot_zero = controller_task->adc_val;

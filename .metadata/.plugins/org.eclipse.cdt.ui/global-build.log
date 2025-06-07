@@ -1,7 +1,128 @@
-12:34:32 **** Incremental Build of configuration Debug for project CODE ****
+13:01:59 **** Incremental Build of configuration Debug for project CODE ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:78:56: warning: conversion from 'long long unsigned int' to 'long unsigned int' changes value from '18446744073709551615' to '4294967295' [-Woverflow]
+   78 |                                                  .ar = 0xFFFFFFFFFFFFFFFF,
+      |                                                        ^~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/andrewcarr/Documents/zap_em__shoot_em/CODE/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  19028	    472	   2192	  21692	   54bc	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+13:02:05 **** Incremental Build of configuration Debug for project CODE ****
 make -j7 all 
 arm-none-eabi-size  CODE.elf 
    text	   data	    bss	    dec	    hex	filename
-  25408	    684	   2524	  28616	   6fc8	CODE.elf
+  19028	    472	   2192	  21692	   54bc	CODE.elf
 Finished building: default.size.stdout
+ 
+13:02:20 **** Incremental Build of configuration Debug for project CODE ****
+make -j7 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19028	    472	   2192	  21692	   54bc	CODE.elf
+Finished building: default.size.stdout
+ 
+13:06:16 **** Incremental Build of configuration Debug for project CODE ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:78:56: warning: conversion from 'long long unsigned int' to 'long unsigned int' changes value from '18446744073709551615' to '4294967295' [-Woverflow]
+   78 |                                                  .ar = 0xFFFFFFFFFFFFFFFF,
+      |                                                        ^~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/andrewcarr/Documents/zap_em__shoot_em/CODE/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  19008	    472	   2192	  21672	   54a8	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+13:07:38 **** Incremental Build of configuration Debug for project CODE ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:78:56: warning: conversion from 'long long unsigned int' to 'long unsigned int' changes value from '18446744073709551615' to '4294967295' [-Woverflow]
+   78 |                                                  .ar = 0xFFFFFFFFFFFFFFFF,
+      |                                                        ^~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/andrewcarr/Documents/zap_em__shoot_em/CODE/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  19008	    472	   2192	  21672	   54a8	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+13:08:12 **** Incremental Build of configuration Debug for project CODE ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:78:56: warning: conversion from 'long long unsigned int' to 'long unsigned int' changes value from '18446744073709551615' to '4294967295' [-Woverflow]
+   78 |                                                  .ar = 0xFFFFFFFFFFFFFFFF,
+      |                                                        ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:319:3: warning: implicit declaration of function 'calibration' [-Wimplicit-function-declaration]
+  319 |   calibration();
+      |   ^~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:941:6: warning: conflicting types for 'calibration'; have 'void(void)'
+  941 | void calibration(void){
+      |      ^~~~~~~~~~~
+../Core/Src/main.c:319:3: note: previous implicit declaration of 'calibration' with type 'void(void)'
+  319 |   calibration();
+      |   ^~~~~~~~~~~
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/andrewcarr/Documents/zap_em__shoot_em/CODE/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  19448	    472	   2192	  22112	   5660	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+13:08:16 **** Incremental Build of configuration Debug for project CODE ****
+make -j7 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19448	    472	   2192	  22112	   5660	CODE.elf
+Finished building: default.size.stdout
+ 
+13:10:20 **** Incremental Build of configuration Debug for project CODE ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:78:56: warning: conversion from 'long long unsigned int' to 'long unsigned int' changes value from '18446744073709551615' to '4294967295' [-Woverflow]
+   78 |                                                  .ar = 0xFFFFFFFFFFFFFFFF,
+      |                                                        ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:319:3: warning: implicit declaration of function 'calibration' [-Wimplicit-function-declaration]
+  319 |   calibration();
+      |   ^~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:941:6: warning: conflicting types for 'calibration'; have 'void(void)'
+  941 | void calibration(void){
+      |      ^~~~~~~~~~~
+../Core/Src/main.c:319:3: note: previous implicit declaration of 'calibration' with type 'void(void)'
+  319 |   calibration();
+      |   ^~~~~~~~~~~
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/andrewcarr/Documents/zap_em__shoot_em/CODE/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  19444	    472	   2192	  22108	   565c	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
  

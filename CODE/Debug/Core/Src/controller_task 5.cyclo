@@ -1,3 +1,0 @@
-../Core/Src/controller_task.c:15:6:controller_task_run	3
-../Core/Src/controller_task.c:40:6:controller_task_state_0_init	1
-../Core/Src/controller_task.c:51:6:controller_task_state_1_calc_vel	7

@@ -230,7 +230,8 @@ ADCTask adc_task = {.state = 0,
 								   &adc_task_state_1_read}
 
 };
-
+uint32_t a = 0;
+uint32_t b = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -303,6 +304,9 @@ int main(void)
   HAL_TIM_Base_Start(&htim2);
   HAL_TIM_Base_Start(&htim4);
 
+  HAL_TIM_Encoder_Start(red_encoder.htim, TIM_CHANNEL_ALL);
+  HAL_TIM_Encoder_Start(blue_encoder.htim, TIM_CHANNEL_ALL);
+
   enable(&mred);
   enable(&mblue);
   //
@@ -314,24 +318,28 @@ int main(void)
   HAL_Delay(2000); // 2 second delay to let stuff get set up
   calibration();
   HAL_Delay(1000);
+  setup_encoder(&red_encoder);
+  setup_encoder(&blue_encoder);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  adc_task_run(&adc_task);
-
-	  game_task_run(&game_task);
-//	  sound_task_run(&sound_task);
-//	  controller_task_run(&blue_controller_task);
-//	  controller_task_run(&red_controller_task);
-	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
-		  shoot_task_run(&red_shoot_task);
-		  shoot_task_run(&blue_shoot_task);
-		  photoresistor_task_run(&red_photoresistor_task);
-		  photoresistor_task_run(&blue_photoresistor_task);
-	  }
+//	  read_encoder(&red_encoder);
+//	  read_encoder(&blue_encoder);
+//	  adc_task_run(&adc_task);
+//
+//	  game_task_run(&game_task);
+////	  sound_task_run(&sound_task);
+////	  controller_task_run(&blue_controller_task);
+////	  controller_task_run(&red_controller_task);
+//	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
+//		  shoot_task_run(&red_shoot_task);
+//		  shoot_task_run(&blue_shoot_task);
+//		  photoresistor_task_run(&red_photoresistor_task);
+//		  photoresistor_task_run(&blue_photoresistor_task);
+//	  }
 
 //	  }
 
@@ -938,10 +946,10 @@ void calibration(void){
 	blue_photoresistor_task.zero = blue_photoresistor_task.adc_val;
 
 	// dc motors
-	set_duty(&mred, 30);
-	set_duty(&mblue, 30);
+	set_duty(&mred, -30);
+	set_duty(&mblue, -30);
 
-	HAL_Delay(1200);
+	HAL_Delay(100);
 
 	setup_encoder(&red_encoder);
 	setup_encoder(&blue_encoder);
