@@ -14,10 +14,11 @@
 
 void setup_encoder(encoder_t *p_enc){
 	p_enc->zero = __HAL_TIM_GET_COUNTER(p_enc->htim);
+	p_enc->ticks = 0;
 }
 void read_encoder(encoder_t *p_enc){
 
-	uint32_t current_ticks = __HAL_TIM_GET_COUNTER(p_enc->htim);
+	uint32_t current_ticks = __HAL_TIM_GET_COUNTER(p_enc->htim) - p_enc->zero;
 	int32_t delta = current_ticks - p_enc->last_ticks;
 
 	if (delta > (p_enc->ar + 1)/2){

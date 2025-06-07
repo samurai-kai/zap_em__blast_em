@@ -6,6 +6,7 @@
  */
 #include "motor_driver.h"
 #include "encoder_driver.h"
+#include <stdint.h>
 
 
 #define PWM_MAX 4800
@@ -41,8 +42,14 @@ void enable(motor_t* p_mot)
 
 void go_to(motor_t *p_mot, int k_p, int where, int from){
 
-
 	int error = where-from;
+
+	if (error >100){
+		error = 99;
+	}
+	if (error < -100){
+		error = -99;
+	}
 
 	set_duty(p_mot, k_p*error);
 

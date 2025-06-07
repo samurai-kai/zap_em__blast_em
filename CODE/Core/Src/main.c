@@ -316,6 +316,7 @@ int main(void)
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
   adc_task_run(&adc_task);
   HAL_Delay(2000); // 2 second delay to let stuff get set up
+  adc_task_run(&adc_task);
   calibration();
   HAL_Delay(1000);
   setup_encoder(&red_encoder);
@@ -946,22 +947,31 @@ void calibration(void){
 	blue_photoresistor_task.zero = blue_photoresistor_task.adc_val;
 
 	// dc motors
-	set_duty(&mred, -30);
-	set_duty(&mblue, -30);
+	set_duty(&mred, 60);
+	set_duty(&mblue, -60);
 
-	HAL_Delay(100);
+	HAL_Delay(1200);
 
 	setup_encoder(&red_encoder);
 	setup_encoder(&blue_encoder);
 
-	while(abs(red_encoder.ticks - red_encoder.range/2) > 10 && abs(blue_encoder.ticks - blue_encoder.range/2) > 10){
+	while(1){
 		read_encoder(&red_encoder);
 		read_encoder(&blue_encoder);
-
-		go_to(&mred, 1, red_encoder.range/2, red_encoder.ticks);
+		a = -red_encoder.range/2;
+		go_to(&mred, 1, -red_encoder.range/2, -red_encoder.ticks);
 		go_to(&mblue, 1, blue_encoder.range/2, blue_encoder.ticks);
+		read_encoder(&red_encoder);
+		read_encoder(&blue_encoder);
+		HAL_Delay(1);
+
+		if (abs(red_encoder.ticks - red_encoder.range/2) < 10 && abs(blue_encoder.ticks - blue_encoder.range/2) < 10){
+			break;
+		}
 	}
 
+	set_duty(&mred, 0);
+	set_duty(&mblue, 0);
 	setup_encoder(&red_encoder);
 	setup_encoder(&blue_encoder);
 
