@@ -91,7 +91,7 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
     		(controller_task->current_time - controller_task->prev_time) :
 			(0xFFFFFFFF - controller_task->prev_time + controller_task->current_time); // overflow
     if (dt_ticks == 0) return;
-    float delta_time = dt_ticks / 875.0f; // ms -- could set up so its just microseconds, if this was 1000 instead of 875
+    float delta_time = dt_ticks / 1000.0f; // ms
 
     // calc actual vel, error, derivative part
     float current_velocity = (float)delta_ticks / delta_time;

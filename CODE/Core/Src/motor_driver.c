@@ -5,6 +5,8 @@
  *      Author: Kai De La Cruz
  */
 #include "motor_driver.h"
+#include "encoder_driver.h"
+
 
 #define PWM_MAX 4800
 
@@ -35,4 +37,15 @@ void enable(motor_t* p_mot)
 {
 	__HAL_TIM_SET_COMPARE(p_mot->tim, p_mot->chan1, PWM_MAX);
 	__HAL_TIM_SET_COMPARE(p_mot->tim, p_mot->chan2, PWM_MAX);
+}
+
+void go_to(motor_t *p_mot, int k_p, int where, int from){
+
+
+	int error = where-from;
+
+	set_duty(p_mot, k_p*error);
+
+
+
 }

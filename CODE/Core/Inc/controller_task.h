@@ -35,6 +35,7 @@ struct ControllerTask
     int32_t				cw_deadzone;
     int32_t				ccw_deadzone;
     uint32_t			adc_val;
+    uint32_t			encoder_range;
     TIM_HandleTypeDef 	*htim_encoder;
     TIM_HandleTypeDef 	*htim_dt;  		// for encoder feedback delta time
     ADC_HandleTypeDef 	*hadc;          // ADC handle pointer to potentiometer

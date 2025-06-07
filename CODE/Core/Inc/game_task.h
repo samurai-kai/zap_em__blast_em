@@ -22,20 +22,24 @@ typedef void (*game_fcn_t)(GameTask *game_task);
 // Additional fields can be added as desired.
 struct GameTask
 {
-    int32_t     state;
-    int32_t     num_states;
-    int32_t		play_flag;
-    int32_t		score_red;
-    int32_t		score_blue;
-    int32_t 	score_red_prev;
-    int32_t 	score_blue_prev;
-    int32_t		score_thresh;
-    int32_t		num;
-    SoundTask	*sound_task_ptr;
-    PhotoresistorTask *red_photoresistor_task_ptr;
-    PhotoresistorTask *blue_photoresistor_task_ptr;
-    I2C_HandleTypeDef *i2c_handle;
-    game_fcn_t state_list[];
+    int32_t     		state;
+    int32_t     		num_states;
+    int32_t				play_flag;
+    int32_t				score_red;
+    int32_t				score_blue;
+    int32_t 			score_red_prev;
+    int32_t 			score_blue_prev;
+    int32_t				score_thresh;
+    int32_t				num;
+    uint32_t			delay_start;
+    int32_t				delay_flag;
+    uint32_t			delay;
+    TIM_HandleTypeDef 	*htim;
+    SoundTask			*sound_task_ptr;
+    PhotoresistorTask 	*red_photoresistor_task_ptr;
+    PhotoresistorTask 	*blue_photoresistor_task_ptr;
+    I2C_HandleTypeDef 	*i2c_handle;
+    game_fcn_t 			state_list[];
 };
 
 // A prototype for each function implemented in task_1.c

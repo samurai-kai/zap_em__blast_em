@@ -30,6 +30,7 @@
 #include "motor_driver.h"
 #include "photoresistor_task.h"
 #include "adc_task.h"
+#include "encoder_driver.h"
 #include <stdint.h>
 /* USER CODE END Includes */
 
@@ -73,6 +74,22 @@ motor_t mblue = {
 		.chan1 = TIM_CHANNEL_1,
 		.chan2 = TIM_CHANNEL_2
 };
+encoder_t red_encoder = {.zero = 0,
+						 .ar = 0xFFFFFFFFFFFFFFFF,
+						 .ticks = 0,
+						 .last_ticks = 0,
+						 .range = 1278,
+						 .htim = &htim5
+};
+encoder_t blue_encoder = {.zero = 0,
+						  .ar = 0xFFFFFFFF,
+						  .ticks = 0,
+						  .last_ticks = 0,
+						  .range = 1289,
+						  .htim = &htim3
+};
+
+
 // sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
                       .num_states = 6,
@@ -91,8 +108,8 @@ SoundTask sound_task = {.state = 0,
 PhotoresistorTask red_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
-											.adc_val = 0,
-											.thresh = 3600,
+											.adc_val = 0,2200,
+											.zero = 0,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
 														   &photoresistor_task_state_2_hit}
@@ -101,7 +118,8 @@ PhotoresistorTask blue_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
 											.adc_val = 0,
-											.thresh = 3600,
+											.thresh = 2200,
+											.zero = 0,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
 														   &photoresistor_task_state_2_hit}
@@ -115,6 +133,10 @@ GameTask game_task = {.state = 0,
 					  .score_blue_prev = 0,
 					  .score_thresh = 5,
 					  .num = 0,
+					  .delay_start = 0,
+					  .delay_flag = 0,
+					  .delay = 40000, //in us
+					  .htim = &htim2,
 					  .sound_task_ptr = &sound_task,
 					  .red_photoresistor_task_ptr = &red_photoresistor_task,
 					  .blue_photoresistor_task_ptr = &blue_photoresistor_task,
@@ -166,6 +188,7 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .cw_deadzone = 150,		// good at 150
 									   .ccw_deadzone = 150,		// good at 600
 									   .adc_val = 0,
+									   .encoder_range = 1289,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
@@ -188,6 +211,7 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .cw_deadzone = 400,			// good at 400
 									  .ccw_deadzone = 300,		// good at 300
 									  .adc_val = 0,
+									  .encoder_range = 1278,
 									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
@@ -288,6 +312,8 @@ int main(void)
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
   adc_task_run(&adc_task);
   HAL_Delay(2000); // 2 second delay to let stuff get set up
+  calibration();
+  HAL_Delay(1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -298,8 +324,8 @@ int main(void)
 
 	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
-	  controller_task_run(&blue_controller_task);
-	  controller_task_run(&red_controller_task);
+//	  controller_task_run(&blue_controller_task);
+//	  controller_task_run(&red_controller_task);
 	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
 		  shoot_task_run(&red_shoot_task);
 		  shoot_task_run(&blue_shoot_task);
@@ -601,7 +627,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 0;
+  htim2.Init.Prescaler = 95;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 4294967295;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -903,6 +929,37 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 //    	blue_photoresistor_task.hit_flag = 1;
 //	}
 }
+
+void calibration(void){
+	__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, red_shoot_task.shield_val);
+	__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, blue_shoot_task.shield_val);
+	HAL_Delay(1200);
+	red_photoresistor_task.zero = red_photoresistor_task.adc_val;
+	blue_photoresistor_task.zero = blue_photoresistor_task.adc_val;
+
+	// dc motors
+	set_duty(&mred, 30);
+	set_duty(&mblue, 30);
+
+	HAL_Delay(1200);
+
+	setup_encoder(&red_encoder);
+	setup_encoder(&blue_encoder);
+
+	while(abs(red_encoder.ticks - red_encoder.range/2) > 10 && abs(blue_encoder.ticks - blue_encoder.range/2) > 10){
+		read_encoder(&red_encoder);
+		read_encoder(&blue_encoder);
+
+		go_to(&mred, 1, red_encoder.range/2, red_encoder.ticks);
+		go_to(&mblue, 1, blue_encoder.range/2, blue_encoder.ticks);
+	}
+
+	setup_encoder(&red_encoder);
+	setup_encoder(&blue_encoder);
+
+
+}
+
 
 /* USER CODE END 4 */
 

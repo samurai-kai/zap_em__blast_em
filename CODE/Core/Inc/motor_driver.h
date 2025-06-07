@@ -13,6 +13,7 @@
 #include <stdint.h>
 #include "stm32f4xx_hal.h"
 
+
 // motor object data structure
 typedef struct {
 	TIM_HandleTypeDef *tim;
@@ -22,8 +23,9 @@ typedef struct {
 
 
 // prototype for motor object 'method'
-void set_duty(motor_t* p_mot, int32_t duty);
-void enable(motor_t* p_mot);
-void disable(motor_t* p_mot);
+void set_duty(motor_t *p_mot, int32_t duty);
+void enable(motor_t *p_mot);
+void disable(motor_t *p_mot);
+void go_to(motor_t *p_mot, int k_p, int where, int from);
 
 #endif /* INC_MOTOR_DRIVER_H_ */

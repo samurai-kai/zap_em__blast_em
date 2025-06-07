@@ -8,6 +8,7 @@
 #include "game_task.h"
 #include "sound_task.h"
 #include "photoresistor_task.h"
+#include "stm32f4xx_hal_tim.h"
 #include "lcd.h"
 
 #include <stdio.h>
@@ -71,15 +72,23 @@ void game_task_state_2_play(GameTask *game_task)
 	char r_score[5];
 	char b_score[5];
 
-	if (game_task->red_photoresistor_task_ptr->hit_flag){
+
+	// score counting and delaying
+	if (game_task->red_photoresistor_task_ptr->hit_flag && game_task->delay_flag == 0){
 		game_task->score_red++;
 		game_task->red_photoresistor_task_ptr->hit_flag = 0;
-		//might need to add delay so that won't get extra hits for extended period of hitting
+		game_task->delay_flag = 1;
+		game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
 	}
-	if (game_task->blue_photoresistor_task_ptr->hit_flag){
+	if (game_task->blue_photoresistor_task_ptr->hit_flag && game_task->delay_flag == 0){
 		game_task->score_blue++;
 		game_task->blue_photoresistor_task_ptr->hit_flag = 0;
-		//might need to add delay so that won't get extra hits for extended period of hitting
+		game_task->delay_flag = 1;
+		game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
+	}
+
+	if ((game_task->delay_start - __HAL_TIM_GET_COUNTER(game_task->htim)) > game_task->delay){
+		game_task->delay_flag = 0;
 	}
 
 	// add thing that prints score of each on the LCD

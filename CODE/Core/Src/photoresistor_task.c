@@ -40,7 +40,7 @@ void photoresistor_task_state_0_init(PhotoresistorTask *photoresistor_task)
 // wait for button to be pressed which should be on an interrupt that changes a flag
 void photoresistor_task_state_1_look(PhotoresistorTask *photoresistor_task)
 {
-	if (photoresistor_task->adc_val > photoresistor_task->thresh){
+	if ((photoresistor_task->adc_val- photoresistor_task->zero) > photoresistor_task->thresh){
 		photoresistor_task->hit_flag = 1;
 	}
 

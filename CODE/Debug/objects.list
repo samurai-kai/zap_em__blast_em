@@ -1,5 +1,6 @@
 "./Core/Src/adc_task.o"
 "./Core/Src/controller_task.o"
+"./Core/Src/encoder_driver.o"
 "./Core/Src/game_task.o"
 "./Core/Src/lcd.o"
 "./Core/Src/main.o"
