@@ -75,17 +75,18 @@ motor_t mblue = {
 		.chan2 = TIM_CHANNEL_2
 };
 encoder_t red_encoder = {.zero = 0,
-						 .ar = 0xFFFFFFFFFFFFFFFF,
+						 .ar = 0xFFFFFFFF,
 						 .ticks = 0,
 						 .last_ticks = 0,
-						 .range = 1278,
+						 .range = 1275,
 						 .htim = &htim5
+
 };
 encoder_t blue_encoder = {.zero = 0,
-						  .ar = 0xFFFFFFFF,
+						  .ar = 0xFFFF,
 						  .ticks = 0,
 						  .last_ticks = 0,
-						  .range = 1289,
+						  .range = 1282,
 						  .htim = &htim3
 };
 
@@ -958,7 +959,6 @@ void calibration(void){
 	while(1){
 		read_encoder(&red_encoder);
 		read_encoder(&blue_encoder);
-		a = -red_encoder.range/2;
 		go_to(&mred, 1, -red_encoder.range/2, -red_encoder.ticks);
 		go_to(&mblue, 1, blue_encoder.range/2, blue_encoder.ticks);
 		read_encoder(&red_encoder);

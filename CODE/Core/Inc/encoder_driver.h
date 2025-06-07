@@ -2,7 +2,7 @@
  * encoder_task.h
  *
  *  Created on: Jun 7, 2025
- *      Author: andrewcarr
+ *      Author: andrewcarr and Kai De La Cruz
  */
 
 #ifndef INC_ENCODER_DRIVER_H_
@@ -16,12 +16,12 @@
 // Additional fields can be added as desired.
 typedef struct
 {
-    uint32_t				zero;
-    uint32_t				ar;
-    int32_t					ticks;
-    uint32_t				last_ticks;
-    int32_t					range;
-    TIM_HandleTypeDef 		*htim;
+    uint32_t             zero;        // Timer value when "zeroed"
+    int32_t              ar;          // Auto-reload or max timer value
+    int32_t              ticks;       // Accumulated ticks
+    int32_t              last_ticks;  // Last read relative count
+    int32_t              range;       // Logical range of encoder
+    TIM_HandleTypeDef   *htim;        // Timer handle
 } encoder_t;
 
 
