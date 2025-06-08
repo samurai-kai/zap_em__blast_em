@@ -110,9 +110,13 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
     controller_task->prev_time = controller_task->current_time;
 }
 void controller_task_state_2_pos(ControllerTask *controller_task){
+
 	int32_t des_pos = controller_task->adc_val - controller_task->pot_zero;
+
 	read_encoder(controller_task->encoder);
 	go_to(controller_task->motor, controller_task->k_p, des_pos, controller_task->encoder->ticks);
+
+
 
 }
 
