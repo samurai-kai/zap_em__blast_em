@@ -61,7 +61,7 @@ PROJECT_BRIEF          = "laser tag robots"
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           = "C:/Users/kaidc/OneDrive - Cal Poly/2024-25 Masters/SPRING QUARTER/ME 507/Term Project/IMAGE GALLERY/ZapBlastLogo.png"
+PROJECT_LOGO           = "ZapBlastLogo.png"
 
 # With the PROJECT_ICON tag one can specify an icon that is included in the tabs
 # when the HTML document is shown. Doxygen will copy the logo to the output
@@ -74,7 +74,7 @@ PROJECT_ICON           =
 # entered, it will be relative to the location where Doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = "C:/Users/kaidc/OneDrive - Cal Poly/Documents/GitHub/ZapEmShootEm/zap_em__shoot_em"
+OUTPUT_DIRECTORY       = docs
 
 # If the CREATE_SUBDIRS tag is set to YES then Doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format
