@@ -54,3 +54,4 @@ void controller_task_run(ControllerTask *controller_task);
 void controller_task_state_1_calc_vel(ControllerTask *controller_task);
 
 #endif /* INC_CONTROLLER_TASK_H_ */
+

@@ -109,7 +109,8 @@ SoundTask sound_task = {.state = 0,
 PhotoresistorTask red_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
-											.adc_val = 0,2200,
+											.adc_val = 0,
+											.thresh = 1500,
 											.zero = 0,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
@@ -119,7 +120,7 @@ PhotoresistorTask blue_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
 											.adc_val = 0,
-											.thresh = 2200,
+											.thresh = 1500,
 											.zero = 0,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
@@ -127,7 +128,7 @@ PhotoresistorTask blue_photoresistor_task = {.state = 0,
 };
 GameTask game_task = {.state = 0,
                       .num_states = 4,
-					  .play_flag = 1,
+					  .play_flag = 0,
 					  .score_red = 0,
 					  .score_blue = 0,
 					  .score_red_prev = 0,
@@ -136,7 +137,7 @@ GameTask game_task = {.state = 0,
 					  .num = 0,
 					  .delay_start = 0,
 					  .delay_flag = 0,
-					  .delay = 40000, //in us
+					  .delay = 1000000, 	// 1 second delay
 					  .htim = &htim2,
 					  .sound_task_ptr = &sound_task,
 					  .red_photoresistor_task_ptr = &red_photoresistor_task,
@@ -174,6 +175,7 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
+
 ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .state = 0,
 									   .num_states = 2,
@@ -220,6 +222,7 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .state_list = {&controller_task_state_0_init,
 												     &controller_task_state_1_calc_vel}
 };
+
 ADCTask adc_task = {.state = 0,
 					.num_states = 2,
 					.red_contr_ptr = &red_controller_task,
@@ -246,6 +249,7 @@ static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_ADC1_Init(void);
+void calibration(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -318,6 +322,11 @@ int main(void)
   adc_task_run(&adc_task);
   HAL_Delay(2000); // 2 second delay to let stuff get set up
   adc_task_run(&adc_task);
+  lcd_clear();
+  lcd_set_cursor(1, 0);
+  lcd_print("  Zap'em Blast'em   ");
+  lcd_set_cursor(2, 0);
+  lcd_print("       Robots       ");
   calibration();
   HAL_Delay(1000);
   setup_encoder(&red_encoder);
@@ -330,18 +339,18 @@ int main(void)
   {
 //	  read_encoder(&red_encoder);
 //	  read_encoder(&blue_encoder);
-//	  adc_task_run(&adc_task);
-//
-//	  game_task_run(&game_task);
+	  adc_task_run(&adc_task);
+	  game_task_run(&game_task);
 ////	  sound_task_run(&sound_task);
-////	  controller_task_run(&blue_controller_task);
-////	  controller_task_run(&red_controller_task);
-//	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
-//		  shoot_task_run(&red_shoot_task);
-//		  shoot_task_run(&blue_shoot_task);
-//		  photoresistor_task_run(&red_photoresistor_task);
-//		  photoresistor_task_run(&blue_photoresistor_task);
-//	  }
+	  controller_task_run(&blue_controller_task);
+	  controller_task_run(&red_controller_task);
+
+	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
+		  shoot_task_run(&red_shoot_task);
+		  shoot_task_run(&blue_shoot_task);
+		  photoresistor_task_run(&red_photoresistor_task);
+		  photoresistor_task_run(&blue_photoresistor_task);
+	  }
 
 //	  }
 
@@ -905,6 +914,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+
     if (GPIO_Pin == GPIO_PIN_12)
     {
         if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == GPIO_PIN_RESET)
@@ -932,12 +942,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		}
 	}
 
-//    if (GPIO_Pin == GPIO_PIN_4){
-//    	red_photoresistor_task.hit_flag = 1;
-//    }
-//    if (GPIO_Pin == GPIO_PIN_5){
-//    	blue_photoresistor_task.hit_flag = 1;
-//	}
+    if (blue_photoresistor_task.adc_val > blue_photoresistor_task.zero + blue_photoresistor_task.thresh)
+    {
+    	blue_photoresistor_task.hit_flag = 1;
+    }
+    if (red_photoresistor_task.adc_val > red_photoresistor_task.zero + red_photoresistor_task.thresh)
+    {
+    	red_photoresistor_task.hit_flag = 1;
+	}
 }
 
 void calibration(void){

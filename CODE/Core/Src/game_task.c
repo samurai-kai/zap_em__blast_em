@@ -43,9 +43,9 @@ void game_task_state_0_init(GameTask *game_task)
 {
     //add init stuff, display
 	lcd_init();
-	HAL_Delay(100);
 	lcd_clear();
 	game_task->state = 1;
+
 
 }
 // A function to implement state 1 of the task
@@ -53,7 +53,6 @@ void game_task_state_0_init(GameTask *game_task)
 // Prints message and sets sound flag when game starts
 void game_task_state_1_home(GameTask *game_task)
 {
-	lcd_clear();
 	lcd_set_cursor(1, 0);
 	lcd_print("  Zap'em Blast'em   ");
 	lcd_set_cursor(2, 0);
@@ -75,19 +74,20 @@ void game_task_state_2_play(GameTask *game_task)
 
 	// score counting and delaying
 	if (game_task->red_photoresistor_task_ptr->hit_flag && game_task->delay_flag == 0){
-		game_task->score_red++;
+		game_task->score_blue++;
 		game_task->red_photoresistor_task_ptr->hit_flag = 0;
 		game_task->delay_flag = 1;
 		game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
 	}
 	if (game_task->blue_photoresistor_task_ptr->hit_flag && game_task->delay_flag == 0){
-		game_task->score_blue++;
+		game_task->score_red++;
 		game_task->blue_photoresistor_task_ptr->hit_flag = 0;
 		game_task->delay_flag = 1;
 		game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
 	}
 
-	if ((game_task->delay_start - __HAL_TIM_GET_COUNTER(game_task->htim)) > game_task->delay){
+	if ((__HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start) > game_task->delay)
+	{
 		game_task->delay_flag = 0;
 	}
 
@@ -121,30 +121,68 @@ void game_task_state_2_play(GameTask *game_task)
 		game_task->score_blue_prev = game_task->score_blue;
 	}
 
-
-	// check if someone won
-	if (game_task->score_red >= game_task->score_thresh || game_task->score_blue >= game_task->score_thresh){
-//		// print win message and set end sound
-		lcd_clear();
-		lcd_set_cursor(1, 0);
-		lcd_print("  Zap'em Blast'em   ");
-		lcd_set_cursor(2, 0);
-		lcd_print("     GAME OVER!     ");
-		game_task->state = 3;
+	if (game_task->score_red >= game_task->score_thresh)
+	{
+	    if (game_task->delay_flag == 0)
+	    {
+	        // First-time trigger
+	        lcd_set_cursor(0, 0);
+	        lcd_print("                    ");
+	        lcd_set_cursor(1, 0);
+	        lcd_print("     GAME OVER!     ");
+	        lcd_set_cursor(2, 0);
+	        lcd_print("     Red Wins!!     ");
+	        lcd_set_cursor(3, 0);
+	        lcd_print("                    ");
+	        game_task->delay_flag = 1;
+	        game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
+	    }
+	    else
+	    {
+	        // Wait until delay expires
+	        uint32_t elapsed = __HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start;
+	        if (elapsed > game_task->delay)
+	        {
+	            game_task->state = 3;            // Advance to end state
+	            game_task->delay_flag = 0;       // Reset flag in case you return to this logic again
+	        }
+	    }
 	}
 
+	if (game_task->score_blue >= game_task->score_thresh)
+		{
+	//		// print win message and set end sound
+			if(game_task->delay_flag == 0)
+			{
+			lcd_set_cursor(0, 0);
+			lcd_print("                    ");
+			lcd_set_cursor(1, 0);
+			lcd_print("     GAME OVER!     ");
+			lcd_set_cursor(2, 0);
+			lcd_print("     Blue Wins!!     ");
+			lcd_set_cursor(3, 0);
+			lcd_print("                    ");
+			game_task->delay_flag = 1;
+			game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
+			}
+			if ((__HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start) > game_task->delay)
+			{
+			game_task->state = 3;
+			}
+		}
 }
 // A function to implement state 3
 // Ends the game when the score threshold has been met
 // Prints messages and sets sound flags
 void game_task_state_3_end(GameTask *game_task)
 {
-	// lowkey might not be needed
-	// does need to reset everything but could do in above
-//	game_task->play_flag == 0;
+
+	game_task->play_flag = 0;
 	game_task->state = 1;
 	game_task->score_blue = 0;
 	game_task->score_red = 0;
-	HAL_Delay(5000);
+	game_task->num = 0;
+	lcd_clear();
+
 }
 
