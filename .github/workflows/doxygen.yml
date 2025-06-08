@@ -34,3 +34,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh_pages
           publish_dir: docs
+          destination_dir: .
