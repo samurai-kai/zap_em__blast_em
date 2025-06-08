@@ -8,6 +8,7 @@
 #include "motor_driver.h"
 #include "controller_task.h"
 #include "stm32f4xx_hal_tim.h"
+#include "encoder_driver.h"
 #include <stdio.h>
 
 
@@ -45,7 +46,7 @@ void controller_task_state_0_init(ControllerTask *controller_task)
 
     controller_task->pot_zero = controller_task->adc_val;
 
-    controller_task->state = 1;
+    controller_task->state = 2;
 }
 // run state for velocity controller based on pot input
 void controller_task_state_1_calc_vel(ControllerTask *controller_task)
@@ -54,9 +55,6 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
 	int32_t low_thres = controller_task->pot_zero - controller_task->cw_deadzone;
 
     // read adc
-
-
-
 
     // calc vel des
     const float MAX_ADC = 4095.0f;
@@ -111,6 +109,11 @@ void controller_task_state_1_calc_vel(ControllerTask *controller_task)
     // remember the time that was used this time
     controller_task->prev_time = controller_task->current_time;
 }
+void controller_task_state_2_pos(ControllerTask *controller_task){
+	int32_t des_pos = controller_task->adc_val - controller_task->pot_zero;
+	read_encoder(controller_task->encoder);
+	go_to(controller_task->motor, controller_task->k_p, des_pos, controller_task->encoder->ticks);
 
+}
 
 

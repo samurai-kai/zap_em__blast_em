@@ -197,8 +197,10 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .htim_dt = &htim2,
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
 									   .motor = &mblue,
+									   .encoder = &blue_encoder,
 									   .state_list = {&controller_task_state_0_init,
-									    			  &controller_task_state_1_calc_vel}
+									    			  &controller_task_state_1_calc_vel,
+													  &controller_task_state_2_pos}
 };
 ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .state = 0,
@@ -220,8 +222,10 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
 									  .motor = &mred,
+									  .encoder = &red_encoder,
 									  .state_list = {&controller_task_state_0_init,
-												     &controller_task_state_1_calc_vel}
+												     &controller_task_state_1_calc_vel,
+													 &controller_task_state_2_pos}
 };
 ADCTask adc_task = {.state = 0,
 					.num_states = 2,
@@ -930,7 +934,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if (GPIO_Pin == GPIO_PIN_13) // RED
 	    {
-	        //GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13);
 
 	        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13) == GPIO_PIN_RESET) {
 	            red_held = 1;
@@ -944,7 +947,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	    if (GPIO_Pin == GPIO_PIN_12) // BLUE
 	    {
-	        //GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12);
 
 	        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == GPIO_PIN_RESET) {
 	            blue_held = 1;

@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "stm32f4xx_hal.h"
+#include "encoder_driver.h"
 #include <stdint.h> // Allows use of standard integer types
 
 typedef struct ControllerTask ControllerTask; // forward declaration
@@ -40,6 +41,7 @@ struct ControllerTask
     TIM_HandleTypeDef 	*htim_dt;  		// for encoder feedback delta time
     ADC_HandleTypeDef 	*hadc;          // ADC handle pointer to potentiometer
     motor_t 			*motor;         // Pointer to  motor struct
+    encoder_t			*encoder;
 
     // PID control variables
     float prev_error; //could be dangerous
@@ -52,6 +54,7 @@ struct ControllerTask
 void controller_task_state_0_init(ControllerTask *controller_task);
 void controller_task_run(ControllerTask *controller_task);
 void controller_task_state_1_calc_vel(ControllerTask *controller_task);
+void controller_task_state_2_pos(ControllerTask *controller_task);
 
 #endif /* INC_CONTROLLER_TASK_H_ */
 
