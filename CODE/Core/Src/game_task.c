@@ -2,7 +2,7 @@
  * game_task.c
  *
  *  Created on: May 22, 2025
- *      Author: andrewcarr
+ *      Author: andrewcarr and Kai De La Cruz
  */
 
 #include "game_task.h"
@@ -121,7 +121,7 @@ void game_task_state_2_play(GameTask *game_task)
 		game_task->score_blue_prev = game_task->score_blue;
 	}
 
-	if (game_task->score_red >= game_task->score_thresh)
+	if (game_task->score_red >= game_task->score_thresh && game_task->state != 3)
 	{
 	    if (game_task->delay_flag == 0)
 	    {
@@ -149,7 +149,7 @@ void game_task_state_2_play(GameTask *game_task)
 	    }
 	}
 
-	if (game_task->score_blue >= game_task->score_thresh)
+	if (game_task->score_blue >= game_task->score_thresh && game_task->state != 3)
 		{
 	//		// print win message and set end sound
 			if(game_task->delay_flag == 0)

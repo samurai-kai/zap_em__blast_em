@@ -1,42 +1,77 @@
-16:55:52 **** Incremental Build of configuration Debug for project CODE ****
+17:42:06 **** Incremental Build of configuration Debug for project CODE ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/Src/game_task.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/game_task.d" -MT"Core/Src/game_task.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/game_task.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: CODE.elf
  
 arm-none-eabi-size  CODE.elf 
 arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
    text	   data	    bss	    dec	    hex	filename
-  26068	    684	   2524	  29276	   725c	CODE.elf
+  26336	    684	   2548	  29568	   7380	CODE.elf
 Finished building: default.size.stdout
  
 Finished building: CODE.list
  
-16:55:57 **** Incremental Build of configuration Debug for project CODE ****
+17:42:10 **** Incremental Build of configuration Debug for project CODE ****
 make -j20 all 
 arm-none-eabi-size  CODE.elf 
    text	   data	    bss	    dec	    hex	filename
-  26068	    684	   2524	  29276	   725c	CODE.elf
+  26336	    684	   2548	  29568	   7380	CODE.elf
 Finished building: default.size.stdout
  
-16:56:15 **** Incremental Build of configuration Debug for project CODE ****
+17:44:56 **** Incremental Build of configuration Debug for project CODE ****
 make -j20 all 
-arm-none-eabi-size  CODE.elf 
-   text	   data	    bss	    dec	    hex	filename
-  26068	    684	   2524	  29276	   725c	CODE.elf
-Finished building: default.size.stdout
- 
-16:59:18 **** Incremental Build of configuration Debug for project CODE ****
-make -j20 all 
-arm-none-eabi-gcc "../Core/Src/game_task.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/game_task.d" -MT"Core/Src/game_task.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/game_task.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: CODE.elf
  
 arm-none-eabi-size  CODE.elf 
 arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
    text	   data	    bss	    dec	    hex	filename
-  26076	    684	   2524	  29284	   7264	CODE.elf
+  26336	    684	   2548	  29568	   7380	CODE.elf
 Finished building: default.size.stdout
  
 Finished building: CODE.list
+ 
+17:48:05 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26316	    684	   2548	  29548	   736c	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+17:53:17 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26308	    684	   2540	  29532	   735c	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+17:53:18 **** Incremental Build of configuration Debug for project test_blank ****
+make -j20 all 
+arm-none-eabi-size  test_blank.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4748	     12	   1572	   6332	   18bc	test_blank.elf
+Finished building: default.size.stdout
+ 
+17:53:23 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26308	    684	   2540	  29532	   735c	CODE.elf
+Finished building: default.size.stdout
  

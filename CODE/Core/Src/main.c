@@ -60,6 +60,10 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
+uint8_t red_held = 0, blue_held = 0;
+uint32_t red_start = 0, blue_start = 0;
+uint32_t red_elapsed = 0, blue_elapsed = 0;
+const uint32_t hold_time = 2000000; // 2s @ 1MHz
 
 /* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
@@ -68,7 +72,6 @@ motor_t mred = {
 		.chan1 = TIM_CHANNEL_3,
 		.chan2 = TIM_CHANNEL_4
 };
-
 motor_t mblue = {
 		.tim = &htim1,
 		.chan1 = TIM_CHANNEL_1,
@@ -89,8 +92,6 @@ encoder_t blue_encoder = {.zero = 0,
 						  .range = 1282,
 						  .htim = &htim3
 };
-
-
 // sound task will be passed into other tasks so needs to be declared first
 SoundTask sound_task = {.state = 0,
                       .num_states = 6,
@@ -175,7 +176,6 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
-
 ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .state = 0,
 									   .num_states = 2,
@@ -222,7 +222,6 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .state_list = {&controller_task_state_0_init,
 												     &controller_task_state_1_calc_vel}
 };
-
 ADCTask adc_task = {.state = 0,
 					.num_states = 2,
 					.red_contr_ptr = &red_controller_task,
@@ -234,8 +233,6 @@ ADCTask adc_task = {.state = 0,
 								   &adc_task_state_1_read}
 
 };
-uint32_t a = 0;
-uint32_t b = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -341,10 +338,26 @@ int main(void)
 //	  read_encoder(&blue_encoder);
 	  adc_task_run(&adc_task);
 	  game_task_run(&game_task);
-////	  sound_task_run(&sound_task);
+//	  sound_task_run(&sound_task);
 	  controller_task_run(&blue_controller_task);
 	  controller_task_run(&red_controller_task);
 
+	  // set play flag by each player holding button for 2 seconds
+	  if (red_held && blue_held && game_task.play_flag == 0)
+	  {
+	      uint32_t now = __HAL_TIM_GET_COUNTER(game_task.htim);
+	      red_elapsed = now - red_start;
+	      blue_elapsed = now - blue_start;
+
+	      if (red_elapsed > hold_time && blue_elapsed > hold_time)
+	      {
+	          game_task.play_flag = 1;
+	          red_held = 0;
+	          blue_held = 0;
+	          red_shoot_task.button = 0;
+	          blue_shoot_task.button = 0;
+	      }
+	  }
 	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
 		  shoot_task_run(&red_shoot_task);
 		  shoot_task_run(&blue_shoot_task);
@@ -914,42 +927,43 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+	if (GPIO_Pin == GPIO_PIN_13) // RED
+	    {
+	        GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13);
 
-    if (GPIO_Pin == GPIO_PIN_12)
-    {
-        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == GPIO_PIN_RESET)
-        {
-            // turn on laser
-        	blue_shoot_task.button = 1;
-        }
-        else
-        {
-            // turn off laser
-        	blue_shoot_task.button = 0;
-        }
-    }
-    if (GPIO_Pin == GPIO_PIN_13)
-	{
-		if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13) == GPIO_PIN_RESET)
-		{
-			// turn on laser
-			red_shoot_task.button = 1;
-		}
-		else
-		{
-			// turn off laser
-			red_shoot_task.button = 0;
-		}
-	}
+	        if (state == GPIO_PIN_RESET) {
+	            red_held = 1;
+	            red_start = __HAL_TIM_GET_COUNTER(game_task.htim);
+	            red_shoot_task.button = 1;
+	        } else {
+	            red_held = 0;
+	            red_shoot_task.button = 0;
+	        }
+	    }
 
+	    if (GPIO_Pin == GPIO_PIN_12) // BLUE
+	    {
+	        GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12);
+
+	        if (state == GPIO_PIN_RESET) {
+	            blue_held = 1;
+	            blue_start = __HAL_TIM_GET_COUNTER(game_task.htim);
+	            blue_shoot_task.button = 1;
+	        } else {
+	            blue_held = 0;
+	            blue_shoot_task.button = 0;
+	        }
+	    }
+
+    // === Photoresistor Hit Detection ===
     if (blue_photoresistor_task.adc_val > blue_photoresistor_task.zero + blue_photoresistor_task.thresh)
     {
-    	blue_photoresistor_task.hit_flag = 1;
+        blue_photoresistor_task.hit_flag = 1;
     }
     if (red_photoresistor_task.adc_val > red_photoresistor_task.zero + red_photoresistor_task.thresh)
     {
-    	red_photoresistor_task.hit_flag = 1;
-	}
+        red_photoresistor_task.hit_flag = 1;
+    }
 }
 
 void calibration(void){
