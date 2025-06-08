@@ -34,6 +34,7 @@ struct GameTask
     uint32_t			delay_start;
     int32_t				delay_flag;
     uint32_t			delay;
+    uint32_t			end_delay;
     TIM_HandleTypeDef 	*htim;
     SoundTask			*sound_task_ptr;
     PhotoresistorTask 	*red_photoresistor_task_ptr;

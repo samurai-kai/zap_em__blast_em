@@ -53,10 +53,12 @@ void game_task_state_0_init(GameTask *game_task)
 // Prints message and sets sound flag when game starts
 void game_task_state_1_home(GameTask *game_task)
 {
-	lcd_set_cursor(1, 0);
+	lcd_set_cursor(0, 0);
 	lcd_print("  Zap'em Blast'em   ");
-	lcd_set_cursor(2, 0);
+	lcd_set_cursor(1, 0);
 	lcd_print("       Robots       ");
+	lcd_set_cursor(3, 0);
+	lcd_print("HOLD 'SHOOT' TO PLAY");
     //play_flg enabled from button task within shoot task?? or make button task
 	if (game_task->play_flag == 1){
     	game_task->state = 2;
@@ -122,32 +124,26 @@ void game_task_state_2_play(GameTask *game_task)
 	}
 
 	if (game_task->score_red >= game_task->score_thresh && game_task->state != 3)
-	{
-	    if (game_task->delay_flag == 0)
-	    {
-	        // First-time trigger
-	        lcd_set_cursor(0, 0);
-	        lcd_print("                    ");
-	        lcd_set_cursor(1, 0);
-	        lcd_print("     GAME OVER!     ");
-	        lcd_set_cursor(2, 0);
-	        lcd_print("     Red Wins!!     ");
-	        lcd_set_cursor(3, 0);
-	        lcd_print("                    ");
-	        game_task->delay_flag = 1;
-	        game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
-	    }
-	    else
-	    {
-	        // Wait until delay expires
-	        uint32_t elapsed = __HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start;
-	        if (elapsed > game_task->delay)
-	        {
-	            game_task->state = 3;            // Advance to end state
-	            game_task->delay_flag = 0;       // Reset flag in case you return to this logic again
-	        }
-	    }
-	}
+			{
+		//		// print win message and set end sound
+				if(game_task->delay_flag == 0)
+				{
+				lcd_set_cursor(0, 0);
+				lcd_print("                    ");
+				lcd_set_cursor(1, 0);
+				lcd_print("     GAME OVER!     ");
+				lcd_set_cursor(2, 0);
+				lcd_print("     Red Wins!!     ");
+				lcd_set_cursor(3, 0);
+				lcd_print("                    ");
+				game_task->delay_flag = 1;
+				game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
+				}
+				if ((__HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start) > game_task->end_delay)
+				{
+				game_task->state = 3;
+				}
+			}
 
 	if (game_task->score_blue >= game_task->score_thresh && game_task->state != 3)
 		{
@@ -165,7 +161,7 @@ void game_task_state_2_play(GameTask *game_task)
 			game_task->delay_flag = 1;
 			game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
 			}
-			if ((__HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start) > game_task->delay)
+			if ((__HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start) > game_task->end_delay)
 			{
 			game_task->state = 3;
 			}
