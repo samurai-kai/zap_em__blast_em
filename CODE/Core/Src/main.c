@@ -60,12 +60,12 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
+
+/* USER CODE BEGIN PV */
 uint8_t red_held = 0, blue_held = 0;
 uint32_t red_start = 0, blue_start = 0;
 uint32_t red_elapsed = 0, blue_elapsed = 0;
 const uint32_t hold_time = 2000000; // 2s @ 1MHz
-
-/* USER CODE BEGIN PV */
 // create structs here so that variable pointers can be passed around
 motor_t mred = {
 		.tim = &htim1,
@@ -179,7 +179,7 @@ ShootTask blue_shoot_task = {.state = 0,
 };
 ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .state = 0,
-									   .num_states = 2,
+									   .num_states = 3,
 									   .chan1 = TIM_CHANNEL_3,
 									   .chan2 = TIM_CHANNEL_4,
 									   .pot_zero = 0,
@@ -187,7 +187,7 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 									   .prev_time = 0,
 									   .current_time = 0,
 									   .prev_ticks = 0,
-									   .k_p = -6,
+									   .k_p = 1,
 									   .k_d = 0,
 									   .cw_deadzone = 150,		// good at 150
 									   .ccw_deadzone = 150,		// good at 600
@@ -204,7 +204,7 @@ ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
 };
 ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .state = 0,
-									  .num_states = 2,
+									  .num_states = 3,
 									  .chan1 = TIM_CHANNEL_1,
 									  .chan2 = TIM_CHANNEL_2,
 									  .pot_zero = 0,
@@ -212,7 +212,7 @@ ControllerTask red_controller_task = {.color = 0, // red is fighter 1
 									  .prev_time = 0,
 									  .current_time = 0,
 									  .prev_ticks = 0,
-									  .k_p = -10.0,
+									  .k_p = 1,
 									  .k_d = 0.0,
 									  .cw_deadzone = 400,			// good at 400
 									  .ccw_deadzone = 300,		// good at 300
@@ -251,7 +251,6 @@ static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_ADC1_Init(void);
-void calibration(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -934,7 +933,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if (GPIO_Pin == GPIO_PIN_13) // RED
 	    {
-
 	        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13) == GPIO_PIN_RESET) {
 	            red_held = 1;
 	            red_start = __HAL_TIM_GET_COUNTER(game_task.htim);
@@ -947,7 +945,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	    if (GPIO_Pin == GPIO_PIN_12) // BLUE
 	    {
-
 	        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == GPIO_PIN_RESET) {
 	            blue_held = 1;
 	            blue_start = __HAL_TIM_GET_COUNTER(game_task.htim);
