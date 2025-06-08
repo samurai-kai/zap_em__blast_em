@@ -930,9 +930,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if (GPIO_Pin == GPIO_PIN_13) // RED
 	    {
-	        GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13);
+	        //GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13);
 
-	        if (state == GPIO_PIN_RESET) {
+	        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_13) == GPIO_PIN_RESET) {
 	            red_held = 1;
 	            red_start = __HAL_TIM_GET_COUNTER(game_task.htim);
 	            red_shoot_task.button = 1;
@@ -944,9 +944,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 	    if (GPIO_Pin == GPIO_PIN_12) // BLUE
 	    {
-	        GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12);
+	        //GPIO_PinState state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12);
 
-	        if (state == GPIO_PIN_RESET) {
+	        if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_12) == GPIO_PIN_RESET) {
 	            blue_held = 1;
 	            blue_start = __HAL_TIM_GET_COUNTER(game_task.htim);
 	            blue_shoot_task.button = 1;
