@@ -928,3 +928,38 @@ Finished building: default.size.stdout
  
 Finished building: CODE.list
  
+20:02:33 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26456	    688	   2544	  29688	   73f8	CODE.elf
+Finished building: default.size.stdout
+ 
+20:08:14 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26456	    688	   2544	  29688	   73f8	CODE.elf
+Finished building: default.size.stdout
+ 
+20:08:14 **** Incremental Build of configuration Debug for project test_blank ****
+make -j20 all 
+arm-none-eabi-size  test_blank.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4748	     12	   1572	   6332	   18bc	test_blank.elf
+Finished building: default.size.stdout
+ 
+20:09:21 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26456	    688	   2544	  29688	   73f8	CODE.elf
+Finished building: default.size.stdout
+ 
+20:09:41 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26456	    688	   2544	  29688	   73f8	CODE.elf
+Finished building: default.size.stdout
+ 
