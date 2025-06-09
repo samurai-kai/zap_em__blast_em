@@ -1,3 +1,62 @@
+/**
+ * @mainpage Zap'Em Blast'Em Robots
+ *
+ * @section creators_sec Creators
+ * - Kai De La Cruz
+ * - Andrew Carr
+ *
+ * @section intro_sec Introduction
+ * Zap'Em Blast'Em Robots is an embedded game system for the STM32 platform.
+ * Inspired by Rock'em Sock'em Robots, this game replaces fists with IR lasers.
+ * Robots battle in real time using sensors, controllers, and a state machine.
+ *
+ * @section gameplay_sec Game Premise
+ * Two robots face off in a laser-tag match. Instead of punching, they "zap"
+ * each other using IR beams. Each robot has light sensors to detect hits.
+ * The first to land enough successful shots wins the match.
+ *
+ * @section features_sec Features
+ * - Real-time analog sensor reads using DMA
+ * - Modular task system for clear code organization
+ * - State-based control for responsive gameplay
+ * - Easily extendable for AI or multiplayer support
+ * - Doxygen-based documentation for maintainability
+ *
+ * @section files_sec File Overview
+ * - adc_task.c/h: Handles ADC and DMA data acquisition
+ * - controller_task.c/h: Manages game logic and reactions
+ * - photoresistor_task.c/h: Reads IR sensor input
+ * - main.c: Initializes system and launches tasks
+ *
+ * @section tech_sec Technology Stack
+ * - STM32F4 series microcontroller
+ * - STM32CubeIDE (Eclipse-based)
+ * - HAL drivers with DMA for ADC
+ * - Doxygen for auto-generated docs
+ *
+ * @section usage_sec How to Use
+ * 1. Build the project in STM32CubeIDE and flash it to the robot's board.
+ * 2. Power the robots and align sensors and IR emitters.
+ * 3. Start the game by triggering the user input or main controller.
+ * 4. Watch the robots duel in laser-tag combat!
+ *
+ * @section mechanicaldesign_sec Mechanical Design
+ * built it
+ *
+ * @section electricaldesign_sec Electrical Design
+ * built it
+ *
+ * @section softwaredesign_sec Software Design
+ * built it
+ *
+ * @section future_sec Future Ideas
+ * - Wireless scoring and multiplayer support
+ * - AI-controlled bots
+ * - UART serial output for real-time HUD or scoreboard
+ */
+
+
+
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -66,6 +125,8 @@ uint8_t red_held = 0, blue_held = 0;
 uint32_t red_start = 0, blue_start = 0;
 uint32_t red_elapsed = 0, blue_elapsed = 0;
 const uint32_t hold_time = 2000000; // 2s @ 1MHz
+void calibration(void);
+void wait_for_stall(encoder_t *encoder);
 // create structs here so that variable pointers can be passed around
 motor_t mred = {
 		.tim = &htim1,
@@ -81,7 +142,7 @@ encoder_t red_encoder = {.zero = 0,
 						 .ar = 0xFFFFFFFF,
 						 .ticks = 0,
 						 .last_ticks = 0,
-						 .range = 1275,
+						 .range = 1300,
 						 .htim = &htim5
 
 };
@@ -89,7 +150,7 @@ encoder_t blue_encoder = {.zero = 0,
 						  .ar = 0xFFFF,
 						  .ticks = 0,
 						  .last_ticks = 0,
-						  .range = 1282,
+						  .range = 1300,
 						  .htim = &htim3
 };
 // sound task will be passed into other tasks so needs to be declared first
@@ -111,7 +172,7 @@ PhotoresistorTask red_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
 											.adc_val = 0,
-											.thresh = 800,
+											.thresh = 2500,
 											.zero = 0,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
@@ -121,7 +182,7 @@ PhotoresistorTask blue_photoresistor_task = {.state = 0,
 											.num_states = 3,
 											.hit_flag = 0,
 											.adc_val = 0,
-											.thresh = 800,
+											.thresh = 2500,
 											.zero = 0,
 											.state_list = {&photoresistor_task_state_0_init,
 													       &photoresistor_task_state_1_look,
@@ -138,12 +199,14 @@ GameTask game_task = {.state = 0,
 					  .num = 0,
 					  .delay_start = 0,
 					  .delay_flag = 0,
-					  .delay = 1000000, 	// 1 second delay
-					  .end_delay = 1000000,	// 1/2 second delay
+					  .delay = 2000000, 	// 2 second delay
+					  .end_delay = 5000000,	// 3 second delay
 					  .htim = &htim2,
 					  .sound_task_ptr = &sound_task,
 					  .red_photoresistor_task_ptr = &red_photoresistor_task,
 					  .blue_photoresistor_task_ptr = &blue_photoresistor_task,
+					  .mred = &mred,
+					  .mblue = &mblue,
 					  .i2c_handle = &hi2c1,
                       .state_list = {&game_task_state_0_init,
                                      &game_task_state_1_home,
@@ -177,55 +240,49 @@ ShootTask blue_shoot_task = {.state = 0,
 										   &shoot_task_state_2_unshield,
 										   &shoot_task_state_3_shoot}
 };
-ControllerTask blue_controller_task = {.color = 1, // blue is fighter 2
+ControllerTask blue_controller_task = {.dir = -1, // blue is fighter 2
 									   .state = 0,
-									   .num_states = 3,
+									   .num_states = 2,
 									   .chan1 = TIM_CHANNEL_3,
 									   .chan2 = TIM_CHANNEL_4,
 									   .pot_zero = 0,
-									   .control_signal = 0.0,
+									   .des_pos = 0,
 									   .prev_time = 0,
 									   .current_time = 0,
 									   .prev_ticks = 0,
 									   .k_p = 1,
-									   .k_d = 0,
-									   .cw_deadzone = 150,		// good at 150
-									   .ccw_deadzone = 150,		// good at 600
+									   .k_i = 0,
 									   .adc_val = 0,
-									   .encoder_range = 1289,
+									   .integral_error = 0,
 									   .htim_encoder = &htim3,		// encoder timer for blue motor
 									   .htim_dt = &htim2,
 									   .hadc = &hadc1,              // ADC handle for blue motor potentiometer input
 									   .motor = &mblue,
 									   .encoder = &blue_encoder,
 									   .state_list = {&controller_task_state_0_init,
-									    			  &controller_task_state_1_calc_vel,
-													  &controller_task_state_2_pos}
+													  &controller_task_state_1_pos}
 };
-ControllerTask red_controller_task = {.color = 0, // red is fighter 1
+ControllerTask red_controller_task = {.dir = 1, // red is fighter 1
 									  .state = 0,
-									  .num_states = 3,
+									  .num_states = 2,
 									  .chan1 = TIM_CHANNEL_1,
 									  .chan2 = TIM_CHANNEL_2,
 									  .pot_zero = 0,
-									  .control_signal = 0.0,
+									  .des_pos = 0,
 									  .prev_time = 0,
 									  .current_time = 0,
 									  .prev_ticks = 0,
-									  .k_p = 1,
-									  .k_d = 0.0,
-									  .cw_deadzone = 400,			// good at 400
-									  .ccw_deadzone = 300,		// good at 300
+									  .k_p = -1,
+									  .k_i = 0,
 									  .adc_val = 0,
-									  .encoder_range = 1278,
+									  .integral_error = 0,
 									  .htim_encoder = &htim5,
 									  .htim_dt = &htim2,
 									  .hadc = &hadc1,
 									  .motor = &mred,
 									  .encoder = &red_encoder,
 									  .state_list = {&controller_task_state_0_init,
-												     &controller_task_state_1_calc_vel,
-													 &controller_task_state_2_pos}
+													 &controller_task_state_1_pos}
 };
 ADCTask adc_task = {.state = 0,
 					.num_states = 2,
@@ -338,13 +395,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  read_encoder(&red_encoder);
-//	  read_encoder(&blue_encoder);
 	  adc_task_run(&adc_task);
 	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
-	  controller_task_run(&blue_controller_task);
-	  controller_task_run(&red_controller_task);
 
 	  // set play flag by each player holding button for 2 seconds
 	  if (red_held && blue_held && game_task.play_flag == 0)
@@ -365,41 +418,12 @@ int main(void)
 	  if (game_task.play_flag){ //shooting and scoring disabled when game hasn't started
 		  shoot_task_run(&red_shoot_task);
 		  shoot_task_run(&blue_shoot_task);
+		  controller_task_run(&blue_controller_task);
+		  controller_task_run(&red_controller_task);
 		  photoresistor_task_run(&red_photoresistor_task);
 		  photoresistor_task_run(&blue_photoresistor_task);
 	  }
 
-//	  }
-
-	  // a from 1000 to 2000
-	  //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, a);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, b);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, a);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, b);
-//	  set_duty(&mred,a);
-//	  set_duty(&mblue,b);
-//
-//	  HAL_ADC_Start(&hadc1);
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  adc_val_6 = HAL_ADC_GetValue(&hadc1);
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  adc_val_7 = HAL_ADC_GetValue(&hadc1);
-//	  HAL_ADC_Stop(&hadc1);
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
-//	      adc_val_6 = HAL_ADC_GetValue(&hadc1);  // First result (Channel 6)
-//
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
-//	      adc_val_7 = HAL_ADC_GetValue(&hadc1);  // Second result (Channel 7)
-//
-//	  HAL_ADC_Stop(&hadc1);
-	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
-	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
-	  //controller_task_run(&blue_controller_task);
-	  //controller_task_run(&red_controller_task);
-	  //add delay
 	  HAL_Delay(1);
 
     /* USER CODE END WHILE */
@@ -966,42 +990,76 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     }
 }
 
-void calibration(void){
-	__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, red_shoot_task.shield_val);
-	__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, blue_shoot_task.shield_val);
-	HAL_Delay(1200);
-	red_photoresistor_task.zero = red_photoresistor_task.adc_val;
-	blue_photoresistor_task.zero = blue_photoresistor_task.adc_val;
+void calibration(void) {
+    const float Kp = 1.0f;
+    const int  HOMING_TOL = 5;      // ticks tolerance
+    const uint32_t TIMEOUT = 3000;  // ms
+    uint32_t red_photo_sum = 0;
+    uint32_t blue_photo_sum = 0;
 
-	// dc motors
-	set_duty(&mred, 60);
-	set_duty(&mblue, -60);
+    // 1) Center shields & zero photoresistors
+    __HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim,   red_shoot_task.channel,   red_shoot_task.shield_val);
+    __HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim,  blue_shoot_task.channel,  blue_shoot_task.shield_val);
+    HAL_Delay(1200);
+    red_photo_sum  += red_photoresistor_task.adc_val;
+    blue_photo_sum += blue_photoresistor_task.adc_val;
 
-	HAL_Delay(1200);
+    // --- Drive both to MIN end ---
+    set_duty(&mred,  +30);
+    set_duty(&mblue, -30);
+    wait_for_stall(&red_encoder);
+    wait_for_stall(&blue_encoder);
+    int32_t red_min  = red_encoder.ticks;
+    int32_t blue_min = blue_encoder.ticks;
+    set_duty(&mred,  0);
+    set_duty(&mblue, 0);
+    red_photo_sum  += red_photoresistor_task.adc_val;
+	blue_photo_sum += blue_photoresistor_task.adc_val;
 
-	setup_encoder(&red_encoder);
-	setup_encoder(&blue_encoder);
+    // --- Drive both to MAX end ---
+    set_duty(&mred,  -30);
+    set_duty(&mblue, +30);
+    wait_for_stall(&red_encoder);
+    wait_for_stall(&blue_encoder);
+    int32_t red_max  = red_encoder.ticks;
+    int32_t blue_max = blue_encoder.ticks;
+    set_duty(&mred,  0);
+    set_duty(&mblue, 0);
+    red_photo_sum  += red_photoresistor_task.adc_val;
+	blue_photo_sum += blue_photoresistor_task.adc_val;
 
-	while(1){
-		read_encoder(&red_encoder);
-		read_encoder(&blue_encoder);
-		go_to(&mred, 1, -red_encoder.range/2, -red_encoder.ticks);
-		go_to(&mblue, 1, blue_encoder.range/2, blue_encoder.ticks);
-		read_encoder(&red_encoder);
-		read_encoder(&blue_encoder);
-		HAL_Delay(1);
+    // --- Compute midpoints ---
+    int32_t red_home  = (-red_min  - red_max)  / 2;
+    int32_t blue_home = (blue_min + blue_max) / 2;
 
-		if (abs(red_encoder.ticks - red_encoder.range/2) < 10 && abs(blue_encoder.ticks - blue_encoder.range/2) < 10){
-			break;
-		}
-	}
+    // --- Compute photo resistor zeros ---
+    red_photoresistor_task.zero  = red_photo_sum / 3;
+    blue_photoresistor_task.zero = blue_photo_sum / 3;
 
-	set_duty(&mred, 0);
-	set_duty(&mblue, 0);
-	setup_encoder(&red_encoder);
-	setup_encoder(&blue_encoder);
+    // --- Drive both to their homes under P-control ---
+    uint32_t t0 = HAL_GetTick();
+    do {
+        read_encoder(&red_encoder);
+        read_encoder(&blue_encoder);
 
+        go_to(&mred,  Kp, red_home,  -red_encoder.ticks);
+        go_to(&mblue, Kp, blue_home, blue_encoder.ticks);
 
+        HAL_Delay(1);
+    } while ((abs(-red_encoder.ticks  - red_home)  > HOMING_TOL ||
+              abs(blue_encoder.ticks - blue_home) > HOMING_TOL)
+             && (HAL_GetTick() - t0) < TIMEOUT);
+
+    set_duty(&mred,  0);
+    set_duty(&mblue, 0);
+
+    // 5) Reset encoder zero-reference at true home
+    setup_encoder(&red_encoder);
+    setup_encoder(&blue_encoder);
+
+    // --- Compute and store travel ranges ---
+    red_encoder.range  = abs(red_max  - red_min);
+    blue_encoder.range = abs(blue_max - blue_min);
 }
 
 
