@@ -2,6 +2,8 @@ var dir_413f4e031a85da0d68269c6fd2f76e1c =
 [
     [ "adc_task.c", "adc__task_8c.html", "adc__task_8c" ],
     [ "controller_task.c", "controller__task_8c.html", "controller__task_8c" ],
+    [ "encoder_driver.c", "encoder__driver_8c.html", "encoder__driver_8c" ],
+    [ "game_task.c", "game__task_8c.html", "game__task_8c" ],
     [ "main.c", "main_8c.html", "main_8c" ],
     [ "stm32f4xx_hal_msp.c", "stm32f4xx__hal__msp_8c.html", "stm32f4xx__hal__msp_8c" ],
     [ "stm32f4xx_it.c", "stm32f4xx__it_8c.html", "stm32f4xx__it_8c" ],

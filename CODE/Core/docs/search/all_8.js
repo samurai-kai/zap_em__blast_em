@@ -15,7 +15,7 @@ var searchData=
   ['how_20to_20use_12',['How to Use',['../index.html#usage_sec',1,'']]],
   ['hse_5fvalue_13',['HSE_VALUE',['../group___s_t_m32_f4xx___system___private___includes.html#gaeafcff4f57440c60e64812dddd13e7cb',1,'system_stm32f4xx.c']]],
   ['hsi_5fvalue_14',['HSI_VALUE',['../group___s_t_m32_f4xx___system___private___includes.html#gaaa8c76e274d0f6dd2cefb5d0b17fbc37',1,'system_stm32f4xx.c']]],
-  ['htim_15',['htim',['../structencoder__t.html#a5dc7d1c65997ccaed48a93a3f4ffc486',1,'encoder_t']]],
+  ['htim_15',['htim',['../structencoder__t.html#a5dc7d1c65997ccaed48a93a3f4ffc486',1,'encoder_t::htim'],['../struct_game_task.html#a5dc7d1c65997ccaed48a93a3f4ffc486',1,'GameTask::htim']]],
   ['htim_5fdt_16',['htim_dt',['../struct_controller_task.html#a36de3f2cbf02e318ebd6dff3dea7861c',1,'ControllerTask']]],
   ['htim_5fencoder_17',['htim_encoder',['../struct_controller_task.html#a0a11d3973daa2e12c27ccd2588cad086',1,'ControllerTask']]]
 ];

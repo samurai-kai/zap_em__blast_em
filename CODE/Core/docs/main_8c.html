@@ -100,13 +100,13 @@ $(function(){initNavTree('main_8c.html','',''); });
 <div class="textblock"><code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="controller__task_8h_source.html">controller_task.h</a>&quot;</code><br />
 <code>#include &quot;motor_driver.h&quot;</code><br />
-<code>#include &quot;game_task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="game__task_8h_source.html">game_task.h</a>&quot;</code><br />
 <code>#include &quot;sound_task.h&quot;</code><br />
 <code>#include &quot;shoot_task.h&quot;</code><br />
 <code>#include &quot;lcd.h&quot;</code><br />
 <code>#include &quot;photoresistor_task.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="adc__task_8h_source.html">adc_task.h</a>&quot;</code><br />
-<code>#include &quot;encoder_driver.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="encoder__driver_8h_source.html">encoder_driver.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
@@ -449,12 +449,16 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                      .mred = &amp;mred,</div>
 <div class="line">                      .mblue = &amp;mblue,</div>
 <div class="line">                      .i2c_handle = &amp;hi2c1,</div>
-<div class="line">                      .state_list = {&amp;game_task_state_0_init,</div>
-<div class="line">                                     &amp;game_task_state_1_home,</div>
-<div class="line">                                     &amp;game_task_state_2_play,</div>
-<div class="line">                                     &amp;game_task_state_3_end}</div>
+<div class="line">                      .state_list = {&amp;<a class="code hl_function" href="game__task_8h.html#adfae05d4105f92402a05cad34e4549ae">game_task_state_0_init</a>,</div>
+<div class="line">                                     &amp;<a class="code hl_function" href="game__task_8h.html#afecab4adbfa30c2a00ce021209b14084">game_task_state_1_home</a>,</div>
+<div class="line">                                     &amp;<a class="code hl_function" href="game__task_8h.html#a4c732dc57a65c2383055e3572038a9b1">game_task_state_2_play</a>,</div>
+<div class="line">                                     &amp;<a class="code hl_function" href="game__task_8h.html#a5fc6d96b904257254bf569d163d1837f">game_task_state_3_end</a>}</div>
 <div class="line"> </div>
 <div class="line">}</div>
+<div class="ttc" id="agame__task_8h_html_a4c732dc57a65c2383055e3572038a9b1"><div class="ttname"><a href="game__task_8h.html#a4c732dc57a65c2383055e3572038a9b1">game_task_state_2_play</a></div><div class="ttdeci">void game_task_state_2_play(GameTask *game_task)</div><div class="ttdoc">Handles main gameplay and scoring logic (state 2).</div><div class="ttdef"><b>Definition</b> game_task.c:87</div></div>
+<div class="ttc" id="agame__task_8h_html_a5fc6d96b904257254bf569d163d1837f"><div class="ttname"><a href="game__task_8h.html#a5fc6d96b904257254bf569d163d1837f">game_task_state_3_end</a></div><div class="ttdeci">void game_task_state_3_end(GameTask *game_task)</div><div class="ttdoc">Ends the game and resets variables (state 3).</div><div class="ttdef"><b>Definition</b> game_task.c:161</div></div>
+<div class="ttc" id="agame__task_8h_html_adfae05d4105f92402a05cad34e4549ae"><div class="ttname"><a href="game__task_8h.html#adfae05d4105f92402a05cad34e4549ae">game_task_state_0_init</a></div><div class="ttdeci">void game_task_state_0_init(GameTask *game_task)</div><div class="ttdoc">Initializes the GameTask (state 0).</div><div class="ttdef"><b>Definition</b> game_task.c:47</div></div>
+<div class="ttc" id="agame__task_8h_html_afecab4adbfa30c2a00ce021209b14084"><div class="ttname"><a href="game__task_8h.html#afecab4adbfa30c2a00ce021209b14084">game_task_state_1_home</a></div><div class="ttdeci">void game_task_state_1_home(GameTask *game_task)</div><div class="ttdoc">Handles home screen and game start prompt (state 1).</div><div class="ttdef"><b>Definition</b> game_task.c:62</div></div>
 </div><!-- fragment -->
 </div>
 </div>

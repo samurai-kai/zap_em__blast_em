@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usagefault_5fhandler_0',['UsageFault_Handler',['../stm32f4xx__it_8h.html#a1d98923de2ed6b7309b66f9ba2971647',1,'UsageFault_Handler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8c.html#a1d98923de2ed6b7309b66f9ba2971647',1,'UsageFault_Handler(void):&#160;stm32f4xx_it.c']]]
+  ['read_5fencoder_0',['read_encoder',['../encoder__driver_8h.html#a804624cc3cce1ef0ecbfc16baffbee00',1,'read_encoder(encoder_t *p_enc):&#160;encoder_driver.c'],['../encoder__driver_8c.html#a804624cc3cce1ef0ecbfc16baffbee00',1,'read_encoder(encoder_t *p_enc):&#160;encoder_driver.c']]]
 ];

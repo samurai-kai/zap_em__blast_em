@@ -1,5 +1,5 @@
 /**
- *  @file encoder_task.h
+ *  @file encoder_driver.h
  *  @brief Header file for encoder driver and tick tracking functions.
  *  @author Andrew Carr and Kai De La Cruz
  *

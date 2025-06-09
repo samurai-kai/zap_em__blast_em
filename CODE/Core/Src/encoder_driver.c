@@ -1,9 +1,9 @@
 /**
- * @file    encoder_task.c
- * @brief   High-level routines for initializing and reading a rotary encoder.
+ * @file encoder_driver.c
+ * @brief High-level routines for initializing and reading a rotary encoder.
  *
  * Created on: Jun 7, 2025
- * @author  Andrew Carr and Kai De La Cruz
+ * @author Andrew Carr and Kai De La Cruz
  */
 
 #include "encoder_driver.h"
