@@ -32,11 +32,6 @@ void controller_task_state_0_init(ControllerTask *controller_task)
     enable(controller_task->motor);
     // record ADC zero (center/home)
     controller_task->pot_zero = controller_task->adc_val;
-    // set the calibrated ADC extremes (should be filled after calibration routine)
-    // controller_task->pot_min = <measured_min>;
-    // controller_task->pot_max = <measured_max>;
-    // set motor direction
-    // controller_task->dir = +1;
 
     controller_task->state = 1;
 }

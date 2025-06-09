@@ -624,10 +624,6 @@ void controller_task_state_0_init(ControllerTask *controller_task)
  80006a0:	461a      	mov	r2, r3
  80006a2:	687b      	ldr	r3, [r7, #4]
  80006a4:	615a      	str	r2, [r3, #20]
-    // controller_task->pot_min = <measured_min>;
-    // controller_task->pot_max = <measured_max>;
-    // set motor direction
-    // controller_task->dir = +1;
 
     controller_task->state = 1;
  80006a6:	687b      	ldr	r3, [r7, #4]

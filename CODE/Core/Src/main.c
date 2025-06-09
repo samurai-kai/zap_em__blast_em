@@ -141,7 +141,7 @@ GameTask game_task = {.state = 0,
 					  .delay_start = 0,
 					  .delay_flag = 0,
 					  .delay = 2000000, 	// 2 second delay
-					  .end_delay = 3000000,	// 3 second delay
+					  .end_delay = 5000000,	// 3 second delay
 					  .htim = &htim2,
 					  .sound_task_ptr = &sound_task,
 					  .red_photoresistor_task_ptr = &red_photoresistor_task,
