@@ -1,3 +1,7 @@
+/**
+ * @file adc_task.c
+ * @brief Handles ADC and DMA processing for sensor input.
+ */
 /*
  * adc_task.c
  *
