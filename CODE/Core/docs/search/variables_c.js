@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['state_0',['state',['../struct_a_d_c_task.html#af8ec6e123570f44094bcf2cb02b478f4',1,'ADCTask::state'],['../struct_controller_task.html#af8ec6e123570f44094bcf2cb02b478f4',1,'ControllerTask::state']]],
-  ['state_5flist_1',['state_list',['../struct_a_d_c_task.html#aef6da8c0ad88477359f064daf8a58365',1,'ADCTask::state_list'],['../struct_controller_task.html#a7b0eb94c2e1b446c66adbb12ab4f42f4',1,'ControllerTask::state_list']]]
+  ['range_0',['range',['../structencoder__t.html#aa261b8160c2d80b9961b0c8b220ce568',1,'encoder_t']]],
+  ['red_5fcontr_5fptr_1',['red_contr_ptr',['../struct_a_d_c_task.html#a3ab8a7a6d2d172ea82943bcaa7f73a95',1,'ADCTask']]],
+  ['red_5fphotor_5fptr_2',['red_photor_ptr',['../struct_a_d_c_task.html#ac0522422b7be935ddf767b4d492640e1',1,'ADCTask']]]
 ];

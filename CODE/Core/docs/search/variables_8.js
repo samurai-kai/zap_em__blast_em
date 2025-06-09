@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['motor_0',['motor',['../struct_controller_task.html#ac602ff443a11be7be2fda818f4912ad8',1,'ControllerTask']]]
+  ['last_5fticks_0',['last_ticks',['../structencoder__t.html#ab96d427b52b637e0844efa4f249d2028',1,'encoder_t']]]
 ];

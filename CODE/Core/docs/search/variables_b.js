@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['red_5fcontr_5fptr_0',['red_contr_ptr',['../struct_a_d_c_task.html#a3ab8a7a6d2d172ea82943bcaa7f73a95',1,'ADCTask']]],
-  ['red_5fphotor_5fptr_1',['red_photor_ptr',['../struct_a_d_c_task.html#ac0522422b7be935ddf767b4d492640e1',1,'ADCTask']]]
+  ['pot_5fzero_0',['pot_zero',['../struct_controller_task.html#ae5fdfb122ff3fe3f25d3cf60ccc9b915',1,'ControllerTask']]],
+  ['prev_5ferror_1',['prev_error',['../struct_controller_task.html#a461cae71b420a0cbbb17f75db63af2b8',1,'ControllerTask']]],
+  ['prev_5fticks_2',['prev_ticks',['../struct_controller_task.html#ae505eddb4daa3cf915e206d386836ad7',1,'ControllerTask']]],
+  ['prev_5ftime_3',['prev_time',['../struct_controller_task.html#a7dff167b310b78ffe12f03656aebc01e',1,'ControllerTask']]]
 ];

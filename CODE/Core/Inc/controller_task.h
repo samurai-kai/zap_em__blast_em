@@ -1,11 +1,10 @@
 /**
  *  @file controller_task.h
- *  @brief Header file for controller task logic in Zap'Em Blast'Em Robots.
+ *  @brief Header file for controller task logic
  *  @author Kai De La Cruz
  *
  *  Created on: Jun 3, 2025
  */
-
 #ifndef INC_CONTROLLER_TASK_H_
 #define INC_CONTROLLER_TASK_H_
 
@@ -14,7 +13,7 @@
 #include <stdio.h>
 #include "stm32f4xx_hal.h"
 #include "encoder_driver.h"
-#include <stdint.h> // Allows use of standard integer types
+#include <stdint.h>
 
 /**
  * @brief Forward declaration of ControllerTask structure.

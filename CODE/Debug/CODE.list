@@ -792,10 +792,10 @@ void controller_task_state_1_pos(ControllerTask *controller_task)
  80007b4:	447a0000 	.word	0x447a0000
 
 080007b8 <setup_encoder>:
- * @param  p_enc  Pointer to an encoder_t instance.
- *
  * Captures the current hardware timer counter as the zero reference,
  * and clears both the cumulative tick count and the last-read snapshot.
+ *
+ * @param  p_enc  Pointer to an encoder_t instance.
  */
 void setup_encoder(encoder_t *p_enc){
  80007b8:	b480      	push	{r7}
@@ -825,10 +825,10 @@ void setup_encoder(encoder_t *p_enc){
  80007e2:	4770      	bx	lr
 
 080007e4 <read_encoder>:
-//
-//    p_enc->last_ticks = current_ticks;
-//    p_enc->ticks     += delta;
-//}
+ *   by ±(ar+1) to account for rollover.
+ *
+ * @param  p_enc  Pointer to an encoder_t instance.
+ */
 void read_encoder(encoder_t *p_enc)
 {
  80007e4:	b480      	push	{r7}
@@ -916,9 +916,9 @@ void read_encoder(encoder_t *p_enc)
  8000866:	4770      	bx	lr
 
 08000868 <wait_for_stall>:
- * @brief  Waits until the encoder motion stalls (no significant ticks change).
+ * motion occurs over a defined interval.
  *
- * @param  p_enc  Pointer to encoder_t instance
+ * @param  p_enc  Pointer to an encoder_t instance.
  */
 void wait_for_stall(encoder_t *p_enc)
 {

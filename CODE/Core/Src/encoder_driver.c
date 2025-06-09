@@ -3,7 +3,7 @@
  * @brief   High-level routines for initializing and reading a rotary encoder.
  *
  * Created on: Jun 7, 2025
- * Author:     Andrew Carr and Kai De La Cruz
+ * @author  Andrew Carr and Kai De La Cruz
  */
 
 #include "encoder_driver.h"
@@ -13,16 +13,17 @@
 #include "stm32f4xx_hal.h"
 
 // Stall detection parameters
-#define STALL_THRESHOLD   5    // ticks change below this is considered stalled
-#define STALL_COUNT      20    // consecutive samples to confirm stall
-#define STALL_DELAY_MS   10    // sampling interval in ms
+#define STALL_THRESHOLD   5    /**< ticks change below this is considered stalled */
+#define STALL_COUNT      20    /**< consecutive samples to confirm stall */
+#define STALL_DELAY_MS   10    /**< sampling interval in milliseconds */
 
 /**
  * @brief  Initialize encoder state.
- * @param  p_enc  Pointer to an encoder_t instance.
  *
  * Captures the current hardware timer counter as the zero reference,
  * and clears both the cumulative tick count and the last-read snapshot.
+ *
+ * @param  p_enc  Pointer to an encoder_t instance.
  */
 void setup_encoder(encoder_t *p_enc){
     p_enc->zero       = __HAL_TIM_GET_COUNTER(p_enc->htim);
@@ -32,7 +33,6 @@ void setup_encoder(encoder_t *p_enc){
 
 /**
  * @brief  Read and accumulate encoder ticks since last call.
- * @param  p_enc  Pointer to an encoder_t instance.
  *
  * Computes the difference between the current timer count and the zero
  * reference, applies wrap-around correction based on the encoder’s
@@ -43,23 +43,9 @@ void setup_encoder(encoder_t *p_enc){
  * Wrap-around logic:
  *   If the delta exceeds half the auto-reload range, it is adjusted
  *   by ±(ar+1) to account for rollover.
+ *
+ * @param  p_enc  Pointer to an encoder_t instance.
  */
-//void read_encoder(encoder_t *p_enc){
-//
-//    int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim))
-//                            - (int32_t)(p_enc->zero);
-//    int32_t delta = current_ticks - p_enc->last_ticks;
-//
-//    if (delta > (p_enc->ar + 1)/2){
-//        delta -= p_enc->ar + 1;
-//    }
-//    else if (delta < (-(p_enc->ar + 1)/2)){
-//        delta += p_enc->ar + 1;
-//    }
-//
-//    p_enc->last_ticks = current_ticks;
-//    p_enc->ticks     += delta;
-//}
 void read_encoder(encoder_t *p_enc)
 {
     /* Compute signed tick count relative to zero */
@@ -79,10 +65,14 @@ void read_encoder(encoder_t *p_enc)
     p_enc->last_ticks = current_ticks;
     p_enc->ticks     += delta;
 }
+
 /**
- * @brief  Waits until the encoder motion stalls (no significant ticks change).
+ * @brief  Waits until the encoder motion stalls.
  *
- * @param  p_enc  Pointer to encoder_t instance
+ * Repeatedly samples encoder ticks and detects stall if no significant
+ * motion occurs over a defined interval.
+ *
+ * @param  p_enc  Pointer to an encoder_t instance.
  */
 void wait_for_stall(encoder_t *p_enc)
 {
