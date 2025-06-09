@@ -2,54 +2,51 @@
  * @mainpage Zap'Em Blast'Em Robots
  *
  * @section intro_sec Introduction
- * **Zap'Em Blast'Em Robots** is an embedded game system built for the STM32 platform that blends
- * the physical action of **Rock'em Sock'em Robots** with the strategic targeting of **laser tag**.
- * Each robot is equipped with photodetectors and controllers, enabling reactive combat-style gameplay
- * using infrared "lasers" and sensor feedback. The robots zap, blast, and try to out-tag each other in real time!
+ * Zap'Em Blast'Em Robots is an embedded game system for the STM32 platform.
+ * Inspired by Rock'em Sock'em Robots, this game replaces fists with IR lasers.
+ * Robots battle in real time using sensors, controllers, and a state machine.
  *
  * @section gameplay_sec Game Premise
- * Two robotic opponents square off in a head-to-head battle arena. Instead of punching, each robot is armed
- * with IR transmitters ("lasers") and photodetectors. The objective is to:
- * - Target and "zap" the opponent with precision.
- * - Avoid getting tagged by the opponent’s laser.
- * - Use sensor feedback to make reactive decisions during battle.
+ * Two robots face off in a laser-tag match. Instead of punching, they "zap"
+ * each other using IR beams. Each robot has light sensors to detect hits.
+ * The first to land enough successful shots wins the match.
  *
  * @section features_sec Features
- * - Real-time ADC monitoring via DMA for responsive sensor reads
- * - Modular task system for sensors, controllers, and game logic
- * - State-based behavior engine per robot
- * - Expandable architecture for multi-robot battles or AI logic
- * - Clean documentation powered by Doxygen
+ * - Real-time analog sensor reads using DMA
+ * - Modular task system for clear code organization
+ * - State-based control for responsive gameplay
+ * - Easily extendable for AI or multiplayer support
+ * - Doxygen-based documentation for maintainability
  *
  * @section files_sec File Overview
- * - `adc_task.c/h`: Reads and distributes analog signals from photoresistors
- * - `controller_task.c/h`: Processes control decisions for offensive and defensive moves
- * - `photoresistor_task.c/h`: Interfaces with analog light-detecting hardware
- * - `main.c`: Initializes the game environment and task scheduler
+ * - adc_task.c/h: Handles ADC and DMA data acquisition
+ * - controller_task.c/h: Manages game logic and reactions
+ * - photoresistor_task.c/h: Reads IR sensor input
+ * - main.c: Initializes system and launches tasks
  *
  * @section tech_sec Technology Stack
- * - **MCU**: STM32F4 series
- * - **IDE**: STM32CubeIDE (Eclipse-based)
- * - **Communication**: DMA-driven ADC + IR sensing
- * - **Documentation**: Doxygen
+ * - STM32F4 series microcontroller
+ * - STM32CubeIDE (Eclipse-based)
+ * - HAL drivers with DMA for ADC
+ * - Doxygen for auto-generated docs
  *
  * @section usage_sec How to Use
- * 1. Connect each robot to its power source and flash the firmware.
- * 2. Ensure photoresistors and IR emitters are aligned and calibrated.
- * 3. Start the game via the main controller or user switch.
- * 4. Watch the robots battle it out — and try not to blink!
+ * 1. Build the project in STM32CubeIDE and flash it to the robot's board.
+ * 2. Power the robots and align sensors and IR emitters.
+ * 3. Start the game by triggering the user input or main controller.
+ * 4. Watch the robots duel in laser-tag combat!
  *
  * @section license_sec License
- * MIT License — see `LICENSE` file for details.
+ * This project is licensed under the MIT License. See LICENSE file for details.
  *
  * @section authors_sec Authors
  * - Kai De La Cruz
  * - Andrew Carr
  *
  * @section future_sec Future Ideas
- * - Add wireless scoring module
- * - Support AI-controlled bots
- * - Design a scoring HUD via UART/serial output
+ * - Wireless scoring and multiplayer support
+ * - AI-controlled bots
+ * - UART serial output for real-time HUD or scoreboard
  */
 
 

@@ -25,6 +25,15 @@
 var NAVTREE =
 [
   [ "Zap'Em Blast'Em Robots", "index.html", [
+    [ "Introduction", "index.html#intro_sec", null ],
+    [ "Game Premise", "index.html#gameplay_sec", null ],
+    [ "Features", "index.html#features_sec", null ],
+    [ "File Overview", "index.html#files_sec", null ],
+    [ "Technology Stack", "index.html#tech_sec", null ],
+    [ "How to Use", "index.html#usage_sec", null ],
+    [ "License", "index.html#license_sec", null ],
+    [ "Authors", "index.html#authors_sec", null ],
+    [ "Future Ideas", "index.html#future_sec", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
