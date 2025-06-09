@@ -8,7 +8,14 @@
 
 #include "encoder_driver.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
 #include "stm32f4xx_hal.h"
+
+// Stall detection parameters
+#define STALL_THRESHOLD   5    // ticks change below this is considered stalled
+#define STALL_COUNT      20    // consecutive samples to confirm stall
+#define STALL_DELAY_MS   10    // sampling interval in ms
 
 /**
  * @brief  Initialize encoder state.
@@ -37,19 +44,60 @@ void setup_encoder(encoder_t *p_enc){
  *   If the delta exceeds half the auto-reload range, it is adjusted
  *   by ±(ar+1) to account for rollover.
  */
-void read_encoder(encoder_t *p_enc){
-
+//void read_encoder(encoder_t *p_enc){
+//
+//    int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim))
+//                            - (int32_t)(p_enc->zero);
+//    int32_t delta = current_ticks - p_enc->last_ticks;
+//
+//    if (delta > (p_enc->ar + 1)/2){
+//        delta -= p_enc->ar + 1;
+//    }
+//    else if (delta < (-(p_enc->ar + 1)/2)){
+//        delta += p_enc->ar + 1;
+//    }
+//
+//    p_enc->last_ticks = current_ticks;
+//    p_enc->ticks     += delta;
+//}
+void read_encoder(encoder_t *p_enc)
+{
+    /* Compute signed tick count relative to zero */
     int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim))
                             - (int32_t)(p_enc->zero);
     int32_t delta = current_ticks - p_enc->last_ticks;
 
-    if (delta > (p_enc->ar + 1)/2){
-        delta -= p_enc->ar + 1;
+    /* Handle wrap-around if delta jumps more than half-range */
+    if (delta > (p_enc->ar + 1) / 2) {
+        delta -= (p_enc->ar + 1);
     }
-    else if (delta < (-(p_enc->ar + 1)/2)){
-        delta += p_enc->ar + 1;
+    else if (delta < -(p_enc->ar + 1) / 2) {
+        delta += (p_enc->ar + 1);
     }
 
+    /* Update state */
     p_enc->last_ticks = current_ticks;
     p_enc->ticks     += delta;
+}
+/**
+ * @brief  Waits until the encoder motion stalls (no significant ticks change).
+ *
+ * @param  p_enc  Pointer to encoder_t instance
+ */
+void wait_for_stall(encoder_t *p_enc)
+{
+    int32_t prev_ticks = p_enc->ticks;
+    int stable_count = 0;
+    while (stable_count < STALL_COUNT) {
+        // Update encoder ticks
+        read_encoder(p_enc);
+        int32_t delta = p_enc->ticks - prev_ticks;
+        if (abs(delta) < STALL_THRESHOLD) {
+            stable_count++;
+        } else {
+            stable_count = 0;
+        }
+        prev_ticks = p_enc->ticks;
+        HAL_Delay(STALL_DELAY_MS);
+    }
 }

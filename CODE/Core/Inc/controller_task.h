@@ -21,22 +21,20 @@ typedef void (*controller_fcn_t)(ControllerTask *controller_task);
 
 struct ControllerTask
 {
-	int32_t				color;
+	int32_t 			dir;
     int32_t 			state;
     int32_t 			num_states;
     uint32_t 			chan1;
     uint32_t 			chan2;
     int32_t				pot_zero;
-    float 				control_signal;
+    int32_t 			des_pos;
     uint32_t			prev_time;
     uint32_t			current_time;
     uint32_t			prev_ticks;
     float				k_p;
-    float				k_d;
-    int32_t				cw_deadzone;
-    int32_t				ccw_deadzone;
+    float				k_i;
     uint32_t			adc_val;
-    uint32_t			encoder_range;
+    int32_t			  	integral_error;
     TIM_HandleTypeDef 	*htim_encoder;
     TIM_HandleTypeDef 	*htim_dt;  		// for encoder feedback delta time
     ADC_HandleTypeDef 	*hadc;          // ADC handle pointer to potentiometer
@@ -53,8 +51,7 @@ struct ControllerTask
 // A prototype for each function implemented in controller_task.c
 void controller_task_state_0_init(ControllerTask *controller_task);
 void controller_task_run(ControllerTask *controller_task);
-void controller_task_state_1_calc_vel(ControllerTask *controller_task);
-void controller_task_state_2_pos(ControllerTask *controller_task);
+void controller_task_state_1_pos(ControllerTask *controller_task);
 
 #endif /* INC_CONTROLLER_TASK_H_ */
 
