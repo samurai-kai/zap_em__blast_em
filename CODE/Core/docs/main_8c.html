@@ -104,7 +104,7 @@ $(function(){initNavTree('main_8c.html','',''); });
 <code>#include &quot;sound_task.h&quot;</code><br />
 <code>#include &quot;shoot_task.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="lcd_8h_source.html">lcd.h</a>&quot;</code><br />
-<code>#include &quot;photoresistor_task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="photoresistor__task_8h_source.html">photoresistor_task.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="adc__task_8h_source.html">adc_task.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="encoder__driver_8h_source.html">encoder_driver.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
@@ -385,10 +385,13 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                                            .adc_val = 0,</div>
 <div class="line">                                            .thresh = 2500,</div>
 <div class="line">                                            .zero = 0,</div>
-<div class="line">                                            .state_list = {&amp;photoresistor_task_state_0_init,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_1_look,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_2_hit}</div>
+<div class="line">                                            .state_list = {&amp;<a class="code hl_function" href="photoresistor__task_8h.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8h.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8h.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a>}</div>
 <div class="line">}</div>
+<div class="ttc" id="aphotoresistor__task_8h_html_a262eb649a13220874e05226c32971f14"><div class="ttname"><a href="photoresistor__task_8h.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a></div><div class="ttdeci">void photoresistor_task_state_0_init(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Initializes the photoresistor task (state 0).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:41</div></div>
+<div class="ttc" id="aphotoresistor__task_8h_html_a4ca924555b9818de2ba88d7139559e32"><div class="ttname"><a href="photoresistor__task_8h.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a></div><div class="ttdeci">void photoresistor_task_state_1_look(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Performs light detection logic (state 1).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:55</div></div>
+<div class="ttc" id="aphotoresistor__task_8h_html_a5f6c877a2d623bb7b303c6e155f65664"><div class="ttname"><a href="photoresistor__task_8h.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a></div><div class="ttdeci">void photoresistor_task_state_2_hit(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Waits for hit flag to be cleared (state 2).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:74</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -577,9 +580,9 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                                            .adc_val = 0,</div>
 <div class="line">                                            .thresh = 2500,</div>
 <div class="line">                                            .zero = 0,</div>
-<div class="line">                                            .state_list = {&amp;photoresistor_task_state_0_init,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_1_look,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_2_hit}</div>
+<div class="line">                                            .state_list = {&amp;<a class="code hl_function" href="photoresistor__task_8h.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8h.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8h.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a>}</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>

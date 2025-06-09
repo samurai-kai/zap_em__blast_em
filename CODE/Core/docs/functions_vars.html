@@ -94,7 +94,7 @@ $(function(){initNavTree('functions_vars.html','',''); });
 <div class="textblock">Here is a list of all documented variables with links to the struct/union documentation for each field:</div>
 
 <h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
-<li>adc_val&#160;:&#160;<a class="el" href="struct_controller_task.html#ae7d8fdc57c17be79f4fabe38a4e3e10a">ControllerTask</a></li>
+<li>adc_val&#160;:&#160;<a class="el" href="struct_controller_task.html#ae7d8fdc57c17be79f4fabe38a4e3e10a">ControllerTask</a>, <a class="el" href="struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5">PhotoresistorTask</a></li>
 <li>ar&#160;:&#160;<a class="el" href="structencoder__t.html#a5f56c1098873b91a78d51601027d09d3">encoder_t</a></li>
 </ul>
 
@@ -130,6 +130,7 @@ $(function(){initNavTree('functions_vars.html','',''); });
 
 <h3 class="doxsection"><a id="index_h" name="index_h"></a>- h -</h3><ul>
 <li>hadc&#160;:&#160;<a class="el" href="struct_a_d_c_task.html#af982c0fe5d77061049c468b599100134">ADCTask</a>, <a class="el" href="struct_controller_task.html#af982c0fe5d77061049c468b599100134">ControllerTask</a></li>
+<li>hit_flag&#160;:&#160;<a class="el" href="struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208">PhotoresistorTask</a></li>
 <li>htim&#160;:&#160;<a class="el" href="structencoder__t.html#a5dc7d1c65997ccaed48a93a3f4ffc486">encoder_t</a>, <a class="el" href="struct_game_task.html#a5dc7d1c65997ccaed48a93a3f4ffc486">GameTask</a></li>
 <li>htim_dt&#160;:&#160;<a class="el" href="struct_controller_task.html#a36de3f2cbf02e318ebd6dff3dea7861c">ControllerTask</a></li>
 <li>htim_encoder&#160;:&#160;<a class="el" href="struct_controller_task.html#a0a11d3973daa2e12c27ccd2588cad086">ControllerTask</a></li>
@@ -162,7 +163,7 @@ $(function(){initNavTree('functions_vars.html','',''); });
 
 <h3 class="doxsection"><a id="index_n" name="index_n"></a>- n -</h3><ul>
 <li>num&#160;:&#160;<a class="el" href="struct_game_task.html#ada8674351485596cd150447bdece55bc">GameTask</a></li>
-<li>num_states&#160;:&#160;<a class="el" href="struct_a_d_c_task.html#a0456e86c5e39324ddfd18e4185b27788">ADCTask</a>, <a class="el" href="struct_controller_task.html#a0456e86c5e39324ddfd18e4185b27788">ControllerTask</a>, <a class="el" href="struct_game_task.html#a0456e86c5e39324ddfd18e4185b27788">GameTask</a></li>
+<li>num_states&#160;:&#160;<a class="el" href="struct_a_d_c_task.html#a0456e86c5e39324ddfd18e4185b27788">ADCTask</a>, <a class="el" href="struct_controller_task.html#a0456e86c5e39324ddfd18e4185b27788">ControllerTask</a>, <a class="el" href="struct_game_task.html#a0456e86c5e39324ddfd18e4185b27788">GameTask</a>, <a class="el" href="struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788">PhotoresistorTask</a></li>
 </ul>
 
 
@@ -190,19 +191,20 @@ $(function(){initNavTree('functions_vars.html','',''); });
 <li>score_red_prev&#160;:&#160;<a class="el" href="struct_game_task.html#a916f0aa0b7c70ae56b90e1507f1128e1">GameTask</a></li>
 <li>score_thresh&#160;:&#160;<a class="el" href="struct_game_task.html#a41e6de105b2d54277666c36be44e5782">GameTask</a></li>
 <li>sound_task_ptr&#160;:&#160;<a class="el" href="struct_game_task.html#acfcd109cf2ed03dddbf14909ccfcff22">GameTask</a></li>
-<li>state&#160;:&#160;<a class="el" href="struct_a_d_c_task.html#af8ec6e123570f44094bcf2cb02b478f4">ADCTask</a>, <a class="el" href="struct_controller_task.html#af8ec6e123570f44094bcf2cb02b478f4">ControllerTask</a>, <a class="el" href="struct_game_task.html#af8ec6e123570f44094bcf2cb02b478f4">GameTask</a></li>
-<li>state_list&#160;:&#160;<a class="el" href="struct_a_d_c_task.html#aef6da8c0ad88477359f064daf8a58365">ADCTask</a>, <a class="el" href="struct_controller_task.html#a7b0eb94c2e1b446c66adbb12ab4f42f4">ControllerTask</a>, <a class="el" href="struct_game_task.html#a0f9bf270348dc7556c2fb5a61aa2c799">GameTask</a></li>
+<li>state&#160;:&#160;<a class="el" href="struct_a_d_c_task.html#af8ec6e123570f44094bcf2cb02b478f4">ADCTask</a>, <a class="el" href="struct_controller_task.html#af8ec6e123570f44094bcf2cb02b478f4">ControllerTask</a>, <a class="el" href="struct_game_task.html#af8ec6e123570f44094bcf2cb02b478f4">GameTask</a>, <a class="el" href="struct_photoresistor_task.html#af8ec6e123570f44094bcf2cb02b478f4">PhotoresistorTask</a></li>
+<li>state_list&#160;:&#160;<a class="el" href="struct_a_d_c_task.html#aef6da8c0ad88477359f064daf8a58365">ADCTask</a>, <a class="el" href="struct_controller_task.html#a7b0eb94c2e1b446c66adbb12ab4f42f4">ControllerTask</a>, <a class="el" href="struct_game_task.html#a0f9bf270348dc7556c2fb5a61aa2c799">GameTask</a>, <a class="el" href="struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4">PhotoresistorTask</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>thresh&#160;:&#160;<a class="el" href="struct_photoresistor_task.html#a515073b369058e94f28905a2c4fcee61">PhotoresistorTask</a></li>
 <li>ticks&#160;:&#160;<a class="el" href="structencoder__t.html#a2af797d96086235139e21f38e364837f">encoder_t</a></li>
 <li>tim&#160;:&#160;<a class="el" href="structmotor__t.html#a6e46bfc6fae939f8fc5ee53ea4551f18">motor_t</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_z" name="index_z"></a>- z -</h3><ul>
-<li>zero&#160;:&#160;<a class="el" href="structencoder__t.html#a85a38ad3adb021b224bf4d87a0465119">encoder_t</a></li>
+<li>zero&#160;:&#160;<a class="el" href="structencoder__t.html#a85a38ad3adb021b224bf4d87a0465119">encoder_t</a>, <a class="el" href="struct_photoresistor_task.html#aaadc1f4d2a1724c09aeafd97b495e61a">PhotoresistorTask</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
