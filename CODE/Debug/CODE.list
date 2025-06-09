@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  000082b0  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0001287a  00000000  00000000  000082e0  2**0
+ 12 .debug_info   00012873  00000000  00000000  000082e0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00002cfb  00000000  00000000  0001ab5a  2**0
+ 13 .debug_abbrev 00002cfc  00000000  00000000  0001ab53  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00001058  00000000  00000000  0001d858  2**3
+ 14 .debug_aranges 00001058  00000000  00000000  0001d850  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000ca4  00000000  00000000  0001e8b0  2**0
+ 15 .debug_rnglists 00000ca4  00000000  00000000  0001e8a8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000195fe  00000000  00000000  0001f554  2**0
+ 16 .debug_macro  000195fe  00000000  00000000  0001f54c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000164ce  00000000  00000000  00038b52  2**0
+ 17 .debug_line   000164c1  00000000  00000000  00038b4a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0009ad85  00000000  00000000  0004f020  2**0
+ 18 .debug_str    0009ad85  00000000  00000000  0004f00b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000e9da5  2**0
+ 19 .comment      00000043  00000000  00000000  000e9d90  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004874  00000000  00000000  000e9de8  2**2
+ 20 .debug_frame  00004874  00000000  00000000  000e9dd4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000064  00000000  00000000  000ee65c  2**0
+ 21 .debug_line_str 00000064  00000000  00000000  000ee648  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1605,11 +1605,11 @@ void game_task_state_3_end(GameTask *game_task)
  8000c74:	080066b0 	.word	0x080066b0
 
 08000c78 <lcd_send_nibble>:
-#define LCD_RS        0x01
-
-static void lcd_send_nibble(uint8_t nibble, uint8_t rs);
-static void lcd_send_byte(uint8_t byte, uint8_t rs);
-
+ * @brief Sends a 4-bit nibble to the LCD with enable pulse.
+ *
+ * @param nibble The high nibble of the byte
+ * @param rs     Register select flag (0 = command, 1 = data)
+ */
 static void lcd_send_nibble(uint8_t nibble, uint8_t rs) {
  8000c78:	b580      	push	{r7, lr}
  8000c7a:	b086      	sub	sp, #24
@@ -1644,7 +1644,7 @@ static void lcd_send_nibble(uint8_t nibble, uint8_t rs) {
  8000cae:	f043 0304 	orr.w	r3, r3, #4
  8000cb2:	b2db      	uxtb	r3, r3
  8000cb4:	73bb      	strb	r3, [r7, #14]
-    HAL_I2C_Master_Transmit(&hi2c1, LCD_I2C_ADDR, &data_e, 1, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(&hi2c1, LCD_I2C_ADDR,
  8000cb6:	f107 020e 	add.w	r2, r7, #14
  8000cba:	f04f 33ff 	mov.w	r3, #4294967295
  8000cbe:	9300      	str	r3, [sp, #0]
@@ -1652,10 +1652,11 @@ static void lcd_send_nibble(uint8_t nibble, uint8_t rs) {
  8000cc2:	214e      	movs	r1, #78	@ 0x4e
  8000cc4:	480b      	ldr	r0, [pc, #44]	@ (8000cf4 <lcd_send_nibble+0x7c>)
  8000cc6:	f003 f9a5 	bl	8004014 <HAL_I2C_Master_Transmit>
+                            &data_e, 1, HAL_MAX_DELAY);
     HAL_Delay(1);
  8000cca:	2001      	movs	r0, #1
  8000ccc:	f001 fde4 	bl	8002898 <HAL_Delay>
-    HAL_I2C_Master_Transmit(&hi2c1, LCD_I2C_ADDR, &data, 1, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(&hi2c1, LCD_I2C_ADDR,
  8000cd0:	f107 020f 	add.w	r2, r7, #15
  8000cd4:	f04f 33ff 	mov.w	r3, #4294967295
  8000cd8:	9300      	str	r3, [sp, #0]
@@ -1663,6 +1664,7 @@ static void lcd_send_nibble(uint8_t nibble, uint8_t rs) {
  8000cdc:	214e      	movs	r1, #78	@ 0x4e
  8000cde:	4805      	ldr	r0, [pc, #20]	@ (8000cf4 <lcd_send_nibble+0x7c>)
  8000ce0:	f003 f998 	bl	8004014 <HAL_I2C_Master_Transmit>
+                            &data, 1, HAL_MAX_DELAY);
     HAL_Delay(1);
  8000ce4:	2001      	movs	r0, #1
  8000ce6:	f001 fdd7 	bl	8002898 <HAL_Delay>
@@ -1675,7 +1677,11 @@ static void lcd_send_nibble(uint8_t nibble, uint8_t rs) {
  8000cf4:	2000037c 	.word	0x2000037c
 
 08000cf8 <lcd_send_byte>:
-
+ * @brief Sends a full byte by splitting it into two nibbles.
+ *
+ * @param byte The byte to send
+ * @param rs   Register select flag (0 = command, 1 = data)
+ */
 static void lcd_send_byte(uint8_t byte, uint8_t rs) {
  8000cf8:	b580      	push	{r7, lr}
  8000cfa:	b082      	sub	sp, #8
@@ -1708,7 +1714,11 @@ static void lcd_send_byte(uint8_t byte, uint8_t rs) {
  8000d30:	bd80      	pop	{r7, pc}
 
 08000d32 <lcd_send_command>:
-
+/**
+ * @brief Sends a command byte to the LCD.
+ *
+ * @param cmd The command byte
+ */
 void lcd_send_command(uint8_t cmd) {
  8000d32:	b580      	push	{r7, lr}
  8000d34:	b082      	sub	sp, #8
@@ -1730,7 +1740,11 @@ void lcd_send_command(uint8_t cmd) {
  8000d52:	bd80      	pop	{r7, pc}
 
 08000d54 <lcd_send_data>:
-
+/**
+ * @brief Sends a data byte (character) to the LCD.
+ *
+ * @param data The character to display
+ */
 void lcd_send_data(uint8_t data) {
  8000d54:	b580      	push	{r7, lr}
  8000d56:	b082      	sub	sp, #8
@@ -1750,6 +1764,9 @@ void lcd_send_data(uint8_t data) {
 
 08000d70 <lcd_force_backlight_on>:
 
+/**
+ * @brief Forces the LCD backlight to stay on.
+ */
 void lcd_force_backlight_on(void) {
  8000d70:	b580      	push	{r7, lr}
  8000d72:	b084      	sub	sp, #16
@@ -1757,7 +1774,7 @@ void lcd_force_backlight_on(void) {
     uint8_t data = 0x00 | LCD_BACKLIGHT;
  8000d76:	2308      	movs	r3, #8
  8000d78:	71fb      	strb	r3, [r7, #7]
-    HAL_I2C_Master_Transmit(&hi2c1, LCD_I2C_ADDR, &data, 1, HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(&hi2c1, LCD_I2C_ADDR,
  8000d7a:	1dfa      	adds	r2, r7, #7
  8000d7c:	f04f 33ff 	mov.w	r3, #4294967295
  8000d80:	9300      	str	r3, [sp, #0]
@@ -1765,6 +1782,7 @@ void lcd_force_backlight_on(void) {
  8000d84:	214e      	movs	r1, #78	@ 0x4e
  8000d86:	4803      	ldr	r0, [pc, #12]	@ (8000d94 <lcd_force_backlight_on+0x24>)
  8000d88:	f003 f944 	bl	8004014 <HAL_I2C_Master_Transmit>
+                            &data, 1, HAL_MAX_DELAY);
 }
  8000d8c:	bf00      	nop
  8000d8e:	3708      	adds	r7, #8
@@ -1774,6 +1792,9 @@ void lcd_force_backlight_on(void) {
 
 08000d98 <lcd_init>:
 
+/**
+ * @brief Initializes the LCD for 4-bit operation over I2C.
+ */
 void lcd_init(void) {
  8000d98:	b580      	push	{r7, lr}
  8000d9a:	af00      	add	r7, sp, #0
@@ -1833,6 +1854,9 @@ void lcd_init(void) {
 
 08000e06 <lcd_clear>:
 
+/**
+ * @brief Clears the LCD display.
+ */
 void lcd_clear(void) {
  8000e06:	b580      	push	{r7, lr}
  8000e08:	af00      	add	r7, sp, #0
@@ -1848,7 +1872,11 @@ void lcd_clear(void) {
 	...
 
 08000e1c <lcd_set_cursor>:
-
+ * @brief Sets the LCD cursor position.
+ *
+ * @param row LCD row (0–3)
+ * @param col LCD column (0–19)
+ */
 void lcd_set_cursor(uint8_t row, uint8_t col) {
  8000e1c:	b580      	push	{r7, lr}
  8000e1e:	b082      	sub	sp, #8
@@ -1887,7 +1915,11 @@ void lcd_set_cursor(uint8_t row, uint8_t col) {
  8000e5c:	080066f8 	.word	0x080066f8
 
 08000e60 <lcd_print>:
-
+/**
+ * @brief Prints a null-terminated string to the LCD.
+ *
+ * @param str Pointer to the string to display
+ */
 void lcd_print(char *str) {
  8000e60:	b580      	push	{r7, lr}
  8000e62:	b082      	sub	sp, #8
@@ -4125,10 +4157,10 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8001c22:	e7fd      	b.n	8001c20 <Error_Handler+0x8>
 
 08001c24 <set_duty>:
-#include <stdint.h>
-
-#define PWM_MAX         4800
-
+ *
+ * @param p_mot Pointer to the motor structure
+ * @param duty Desired duty cycle percentage (-100 to 100)
+ */
 void set_duty(motor_t* p_mot, int32_t duty)
 {
  8001c24:	b480      	push	{r7}
@@ -4325,10 +4357,10 @@ void set_duty(motor_t* p_mot, int32_t duty)
  8001d8c:	4770      	bx	lr
 
 08001d8e <enable>:
-    __HAL_TIM_SET_COMPARE(p_mot->tim, p_mot->chan1, 0);
-    __HAL_TIM_SET_COMPARE(p_mot->tim, p_mot->chan2, 0);
-}
-
+ * @brief Enables motor by setting both channels to maximum PWM.
+ *
+ * @param p_mot Pointer to the motor structure
+ */
 void enable(motor_t* p_mot)
 {
  8001d8e:	b480      	push	{r7}
@@ -4421,7 +4453,10 @@ void enable(motor_t* p_mot)
  8001e3c:	4770      	bx	lr
 
 08001e3e <go_to>:
-
+ * @param k_p   Proportional gain constant
+ * @param where Target position
+ * @param from  Current position
+ */
 void go_to(motor_t *p_mot, int k_p, int where, int from)
 {
  8001e3e:	b580      	push	{r7, lr}
@@ -4462,47 +4497,48 @@ void go_to(motor_t *p_mot, int k_p, int where, int from)
  8001e82:	bd80      	pop	{r7, pc}
 
 08001e84 <photoresistor_task_run>:
-
-// game plan is to create two tasks, one for red and one for blue
-
-// A function to run the appropriate state of the task
+ * is within bounds. Enters infinite loop on invalid state.
+ *
+ * @param photoresistor_task Pointer to PhotoresistorTask instance.
+ */
 void photoresistor_task_run(PhotoresistorTask *photoresistor_task)
-{    // Check for a valid state
+{
  8001e84:	b580      	push	{r7, lr}
  8001e86:	b082      	sub	sp, #8
  8001e88:	af00      	add	r7, sp, #0
  8001e8a:	6078      	str	r0, [r7, #4]
-    if (photoresistor_task->state >= 0 && photoresistor_task->state < photoresistor_task->num_states)
+    if (photoresistor_task->state >= 0 &&
  8001e8c:	687b      	ldr	r3, [r7, #4]
  8001e8e:	681b      	ldr	r3, [r3, #0]
  8001e90:	2b00      	cmp	r3, #0
  8001e92:	db0e      	blt.n	8001eb2 <photoresistor_task_run+0x2e>
+        photoresistor_task->state < photoresistor_task->num_states)
  8001e94:	687b      	ldr	r3, [r7, #4]
  8001e96:	681a      	ldr	r2, [r3, #0]
  8001e98:	687b      	ldr	r3, [r7, #4]
  8001e9a:	685b      	ldr	r3, [r3, #4]
+    if (photoresistor_task->state >= 0 &&
  8001e9c:	429a      	cmp	r2, r3
  8001e9e:	da08      	bge.n	8001eb2 <photoresistor_task_run+0x2e>
     {
-        // Index the list of state functions and then call the appropriate
-        // method while passing in (this) task_1 object
-
-    	photoresistor_task->state_list[photoresistor_task->state](photoresistor_task);
+        photoresistor_task->state_list[
+            photoresistor_task->state](photoresistor_task);
  8001ea0:	687b      	ldr	r3, [r7, #4]
  8001ea2:	681a      	ldr	r2, [r3, #0]
+        photoresistor_task->state_list[
  8001ea4:	687b      	ldr	r3, [r7, #4]
  8001ea6:	3206      	adds	r2, #6
  8001ea8:	f853 3022 	ldr.w	r3, [r3, r2, lsl #2]
  8001eac:	6878      	ldr	r0, [r7, #4]
  8001eae:	4798      	blx	r3
+    }
     else
     {
-        while(1){}
+        while (1) {}
     }
-
 }
  8001eb0:	e000      	b.n	8001eb4 <photoresistor_task_run+0x30>
-        while(1){}
+        while (1) {}
  8001eb2:	e7fe      	b.n	8001eb2 <photoresistor_task_run+0x2e>
 }
  8001eb4:	3708      	adds	r7, #8
@@ -4510,17 +4546,17 @@ void photoresistor_task_run(PhotoresistorTask *photoresistor_task)
  8001eb8:	bd80      	pop	{r7, pc}
 
 08001eba <photoresistor_task_state_0_init>:
-
-
-// A function to initialize the task
-// init button, laser and photoresistor
-void photoresistor_task_state_0_init(PhotoresistorTask *photoresistor_task)
+ *
+ * @param photoresistor_task Pointer to PhotoresistorTask instance.
+ */
+void photoresistor_task_state_0_init(
+    PhotoresistorTask *photoresistor_task)
 {
  8001eba:	b480      	push	{r7}
  8001ebc:	b083      	sub	sp, #12
  8001ebe:	af00      	add	r7, sp, #0
  8001ec0:	6078      	str	r0, [r7, #4]
-	photoresistor_task->state = 1;
+    photoresistor_task->state = 1;
  8001ec2:	687b      	ldr	r3, [r7, #4]
  8001ec4:	2201      	movs	r2, #1
  8001ec6:	601a      	str	r2, [r3, #0]
@@ -4532,34 +4568,38 @@ void photoresistor_task_state_0_init(PhotoresistorTask *photoresistor_task)
  8001ed2:	4770      	bx	lr
 
 08001ed4 <photoresistor_task_state_1_look>:
-// A function to implement state 1 of the task
-// wait for button to be pressed which should be on an interrupt that changes a flag
-void photoresistor_task_state_1_look(PhotoresistorTask *photoresistor_task)
+ *
+ * @param photoresistor_task Pointer to PhotoresistorTask instance.
+ */
+void photoresistor_task_state_1_look(
+    PhotoresistorTask *photoresistor_task)
 {
  8001ed4:	b480      	push	{r7}
  8001ed6:	b083      	sub	sp, #12
  8001ed8:	af00      	add	r7, sp, #0
  8001eda:	6078      	str	r0, [r7, #4]
-	if ((photoresistor_task->adc_val - photoresistor_task->zero) > photoresistor_task->thresh){
+    if ((photoresistor_task->adc_val - photoresistor_task->zero) >
  8001edc:	687b      	ldr	r3, [r7, #4]
  8001ede:	68da      	ldr	r2, [r3, #12]
  8001ee0:	687b      	ldr	r3, [r7, #4]
  8001ee2:	695b      	ldr	r3, [r3, #20]
  8001ee4:	1ad2      	subs	r2, r2, r3
+        photoresistor_task->thresh)
  8001ee6:	687b      	ldr	r3, [r7, #4]
  8001ee8:	691b      	ldr	r3, [r3, #16]
+    if ((photoresistor_task->adc_val - photoresistor_task->zero) >
  8001eea:	429a      	cmp	r2, r3
  8001eec:	dd05      	ble.n	8001efa <photoresistor_task_state_1_look+0x26>
-		photoresistor_task->hit_flag = 1;
+    {
+        photoresistor_task->hit_flag = 1;
  8001eee:	687b      	ldr	r3, [r7, #4]
  8001ef0:	2201      	movs	r2, #1
  8001ef2:	609a      	str	r2, [r3, #8]
-		photoresistor_task->state = 2;
+        photoresistor_task->state = 2;
  8001ef4:	687b      	ldr	r3, [r7, #4]
  8001ef6:	2202      	movs	r2, #2
  8001ef8:	601a      	str	r2, [r3, #0]
-	}
-
+    }
 }
  8001efa:	bf00      	nop
  8001efc:	370c      	adds	r7, #12
@@ -4568,24 +4608,27 @@ void photoresistor_task_state_1_look(PhotoresistorTask *photoresistor_task)
  8001f04:	4770      	bx	lr
 
 08001f06 <photoresistor_task_state_2_hit>:
-// A function to implement state 2 which is for when the game is being played
-// This keeps track of score, prints score messages
-void photoresistor_task_state_2_hit(PhotoresistorTask *photoresistor_task)
+ *
+ * @param photoresistor_task Pointer to PhotoresistorTask instance.
+ */
+void photoresistor_task_state_2_hit(
+    PhotoresistorTask *photoresistor_task)
 {
  8001f06:	b480      	push	{r7}
  8001f08:	b083      	sub	sp, #12
  8001f0a:	af00      	add	r7, sp, #0
  8001f0c:	6078      	str	r0, [r7, #4]
-	if (photoresistor_task->hit_flag == 0){ // game_task will change when they have recorded the score
+    if (photoresistor_task->hit_flag == 0)
  8001f0e:	687b      	ldr	r3, [r7, #4]
  8001f10:	689b      	ldr	r3, [r3, #8]
  8001f12:	2b00      	cmp	r3, #0
  8001f14:	d102      	bne.n	8001f1c <photoresistor_task_state_2_hit+0x16>
-		photoresistor_task->state = 1;
+    {
+        photoresistor_task->state = 1;
  8001f16:	687b      	ldr	r3, [r7, #4]
  8001f18:	2201      	movs	r2, #1
  8001f1a:	601a      	str	r2, [r3, #0]
-	}
+    }
 }
  8001f1c:	bf00      	nop
  8001f1e:	370c      	adds	r7, #12
@@ -4594,31 +4637,30 @@ void photoresistor_task_state_2_hit(PhotoresistorTask *photoresistor_task)
  8001f26:	4770      	bx	lr
 
 08001f28 <shoot_task_run>:
-
-// game plan is to create two tasks, one for red and one for blue
-
-// A function to run the appropriate state of the task
+ * function pointer list. If state is invalid, enters infinite loop.
+ *
+ * @param shoot_task Pointer to the ShootTask structure.
+ */
 void shoot_task_run(ShootTask *shoot_task)
-{    // Check for a valid state
+{
  8001f28:	b580      	push	{r7, lr}
  8001f2a:	b082      	sub	sp, #8
  8001f2c:	af00      	add	r7, sp, #0
  8001f2e:	6078      	str	r0, [r7, #4]
-    if (shoot_task->state >= 0 && shoot_task->state < shoot_task->num_states)
+    if (shoot_task->state >= 0 &&
  8001f30:	687b      	ldr	r3, [r7, #4]
  8001f32:	681b      	ldr	r3, [r3, #0]
  8001f34:	2b00      	cmp	r3, #0
  8001f36:	db0e      	blt.n	8001f56 <shoot_task_run+0x2e>
+        shoot_task->state < shoot_task->num_states)
  8001f38:	687b      	ldr	r3, [r7, #4]
  8001f3a:	681a      	ldr	r2, [r3, #0]
  8001f3c:	687b      	ldr	r3, [r7, #4]
  8001f3e:	685b      	ldr	r3, [r3, #4]
+    if (shoot_task->state >= 0 &&
  8001f40:	429a      	cmp	r2, r3
  8001f42:	da08      	bge.n	8001f56 <shoot_task_run+0x2e>
     {
-        // Index the list of state functions and then call the appropriate
-        // method while passing in (this) task_1 object
-
         shoot_task->state_list[shoot_task->state](shoot_task);
  8001f44:	687b      	ldr	r3, [r7, #4]
  8001f46:	681a      	ldr	r2, [r3, #0]
@@ -4627,14 +4669,14 @@ void shoot_task_run(ShootTask *shoot_task)
  8001f4c:	f853 3022 	ldr.w	r3, [r3, r2, lsl #2]
  8001f50:	6878      	ldr	r0, [r7, #4]
  8001f52:	4798      	blx	r3
+    }
     else
     {
-        while(1){}
+        while (1) {}
     }
-
 }
  8001f54:	e000      	b.n	8001f58 <shoot_task_run+0x30>
-        while(1){}
+        while (1) {}
  8001f56:	e7fe      	b.n	8001f56 <shoot_task_run+0x2e>
 }
  8001f58:	3708      	adds	r7, #8
@@ -4643,21 +4685,21 @@ void shoot_task_run(ShootTask *shoot_task)
 	...
 
 08001f60 <shoot_task_state_0_init>:
-// servo -- 300 at shiel
-
-// A function to initialize the task
-// init button, laser and photoresistor
+ * to the next state.
+ *
+ * @param shoot_task Pointer to the ShootTask structure.
+ */
 void shoot_task_state_0_init(ShootTask *shoot_task)
 {
  8001f60:	b580      	push	{r7, lr}
  8001f62:	b082      	sub	sp, #8
  8001f64:	af00      	add	r7, sp, #0
  8001f66:	6078      	str	r0, [r7, #4]
-	shoot_task->state = 1;
+    shoot_task->state = 1;
  8001f68:	687b      	ldr	r3, [r7, #4]
  8001f6a:	2201      	movs	r2, #1
  8001f6c:	601a      	str	r2, [r3, #0]
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
  8001f6e:	687b      	ldr	r3, [r7, #4]
  8001f70:	69db      	ldr	r3, [r3, #28]
  8001f72:	b29b      	uxth	r3, r3
@@ -4665,7 +4707,7 @@ void shoot_task_state_0_init(ShootTask *shoot_task)
  8001f76:	4619      	mov	r1, r3
  8001f78:	4818      	ldr	r0, [pc, #96]	@ (8001fdc <shoot_task_state_0_init+0x7c>)
  8001f7a:	f001 fed5 	bl	8003d28 <HAL_GPIO_WritePin>
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
  8001f7e:	687b      	ldr	r3, [r7, #4]
  8001f80:	691b      	ldr	r3, [r3, #16]
  8001f82:	2b00      	cmp	r3, #0
@@ -4676,9 +4718,11 @@ void shoot_task_state_0_init(ShootTask *shoot_task)
  8001f8c:	68db      	ldr	r3, [r3, #12]
  8001f8e:	681b      	ldr	r3, [r3, #0]
  8001f90:	635a      	str	r2, [r3, #52]	@ 0x34
+                          shoot_task->channel,
+                          shoot_task->unshield_val);
 }
  8001f92:	e01e      	b.n	8001fd2 <shoot_task_state_0_init+0x72>
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
  8001f94:	687b      	ldr	r3, [r7, #4]
  8001f96:	691b      	ldr	r3, [r3, #16]
  8001f98:	2b04      	cmp	r3, #4
@@ -4692,7 +4736,7 @@ void shoot_task_state_0_init(ShootTask *shoot_task)
  8001fa8:	6393      	str	r3, [r2, #56]	@ 0x38
 }
  8001faa:	e012      	b.n	8001fd2 <shoot_task_state_0_init+0x72>
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
  8001fac:	687b      	ldr	r3, [r7, #4]
  8001fae:	691b      	ldr	r3, [r3, #16]
  8001fb0:	2b08      	cmp	r3, #8
@@ -4706,7 +4750,7 @@ void shoot_task_state_0_init(ShootTask *shoot_task)
  8001fc0:	63d3      	str	r3, [r2, #60]	@ 0x3c
 }
  8001fc2:	e006      	b.n	8001fd2 <shoot_task_state_0_init+0x72>
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
  8001fc4:	687b      	ldr	r3, [r7, #4]
  8001fc6:	6999      	ldr	r1, [r3, #24]
  8001fc8:	687b      	ldr	r3, [r7, #4]
@@ -4723,15 +4767,17 @@ void shoot_task_state_0_init(ShootTask *shoot_task)
  8001fdc:	40020400 	.word	0x40020400
 
 08001fe0 <shoot_task_state_1_wait>:
-// A function to implement state 1 of the task
-// wait for button to be pressed which should be on an interrupt that changes a flag
+ * transitions to the unshield state.
+ *
+ * @param shoot_task Pointer to the ShootTask structure.
+ */
 void shoot_task_state_1_wait(ShootTask *shoot_task)
 {
  8001fe0:	b580      	push	{r7, lr}
  8001fe2:	b082      	sub	sp, #8
  8001fe4:	af00      	add	r7, sp, #0
  8001fe6:	6078      	str	r0, [r7, #4]
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
  8001fe8:	687b      	ldr	r3, [r7, #4]
  8001fea:	69db      	ldr	r3, [r3, #28]
  8001fec:	b29b      	uxth	r3, r3
@@ -4739,7 +4785,7 @@ void shoot_task_state_1_wait(ShootTask *shoot_task)
  8001ff0:	4619      	mov	r1, r3
  8001ff2:	481c      	ldr	r0, [pc, #112]	@ (8002064 <shoot_task_state_1_wait+0x84>)
  8001ff4:	f001 fe98 	bl	8003d28 <HAL_GPIO_WritePin>
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
  8001ff8:	687b      	ldr	r3, [r7, #4]
  8001ffa:	691b      	ldr	r3, [r3, #16]
  8001ffc:	2b00      	cmp	r3, #0
@@ -4782,16 +4828,18 @@ void shoot_task_state_1_wait(ShootTask *shoot_task)
  8002046:	681a      	ldr	r2, [r3, #0]
  8002048:	460b      	mov	r3, r1
  800204a:	6413      	str	r3, [r2, #64]	@ 0x40
-	if (shoot_task->button == 1){
+                          shoot_task->channel,
+                          shoot_task->unshield_val);
+    if (shoot_task->button == 1) {
  800204c:	687b      	ldr	r3, [r7, #4]
  800204e:	689b      	ldr	r3, [r3, #8]
  8002050:	2b01      	cmp	r3, #1
  8002052:	d102      	bne.n	800205a <shoot_task_state_1_wait+0x7a>
-		shoot_task->state = 2;
+        shoot_task->state = 2;
  8002054:	687b      	ldr	r3, [r7, #4]
  8002056:	2202      	movs	r2, #2
  8002058:	601a      	str	r2, [r3, #0]
-	}
+    }
 }
  800205a:	bf00      	nop
  800205c:	3708      	adds	r7, #8
@@ -4801,15 +4849,17 @@ void shoot_task_state_1_wait(ShootTask *shoot_task)
  8002064:	40020400 	.word	0x40020400
 
 08002068 <shoot_task_state_2_unshield>:
-// A function to implement state 2 which is for when the game is being played
-// This keeps track of score, prints score messages
+ * transitions to the shoot state.
+ *
+ * @param shoot_task Pointer to the ShootTask structure.
+ */
 void shoot_task_state_2_unshield(ShootTask *shoot_task)
 {
  8002068:	b480      	push	{r7}
  800206a:	b083      	sub	sp, #12
  800206c:	af00      	add	r7, sp, #0
  800206e:	6078      	str	r0, [r7, #4]
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->shield_val);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
  8002070:	687b      	ldr	r3, [r7, #4]
  8002072:	691b      	ldr	r3, [r3, #16]
  8002074:	2b00      	cmp	r3, #0
@@ -4852,22 +4902,24 @@ void shoot_task_state_2_unshield(ShootTask *shoot_task)
  80020be:	681a      	ldr	r2, [r3, #0]
  80020c0:	460b      	mov	r3, r1
  80020c2:	6413      	str	r3, [r2, #64]	@ 0x40
-	if (1){ // add delay using some ticks and tune it
-		shoot_task->state = 3;
+                          shoot_task->channel,
+                          shoot_task->shield_val);
+    if (1) { // add delay using some ticks and tune it
+        shoot_task->state = 3;
  80020c4:	687b      	ldr	r3, [r7, #4]
  80020c6:	2203      	movs	r2, #3
  80020c8:	601a      	str	r2, [r3, #0]
-	}
-	if(shoot_task->button == 0){
+    }
+    if (shoot_task->button == 0) {
  80020ca:	687b      	ldr	r3, [r7, #4]
  80020cc:	689b      	ldr	r3, [r3, #8]
  80020ce:	2b00      	cmp	r3, #0
  80020d0:	d102      	bne.n	80020d8 <shoot_task_state_2_unshield+0x70>
-		shoot_task->state = 1;
+        shoot_task->state = 1;
  80020d2:	687b      	ldr	r3, [r7, #4]
  80020d4:	2201      	movs	r2, #1
  80020d6:	601a      	str	r2, [r3, #0]
-	}
+    }
 }
  80020d8:	bf00      	nop
  80020da:	370c      	adds	r7, #12
@@ -4876,15 +4928,17 @@ void shoot_task_state_2_unshield(ShootTask *shoot_task)
  80020e2:	4770      	bx	lr
 
 080020e4 <shoot_task_state_3_shoot>:
-// A function to implement state 3
-
+ * Turns off laser and returns to wait state when button is released.
+ *
+ * @param shoot_task Pointer to the ShootTask structure.
+ */
 void shoot_task_state_3_shoot(ShootTask *shoot_task)
 {
  80020e4:	b580      	push	{r7, lr}
  80020e6:	b082      	sub	sp, #8
  80020e8:	af00      	add	r7, sp, #0
  80020ea:	6078      	str	r0, [r7, #4]
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
  80020ec:	687b      	ldr	r3, [r7, #4]
  80020ee:	69db      	ldr	r3, [r3, #28]
  80020f0:	b29b      	uxth	r3, r3
@@ -4892,17 +4946,16 @@ void shoot_task_state_3_shoot(ShootTask *shoot_task)
  80020f4:	4619      	mov	r1, r3
  80020f6:	4807      	ldr	r0, [pc, #28]	@ (8002114 <shoot_task_state_3_shoot+0x30>)
  80020f8:	f001 fe16 	bl	8003d28 <HAL_GPIO_WritePin>
-	if(shoot_task->button == 0){
+    if (shoot_task->button == 0) {
  80020fc:	687b      	ldr	r3, [r7, #4]
  80020fe:	689b      	ldr	r3, [r3, #8]
  8002100:	2b00      	cmp	r3, #0
  8002102:	d102      	bne.n	800210a <shoot_task_state_3_shoot+0x26>
-		shoot_task->state = 1;
+        shoot_task->state = 1;
  8002104:	687b      	ldr	r3, [r7, #4]
  8002106:	2201      	movs	r2, #1
  8002108:	601a      	str	r2, [r3, #0]
-	}
-
+    }
 }
  800210a:	bf00      	nop
  800210c:	3708      	adds	r7, #8

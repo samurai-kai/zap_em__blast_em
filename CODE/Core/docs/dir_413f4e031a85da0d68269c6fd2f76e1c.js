@@ -8,6 +8,7 @@ var dir_413f4e031a85da0d68269c6fd2f76e1c =
     [ "main.c", "main_8c.html", "main_8c" ],
     [ "motor_driver.c", "motor__driver_8c.html", "motor__driver_8c" ],
     [ "photoresistor_task.c", "photoresistor__task_8c.html", "photoresistor__task_8c" ],
+    [ "shoot_task.c", "shoot__task_8c.html", "shoot__task_8c" ],
     [ "stm32f4xx_hal_msp.c", "stm32f4xx__hal__msp_8c.html", "stm32f4xx__hal__msp_8c" ],
     [ "stm32f4xx_it.c", "stm32f4xx__it_8c.html", "stm32f4xx__it_8c" ],
     [ "syscalls.c", "syscalls_8c.html", null ],

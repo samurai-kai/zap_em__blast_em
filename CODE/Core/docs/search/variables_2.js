@@ -2,5 +2,6 @@ var searchData=
 [
   ['chan1_0',['chan1',['../struct_controller_task.html#a2d1c9595719149da662440337e3e6065',1,'ControllerTask::chan1'],['../structmotor__t.html#a2d1c9595719149da662440337e3e6065',1,'motor_t::chan1']]],
   ['chan2_1',['chan2',['../struct_controller_task.html#a161dff7a43c703b282d7053536407b8c',1,'ControllerTask::chan2'],['../structmotor__t.html#a161dff7a43c703b282d7053536407b8c',1,'motor_t::chan2']]],
-  ['current_5ftime_2',['current_time',['../struct_controller_task.html#ade0cb3ddf0ea3e243b785a56be5b5cca',1,'ControllerTask']]]
+  ['channel_2',['channel',['../struct_shoot_task.html#a0c72dd5e18823aef187a34137983c9a6',1,'ShootTask']]],
+  ['current_5ftime_3',['current_time',['../struct_controller_task.html#ade0cb3ddf0ea3e243b785a56be5b5cca',1,'ControllerTask']]]
 ];
