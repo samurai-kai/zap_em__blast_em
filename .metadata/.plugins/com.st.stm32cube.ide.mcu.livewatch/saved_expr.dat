@@ -1,13 +1,5 @@
 red_controller_task.state
 red_controller_task.k_p
 blue_controller_task.k_p
-blue_encoder.ticks
-red_encoder.range
-blue_encoder.range
-dma_buffer[3]
-dma_buffer[2]
-dma_buffer[1]
-dma_buffer[0]
-game_task.delay_flag
-blue_photoresistor_task.zero
-red_photoresistor_task.zero
+blue_photoresistor_task.thresh
+red_photoresistor_task.thresh
