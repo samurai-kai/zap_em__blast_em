@@ -35,10 +35,13 @@ struct GameTask
     int32_t				delay_flag;
     uint32_t			delay;
     uint32_t			end_delay;
+
     TIM_HandleTypeDef 	*htim;
     SoundTask			*sound_task_ptr;
     PhotoresistorTask 	*red_photoresistor_task_ptr;
     PhotoresistorTask 	*blue_photoresistor_task_ptr;
+    motor_t 			*mred;
+    motor_t 			*mblue;
     I2C_HandleTypeDef 	*i2c_handle;
     game_fcn_t 			state_list[];
 };

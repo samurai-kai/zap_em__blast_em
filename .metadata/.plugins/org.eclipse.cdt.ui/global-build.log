@@ -646,3 +646,257 @@ Finished building: default.size.stdout
  
 Finished building: CODE.list
  
+19:15:51 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/game_task.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/game_task.d" -MT"Core/Src/game_task.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/game_task.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26276	    680	   2544	  29500	   733c	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:15:53 **** Incremental Build of configuration Debug for project test_blank ****
+make -j20 all 
+arm-none-eabi-size  test_blank.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4748	     12	   1572	   6332	   18bc	test_blank.elf
+Finished building: default.size.stdout
+ 
+19:15:54 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26276	    680	   2544	  29500	   733c	CODE.elf
+Finished building: default.size.stdout
+ 
+19:17:23 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/game_task.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/game_task.d" -MT"Core/Src/game_task.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/game_task.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26304	    680	   2544	  29528	   7358	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:18:14 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26304	    680	   2544	  29528	   7358	CODE.elf
+Finished building: default.size.stdout
+ 
+19:20:07 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/game_task.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/game_task.d" -MT"Core/Src/game_task.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/game_task.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26324	    680	   2544	  29548	   736c	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:24:15 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/game_task.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/game_task.d" -MT"Core/Src/game_task.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/game_task.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26332	    680	   2544	  29556	   7374	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:25:03 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26332	    680	   2544	  29556	   7374	CODE.elf
+Finished building: default.size.stdout
+ 
+19:26:21 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26332	    680	   2544	  29556	   7374	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:29:08 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26332	    680	   2544	  29556	   7374	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:34:16 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'calibration':
+../Core/Src/main.c:975:36: error: 'red_sum' undeclared (first use in this function)
+  975 |     red_photoresistor_task.zero  = red_sum / 3;
+      |                                    ^~~~~~~
+../Core/Src/main.c:975:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:976:36: error: 'blue_sum' undeclared (first use in this function); did you mean 'blue_home'?
+  976 |     blue_photoresistor_task.zero = blue_sum / 3;
+      |                                    ^~~~~~~~
+      |                                    blue_home
+make: *** [Core/Src/subdir.mk:64: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+19:34:35 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'calibration':
+../Core/Src/main.c:976:36: error: 'blue_photo_sum' undeclared (first use in this function); did you mean 'blue_photot_sum'?
+  976 |     blue_photoresistor_task.zero = blue_photo_sum / 3;
+      |                                    ^~~~~~~~~~~~~~
+      |                                    blue_photot_sum
+../Core/Src/main.c:976:36: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:64: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+19:34:35 **** Incremental Build of configuration Debug for project test_blank ****
+make -j20 all 
+arm-none-eabi-size  test_blank.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4748	     12	   1572	   6332	   18bc	test_blank.elf
+Finished building: default.size.stdout
+ 
+19:34:38 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'calibration':
+../Core/Src/main.c:976:36: error: 'blue_photo_sum' undeclared (first use in this function); did you mean 'blue_photot_sum'?
+  976 |     blue_photoresistor_task.zero = blue_photo_sum / 3;
+      |                                    ^~~~~~~~~~~~~~
+      |                                    blue_photot_sum
+../Core/Src/main.c:976:36: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:64: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+19:34:55 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'calibration':
+../Core/Src/main.c:944:5: error: 'blue_photo_sum' undeclared (first use in this function); did you mean 'blue_photot_sum'?
+  944 |     blue_photo_sum += blue_photoresistor_task.adc_val;
+      |     ^~~~~~~~~~~~~~
+      |     blue_photot_sum
+../Core/Src/main.c:944:5: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:937:14: warning: unused variable 'blue_photot_sum' [-Wunused-variable]
+  937 |     uint32_t blue_photot_sum = 0;
+      |              ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:64: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+19:34:56 **** Incremental Build of configuration Debug for project test_blank ****
+make -j20 all 
+arm-none-eabi-size  test_blank.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4748	     12	   1572	   6332	   18bc	test_blank.elf
+Finished building: default.size.stdout
+ 
+19:34:57 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'calibration':
+../Core/Src/main.c:944:5: error: 'blue_photo_sum' undeclared (first use in this function); did you mean 'blue_photot_sum'?
+  944 |     blue_photo_sum += blue_photoresistor_task.adc_val;
+      |     ^~~~~~~~~~~~~~
+      |     blue_photot_sum
+../Core/Src/main.c:944:5: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:937:14: warning: unused variable 'blue_photot_sum' [-Wunused-variable]
+  937 |     uint32_t blue_photot_sum = 0;
+      |              ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:64: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+19:35:07 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26432	    680	   2544	  29656	   73d8	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:35:08 **** Incremental Build of configuration Debug for project test_blank ****
+make -j20 all 
+arm-none-eabi-size  test_blank.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4748	     12	   1572	   6332	   18bc	test_blank.elf
+Finished building: default.size.stdout
+ 
+19:35:09 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26432	    680	   2544	  29656	   73d8	CODE.elf
+Finished building: default.size.stdout
+ 
+19:36:49 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26432	    680	   2544	  29656	   73d8	CODE.elf
+Finished building: default.size.stdout
+ 
+19:41:18 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/game_task.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/game_task.d" -MT"Core/Src/game_task.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/game_task.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "CODE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\kaidc\Documents\Github\zap_em__blast_em\CODE\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CODE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: CODE.elf
+ 
+arm-none-eabi-size  CODE.elf 
+arm-none-eabi-objdump -h -S CODE.elf  > "CODE.list"
+   text	   data	    bss	    dec	    hex	filename
+  26456	    688	   2544	  29688	   73f8	CODE.elf
+Finished building: default.size.stdout
+ 
+Finished building: CODE.list
+ 
+19:41:46 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26456	    688	   2544	  29688	   73f8	CODE.elf
+Finished building: default.size.stdout
+ 
+19:45:07 **** Incremental Build of configuration Debug for project CODE ****
+make -j20 all 
+arm-none-eabi-size  CODE.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26456	    688	   2544	  29688	   73f8	CODE.elf
+Finished building: default.size.stdout
+ 

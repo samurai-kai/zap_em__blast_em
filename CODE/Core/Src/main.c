@@ -141,11 +141,13 @@ GameTask game_task = {.state = 0,
 					  .delay_start = 0,
 					  .delay_flag = 0,
 					  .delay = 2000000, 	// 2 second delay
-					  .end_delay = 1000000,	// 1 second delay
+					  .end_delay = 3000000,	// 3 second delay
 					  .htim = &htim2,
 					  .sound_task_ptr = &sound_task,
 					  .red_photoresistor_task_ptr = &red_photoresistor_task,
 					  .blue_photoresistor_task_ptr = &blue_photoresistor_task,
+					  .mred = &mred,
+					  .mblue = &mblue,
 					  .i2c_handle = &hi2c1,
                       .state_list = {&game_task_state_0_init,
                                      &game_task_state_1_home,
@@ -270,7 +272,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -334,12 +336,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  read_encoder(&red_encoder);
-//	  read_encoder(&blue_encoder);
 	  adc_task_run(&adc_task);
 	  game_task_run(&game_task);
 //	  sound_task_run(&sound_task);
-
 
 	  // set play flag by each player holding button for 2 seconds
 	  if (red_held && blue_held && game_task.play_flag == 0)
@@ -366,37 +365,6 @@ int main(void)
 		  photoresistor_task_run(&blue_photoresistor_task);
 	  }
 
-//	  }
-
-	  // a from 1000 to 2000
-	  //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, a);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, b);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, a);
-//	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, b);
-//	  set_duty(&mred,a);
-//	  set_duty(&mblue,b);
-//
-//	  HAL_ADC_Start(&hadc1);
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  adc_val_6 = HAL_ADC_GetValue(&hadc1);
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  adc_val_7 = HAL_ADC_GetValue(&hadc1);
-//	  HAL_ADC_Stop(&hadc1);
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
-//	      adc_val_6 = HAL_ADC_GetValue(&hadc1);  // First result (Channel 6)
-//
-//	  HAL_ADC_PollForConversion(&hadc1, 10);
-//	  if (HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
-//	      adc_val_7 = HAL_ADC_GetValue(&hadc1);  // Second result (Channel 7)
-//
-//	  HAL_ADC_Stop(&hadc1);
-	  //__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, a);
-	  //__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, b);
-	  //controller_task_run(&blue_controller_task);
-	  //controller_task_run(&red_controller_task);
-	  //add delay
 	  HAL_Delay(1);
 
     /* USER CODE END WHILE */
@@ -963,52 +931,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     }
 }
 
-//void calibration(void){
-//	__HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim, red_shoot_task.channel, red_shoot_task.shield_val);
-//	__HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim, blue_shoot_task.channel, blue_shoot_task.shield_val);
-//	HAL_Delay(1200);
-//	red_photoresistor_task.zero = red_photoresistor_task.adc_val;
-//	blue_photoresistor_task.zero = blue_photoresistor_task.adc_val;
-//
-//	// dc motors
-//	set_duty(&mred, 60);
-//	set_duty(&mblue, -60);
-//
-//	HAL_Delay(1200);
-//
-//	setup_encoder(&red_encoder);
-//	setup_encoder(&blue_encoder);
-//
-//	while(1){
-//		read_encoder(&red_encoder);
-//		read_encoder(&blue_encoder);
-//		go_to(&mred, 1, -red_encoder.range/2, -red_encoder.ticks);
-//		go_to(&mblue, 1, blue_encoder.range/2, blue_encoder.ticks);
-//		read_encoder(&red_encoder);
-//		read_encoder(&blue_encoder);
-//		HAL_Delay(1);
-//
-//		if (abs(red_encoder.ticks - red_encoder.range/2) < 10 && abs(blue_encoder.ticks - blue_encoder.range/2) < 10){
-//			break;
-//		}
-//	}
-//
-//	set_duty(&mred, 0);
-//	set_duty(&mblue, 0);
-//	setup_encoder(&red_encoder);
-//	setup_encoder(&blue_encoder);
-//}
 void calibration(void) {
     const float Kp = 1.0f;
     const int  HOMING_TOL = 5;      // ticks tolerance
     const uint32_t TIMEOUT = 3000;  // ms
+    uint32_t red_photo_sum = 0;
+    uint32_t blue_photo_sum = 0;
 
     // 1) Center shields & zero photoresistors
     __HAL_TIM_SET_COMPARE(red_shoot_task.servo_tim,   red_shoot_task.channel,   red_shoot_task.shield_val);
     __HAL_TIM_SET_COMPARE(blue_shoot_task.servo_tim,  blue_shoot_task.channel,  blue_shoot_task.shield_val);
     HAL_Delay(1200);
-    red_photoresistor_task.zero  = red_photoresistor_task.adc_val;
-    blue_photoresistor_task.zero = blue_photoresistor_task.adc_val;
+    red_photo_sum  += red_photoresistor_task.adc_val;
+    blue_photo_sum += blue_photoresistor_task.adc_val;
 
     // --- Drive both to MIN end ---
     set_duty(&mred,  +30);
@@ -1019,6 +954,8 @@ void calibration(void) {
     int32_t blue_min = blue_encoder.ticks;
     set_duty(&mred,  0);
     set_duty(&mblue, 0);
+    red_photo_sum  += red_photoresistor_task.adc_val;
+	blue_photo_sum += blue_photoresistor_task.adc_val;
 
     // --- Drive both to MAX end ---
     set_duty(&mred,  -30);
@@ -1029,10 +966,16 @@ void calibration(void) {
     int32_t blue_max = blue_encoder.ticks;
     set_duty(&mred,  0);
     set_duty(&mblue, 0);
+    red_photo_sum  += red_photoresistor_task.adc_val;
+	blue_photo_sum += blue_photoresistor_task.adc_val;
 
     // --- Compute midpoints ---
     int32_t red_home  = (-red_min  - red_max)  / 2;
     int32_t blue_home = (blue_min + blue_max) / 2;
+
+    // --- Compute photo resistor zeros ---
+    red_photoresistor_task.zero  = red_photo_sum / 3;
+    blue_photoresistor_task.zero = blue_photo_sum / 3;
 
     // --- Drive both to their homes under P-control ---
     uint32_t t0 = HAL_GetTick();
@@ -1058,8 +1001,6 @@ void calibration(void) {
     // --- Compute and store travel ranges ---
     red_encoder.range  = abs(red_max  - red_min);
     blue_encoder.range = abs(blue_max - blue_min);
-//    red_controller_task.enc_home  = red_home;
-//    blue_controller_task.enc_home = blue_home;
 }
 
 
