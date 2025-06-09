@@ -8,7 +8,10 @@
  *
  */
 
+<<<<<<< HEAD
 #include "motor_driver.h"
+=======
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 #include "game_task.h"
 #include "sound_task.h"
 #include "photoresistor_task.h"
@@ -61,6 +64,7 @@ void game_task_state_0_init(GameTask *game_task)
  */
 void game_task_state_1_home(GameTask *game_task)
 {
+<<<<<<< HEAD
     set_duty(game_task->mred, 0);
     set_duty(game_task->mblue, 0);
     lcd_set_cursor(0, 0);
@@ -69,6 +73,19 @@ void game_task_state_1_home(GameTask *game_task)
     lcd_print("       Robots       ");
     lcd_set_cursor(3, 0);
     lcd_print("HOLD 'SHOOT' TO PLAY");
+=======
+	lcd_set_cursor(0, 0);
+	lcd_print("  Zap'em Blast'em   ");
+	lcd_set_cursor(1, 0);
+	lcd_print("       Robots       ");
+	lcd_set_cursor(3, 0);
+	lcd_print("HOLD 'SHOOT' TO PLAY");
+    //play_flg enabled from button task within shoot task?? or make button task
+	if (game_task->play_flag == 1){
+    	game_task->state = 2;
+    	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it
+    }
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 
     if (game_task->play_flag == 1) {
         game_task->state = 2;
@@ -135,6 +152,7 @@ void game_task_state_2_play(GameTask *game_task)
         game_task->score_red_prev = game_task->score_red;
     }
 
+<<<<<<< HEAD
     if (game_task->score_blue != game_task->score_blue_prev) {
         sprintf(b_score, "%ld", game_task->score_blue);
         lcd_set_cursor(3, 6);
@@ -176,6 +194,64 @@ void game_task_state_3_end(GameTask *game_task)
             game_task->delay_start =
                 __HAL_TIM_GET_COUNTER(game_task->htim);
         }
+=======
+	if (game_task->score_red >= game_task->score_thresh && game_task->state != 3)
+			{
+		//		// print win message and set end sound
+				if(game_task->delay_flag == 0)
+				{
+				lcd_set_cursor(0, 0);
+				lcd_print("                    ");
+				lcd_set_cursor(1, 0);
+				lcd_print("     GAME OVER!     ");
+				lcd_set_cursor(2, 0);
+				lcd_print("     Red Wins!!     ");
+				lcd_set_cursor(3, 0);
+				lcd_print("                    ");
+				game_task->delay_flag = 1;
+				game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
+				}
+				if ((__HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start) > game_task->end_delay)
+				{
+				game_task->state = 3;
+				}
+			}
+
+	if (game_task->score_blue >= game_task->score_thresh && game_task->state != 3)
+		{
+	//		// print win message and set end sound
+			if(game_task->delay_flag == 0)
+			{
+			lcd_set_cursor(0, 0);
+			lcd_print("                    ");
+			lcd_set_cursor(1, 0);
+			lcd_print("     GAME OVER!     ");
+			lcd_set_cursor(2, 0);
+			lcd_print("     Blue Wins!!     ");
+			lcd_set_cursor(3, 0);
+			lcd_print("                    ");
+			game_task->delay_flag = 1;
+			game_task->delay_start = __HAL_TIM_GET_COUNTER(game_task->htim);
+			}
+			if ((__HAL_TIM_GET_COUNTER(game_task->htim) - game_task->delay_start) > game_task->end_delay)
+			{
+			game_task->state = 3;
+			}
+		}
+}
+// A function to implement state 3
+// Ends the game when the score threshold has been met
+// Prints messages and sets sound flags
+void game_task_state_3_end(GameTask *game_task)
+{
+
+	game_task->play_flag = 0;
+	game_task->state = 1;
+	game_task->score_blue = 0;
+	game_task->score_red = 0;
+	game_task->num = 0;
+	lcd_clear();
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 
         uint32_t now = __HAL_TIM_GET_COUNTER(game_task->htim);
         if ((uint32_t)(now - game_task->delay_start) >

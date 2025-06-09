@@ -1,12 +1,8 @@
-/**
- *  @file adc_task.c
- *  @brief ADC task driver for managing DMA-based ADC value acquisition and
- *  assignment.
- *	@author Andrew Carr
- *
+/*
+ * adc_task.c
  *
  *  Created on: Jun 5, 2025
- *
+ *      Author: andrewcarr
  */
 
 #include "adc_task.h"
@@ -15,67 +11,69 @@
 #include "controller_task.h"
 #include "photoresistor_task.h"
 
-/**
- * @brief Buffer for DMA ADC conversions.
- *
- * Stores the most recent ADC readings for blue/red photo resistors and
- * controllers.
- */
 static uint16_t dma_buffer[4];
 
-/**
- * @brief Executes the current state of the ADC task.
- *
- * This function checks the validity of the current state, then calls the
- * corresponding
- * state handler from the state's function pointer list.
- *
- * @param adc_task Pointer to the ADCTask structure containing state and
- * hardware info.
- */
+// A function to run the appropriate state of the task
 void adc_task_run(ADCTask *adc_task)
-{
-    // Check for a valid state
+{    // Check for a valid state
     if (adc_task->state >= 0 && adc_task->state < adc_task->num_states)
     {
-        // Call the appropriate state function
-        adc_task->state_list[adc_task->state](adc_task);
+        // Index the list of state functions and then call the appropriate
+        // method while passing in (this) task_1 object
+
+    	// game_task is a pointer right now
+    	// -> dereferences pointer and accesses class member in one step
+    	// the same as (*ptr).member
+
+    	adc_task->state_list[adc_task->state](adc_task);
+
     }
+    // Big problems if the state is invalid
     else
     {
-        while(1) {}
+
+        while(1){}
     }
+
 }
 
-/**
- * @brief Initializes the ADC task.
- *
- * Sets the task's state to 1 and starts the ADC with DMA to fill the
- * dma_buffer.
- *
- * @param adc_task Pointer to the ADCTask structure.
- */
-void adc_task_state_0_init(ADCTask *adc_task)
-{
-    adc_task->state = 1;
-    HAL_ADC_Start_DMA(adc_task->hadc,
-                      (uint32_t*)dma_buffer,
-                      4);
+void adc_task_state_0_init(ADCTask *adc_task){
+
+	adc_task->state = 1;
+	HAL_ADC_Start_DMA(adc_task->hadc,
+	                      (uint32_t*)dma_buffer,
+	                      4);
 }
 
-/**
- * @brief Reads ADC values from DMA buffer and assigns them to respective
- * photo resistors and controllers.
- *
- * This function maps each DMA buffer value to its corresponding sensor's
- * `adc_val`.
- *
- * @param adc_task Pointer to the ADCTask structure.
- */
-void adc_task_state_1_read(ADCTask *adc_task)
-{
-    adc_task->blue_photor_ptr->adc_val   = dma_buffer[0];
-    adc_task->red_photor_ptr->adc_val    = dma_buffer[1];
-    adc_task->blue_contr_ptr->adc_val    = dma_buffer[2];
-    adc_task->red_contr_ptr->adc_val     = dma_buffer[3];
+void adc_task_state_1_read(ADCTask *adc_task){
+//	HAL_ADC_Start(adc_task->hadc);
+//
+//	// Wait for first conversion (ADC4)
+//	if (HAL_ADC_PollForConversion(adc_task->hadc, 10) == HAL_OK) {
+//		adc_task->red_photor_ptr->adc_val = HAL_ADC_GetValue(adc_task->hadc); //
+//	}
+//
+//	// Wait for second conversion (ADC5)
+//	if (HAL_ADC_PollForConversion(adc_task->hadc, 10) == HAL_OK) {
+//		adc_task->blue_photor_ptr->adc_val = HAL_ADC_GetValue(adc_task->hadc);
+//	}
+//	// Wait for first conversion (ADC6)
+//	if (HAL_ADC_PollForConversion(adc_task->hadc, 10) == HAL_OK) {
+//		adc_task->blue_contr_ptr->adc_val = HAL_ADC_GetValue(adc_task->hadc); // 6
+//	}
+//
+//	// Wait for second conversion (ADC7)
+//	if (HAL_ADC_PollForConversion(adc_task->hadc, 10) == HAL_OK) {
+//		adc_task->red_contr_ptr->adc_val = HAL_ADC_GetValue(adc_task->hadc);
+//	}
+//
+//
+//
+//	HAL_ADC_Stop(adc_task->hadc);
+	adc_task->blue_photor_ptr->adc_val   = dma_buffer[0];
+	adc_task->red_photor_ptr->adc_val  = dma_buffer[1];
+	adc_task->blue_contr_ptr->adc_val   = dma_buffer[2];
+	adc_task->red_contr_ptr->adc_val    = dma_buffer[3];
+
+
 }

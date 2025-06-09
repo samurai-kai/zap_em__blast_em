@@ -41,6 +41,7 @@ typedef void (*game_fcn_t)(GameTask *game_task);
  */
 struct GameTask
 {
+<<<<<<< HEAD
     int32_t             state;          /**< Current game state index */
     int32_t             num_states;     /**< Total number of game states */
     int32_t             play_flag;      /**< Flag indicating game is active */
@@ -65,6 +66,27 @@ struct GameTask
     motor_t             *mblue;         /**< Pointer to blue motor */
     I2C_HandleTypeDef   *i2c_handle;    /**< I2C handle for LCD */
     game_fcn_t          state_list[];   /**< Function pointer array */
+=======
+    int32_t     		state;
+    int32_t     		num_states;
+    int32_t				play_flag;
+    int32_t				score_red;
+    int32_t				score_blue;
+    int32_t 			score_red_prev;
+    int32_t 			score_blue_prev;
+    int32_t				score_thresh;
+    int32_t				num;
+    uint32_t			delay_start;
+    int32_t				delay_flag;
+    uint32_t			delay;
+    uint32_t			end_delay;
+    TIM_HandleTypeDef 	*htim;
+    SoundTask			*sound_task_ptr;
+    PhotoresistorTask 	*red_photoresistor_task_ptr;
+    PhotoresistorTask 	*blue_photoresistor_task_ptr;
+    I2C_HandleTypeDef 	*i2c_handle;
+    game_fcn_t 			state_list[];
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 };
 
 /**

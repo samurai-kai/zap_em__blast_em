@@ -1,17 +1,26 @@
+<<<<<<< HEAD
 /**
  * @file encoder_driver.c
  * @brief High-level routines for initializing and reading a rotary encoder.
  *
  * Created on: Jun 7, 2025
  * @author Andrew Carr and Kai De La Cruz
+=======
+/*
+ * encoder_task.c
+ *
+ *  Created on: Jun 7, 2025
+ *      Author: andrewcarr and Kai De La Cruz
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
  */
+
+
 
 #include "encoder_driver.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
 #include "stm32f4xx_hal.h"
 
+<<<<<<< HEAD
 // Stall detection parameters
 #define STALL_THRESHOLD   5    /**< ticks change below this is considered stalled */
 #define STALL_COUNT      20    /**< consecutive samples to confirm stall */
@@ -25,12 +34,17 @@
  *
  * @param  p_enc  Pointer to an encoder_t instance.
  */
+=======
+
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 void setup_encoder(encoder_t *p_enc){
-    p_enc->zero       = __HAL_TIM_GET_COUNTER(p_enc->htim);
-    p_enc->ticks      = 0;
+    p_enc->zero = __HAL_TIM_GET_COUNTER(p_enc->htim);
+    p_enc->ticks = 0;
     p_enc->last_ticks = 0;
 }
+void read_encoder(encoder_t *p_enc){
 
+<<<<<<< HEAD
 /**
  * @brief  Read and accumulate encoder ticks since last call.
  *
@@ -52,15 +66,23 @@ void read_encoder(encoder_t *p_enc)
     int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim))
                             - (int32_t)(p_enc->zero);
     int32_t delta = current_ticks - p_enc->last_ticks;
+=======
+	int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim)) - (int32_t)(p_enc->zero);
+	int32_t delta = current_ticks - p_enc->last_ticks;
 
-    /* Handle wrap-around if delta jumps more than half-range */
-    if (delta > (p_enc->ar + 1) / 2) {
-        delta -= (p_enc->ar + 1);
-    }
-    else if (delta < -(p_enc->ar + 1) / 2) {
-        delta += (p_enc->ar + 1);
-    }
+	if (delta > (p_enc->ar + 1)/2){
+		delta -= p_enc->ar + 1;
+	}
+	else if (delta < (-p_enc->ar-1)/2){
+		delta += p_enc->ar + 1;
+	}
 
+	p_enc->last_ticks = current_ticks;
+	p_enc->ticks += delta;
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
+
+
+<<<<<<< HEAD
     /* Update state */
     p_enc->last_ticks = current_ticks;
     p_enc->ticks     += delta;
@@ -90,4 +112,6 @@ void wait_for_stall(encoder_t *p_enc)
         prev_ticks = p_enc->ticks;
         HAL_Delay(STALL_DELAY_MS);
     }
+=======
+>>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 }

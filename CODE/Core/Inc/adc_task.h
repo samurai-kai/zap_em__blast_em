@@ -1,10 +1,8 @@
-/**
- *  @file adc_task.h
- *  @brief Header file for the ADC task system
- *  @author Andrew Carr
+/*
+ * adc_task.h
  *
  *  Created on: Jun 5, 2025
- *
+ *      Author: andrewcarr
  */
 
 #ifndef INC_ADC_TASK_H_
@@ -13,67 +11,33 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "stm32f4xx_hal.h"
-#include <stdint.h>
+#include <stdint.h> // Allows use of standard integer types
 
-/**
- * @brief Forward declaration for ControllerTask.
- */
 typedef struct ControllerTask ControllerTask;
-
-/**
- * @brief Forward declaration for PhotoresistorTask.
- */
 typedef struct PhotoresistorTask PhotoresistorTask;
+typedef struct ADCTask ADCTask; // forward declaration
 
-/**
- * @brief Forward declaration for ADCTask.
- */
-typedef struct ADCTask ADCTask;
-
-/**
- * @brief Function pointer type for ADC state functions.
- *
- * Each state function must take a pointer to ADCTask as its argument.
- */
+// all states take in a GameTask pointer
 typedef void (*adc_fcn_t)(ADCTask *adc_task);
 
-/**
- * @brief Structure that represents the ADC task state and configuration.
- *
- * This structure holds all the contextual information and function pointers
- * necessary to run ADC operations within a task-based state machine.
- */
+// A datatype for a structure to hold task configuration and state.
+// Additional fields can be added as desired.
 struct ADCTask
 {
-    int32_t              state;            /**< Current state index */
-    int32_t              num_states;       /**< Total number of states */
-    ControllerTask       *red_contr_ptr;   /**< Pointer to red controller task */
-    ControllerTask       *blue_contr_ptr;  /**< Pointer to blue controller task */
-    PhotoresistorTask    *red_photor_ptr;  /**< Pointer to red photo resistor task */
-    PhotoresistorTask    *blue_photor_ptr; /**< Pointer to blue photo resistor task */
-    ADC_HandleTypeDef    *hadc;            /**< Pointer to the ADC channel handle */
-    adc_fcn_t            state_list[];     /**< Array of function pointers for states */
+    int32_t     		state;
+    int32_t     		num_states;
+    ControllerTask		*red_contr_ptr;
+    ControllerTask		*blue_contr_ptr;
+    PhotoresistorTask	*red_photor_ptr;
+    PhotoresistorTask	*blue_photor_ptr;
+    ADC_HandleTypeDef 	*hadc;
+    adc_fcn_t 			state_list[];
 };
 
-/**
- * @brief Initializes the ADC task (state 0).
- *
- * @param adc_task Pointer to the ADCTask instance.
- */
+// A prototype for each function implemented in task_1.c
 void adc_task_state_0_init(ADCTask *adc_task);
-
-/**
- * @brief Executes the current ADC task state.
- *
- * @param adc_task Pointer to the ADCTask instance.
- */
 void adc_task_run(ADCTask *adc_task);
-
-/**
- * @brief Reads and assigns values from the ADC DMA buffer (state 1).
- *
- * @param adc_task Pointer to the ADCTask instance.
- */
 void adc_task_state_1_read(ADCTask *adc_task);
+
 
 #endif /* INC_ADC_TASK_H_ */
