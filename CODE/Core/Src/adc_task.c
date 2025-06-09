@@ -3,7 +3,8 @@
  *
  *  Created on: Jun 5, 2025
  *  @file adc_task.c
- *  @brief ADC task driver for managing DMA-based ADC value acquisition and assignment.
+ *  @brief ADC task driver for managing DMA-based ADC value acquisition and
+ *  assignment.
  *  @author Andrew Carr
  */
 
@@ -16,17 +17,20 @@
 /**
  * @brief Buffer for DMA ADC conversions.
  *
- * Stores the most recent ADC readings for blue/red phototransistors and controllers.
+ * Stores the most recent ADC readings for blue/red photo resistors and
+ * controllers.
  */
 static uint16_t dma_buffer[4];
 
 /**
  * @brief Executes the current state of the ADC task.
  *
- * This function checks the validity of the current state, then calls the corresponding
+ * This function checks the validity of the current state, then calls the
+ * corresponding
  * state handler from the state's function pointer list.
  *
- * @param adc_task Pointer to the ADCTask structure containing state and hardware info.
+ * @param adc_task Pointer to the ADCTask structure containing state and
+ * hardware info.
  */
 void adc_task_run(ADCTask *adc_task)
 {
@@ -45,7 +49,8 @@ void adc_task_run(ADCTask *adc_task)
 /**
  * @brief Initializes the ADC task.
  *
- * Sets the task's state to 1 and starts the ADC with DMA to fill the dma_buffer.
+ * Sets the task's state to 1 and starts the ADC with DMA to fill the
+ * dma_buffer.
  *
  * @param adc_task Pointer to the ADCTask structure.
  */
@@ -58,9 +63,11 @@ void adc_task_state_0_init(ADCTask *adc_task)
 }
 
 /**
- * @brief Reads ADC values from DMA buffer and assigns them to respective phototransistors and controllers.
+ * @brief Reads ADC values from DMA buffer and assigns them to respective
+ * photo resistors and controllers.
  *
- * This function maps each DMA buffer value to its corresponding sensor's `adc_val`.
+ * This function maps each DMA buffer value to its corresponding sensor's
+ * `adc_val`.
  *
  * @param adc_task Pointer to the ADCTask structure.
  */
