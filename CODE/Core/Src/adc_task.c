@@ -1,15 +1,12 @@
 /**
- * @file adc_task.c
- * @brief Handles ADC and DMA processing for sensor input.
- */
-/*
- * adc_task.c
- *
- *  Created on: Jun 5, 2025
  *  @file adc_task.c
  *  @brief ADC task driver for managing DMA-based ADC value acquisition and
  *  assignment.
- *  @author Andrew Carr
+ *	@author Andrew Carr
+ *
+ *
+ *  Created on: Jun 5, 2025
+ *
  */
 
 #include "adc_task.h"

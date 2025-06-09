@@ -25,25 +25,32 @@
 var NAVTREE =
 [
   [ "Zap'Em Blast'Em Robots", "index.html", [
+    [ "Creators", "index.html#creators_sec", null ],
     [ "Introduction", "index.html#intro_sec", null ],
     [ "Game Premise", "index.html#gameplay_sec", null ],
     [ "Features", "index.html#features_sec", null ],
     [ "File Overview", "index.html#files_sec", null ],
     [ "Technology Stack", "index.html#tech_sec", null ],
     [ "How to Use", "index.html#usage_sec", null ],
-    [ "License", "index.html#license_sec", null ],
-    [ "Authors", "index.html#authors_sec", null ],
+    [ "Mechanical Design", "index.html#mechanicaldesign_sec", null ],
+    [ "Electrical Design", "index.html#electricaldesign_sec", null ],
+    [ "Software Design", "index.html#softwaredesign_sec", null ],
     [ "Future Ideas", "index.html#future_sec", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
-      [ "Data Structure Index", "classes.html", null ]
+      [ "Data Structure Index", "classes.html", null ],
+      [ "Data Fields", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -52,7 +59,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"adc__task_8h_source.html"
+"adc__task_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

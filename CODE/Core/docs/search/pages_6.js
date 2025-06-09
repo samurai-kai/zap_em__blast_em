@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ideas_0',['Future Ideas',['../index.html#future_sec',1,'']]],
-  ['introduction_1',['Introduction',['../index.html#intro_sec',1,'']]]
+  ['how_20to_20use_0',['How to Use',['../index.html#usage_sec',1,'']]]
 ];

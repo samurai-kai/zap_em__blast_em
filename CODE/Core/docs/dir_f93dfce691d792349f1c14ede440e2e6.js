@@ -1,7 +1,7 @@
 var dir_f93dfce691d792349f1c14ede440e2e6 =
 [
-    [ "adc_task.h", "adc__task_8h_source.html", null ],
-    [ "controller_task.h", "controller__task_8h_source.html", null ],
+    [ "adc_task.h", "adc__task_8h.html", "adc__task_8h" ],
+    [ "controller_task.h", "controller__task_8h.html", "controller__task_8h" ],
     [ "encoder_driver.h", "encoder__driver_8h_source.html", null ],
     [ "game_task.h", "game__task_8h_source.html", null ],
     [ "lcd.h", "lcd_8h_source.html", null ],

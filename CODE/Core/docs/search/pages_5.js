@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['how_20to_20use_0',['How to Use',['../index.html#usage_sec',1,'']]]
+  ['game_20premise_0',['Game Premise',['../index.html#gameplay_sec',1,'']]]
 ];

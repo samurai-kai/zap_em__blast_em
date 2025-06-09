@@ -1,6 +1,10 @@
 /**
  * @mainpage Zap'Em Blast'Em Robots
  *
+ * @section creators_sec Creators
+ * - Kai De La Cruz
+ * - Andrew Carr
+ *
  * @section intro_sec Introduction
  * Zap'Em Blast'Em Robots is an embedded game system for the STM32 platform.
  * Inspired by Rock'em Sock'em Robots, this game replaces fists with IR lasers.
@@ -36,12 +40,14 @@
  * 3. Start the game by triggering the user input or main controller.
  * 4. Watch the robots duel in laser-tag combat!
  *
- * @section license_sec License
- * This project is licensed under the MIT License. See LICENSE file for details.
+ * @section mechanicaldesign_sec Mechanical Design
+ * built it
  *
- * @section authors_sec Authors
- * - Kai De La Cruz
- * - Andrew Carr
+ * @section electricaldesign_sec Electrical Design
+ * built it
+ *
+ * @section softwaredesign_sec Software Design
+ * built it
  *
  * @section future_sec Future Ideas
  * - Wireless scoring and multiplayer support

@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  000195fe  00000000  00000000  0001f554  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000164f1  00000000  00000000  00038b52  2**0
+ 17 .debug_line   000164ea  00000000  00000000  00038b52  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0009ad85  00000000  00000000  0004f043  2**0
+ 18 .debug_str    0009ad85  00000000  00000000  0004f03c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000e9dc8  2**0
+ 19 .comment      00000043  00000000  00000000  000e9dc1  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004874  00000000  00000000  000e9e0c  2**2
+ 20 .debug_frame  00004874  00000000  00000000  000e9e04  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000064  00000000  00000000  000ee680  2**0
+ 21 .debug_line_str 00000064  00000000  00000000  000ee678  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -430,9 +430,9 @@ Disassembly of section .text:
  80005aa:	bf00      	nop
 
 080005ac <adc_task_run>:
- * state handler from the state's function pointer list.
  *
- * @param adc_task Pointer to the ADCTask structure containing state and hardware info.
+ * @param adc_task Pointer to the ADCTask structure containing state and
+ * hardware info.
  */
 void adc_task_run(ADCTask *adc_task)
 {
@@ -479,7 +479,7 @@ void adc_task_run(ADCTask *adc_task)
  80005e2:	bd80      	pop	{r7, pc}
 
 080005e4 <adc_task_state_0_init>:
- * Sets the task's state to 1 and starts the ADC with DMA to fill the dma_buffer.
+ * dma_buffer.
  *
  * @param adc_task Pointer to the ADCTask structure.
  */
@@ -510,7 +510,7 @@ void adc_task_state_0_init(ADCTask *adc_task)
  8000608:	200002cc 	.word	0x200002cc
 
 0800060c <adc_task_state_1_read>:
- * This function maps each DMA buffer value to its corresponding sensor's `adc_val`.
+ * `adc_val`.
  *
  * @param adc_task Pointer to the ADCTask structure.
  */
@@ -553,25 +553,27 @@ void adc_task_state_1_read(ADCTask *adc_task)
  8000648:	200002cc 	.word	0x200002cc
 
 0800064c <controller_task_run>:
-#include <stdio.h>
-
-// A function to run the appropriate state of the task
-typedef void (*StateFunc)(ControllerTask *);
+ * function from the task's function list.
+ *
+ * @param controller_task Pointer to the ControllerTask structure.
+ */
 void controller_task_run(ControllerTask *controller_task)
 {
  800064c:	b580      	push	{r7, lr}
  800064e:	b082      	sub	sp, #8
  8000650:	af00      	add	r7, sp, #0
  8000652:	6078      	str	r0, [r7, #4]
-    if (controller_task->state >= 0 && controller_task->state < controller_task->num_states)
+    if (controller_task->state >= 0 &&
  8000654:	687b      	ldr	r3, [r7, #4]
  8000656:	685b      	ldr	r3, [r3, #4]
  8000658:	2b00      	cmp	r3, #0
  800065a:	db0e      	blt.n	800067a <controller_task_run+0x2e>
+        controller_task->state < controller_task->num_states)
  800065c:	687b      	ldr	r3, [r7, #4]
  800065e:	685a      	ldr	r2, [r3, #4]
  8000660:	687b      	ldr	r3, [r7, #4]
  8000662:	689b      	ldr	r3, [r3, #8]
+    if (controller_task->state >= 0 &&
  8000664:	429a      	cmp	r2, r3
  8000666:	da08      	bge.n	800067a <controller_task_run+0x2e>
     {
@@ -598,8 +600,10 @@ void controller_task_run(ControllerTask *controller_task)
  8000680:	bd80      	pop	{r7, pc}
 
 08000682 <controller_task_state_0_init>:
-
-// init stuff and zero pot
+ * the task to the next state.
+ *
+ * @param controller_task Pointer to the ControllerTask structure.
+ */
 void controller_task_state_0_init(ControllerTask *controller_task)
 {
  8000682:	b580      	push	{r7, lr}
@@ -615,6 +619,7 @@ void controller_task_state_0_init(ControllerTask *controller_task)
  8000694:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
  8000696:	4618      	mov	r0, r3
  8000698:	f001 fb79 	bl	8001d8e <enable>
+
     // record ADC zero (center/home)
     controller_task->pot_zero = controller_task->adc_val;
  800069c:	687b      	ldr	r3, [r7, #4]
@@ -634,65 +639,75 @@ void controller_task_state_0_init(ControllerTask *controller_task)
  80006b2:	bd80      	pop	{r7, pc}
 
 080006b4 <controller_task_state_1_pos>:
-
-void controller_task_state_1_pos(ControllerTask *controller_task){
+ * method. Timing is measured using a hardware timer.
+ *
+ * @param controller_task Pointer to the ControllerTask structure.
+ */
+void controller_task_state_1_pos(ControllerTask *controller_task)
+{
  80006b4:	b580      	push	{r7, lr}
  80006b6:	b088      	sub	sp, #32
  80006b8:	af00      	add	r7, sp, #0
  80006ba:	6078      	str	r0, [r7, #4]
-	int32_t des_pos = controller_task->dir * (controller_task->adc_val - controller_task->pot_zero);
+    int32_t des_pos = controller_task->dir *
  80006bc:	687b      	ldr	r3, [r7, #4]
  80006be:	681b      	ldr	r3, [r3, #0]
  80006c0:	4619      	mov	r1, r3
+                      (controller_task->adc_val -
  80006c2:	687b      	ldr	r3, [r7, #4]
  80006c4:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+                       controller_task->pot_zero);
  80006c6:	687a      	ldr	r2, [r7, #4]
  80006c8:	6952      	ldr	r2, [r2, #20]
+                      (controller_task->adc_val -
  80006ca:	1a9b      	subs	r3, r3, r2
+    int32_t des_pos = controller_task->dir *
  80006cc:	fb01 f303 	mul.w	r3, r1, r3
  80006d0:	61bb      	str	r3, [r7, #24]
-	int32_t error = des_pos - controller_task->encoder->ticks;
+
+    int32_t error = des_pos - controller_task->encoder->ticks;
  80006d2:	687b      	ldr	r3, [r7, #4]
  80006d4:	6c9b      	ldr	r3, [r3, #72]	@ 0x48
  80006d6:	689b      	ldr	r3, [r3, #8]
  80006d8:	69ba      	ldr	r2, [r7, #24]
  80006da:	1ad3      	subs	r3, r2, r3
  80006dc:	61fb      	str	r3, [r7, #28]
-	if (error > 100) error = 99;
+    if (error > 100) error = 99;
  80006de:	69fb      	ldr	r3, [r7, #28]
  80006e0:	2b64      	cmp	r3, #100	@ 0x64
  80006e2:	dd01      	ble.n	80006e8 <controller_task_state_1_pos+0x34>
  80006e4:	2363      	movs	r3, #99	@ 0x63
  80006e6:	61fb      	str	r3, [r7, #28]
-	if (error < -100) error = -99;
+    if (error < -100) error = -99;
  80006e8:	69fb      	ldr	r3, [r7, #28]
  80006ea:	f113 0f64 	cmn.w	r3, #100	@ 0x64
  80006ee:	da02      	bge.n	80006f6 <controller_task_state_1_pos+0x42>
  80006f0:	f06f 0362 	mvn.w	r3, #98	@ 0x62
  80006f4:	61fb      	str	r3, [r7, #28]
 
-	read_encoder(controller_task->encoder);	// updates p_enc->ticks
+    read_encoder(controller_task->encoder); // updates encoder ticks
  80006f6:	687b      	ldr	r3, [r7, #4]
  80006f8:	6c9b      	ldr	r3, [r3, #72]	@ 0x48
  80006fa:	4618      	mov	r0, r3
  80006fc:	f000 f872 	bl	80007e4 <read_encoder>
-//	int32_t current_ticks = __HAL_TIM_GET_COUNTER(controller_task->htim_encoder);
-//	int32_t delta_ticks   = current_ticks - controller_task->prev_ticks;
-//	controller_task->prev_ticks = current_ticks;
 
-	controller_task->current_time = __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
+    controller_task->current_time =
+        __HAL_TIM_GET_COUNTER(controller_task->htim_dt);
  8000700:	687b      	ldr	r3, [r7, #4]
  8000702:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  8000704:	681b      	ldr	r3, [r3, #0]
  8000706:	6a5a      	ldr	r2, [r3, #36]	@ 0x24
+    controller_task->current_time =
  8000708:	687b      	ldr	r3, [r7, #4]
  800070a:	621a      	str	r2, [r3, #32]
-	uint32_t dt_ticks = (controller_task->current_time >= controller_task->prev_time) ?
+
+    uint32_t dt_ticks =
+        (controller_task->current_time >= controller_task->prev_time) ?
  800070c:	687b      	ldr	r3, [r7, #4]
  800070e:	6a1a      	ldr	r2, [r3, #32]
  8000710:	687b      	ldr	r3, [r7, #4]
  8000712:	69db      	ldr	r3, [r3, #28]
-						(controller_task->current_time - controller_task->prev_time) :
+        (controller_task->current_time - controller_task->prev_time) :
  8000714:	429a      	cmp	r2, r3
  8000716:	d305      	bcc.n	8000724 <controller_task_state_1_pos+0x70>
  8000718:	687b      	ldr	r3, [r7, #4]
@@ -701,21 +716,25 @@ void controller_task_state_1_pos(ControllerTask *controller_task){
  800071e:	69db      	ldr	r3, [r3, #28]
  8000720:	1ad3      	subs	r3, r2, r3
  8000722:	e005      	b.n	8000730 <controller_task_state_1_pos+0x7c>
-						(0xFFFFFFFF - controller_task->prev_time + controller_task->current_time);
+        (0xFFFFFFFF - controller_task->prev_time +
+         controller_task->current_time);
  8000724:	687b      	ldr	r3, [r7, #4]
  8000726:	6a1a      	ldr	r2, [r3, #32]
+        (0xFFFFFFFF - controller_task->prev_time +
  8000728:	687b      	ldr	r3, [r7, #4]
  800072a:	69db      	ldr	r3, [r3, #28]
  800072c:	1ad3      	subs	r3, r2, r3
-						(controller_task->current_time - controller_task->prev_time) :
+        (controller_task->current_time - controller_task->prev_time) :
  800072e:	3b01      	subs	r3, #1
-	uint32_t dt_ticks = (controller_task->current_time >= controller_task->prev_time) ?
+    uint32_t dt_ticks =
  8000730:	617b      	str	r3, [r7, #20]
-	if (dt_ticks == 0) return;
+
+    if (dt_ticks == 0) return;
  8000732:	697b      	ldr	r3, [r7, #20]
  8000734:	2b00      	cmp	r3, #0
  8000736:	d039      	beq.n	80007ac <controller_task_state_1_pos+0xf8>
-	int32_t delta_time      = dt_ticks / 1000.0f;
+
+    int32_t delta_time = dt_ticks / 1000.0f;
  8000738:	697b      	ldr	r3, [r7, #20]
  800073a:	ee07 3a90 	vmov	s15, r3
  800073e:	eeb8 7a67 	vcvt.f32.u32	s14, s15
@@ -724,7 +743,7 @@ void controller_task_state_1_pos(ControllerTask *controller_task){
  800074a:	eefd 7ae7 	vcvt.s32.f32	s15, s15
  800074e:	ee17 3a90 	vmov	r3, s15
  8000752:	613b      	str	r3, [r7, #16]
-	controller_task->integral_error += error * delta_time;
+    controller_task->integral_error += error * delta_time;
  8000754:	687b      	ldr	r3, [r7, #4]
  8000756:	6b5a      	ldr	r2, [r3, #52]	@ 0x34
  8000758:	69fb      	ldr	r3, [r7, #28]
@@ -733,35 +752,39 @@ void controller_task_state_1_pos(ControllerTask *controller_task){
  8000760:	441a      	add	r2, r3
  8000762:	687b      	ldr	r3, [r7, #4]
  8000764:	635a      	str	r2, [r3, #52]	@ 0x34
-	int32_t control = controller_task->k_p * error + controller_task->k_i * controller_task->integral_error;
+
+    int32_t control = controller_task->k_p * error +
  8000766:	687b      	ldr	r3, [r7, #4]
  8000768:	ed93 7a0a 	vldr	s14, [r3, #40]	@ 0x28
  800076c:	69fb      	ldr	r3, [r7, #28]
  800076e:	ee07 3a90 	vmov	s15, r3
  8000772:	eef8 7ae7 	vcvt.f32.s32	s15, s15
  8000776:	ee27 7a27 	vmul.f32	s14, s14, s15
+                      controller_task->k_i *
  800077a:	687b      	ldr	r3, [r7, #4]
  800077c:	edd3 6a0b 	vldr	s13, [r3, #44]	@ 0x2c
+                      controller_task->integral_error;
  8000780:	687b      	ldr	r3, [r7, #4]
  8000782:	6b5b      	ldr	r3, [r3, #52]	@ 0x34
+                      controller_task->k_i *
  8000784:	ee07 3a90 	vmov	s15, r3
  8000788:	eef8 7ae7 	vcvt.f32.s32	s15, s15
  800078c:	ee66 7aa7 	vmul.f32	s15, s13, s15
+    int32_t control = controller_task->k_p * error +
  8000790:	ee77 7a27 	vadd.f32	s15, s14, s15
  8000794:	eefd 7ae7 	vcvt.s32.f32	s15, s15
  8000798:	ee17 3a90 	vmov	r3, s15
  800079c:	60fb      	str	r3, [r7, #12]
 
-	set_duty(controller_task->motor,control);
+    set_duty(controller_task->motor, control);
  800079e:	687b      	ldr	r3, [r7, #4]
  80007a0:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
  80007a2:	68f9      	ldr	r1, [r7, #12]
  80007a4:	4618      	mov	r0, r3
  80007a6:	f001 fa3d 	bl	8001c24 <set_duty>
  80007aa:	e000      	b.n	80007ae <controller_task_state_1_pos+0xfa>
-	if (dt_ticks == 0) return;
+    if (dt_ticks == 0) return;
  80007ac:	bf00      	nop
-
 }
  80007ae:	3720      	adds	r7, #32
  80007b0:	46bd      	mov	sp, r7
