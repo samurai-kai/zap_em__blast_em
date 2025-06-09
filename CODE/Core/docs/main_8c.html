@@ -103,7 +103,7 @@ $(function(){initNavTree('main_8c.html','',''); });
 <code>#include &quot;<a class="el" href="game__task_8h_source.html">game_task.h</a>&quot;</code><br />
 <code>#include &quot;sound_task.h&quot;</code><br />
 <code>#include &quot;shoot_task.h&quot;</code><br />
-<code>#include &quot;lcd.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="lcd_8h_source.html">lcd.h</a>&quot;</code><br />
 <code>#include &quot;photoresistor_task.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="adc__task_8h_source.html">adc_task.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="encoder__driver_8h_source.html">encoder_driver.h</a>&quot;</code><br />
@@ -132,6 +132,7 @@ ADC_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hadc1</b
 DMA_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hdma_adc1</b></td></tr>
 <tr class="memitem:af7b2c26e44dadaaa798a5c3d82914ba7" id="r_af7b2c26e44dadaaa798a5c3d82914ba7"><td class="memItemLeft" align="right" valign="top"><a id="af7b2c26e44dadaaa798a5c3d82914ba7" name="af7b2c26e44dadaaa798a5c3d82914ba7"></a>
 I2C_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hi2c1</b></td></tr>
+<tr class="memdesc:af7b2c26e44dadaaa798a5c3d82914ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">External I2C handle used for communication with the LCD. <br /></td></tr>
 <tr class="memitem:a25fc663547539bc49fecc0011bd76ab5" id="r_a25fc663547539bc49fecc0011bd76ab5"><td class="memItemLeft" align="right" valign="top"><a id="a25fc663547539bc49fecc0011bd76ab5" name="a25fc663547539bc49fecc0011bd76ab5"></a>
 TIM_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>htim1</b></td></tr>
 <tr class="memitem:a2c80fd5510e2990a59a5c90d745c716c" id="r_a2c80fd5510e2990a59a5c90d745c716c"><td class="memItemLeft" align="right" valign="top"><a id="a2c80fd5510e2990a59a5c90d745c716c" name="a2c80fd5510e2990a59a5c90d745c716c"></a>
@@ -448,7 +449,7 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                      .blue_photoresistor_task_ptr = &amp;blue_photoresistor_task,</div>
 <div class="line">                      .mred = &amp;mred,</div>
 <div class="line">                      .mblue = &amp;mblue,</div>
-<div class="line">                      .i2c_handle = &amp;hi2c1,</div>
+<div class="line">                      .i2c_handle = &amp;<a class="code hl_variable" href="lcd_8h.html#af7b2c26e44dadaaa798a5c3d82914ba7">hi2c1</a>,</div>
 <div class="line">                      .state_list = {&amp;<a class="code hl_function" href="game__task_8h.html#adfae05d4105f92402a05cad34e4549ae">game_task_state_0_init</a>,</div>
 <div class="line">                                     &amp;<a class="code hl_function" href="game__task_8h.html#afecab4adbfa30c2a00ce021209b14084">game_task_state_1_home</a>,</div>
 <div class="line">                                     &amp;<a class="code hl_function" href="game__task_8h.html#a4c732dc57a65c2383055e3572038a9b1">game_task_state_2_play</a>,</div>
@@ -459,6 +460,7 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="ttc" id="agame__task_8h_html_a5fc6d96b904257254bf569d163d1837f"><div class="ttname"><a href="game__task_8h.html#a5fc6d96b904257254bf569d163d1837f">game_task_state_3_end</a></div><div class="ttdeci">void game_task_state_3_end(GameTask *game_task)</div><div class="ttdoc">Ends the game and resets variables (state 3).</div><div class="ttdef"><b>Definition</b> game_task.c:161</div></div>
 <div class="ttc" id="agame__task_8h_html_adfae05d4105f92402a05cad34e4549ae"><div class="ttname"><a href="game__task_8h.html#adfae05d4105f92402a05cad34e4549ae">game_task_state_0_init</a></div><div class="ttdeci">void game_task_state_0_init(GameTask *game_task)</div><div class="ttdoc">Initializes the GameTask (state 0).</div><div class="ttdef"><b>Definition</b> game_task.c:47</div></div>
 <div class="ttc" id="agame__task_8h_html_afecab4adbfa30c2a00ce021209b14084"><div class="ttname"><a href="game__task_8h.html#afecab4adbfa30c2a00ce021209b14084">game_task_state_1_home</a></div><div class="ttdeci">void game_task_state_1_home(GameTask *game_task)</div><div class="ttdoc">Handles home screen and game start prompt (state 1).</div><div class="ttdef"><b>Definition</b> game_task.c:62</div></div>
+<div class="ttc" id="alcd_8h_html_af7b2c26e44dadaaa798a5c3d82914ba7"><div class="ttname"><a href="lcd_8h.html#af7b2c26e44dadaaa798a5c3d82914ba7">hi2c1</a></div><div class="ttdeci">I2C_HandleTypeDef hi2c1</div><div class="ttdoc">External I2C handle used for communication with the LCD.</div><div class="ttdef"><b>Definition</b> main.c:115</div></div>
 </div><!-- fragment -->
 </div>
 </div>

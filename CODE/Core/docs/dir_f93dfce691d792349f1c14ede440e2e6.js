@@ -4,7 +4,7 @@ var dir_f93dfce691d792349f1c14ede440e2e6 =
     [ "controller_task.h", "controller__task_8h.html", "controller__task_8h" ],
     [ "encoder_driver.h", "encoder__driver_8h.html", "encoder__driver_8h" ],
     [ "game_task.h", "game__task_8h.html", "game__task_8h" ],
-    [ "lcd.h", "lcd_8h_source.html", null ],
+    [ "lcd.h", "lcd_8h.html", "lcd_8h" ],
     [ "main.h", "main_8h.html", "main_8h" ],
     [ "motor_driver.h", "motor__driver_8h_source.html", null ],
     [ "photoresistor_task.h", "photoresistor__task_8h_source.html", null ],
