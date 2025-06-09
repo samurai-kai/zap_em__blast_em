@@ -7,5 +7,6 @@ var searchData=
   ['premise_4',['Game Premise',['../index.html#gameplay_sec',1,'']]],
   ['prev_5ferror_5',['prev_error',['../struct_controller_task.html#a461cae71b420a0cbbb17f75db63af2b8',1,'ControllerTask']]],
   ['prev_5fticks_6',['prev_ticks',['../struct_controller_task.html#ae505eddb4daa3cf915e206d386836ad7',1,'ControllerTask']]],
-  ['prev_5ftime_7',['prev_time',['../struct_controller_task.html#a7dff167b310b78ffe12f03656aebc01e',1,'ControllerTask']]]
+  ['prev_5ftime_7',['prev_time',['../struct_controller_task.html#a7dff167b310b78ffe12f03656aebc01e',1,'ControllerTask']]],
+  ['pwm_5fmax_8',['PWM_MAX',['../motor__driver_8c.html#a391fa1e490bd712720989b58fa0d9904',1,'motor_driver.c']]]
 ];
