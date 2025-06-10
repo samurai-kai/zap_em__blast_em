@@ -61,7 +61,8 @@ var NAVTREEINDEX0 =
 "game__task_8h.html#afecab4adbfa30c2a00ce021209b14084":[10,0,0,3,6],
 "game__task_8h_source.html":[10,0,0,3],
 "gameplay_page.html":[3],
-"gameplay_page.html#Features":[3,0],
+"gameplay_page.html#Features":[3,1],
+"gameplay_page.html#Game":[3,0],
 "globals.html":[10,1,0],
 "globals_defs.html":[10,1,4],
 "globals_func.html":[10,1,1],
@@ -81,9 +82,9 @@ var NAVTREEINDEX0 =
 "group___s_t_m32_f4xx___system___private___variables.html":[8,0,0,4],
 "group__stm32f4xx__system.html":[8,0,0],
 "index.html":[],
-"index.html#Game":[0],
-"index.html#Introduction":[2],
-"index.html#Table":[1],
+"index.html#Creators":[0],
+"index.html#Introduction":[1],
+"index.html#toc_section":[2],
 "lcd_8c.html":[10,0,1,4],
 "lcd_8c.html#a64386ad6108c11b9b87062542ec23c6b":[10,0,1,4,4],
 "lcd_8c.html#a6842775ba83d166f02b8fef8bb63b1e6":[10,0,1,4,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "struct_game_task.html#af8ec6e123570f44094bcf2cb02b478f4":[9,0,3,19],
 "struct_photoresistor_task.html":[9,0,5],
 "struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788":[9,0,5,2],
-"struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5":[9,0,5,0],
-"struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4":[9,0,5,4]
+"struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5":[9,0,5,0]
 };

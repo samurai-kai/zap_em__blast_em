@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['of_20contents_0',['of Contents',['../index.html#Table',1,'']]]
+  ['of_20contents_0',['Table of Contents',['../index.html#toc_section',1,'']]]
 ];

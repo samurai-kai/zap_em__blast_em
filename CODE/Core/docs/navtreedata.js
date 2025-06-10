@@ -25,10 +25,11 @@
 var NAVTREE =
 [
   [ "Zap'Em Blast'Em Robots", "index.html", [
-    [ "Creators", "index.html#Game", null ],
-    [ "of Contents", "index.html#Table", null ],
+    [ "Creators", "index.html#Creators", null ],
     [ "Introduction", "index.html#Introduction", null ],
+    [ "Table of Contents", "index.html#toc_section", null ],
     [ "Game Premise &amp; Features", "gameplay_page.html", [
+      [ "Premise", "gameplay_page.html#Game", null ],
       [ "Features", "gameplay_page.html#Features", null ]
     ] ],
     [ "Mechanical Design", "mechanical_page.html", null ],
@@ -60,7 +61,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "adc__task_8c.html",
-"struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208"
+"struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

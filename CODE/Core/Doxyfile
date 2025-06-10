@@ -61,7 +61,7 @@ PROJECT_BRIEF          = "laser tag robots"
 # pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
 # the logo to the output directory.
 
-PROJECT_LOGO           = C:/Users/kaidc/Documents/Github/zap_em__blast_em/CODE/Core/docs/media/photos/ZapBlastLogo.png
+PROJECT_LOGO           = media/photos/transparent_logo.png
 
 # With the PROJECT_ICON tag one can specify an icon that is included in the tabs
 # when the HTML document is shown. Doxygen will copy the logo to the output
@@ -991,7 +991,9 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  =
+INPUT                  = mainpage.dox \
+                         Src \
+                         Inc
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. Internally Doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1466,9 +1468,12 @@ HTML_EXTRA_STYLESHEET  = doxygen-custom.css
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
 HTML_EXTRA_FILES       = doxygen-custom.css \
-                         docs/media/photos/ZapBlastLogo.png \
-                         docs/media/photos/throttleassembly.jpg \
-                         docs/media/photos/mountedPCB.jpg
+                         media/photos/mountedPCB.jpg \
+                         media/photos/throttleassembly.jpg \
+                         media/photos/ZapBlastLogo.png \
+                         media/videos/samplegameplay.mp4 \
+                         docs/media/photos/wiringdiagram.png \
+                         docs/media/photos/assemblyCAD.png
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.
