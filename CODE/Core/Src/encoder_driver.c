@@ -1,52 +1,38 @@
-<<<<<<< HEAD
 /**
- * @file encoder_driver.c
- * @brief High-level routines for initializing and reading a rotary encoder.
+ * @file    encoder_task.c
+ * @brief   High-level routines for initializing and reading a rotary encoder.
  *
  * Created on: Jun 7, 2025
- * @author Andrew Carr and Kai De La Cruz
-=======
-/*
- * encoder_task.c
- *
- *  Created on: Jun 7, 2025
- *      Author: andrewcarr and Kai De La Cruz
->>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
+ * Author:     Andrew Carr and Kai De La Cruz
  */
-
-
 
 #include "encoder_driver.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
 #include "stm32f4xx_hal.h"
 
-<<<<<<< HEAD
 // Stall detection parameters
-#define STALL_THRESHOLD   5    /**< ticks change below this is considered stalled */
-#define STALL_COUNT      20    /**< consecutive samples to confirm stall */
-#define STALL_DELAY_MS   10    /**< sampling interval in milliseconds */
+#define STALL_THRESHOLD   5    // ticks change below this is considered stalled
+#define STALL_COUNT      20    // consecutive samples to confirm stall
+#define STALL_DELAY_MS   10    // sampling interval in ms
 
 /**
  * @brief  Initialize encoder state.
+ * @param  p_enc  Pointer to an encoder_t instance.
  *
  * Captures the current hardware timer counter as the zero reference,
  * and clears both the cumulative tick count and the last-read snapshot.
- *
- * @param  p_enc  Pointer to an encoder_t instance.
  */
-=======
-
->>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 void setup_encoder(encoder_t *p_enc){
-    p_enc->zero = __HAL_TIM_GET_COUNTER(p_enc->htim);
-    p_enc->ticks = 0;
+    p_enc->zero       = __HAL_TIM_GET_COUNTER(p_enc->htim);
+    p_enc->ticks      = 0;
     p_enc->last_ticks = 0;
 }
-void read_encoder(encoder_t *p_enc){
 
-<<<<<<< HEAD
 /**
  * @brief  Read and accumulate encoder ticks since last call.
+ * @param  p_enc  Pointer to an encoder_t instance.
  *
  * Computes the difference between the current timer count and the zero
  * reference, applies wrap-around correction based on the encoder’s
@@ -57,44 +43,46 @@ void read_encoder(encoder_t *p_enc){
  * Wrap-around logic:
  *   If the delta exceeds half the auto-reload range, it is adjusted
  *   by ±(ar+1) to account for rollover.
- *
- * @param  p_enc  Pointer to an encoder_t instance.
  */
+//void read_encoder(encoder_t *p_enc){
+//
+//    int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim))
+//                            - (int32_t)(p_enc->zero);
+//    int32_t delta = current_ticks - p_enc->last_ticks;
+//
+//    if (delta > (p_enc->ar + 1)/2){
+//        delta -= p_enc->ar + 1;
+//    }
+//    else if (delta < (-(p_enc->ar + 1)/2)){
+//        delta += p_enc->ar + 1;
+//    }
+//
+//    p_enc->last_ticks = current_ticks;
+//    p_enc->ticks     += delta;
+//}
 void read_encoder(encoder_t *p_enc)
 {
     /* Compute signed tick count relative to zero */
     int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim))
                             - (int32_t)(p_enc->zero);
     int32_t delta = current_ticks - p_enc->last_ticks;
-=======
-	int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim)) - (int32_t)(p_enc->zero);
-	int32_t delta = current_ticks - p_enc->last_ticks;
 
-	if (delta > (p_enc->ar + 1)/2){
-		delta -= p_enc->ar + 1;
-	}
-	else if (delta < (-p_enc->ar-1)/2){
-		delta += p_enc->ar + 1;
-	}
+    /* Handle wrap-around if delta jumps more than half-range */
+    if (delta > (p_enc->ar + 1) / 2) {
+        delta -= (p_enc->ar + 1);
+    }
+    else if (delta < -(p_enc->ar + 1) / 2) {
+        delta += (p_enc->ar + 1);
+    }
 
-	p_enc->last_ticks = current_ticks;
-	p_enc->ticks += delta;
->>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
-
-
-<<<<<<< HEAD
     /* Update state */
     p_enc->last_ticks = current_ticks;
     p_enc->ticks     += delta;
 }
-
 /**
- * @brief  Waits until the encoder motion stalls.
+ * @brief  Waits until the encoder motion stalls (no significant ticks change).
  *
- * Repeatedly samples encoder ticks and detects stall if no significant
- * motion occurs over a defined interval.
- *
- * @param  p_enc  Pointer to an encoder_t instance.
+ * @param  p_enc  Pointer to encoder_t instance
  */
 void wait_for_stall(encoder_t *p_enc)
 {
@@ -112,6 +100,4 @@ void wait_for_stall(encoder_t *p_enc)
         prev_ticks = p_enc->ticks;
         HAL_Delay(STALL_DELAY_MS);
     }
-=======
->>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
 }

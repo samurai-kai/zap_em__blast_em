@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['num_0',['num',['../struct_game_task.html#ada8674351485596cd150447bdece55bc',1,'GameTask']]],
-  ['num_5fstates_1',['num_states',['../struct_a_d_c_task.html#a0456e86c5e39324ddfd18e4185b27788',1,'ADCTask::num_states'],['../struct_controller_task.html#a0456e86c5e39324ddfd18e4185b27788',1,'ControllerTask::num_states'],['../struct_game_task.html#a0456e86c5e39324ddfd18e4185b27788',1,'GameTask::num_states'],['../struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788',1,'PhotoresistorTask::num_states'],['../struct_shoot_task.html#a0456e86c5e39324ddfd18e4185b27788',1,'ShootTask::num_states']]]
+  ['pot_5fzero_0',['pot_zero',['../struct_controller_task.html#ae5fdfb122ff3fe3f25d3cf60ccc9b915',1,'ControllerTask']]],
+  ['prev_5ferror_1',['prev_error',['../struct_controller_task.html#a461cae71b420a0cbbb17f75db63af2b8',1,'ControllerTask']]],
+  ['prev_5fticks_2',['prev_ticks',['../struct_controller_task.html#ae505eddb4daa3cf915e206d386836ad7',1,'ControllerTask']]],
+  ['prev_5ftime_3',['prev_time',['../struct_controller_task.html#a7dff167b310b78ffe12f03656aebc01e',1,'ControllerTask']]]
 ];

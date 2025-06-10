@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-../Core/Src/encoder_driver.c:28:6:setup_encoder	1
-../Core/Src/encoder_driver.c:49:6:read_encoder	3
-../Core/Src/encoder_driver.c:77:6:wait_for_stall	4
-=======
-../Core/Src/encoder_driver.c:15:6:setup_encoder	1
-../Core/Src/encoder_driver.c:20:6:read_encoder	3
->>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
+../Core/Src/encoder_driver.c:27:6:setup_encoder	1
+../Core/Src/encoder_driver.c:63:6:read_encoder	3
+../Core/Src/encoder_driver.c:87:6:wait_for_stall	4

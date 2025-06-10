@@ -12,12 +12,9 @@ var searchData=
   ['hal_5ftim_5fpwm_5fmspdeinit_9',['HAL_TIM_PWM_MspDeInit',['../stm32f4xx__hal__msp_8c.html#af5f524564b3a99a9f87f45227309e866',1,'stm32f4xx_hal_msp.c']]],
   ['hal_5ftim_5fpwm_5fmspinit_10',['HAL_TIM_PWM_MspInit',['../stm32f4xx__hal__msp_8c.html#a24d5b9c609d8b753d95508419f4c1901',1,'stm32f4xx_hal_msp.c']]],
   ['hardfault_5fhandler_11',['HardFault_Handler',['../stm32f4xx__it_8h.html#a2bffc10d5bd4106753b7c30e86903bea',1,'HardFault_Handler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8c.html#a2bffc10d5bd4106753b7c30e86903bea',1,'HardFault_Handler(void):&#160;stm32f4xx_it.c']]],
-  ['hi2c1_12',['hi2c1',['../lcd_8h.html#af7b2c26e44dadaaa798a5c3d82914ba7',1,'hi2c1:&#160;main.c'],['../main_8c.html#af7b2c26e44dadaaa798a5c3d82914ba7',1,'hi2c1:&#160;main.c']]],
-  ['hit_5fflag_13',['hit_flag',['../struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208',1,'PhotoresistorTask']]],
-  ['how_20to_20use_14',['How to Use',['../index.html#usage_sec',1,'']]],
-  ['hse_5fvalue_15',['HSE_VALUE',['../group___s_t_m32_f4xx___system___private___includes.html#gaeafcff4f57440c60e64812dddd13e7cb',1,'system_stm32f4xx.c']]],
-  ['hsi_5fvalue_16',['HSI_VALUE',['../group___s_t_m32_f4xx___system___private___includes.html#gaaa8c76e274d0f6dd2cefb5d0b17fbc37',1,'system_stm32f4xx.c']]],
-  ['htim_17',['htim',['../structencoder__t.html#a5dc7d1c65997ccaed48a93a3f4ffc486',1,'encoder_t::htim'],['../struct_game_task.html#a5dc7d1c65997ccaed48a93a3f4ffc486',1,'GameTask::htim']]],
-  ['htim_5fdt_18',['htim_dt',['../struct_controller_task.html#a36de3f2cbf02e318ebd6dff3dea7861c',1,'ControllerTask']]],
-  ['htim_5fencoder_19',['htim_encoder',['../struct_controller_task.html#a0a11d3973daa2e12c27ccd2588cad086',1,'ControllerTask']]]
+  ['how_20to_20use_12',['How to Use',['../index.html#usage_sec',1,'']]],
+  ['hse_5fvalue_13',['HSE_VALUE',['../group___s_t_m32_f4xx___system___private___includes.html#gaeafcff4f57440c60e64812dddd13e7cb',1,'system_stm32f4xx.c']]],
+  ['hsi_5fvalue_14',['HSI_VALUE',['../group___s_t_m32_f4xx___system___private___includes.html#gaaa8c76e274d0f6dd2cefb5d0b17fbc37',1,'system_stm32f4xx.c']]],
+  ['htim_5fdt_15',['htim_dt',['../struct_controller_task.html#a36de3f2cbf02e318ebd6dff3dea7861c',1,'ControllerTask']]],
+  ['htim_5fencoder_16',['htim_encoder',['../struct_controller_task.html#a0a11d3973daa2e12c27ccd2588cad086',1,'ControllerTask']]]
 ];

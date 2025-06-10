@@ -94,68 +94,56 @@ $(function(){initNavTree('photoresistor__task_8h_source.html','',''); });
   <div class="headertitle"><div class="title">photoresistor_task.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="photoresistor__task_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef INC_PHOTORESISTOR_TASK_H_</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define INC_PHOTORESISTOR_TASK_H_</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;stm32f4xx_hal.h&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> <a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_game_task.html">GameTask</a> <a class="code hl_struct" href="struct_game_task.html">GameTask</a>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="photoresistor__task_8h.html#ad9a9774bdae04113c65f16ee2e417b09">   30</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="photoresistor__task_8h.html#ad9a9774bdae04113c65f16ee2e417b09">photoresistor_fcn_t</a>)(</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html">   39</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html#af8ec6e123570f44094bcf2cb02b478f4">   41</a></span>    int32_t              <a class="code hl_variable" href="struct_photoresistor_task.html#af8ec6e123570f44094bcf2cb02b478f4">state</a>;        </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788">   42</a></span>    int32_t              <a class="code hl_variable" href="struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788">num_states</a>;   </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208">   43</a></span>    int32_t              <a class="code hl_variable" href="struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208">hit_flag</a>;     </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5">   44</a></span>    int32_t              <a class="code hl_variable" href="struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5">adc_val</a>;      </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html#a515073b369058e94f28905a2c4fcee61">   45</a></span>    int32_t              <a class="code hl_variable" href="struct_photoresistor_task.html#a515073b369058e94f28905a2c4fcee61">thresh</a>;       </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html#aaadc1f4d2a1724c09aeafd97b495e61a">   46</a></span>    int32_t              <a class="code hl_variable" href="struct_photoresistor_task.html#aaadc1f4d2a1724c09aeafd97b495e61a">zero</a>;         </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4">   47</a></span>    <a class="code hl_typedef" href="photoresistor__task_8h.html#ad9a9774bdae04113c65f16ee2e417b09">photoresistor_fcn_t</a>  <a class="code hl_variable" href="struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4">state_list</a>[]; </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * photoresistor_task.h</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *  Created on: Jun 3, 2025</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *      Author: Andrew Carr</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef INC_PHOTORESISTOR_TASK_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define INC_PHOTORESISTOR_TASK_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdint.h&gt;</span> <span class="comment">// Allows use of standard integer types</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;stm32f4xx_hal.h&quot;</span>  <span class="comment">// or your STM32 family</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> <a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a>; <span class="comment">// forward declaration</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_game_task.html">GameTask</a> <a class="code hl_struct" href="struct_game_task.html">GameTask</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// all states take in a GameTask pointer</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">typedef</span> void (*photoresistor_fcn_t)(<a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// A datatype for a structure to hold task configuration and state.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// Additional fields can be added as desired.</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_photoresistor_task.html">   21</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    int32_t                 state;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    int32_t                 num_states;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    int32_t                 hit_flag;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    int32_t                 adc_val;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    int32_t                 thresh;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    int32_t                 zero;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    photoresistor_fcn_t     state_list[];</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
 </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">void</span> <a class="code hl_function" href="photoresistor__task_8h.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a>(</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keywordtype">void</span> <a class="code hl_function" href="photoresistor__task_8h.html#a249a719fb53da966368ee8d1f46e1e40">photoresistor_task_run</a>(</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keywordtype">void</span> <a class="code hl_function" href="photoresistor__task_8h.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a>(</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">void</span> <a class="code hl_function" href="photoresistor__task_8h.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a>(</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif </span><span class="comment">/* INC_PHOTORESISTOR_TASK_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aphotoresistor__task_8h_html_a249a719fb53da966368ee8d1f46e1e40"><div class="ttname"><a href="photoresistor__task_8h.html#a249a719fb53da966368ee8d1f46e1e40">photoresistor_task_run</a></div><div class="ttdeci">void photoresistor_task_run(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Executes the current state of the task.</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:19</div></div>
-<div class="ttc" id="aphotoresistor__task_8h_html_a262eb649a13220874e05226c32971f14"><div class="ttname"><a href="photoresistor__task_8h.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a></div><div class="ttdeci">void photoresistor_task_state_0_init(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Initializes the photoresistor task (state 0).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:41</div></div>
-<div class="ttc" id="aphotoresistor__task_8h_html_a4ca924555b9818de2ba88d7139559e32"><div class="ttname"><a href="photoresistor__task_8h.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a></div><div class="ttdeci">void photoresistor_task_state_1_look(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Performs light detection logic (state 1).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:55</div></div>
-<div class="ttc" id="aphotoresistor__task_8h_html_a5f6c877a2d623bb7b303c6e155f65664"><div class="ttname"><a href="photoresistor__task_8h.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a></div><div class="ttdeci">void photoresistor_task_state_2_hit(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Waits for hit flag to be cleared (state 2).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:74</div></div>
-<div class="ttc" id="aphotoresistor__task_8h_html_ad9a9774bdae04113c65f16ee2e417b09"><div class="ttname"><a href="photoresistor__task_8h.html#ad9a9774bdae04113c65f16ee2e417b09">photoresistor_fcn_t</a></div><div class="ttdeci">void(* photoresistor_fcn_t)(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Function pointer type for photoresistor task states.</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:30</div></div>
-<div class="ttc" id="astruct_game_task_html"><div class="ttname"><a href="struct_game_task.html">GameTask</a></div><div class="ttdoc">Structure for game task configuration and state tracking.</div><div class="ttdef"><b>Definition</b> game_task.h:43</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html"><div class="ttname"><a href="struct_photoresistor_task.html">PhotoresistorTask</a></div><div class="ttdoc">Structure for photoresistor task configuration and state.</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:40</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html_a0456e86c5e39324ddfd18e4185b27788"><div class="ttname"><a href="struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788">PhotoresistorTask::num_states</a></div><div class="ttdeci">int32_t num_states</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:42</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html_a19ffb311eaf12b72d9c02670db4e3cd5"><div class="ttname"><a href="struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5">PhotoresistorTask::adc_val</a></div><div class="ttdeci">int32_t adc_val</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:44</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html_a3abf8056ecd3313383ba0ecaef2a1cd4"><div class="ttname"><a href="struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4">PhotoresistorTask::state_list</a></div><div class="ttdeci">photoresistor_fcn_t state_list[]</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:47</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html_a50699512b038124f9871fcde12b5e208"><div class="ttname"><a href="struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208">PhotoresistorTask::hit_flag</a></div><div class="ttdeci">int32_t hit_flag</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:43</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html_a515073b369058e94f28905a2c4fcee61"><div class="ttname"><a href="struct_photoresistor_task.html#a515073b369058e94f28905a2c4fcee61">PhotoresistorTask::thresh</a></div><div class="ttdeci">int32_t thresh</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:45</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html_aaadc1f4d2a1724c09aeafd97b495e61a"><div class="ttname"><a href="struct_photoresistor_task.html#aaadc1f4d2a1724c09aeafd97b495e61a">PhotoresistorTask::zero</a></div><div class="ttdeci">int32_t zero</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:46</div></div>
-<div class="ttc" id="astruct_photoresistor_task_html_af8ec6e123570f44094bcf2cb02b478f4"><div class="ttname"><a href="struct_photoresistor_task.html#af8ec6e123570f44094bcf2cb02b478f4">PhotoresistorTask::state</a></div><div class="ttdeci">int32_t state</div><div class="ttdef"><b>Definition</b> photoresistor_task.h:41</div></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// A prototype for each function implemented in task_1.c</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">void</span> photoresistor_task_state_0_init(<a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">void</span> photoresistor_task_run(<a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> photoresistor_task_state_1_look(<a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> photoresistor_task_state_2_hit(<a class="code hl_struct" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif </span><span class="comment">/* INC_PHOTORESISTOR_TASK_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="astruct_game_task_html"><div class="ttname"><a href="struct_game_task.html">GameTask</a></div><div class="ttdef"><b>Definition</b> game_task.h:24</div></div>
+<div class="ttc" id="astruct_photoresistor_task_html"><div class="ttname"><a href="struct_photoresistor_task.html">PhotoresistorTask</a></div><div class="ttdef"><b>Definition</b> photoresistor_task.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_f93dfce691d792349f1c14ede440e2e6.html">Inc</a></li><li class="navelem"><a href="photoresistor__task_8h.html">photoresistor_task.h</a></li>
+    <li class="navelem"><a href="dir_f93dfce691d792349f1c14ede440e2e6.html">Inc</a></li><li class="navelem"><b>photoresistor_task.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
