@@ -9,43 +9,43 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .rodata       0004ca44  08007568  08007568  00008568  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08053fac  08053fac  000552c4  2**0
+  3 .ARM.extab    00000000  08053fac  08053fac  000552c0  2**0
                   CONTENTS, READONLY
   4 .ARM          00000008  08053fac  08053fac  00054fac  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  08053fb4  08053fb4  000552c4  2**0
+  5 .preinit_array 00000000  08053fb4  08053fb4  000552c0  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   6 .init_array   00000004  08053fb4  08053fb4  00054fb4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   7 .fini_array   00000004  08053fb8  08053fb8  00054fb8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         000002c4  20000000  08053fbc  00055000  2**2
+  8 .data         000002c0  20000000  08053fbc  00055000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000044c  200002c4  08054280  000552c4  2**2
+  9 .bss          0000044c  200002c0  0805427c  000552c0  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000710  08054280  00055710  2**0
+ 10 ._user_heap_stack 00000604  2000070c  0805427c  0005570c  2**0
                   ALLOC
- 11 .ARM.attributes 00000030  00000000  00000000  000552c4  2**0
+ 11 .ARM.attributes 00000030  00000000  00000000  000552c0  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00013bd0  00000000  00000000  000552f4  2**0
+ 12 .debug_info   00013bb6  00000000  00000000  000552f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000030d1  00000000  00000000  00068ec4  2**0
+ 13 .debug_abbrev 000030d1  00000000  00000000  00068ea6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000010e8  00000000  00000000  0006bf98  2**3
+ 14 .debug_aranges 000010e8  00000000  00000000  0006bf78  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000ccd  00000000  00000000  0006d080  2**0
+ 15 .debug_rnglists 00000ccd  00000000  00000000  0006d060  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00019b85  00000000  00000000  0006dd4d  2**0
+ 16 .debug_macro  00019b85  00000000  00000000  0006dd2d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00017253  00000000  00000000  000878d2  2**0
+ 17 .debug_line   00017247  00000000  00000000  000878b2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0009afbe  00000000  00000000  0009eb25  2**0
+ 18 .debug_str    0009aff6  00000000  00000000  0009eaf9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00139ae3  2**0
+ 19 .comment      00000043  00000000  00000000  00139aef  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004938  00000000  00000000  00139b28  2**2
+ 20 .debug_frame  00004938  00000000  00000000  00139b34  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000060  00000000  00000000  0013e460  2**0
+ 21 .debug_line_str 00000060  00000000  00000000  0013e46c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  80001b2:	2301      	movs	r3, #1
  80001b4:	7023      	strb	r3, [r4, #0]
  80001b6:	bd10      	pop	{r4, pc}
- 80001b8:	200002c4 	.word	0x200002c4
+ 80001b8:	200002c0 	.word	0x200002c0
  80001bc:	00000000 	.word	0x00000000
  80001c0:	08007550 	.word	0x08007550
 
@@ -75,7 +75,7 @@ Disassembly of section .text:
  80001ce:	f3af 8000 	nop.w
  80001d2:	bd08      	pop	{r3, pc}
  80001d4:	00000000 	.word	0x00000000
- 80001d8:	200002c8 	.word	0x200002c8
+ 80001d8:	200002c4 	.word	0x200002c4
  80001dc:	08007550 	.word	0x08007550
 
 080001e0 <memchr>:
@@ -507,7 +507,7 @@ void adc_task_state_0_init(ADCTask *adc_task)
  8000602:	3708      	adds	r7, #8
  8000604:	46bd      	mov	sp, r7
  8000606:	bd80      	pop	{r7, pc}
- 8000608:	200002e0 	.word	0x200002e0
+ 8000608:	200002dc 	.word	0x200002dc
 
 0800060c <adc_task_state_1_read>:
  * `adc_val`.
@@ -550,7 +550,7 @@ void adc_task_state_1_read(ADCTask *adc_task)
  8000640:	46bd      	mov	sp, r7
  8000642:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000646:	4770      	bx	lr
- 8000648:	200002e0 	.word	0x200002e0
+ 8000648:	200002dc 	.word	0x200002dc
 
 0800064c <controller_task_run>:
  * function from the task's function list.
@@ -982,86 +982,84 @@ void wait_for_stall(encoder_t *p_enc)
  80008c0:	bd80      	pop	{r7, pc}
 
 080008c2 <game_task_run>:
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 
-#include <stdio.h>
-
-// A function to run the appropriate state of the task
 void game_task_run(GameTask *game_task)
-{    // Check for a valid state
+{
  80008c2:	b580      	push	{r7, lr}
  80008c4:	b082      	sub	sp, #8
  80008c6:	af00      	add	r7, sp, #0
  80008c8:	6078      	str	r0, [r7, #4]
-    if (game_task->state >= 0 && game_task->state < game_task->num_states)
+    if (game_task->state >= 0 &&
  80008ca:	687b      	ldr	r3, [r7, #4]
  80008cc:	681b      	ldr	r3, [r3, #0]
  80008ce:	2b00      	cmp	r3, #0
- 80008d0:	db0e      	blt.n	80008f0 <game_task_run+0x2e>
+ 80008d0:	db0f      	blt.n	80008f2 <game_task_run+0x30>
+        game_task->state < game_task->num_states)
  80008d2:	687b      	ldr	r3, [r7, #4]
  80008d4:	681a      	ldr	r2, [r3, #0]
  80008d6:	687b      	ldr	r3, [r7, #4]
  80008d8:	685b      	ldr	r3, [r3, #4]
+    if (game_task->state >= 0 &&
  80008da:	429a      	cmp	r2, r3
- 80008dc:	da08      	bge.n	80008f0 <game_task_run+0x2e>
-
-    	// game_task is a pointer right now
-    	// -> dereferences pointer and accesses class member in one step
-    	// the same as (*ptr).member
-
+ 80008dc:	da09      	bge.n	80008f2 <game_task_run+0x30>
+    {
         game_task->state_list[game_task->state](game_task);
  80008de:	687b      	ldr	r3, [r7, #4]
- 80008e0:	681a      	ldr	r2, [r3, #0]
- 80008e2:	687b      	ldr	r3, [r7, #4]
- 80008e4:	3216      	adds	r2, #22
- 80008e6:	f853 3022 	ldr.w	r3, [r3, r2, lsl #2]
- 80008ea:	6878      	ldr	r0, [r7, #4]
- 80008ec:	4798      	blx	r3
-    {
-
-        while(1){}
+ 80008e0:	681b      	ldr	r3, [r3, #0]
+ 80008e2:	687a      	ldr	r2, [r7, #4]
+ 80008e4:	3314      	adds	r3, #20
+ 80008e6:	009b      	lsls	r3, r3, #2
+ 80008e8:	4413      	add	r3, r2
+ 80008ea:	685b      	ldr	r3, [r3, #4]
+ 80008ec:	6878      	ldr	r0, [r7, #4]
+ 80008ee:	4798      	blx	r3
     }
-
+    else
+    {
+        while (1) {}
+    }
 }
- 80008ee:	e000      	b.n	80008f2 <game_task_run+0x30>
-        while(1){}
- 80008f0:	e7fe      	b.n	80008f0 <game_task_run+0x2e>
+ 80008f0:	e000      	b.n	80008f4 <game_task_run+0x32>
+        while (1) {}
+ 80008f2:	e7fe      	b.n	80008f2 <game_task_run+0x30>
 }
- 80008f2:	3708      	adds	r7, #8
- 80008f4:	46bd      	mov	sp, r7
- 80008f6:	bd80      	pop	{r7, pc}
+ 80008f4:	3708      	adds	r7, #8
+ 80008f6:	46bd      	mov	sp, r7
+ 80008f8:	bd80      	pop	{r7, pc}
 
-080008f8 <game_task_state_0_init>:
+080008fa <game_task_state_0_init>:
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 
-
-// A function to initialize the task
 void game_task_state_0_init(GameTask *game_task)
 {
- 80008f8:	b580      	push	{r7, lr}
- 80008fa:	b082      	sub	sp, #8
- 80008fc:	af00      	add	r7, sp, #0
- 80008fe:	6078      	str	r0, [r7, #4]
-    //add init stuff, display
-	lcd_init();
- 8000900:	f000 fab6 	bl	8000e70 <lcd_init>
-	lcd_clear();
- 8000904:	f000 faeb 	bl	8000ede <lcd_clear>
-	game_task->state = 1;
- 8000908:	687b      	ldr	r3, [r7, #4]
- 800090a:	2201      	movs	r2, #1
- 800090c:	601a      	str	r2, [r3, #0]
-
-
+ 80008fa:	b580      	push	{r7, lr}
+ 80008fc:	b082      	sub	sp, #8
+ 80008fe:	af00      	add	r7, sp, #0
+ 8000900:	6078      	str	r0, [r7, #4]
+    lcd_init();
+ 8000902:	f000 fab5 	bl	8000e70 <lcd_init>
+    lcd_clear();
+ 8000906:	f000 faea 	bl	8000ede <lcd_clear>
+    game_task->state = 1;
+ 800090a:	687b      	ldr	r3, [r7, #4]
+ 800090c:	2201      	movs	r2, #1
+ 800090e:	601a      	str	r2, [r3, #0]
 }
- 800090e:	bf00      	nop
- 8000910:	3708      	adds	r7, #8
- 8000912:	46bd      	mov	sp, r7
- 8000914:	bd80      	pop	{r7, pc}
-	...
+ 8000910:	bf00      	nop
+ 8000912:	3708      	adds	r7, #8
+ 8000914:	46bd      	mov	sp, r7
+ 8000916:	bd80      	pop	{r7, pc}
 
 08000918 <game_task_state_1_home>:
-// A function to implement state 1 of the task
-// keeps for user start sequence to happen then starts the game
-// Prints message and sets sound flag when game starts
+ * to the next state and triggers the start sound.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 void game_task_state_1_home(GameTask *game_task)
 {
  8000918:	b580      	push	{r7, lr}
@@ -1070,13 +1068,13 @@ void game_task_state_1_home(GameTask *game_task)
  800091e:	6078      	str	r0, [r7, #4]
 	set_duty(game_task->mred,0);
  8000920:	687b      	ldr	r3, [r7, #4]
- 8000922:	6cdb      	ldr	r3, [r3, #76]	@ 0x4c
+ 8000922:	6c9b      	ldr	r3, [r3, #72]	@ 0x48
  8000924:	2100      	movs	r1, #0
  8000926:	4618      	mov	r0, r3
  8000928:	f001 fa58 	bl	8001ddc <set_duty>
 	set_duty(game_task->mblue,0);
  800092c:	687b      	ldr	r3, [r7, #4]
- 800092e:	6d1b      	ldr	r3, [r3, #80]	@ 0x50
+ 800092e:	6cdb      	ldr	r3, [r3, #76]	@ 0x4c
  8000930:	2100      	movs	r1, #0
  8000932:	4618      	mov	r0, r3
  8000934:	f001 fa52 	bl	8001ddc <set_duty>
@@ -1101,7 +1099,6 @@ void game_task_state_1_home(GameTask *game_task)
 	lcd_print("HOLD 'SHOOT' TO PLAY");
  800095c:	480a      	ldr	r0, [pc, #40]	@ (8000988 <game_task_state_1_home+0x70>)
  800095e:	f000 faeb 	bl	8000f38 <lcd_print>
-    //play_flg enabled from button task within shoot task?? or make button task
 	if (game_task->play_flag == 1){
  8000962:	687b      	ldr	r3, [r7, #4]
  8000964:	689b      	ldr	r3, [r3, #8]
@@ -1111,9 +1108,9 @@ void game_task_state_1_home(GameTask *game_task)
  800096a:	687b      	ldr	r3, [r7, #4]
  800096c:	2202      	movs	r2, #2
  800096e:	601a      	str	r2, [r3, #0]
-    	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it
+    	game_task->sound_task_ptr->start_snd = 1;
  8000970:	687b      	ldr	r3, [r7, #4]
- 8000972:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000972:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  8000974:	2201      	movs	r2, #1
  8000976:	611a      	str	r2, [r3, #16]
     }
@@ -1128,8 +1125,10 @@ void game_task_state_1_home(GameTask *game_task)
  8000988:	08007598 	.word	0x08007598
 
 0800098c <game_task_state_2_play>:
-// A function to implement state 2 which is for when the game is being played
-// This keeps track of score, prints score messages
+ * score, and transitions to end state when a score threshold is reached.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 void game_task_state_2_play(GameTask *game_task)
 {
  800098c:	b580      	push	{r7, lr}
@@ -1143,7 +1142,7 @@ void game_task_state_2_play(GameTask *game_task)
 	// score counting and delaying
 	if (game_task->red_photoresistor_task_ptr->hit_flag && game_task->red_delay_flag == 0){
  8000994:	687b      	ldr	r3, [r7, #4]
- 8000996:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000996:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
  8000998:	689b      	ldr	r3, [r3, #8]
  800099a:	2b00      	cmp	r3, #0
  800099c:	d026      	beq.n	80009ec <game_task_state_2_play+0x60>
@@ -1159,7 +1158,7 @@ void game_task_state_2_play(GameTask *game_task)
  80009ae:	611a      	str	r2, [r3, #16]
 		game_task->red_photoresistor_task_ptr->hit_flag = 0;
  80009b0:	687b      	ldr	r3, [r7, #4]
- 80009b2:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 80009b2:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
  80009b4:	2200      	movs	r2, #0
  80009b6:	609a      	str	r2, [r3, #8]
 		game_task->red_delay_flag = 1;
@@ -1173,12 +1172,12 @@ void game_task_state_2_play(GameTask *game_task)
  80009c4:	625a      	str	r2, [r3, #36]	@ 0x24
 		game_task->sound_task_ptr->hit_snd = 1;
  80009c6:	687b      	ldr	r3, [r7, #4]
- 80009c8:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80009c8:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  80009ca:	2201      	movs	r2, #1
  80009cc:	60da      	str	r2, [r3, #12]
 		game_task->sound_task_ptr->state = 1;
  80009ce:	687b      	ldr	r3, [r7, #4]
- 80009d0:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80009d0:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  80009d2:	2201      	movs	r2, #1
  80009d4:	601a      	str	r2, [r3, #0]
 		if(playing){
@@ -1192,14 +1191,14 @@ void game_task_state_2_play(GameTask *game_task)
  80009e2:	601a      	str	r2, [r3, #0]
 			game_task->sound_task_ptr->state = 6;
  80009e4:	687b      	ldr	r3, [r7, #4]
- 80009e6:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80009e6:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  80009e8:	2206      	movs	r2, #6
  80009ea:	601a      	str	r2, [r3, #0]
 		}
 	}
 	if (game_task->blue_photoresistor_task_ptr->hit_flag && game_task->blue_delay_flag == 0){
  80009ec:	687b      	ldr	r3, [r7, #4]
- 80009ee:	6c9b      	ldr	r3, [r3, #72]	@ 0x48
+ 80009ee:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
  80009f0:	689b      	ldr	r3, [r3, #8]
  80009f2:	2b00      	cmp	r3, #0
  80009f4:	d026      	beq.n	8000a44 <game_task_state_2_play+0xb8>
@@ -1215,7 +1214,7 @@ void game_task_state_2_play(GameTask *game_task)
  8000a06:	60da      	str	r2, [r3, #12]
 		game_task->blue_photoresistor_task_ptr->hit_flag = 0;
  8000a08:	687b      	ldr	r3, [r7, #4]
- 8000a0a:	6c9b      	ldr	r3, [r3, #72]	@ 0x48
+ 8000a0a:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
  8000a0c:	2200      	movs	r2, #0
  8000a0e:	609a      	str	r2, [r3, #8]
 		game_task->blue_delay_flag = 1;
@@ -1229,12 +1228,12 @@ void game_task_state_2_play(GameTask *game_task)
  8000a1c:	629a      	str	r2, [r3, #40]	@ 0x28
 		game_task->sound_task_ptr->hit_snd = 1;
  8000a1e:	687b      	ldr	r3, [r7, #4]
- 8000a20:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000a20:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  8000a22:	2201      	movs	r2, #1
  8000a24:	60da      	str	r2, [r3, #12]
 		game_task->sound_task_ptr->state = 1;
  8000a26:	687b      	ldr	r3, [r7, #4]
- 8000a28:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000a28:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  8000a2a:	2201      	movs	r2, #1
  8000a2c:	601a      	str	r2, [r3, #0]
 		if(playing){
@@ -1248,7 +1247,7 @@ void game_task_state_2_play(GameTask *game_task)
  8000a3a:	601a      	str	r2, [r3, #0]
 			game_task->sound_task_ptr->state = 6;
  8000a3c:	687b      	ldr	r3, [r7, #4]
- 8000a3e:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000a3e:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  8000a40:	2206      	movs	r2, #6
  8000a42:	601a      	str	r2, [r3, #0]
 		}
@@ -1276,7 +1275,7 @@ void game_task_state_2_play(GameTask *game_task)
  8000a62:	62da      	str	r2, [r3, #44]	@ 0x2c
 		game_task->red_photoresistor_task_ptr->hit_flag = 0;
  8000a64:	687b      	ldr	r3, [r7, #4]
- 8000a66:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000a66:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
  8000a68:	2200      	movs	r2, #0
  8000a6a:	609a      	str	r2, [r3, #8]
 	}
@@ -1301,7 +1300,7 @@ void game_task_state_2_play(GameTask *game_task)
  8000a8a:	631a      	str	r2, [r3, #48]	@ 0x30
 		game_task->blue_photoresistor_task_ptr->hit_flag = 0;
  8000a8c:	687b      	ldr	r3, [r7, #4]
- 8000a8e:	6c9b      	ldr	r3, [r3, #72]	@ 0x48
+ 8000a8e:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
  8000a90:	2200      	movs	r2, #0
  8000a92:	609a      	str	r2, [r3, #8]
 	}
@@ -1450,7 +1449,7 @@ void game_task_state_2_play(GameTask *game_task)
  8000b8e:	631a      	str	r2, [r3, #48]	@ 0x30
 		game_task->sound_task_ptr->win_snd = 1;
  8000b90:	687b      	ldr	r3, [r7, #4]
- 8000b92:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000b92:	6bdb      	ldr	r3, [r3, #60]	@ 0x3c
  8000b94:	2201      	movs	r2, #1
  8000b96:	615a      	str	r2, [r3, #20]
 
@@ -1460,8 +1459,8 @@ void game_task_state_2_play(GameTask *game_task)
  8000b9a:	3718      	adds	r7, #24
  8000b9c:	46bd      	mov	sp, r7
  8000b9e:	bd80      	pop	{r7, pc}
- 8000ba0:	200005bc 	.word	0x200005bc
- 8000ba4:	200005b4 	.word	0x200005b4
+ 8000ba0:	200005b8 	.word	0x200005b8
+ 8000ba4:	200005b0 	.word	0x200005b0
  8000ba8:	08007568 	.word	0x08007568
  8000bac:	080075b0 	.word	0x080075b0
  8000bb0:	080075c8 	.word	0x080075c8
@@ -1469,19 +1468,18 @@ void game_task_state_2_play(GameTask *game_task)
  8000bb8:	080075f8 	.word	0x080075f8
 
 08000bbc <game_task_state_3_end>:
-// A function to implement state 3
-// Ends the game when the score threshold has been met
-// Prints messages and sets sound flags
+ * first. After a delay, resets the game state and variables.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 void game_task_state_3_end(GameTask *game_task)
 {
  8000bbc:	b580      	push	{r7, lr}
  8000bbe:	b09e      	sub	sp, #120	@ 0x78
  8000bc0:	af00      	add	r7, sp, #0
  8000bc2:	6078      	str	r0, [r7, #4]
+	char r_wins[50];
 	char b_wins[50];
-
-
-	//              01234567890123456789
 
 	if (game_task->score_blue >= game_task->score_thresh)
  8000bc4:	687b      	ldr	r3, [r7, #4]
@@ -1491,7 +1489,6 @@ void game_task_state_3_end(GameTask *game_task)
  8000bcc:	429a      	cmp	r2, r3
  8000bce:	db50      	blt.n	8000c72 <game_task_state_3_end+0xb6>
 	{
-		//		// print win message and set end sound
 		if(game_task->blue_delay_flag == 0)
  8000bd0:	687b      	ldr	r3, [r7, #4]
  8000bd2:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
@@ -1597,7 +1594,6 @@ void game_task_state_3_end(GameTask *game_task)
  8000c7a:	429a      	cmp	r2, r3
  8000c7c:	db50      	blt.n	8000d20 <game_task_state_3_end+0x164>
 		{
-			//		// print win message and set end sound
 			if(game_task->red_delay_flag == 0)
  8000c7e:	687b      	ldr	r3, [r7, #4]
  8000c80:	6adb      	ldr	r3, [r3, #44]	@ 0x2c
@@ -1698,12 +1694,12 @@ void game_task_state_3_end(GameTask *game_task)
 		}
 	game_task->red_photoresistor_task_ptr->hit_flag = 0;
  8000d20:	687b      	ldr	r3, [r7, #4]
- 8000d22:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000d22:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
  8000d24:	2200      	movs	r2, #0
  8000d26:	609a      	str	r2, [r3, #8]
 	game_task->blue_photoresistor_task_ptr->hit_flag = 0;
  8000d28:	687b      	ldr	r3, [r7, #4]
- 8000d2a:	6c9b      	ldr	r3, [r3, #72]	@ 0x48
+ 8000d2a:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
  8000d2c:	2200      	movs	r2, #0
  8000d2e:	609a      	str	r2, [r3, #8]
 
@@ -1716,7 +1712,7 @@ void game_task_state_3_end(GameTask *game_task)
  8000d3c:	08007618 	.word	0x08007618
  8000d40:	08007630 	.word	0x08007630
  8000d44:	08007648 	.word	0x08007648
- 8000d48:	200005bc 	.word	0x200005bc
+ 8000d48:	200005b8 	.word	0x200005b8
  8000d4c:	08007660 	.word	0x08007660
 
 08000d50 <lcd_send_nibble>:
@@ -1787,7 +1783,7 @@ static void lcd_send_nibble(uint8_t nibble, uint8_t rs) {
  8000dc6:	46bd      	mov	sp, r7
  8000dc8:	bd80      	pop	{r7, pc}
  8000dca:	bf00      	nop
- 8000dcc:	20000390 	.word	0x20000390
+ 8000dcc:	2000038c 	.word	0x2000038c
 
 08000dd0 <lcd_send_byte>:
 
@@ -1885,7 +1881,7 @@ void lcd_force_backlight_on(void) {
  8000e66:	3708      	adds	r7, #8
  8000e68:	46bd      	mov	sp, r7
  8000e6a:	bd80      	pop	{r7, pc}
- 8000e6c:	20000390 	.word	0x20000390
+ 8000e6c:	2000038c 	.word	0x2000038c
 
 08000e70 <lcd_init>:
 
@@ -2312,31 +2308,31 @@ int main(void)
 	  adc_task_run(&adc_task);
  800112c:	e7a6      	b.n	800107c <main+0x118>
  800112e:	bf00      	nop
- 8001130:	2000042c 	.word	0x2000042c
- 8001134:	200003e4 	.word	0x200003e4
- 8001138:	200004bc 	.word	0x200004bc
- 800113c:	2000054c 	.word	0x2000054c
+ 8001130:	20000428 	.word	0x20000428
+ 8001134:	200003e0 	.word	0x200003e0
+ 8001138:	200004b8 	.word	0x200004b8
+ 800113c:	20000548 	.word	0x20000548
  8001140:	20000018 	.word	0x20000018
  8001144:	20000030 	.word	0x20000030
  8001148:	20000000 	.word	0x20000000
  800114c:	2000000c 	.word	0x2000000c
  8001150:	40020400 	.word	0x40020400
- 8001154:	20000244 	.word	0x20000244
+ 8001154:	20000240 	.word	0x20000240
  8001158:	08007678 	.word	0x08007678
  800115c:	08007690 	.word	0x08007690
  8001160:	200000cc 	.word	0x200000cc
  8001164:	20000048 	.word	0x20000048
- 8001168:	20000594 	.word	0x20000594
- 800116c:	20000595 	.word	0x20000595
- 8001170:	200005bc 	.word	0x200005bc
- 8001174:	20000598 	.word	0x20000598
- 8001178:	200005a0 	.word	0x200005a0
- 800117c:	2000059c 	.word	0x2000059c
- 8001180:	200005a4 	.word	0x200005a4
- 8001184:	20000134 	.word	0x20000134
- 8001188:	20000164 	.word	0x20000164
- 800118c:	20000194 	.word	0x20000194
- 8001190:	200001ec 	.word	0x200001ec
+ 8001168:	20000590 	.word	0x20000590
+ 800116c:	20000591 	.word	0x20000591
+ 8001170:	200005b8 	.word	0x200005b8
+ 8001174:	20000594 	.word	0x20000594
+ 8001178:	2000059c 	.word	0x2000059c
+ 800117c:	20000598 	.word	0x20000598
+ 8001180:	200005a0 	.word	0x200005a0
+ 8001184:	20000130 	.word	0x20000130
+ 8001188:	20000160 	.word	0x20000160
+ 800118c:	20000190 	.word	0x20000190
+ 8001190:	200001e8 	.word	0x200001e8
  8001194:	20000084 	.word	0x20000084
  8001198:	200000a8 	.word	0x200000a8
 
@@ -2653,7 +2649,7 @@ static void MX_ADC1_Init(void)
  8001352:	3710      	adds	r7, #16
  8001354:	46bd      	mov	sp, r7
  8001356:	bd80      	pop	{r7, pc}
- 8001358:	200002e8 	.word	0x200002e8
+ 8001358:	200002e4 	.word	0x200002e4
  800135c:	40012000 	.word	0x40012000
  8001360:	0f000001 	.word	0x0f000001
 
@@ -2724,7 +2720,7 @@ static void MX_I2C1_Init(void)
 }
  80013b0:	bf00      	nop
  80013b2:	bd80      	pop	{r7, pc}
- 80013b4:	20000390 	.word	0x20000390
+ 80013b4:	2000038c 	.word	0x2000038c
  80013b8:	40005400 	.word	0x40005400
  80013bc:	000186a0 	.word	0x000186a0
 
@@ -2943,7 +2939,7 @@ static void MX_TIM1_Init(void)
  8001502:	46bd      	mov	sp, r7
  8001504:	bd80      	pop	{r7, pc}
  8001506:	bf00      	nop
- 8001508:	200003e4 	.word	0x200003e4
+ 8001508:	200003e0 	.word	0x200003e0
  800150c:	40010000 	.word	0x40010000
 
 08001510 <MX_TIM2_Init>:
@@ -3102,7 +3098,7 @@ static void MX_TIM2_Init(void)
  80015f2:	46bd      	mov	sp, r7
  80015f4:	bd80      	pop	{r7, pc}
  80015f6:	bf00      	nop
- 80015f8:	2000042c 	.word	0x2000042c
+ 80015f8:	20000428 	.word	0x20000428
 
 080015fc <MX_TIM3_Init>:
   * @brief TIM3 Initialization Function
@@ -3224,7 +3220,7 @@ static void MX_TIM3_Init(void)
  8001696:	3730      	adds	r7, #48	@ 0x30
  8001698:	46bd      	mov	sp, r7
  800169a:	bd80      	pop	{r7, pc}
- 800169c:	20000474 	.word	0x20000474
+ 800169c:	20000470 	.word	0x20000470
  80016a0:	40000400 	.word	0x40000400
 
 080016a4 <MX_TIM4_Init>:
@@ -3363,7 +3359,7 @@ static void MX_TIM4_Init(void)
  800175e:	3728      	adds	r7, #40	@ 0x28
  8001760:	46bd      	mov	sp, r7
  8001762:	bd80      	pop	{r7, pc}
- 8001764:	200004bc 	.word	0x200004bc
+ 8001764:	200004b8 	.word	0x200004b8
  8001768:	40000800 	.word	0x40000800
 
 0800176c <MX_TIM5_Init>:
@@ -3486,7 +3482,7 @@ static void MX_TIM5_Init(void)
  8001806:	3730      	adds	r7, #48	@ 0x30
  8001808:	46bd      	mov	sp, r7
  800180a:	bd80      	pop	{r7, pc}
- 800180c:	20000504 	.word	0x20000504
+ 800180c:	20000500 	.word	0x20000500
  8001810:	40000c00 	.word	0x40000c00
 
 08001814 <MX_TIM9_Init>:
@@ -3574,7 +3570,7 @@ static void MX_TIM9_Init(void)
  800187a:	46bd      	mov	sp, r7
  800187c:	bd80      	pop	{r7, pc}
  800187e:	bf00      	nop
- 8001880:	2000054c 	.word	0x2000054c
+ 8001880:	20000548 	.word	0x20000548
  8001884:	40014000 	.word	0x40014000
 
 08001888 <MX_DMA_Init>:
@@ -3974,16 +3970,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
  8001aec:	bd80      	pop	{r7, pc}
  8001aee:	bf00      	nop
  8001af0:	40020400 	.word	0x40020400
- 8001af4:	20000594 	.word	0x20000594
- 8001af8:	200005bc 	.word	0x200005bc
- 8001afc:	20000598 	.word	0x20000598
- 8001b00:	20000134 	.word	0x20000134
+ 8001af4:	20000590 	.word	0x20000590
+ 8001af8:	200005b8 	.word	0x200005b8
+ 8001afc:	20000594 	.word	0x20000594
+ 8001b00:	20000130 	.word	0x20000130
  8001b04:	200000cc 	.word	0x200000cc
  8001b08:	20000048 	.word	0x20000048
- 8001b0c:	200005b4 	.word	0x200005b4
- 8001b10:	20000595 	.word	0x20000595
- 8001b14:	2000059c 	.word	0x2000059c
- 8001b18:	20000164 	.word	0x20000164
+ 8001b0c:	200005b0 	.word	0x200005b0
+ 8001b10:	20000591 	.word	0x20000591
+ 8001b14:	20000598 	.word	0x20000598
+ 8001b18:	20000160 	.word	0x20000160
 
 08001b1c <calibration>:
 
@@ -4352,8 +4348,8 @@ void calibration(void) {
  8001da6:	3730      	adds	r7, #48	@ 0x30
  8001da8:	46bd      	mov	sp, r7
  8001daa:	bd80      	pop	{r7, pc}
- 8001dac:	20000134 	.word	0x20000134
- 8001db0:	20000164 	.word	0x20000164
+ 8001dac:	20000130 	.word	0x20000130
+ 8001db0:	20000160 	.word	0x20000160
  8001db4:	20000084 	.word	0x20000084
  8001db8:	200000a8 	.word	0x200000a8
  8001dbc:	20000000 	.word	0x20000000
@@ -5175,12 +5171,12 @@ void shoot_task_state_3_shoot(ShootTask *shoot_task)
  80022cc:	40020400 	.word	0x40020400
 
 080022d0 <sound_task_run>:
-volatile uint32_t playing = 0;
-const int16_t *audio_buf_ptr;
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
 
-// A function to run the appropriate state of the task
 void sound_task_run(SoundTask *sound_task)
-{    // Check for a valid state
+{
  80022d0:	b580      	push	{r7, lr}
  80022d2:	b082      	sub	sp, #8
  80022d4:	af00      	add	r7, sp, #0
@@ -5197,8 +5193,6 @@ void sound_task_run(SoundTask *sound_task)
  80022e8:	429a      	cmp	r2, r3
  80022ea:	da08      	bge.n	80022fe <sound_task_run+0x2e>
     {
-        // Index the list of state functions and then call the appropriate
-        // method while passing in (this) task_1 object
     	sound_task->state_list[sound_task->state](sound_task);
  80022ec:	687b      	ldr	r3, [r7, #4]
  80022ee:	681a      	ldr	r2, [r3, #0]
@@ -5222,9 +5216,10 @@ void sound_task_run(SoundTask *sound_task)
  8002304:	bd80      	pop	{r7, pc}
 
 08002306 <sound_task_state_0_init>:
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
 
-
-// A function to initialize the task
 void sound_task_state_0_init(SoundTask *sound_task)
 {
  8002306:	b480      	push	{r7}
@@ -5244,6 +5239,9 @@ void sound_task_state_0_init(SoundTask *sound_task)
  800231e:	4770      	bx	lr
 
 08002320 <sound_task_state_1_wait>:
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
 
 void sound_task_state_1_wait(SoundTask *sound_task)
 {
@@ -5308,6 +5306,10 @@ void sound_task_state_1_wait(SoundTask *sound_task)
 	...
 
 08002374 <sound_task_state_2_laser>:
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
+
 void sound_task_state_2_laser(SoundTask *sound_task)
 {
  8002374:	b580      	push	{r7, lr}
@@ -5341,7 +5343,7 @@ void sound_task_state_2_laser(SoundTask *sound_task)
  80023a0:	4b2b      	ldr	r3, [pc, #172]	@ (8002450 <sound_task_state_2_laser+0xdc>)
  80023a2:	2200      	movs	r2, #0
  80023a4:	601a      	str	r2, [r3, #0]
-		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);  // reset PWM duty
+		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);
  80023a6:	687b      	ldr	r3, [r7, #4]
  80023a8:	699b      	ldr	r3, [r3, #24]
  80023aa:	2b00      	cmp	r3, #0
@@ -5383,7 +5385,7 @@ void sound_task_state_2_laser(SoundTask *sound_task)
  80023f0:	681b      	ldr	r3, [r3, #0]
  80023f2:	f06f 0201 	mvn.w	r2, #1
  80023f6:	611a      	str	r2, [r3, #16]
-		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);      // enable update IRQ
+		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);
  80023f8:	687b      	ldr	r3, [r7, #4]
  80023fa:	69db      	ldr	r3, [r3, #28]
  80023fc:	681b      	ldr	r3, [r3, #0]
@@ -5426,14 +5428,18 @@ void sound_task_state_2_laser(SoundTask *sound_task)
  8002436:	46bd      	mov	sp, r7
  8002438:	bd80      	pop	{r7, pc}
  800243a:	bf00      	nop
- 800243c:	200005b4 	.word	0x200005b4
- 8002440:	200005b8 	.word	0x200005b8
+ 800243c:	200005b0 	.word	0x200005b0
+ 8002440:	200005b4 	.word	0x200005b4
  8002444:	0802f5b0 	.word	0x0802f5b0
  8002448:	0804824c 	.word	0x0804824c
- 800244c:	200005b0 	.word	0x200005b0
- 8002450:	200005a8 	.word	0x200005a8
+ 800244c:	200005ac 	.word	0x200005ac
+ 8002450:	200005a4 	.word	0x200005a4
 
 08002454 <sound_task_state_3_hit>:
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
+
 void sound_task_state_3_hit(SoundTask *sound_task)
 {
  8002454:	b580      	push	{r7, lr}
@@ -5474,7 +5480,7 @@ void sound_task_state_3_hit(SoundTask *sound_task)
  8002488:	4b2a      	ldr	r3, [pc, #168]	@ (8002534 <sound_task_state_3_hit+0xe0>)
  800248a:	2200      	movs	r2, #0
  800248c:	601a      	str	r2, [r3, #0]
-		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);  // reset PWM duty
+		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);
  800248e:	687b      	ldr	r3, [r7, #4]
  8002490:	699b      	ldr	r3, [r3, #24]
  8002492:	2b00      	cmp	r3, #0
@@ -5516,7 +5522,7 @@ void sound_task_state_3_hit(SoundTask *sound_task)
  80024d8:	681b      	ldr	r3, [r3, #0]
  80024da:	f06f 0201 	mvn.w	r2, #1
  80024de:	611a      	str	r2, [r3, #16]
-		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);      // enable update IRQ
+		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);
  80024e0:	687b      	ldr	r3, [r7, #4]
  80024e2:	69db      	ldr	r3, [r3, #28]
  80024e4:	681b      	ldr	r3, [r3, #0]
@@ -5556,14 +5562,18 @@ void sound_task_state_3_hit(SoundTask *sound_task)
  800251a:	46bd      	mov	sp, r7
  800251c:	bd80      	pop	{r7, pc}
  800251e:	bf00      	nop
- 8002520:	200005b4 	.word	0x200005b4
- 8002524:	200005b8 	.word	0x200005b8
+ 8002520:	200005b0 	.word	0x200005b0
+ 8002524:	200005b4 	.word	0x200005b4
  8002528:	08017bac 	.word	0x08017bac
  800252c:	0802f5ac 	.word	0x0802f5ac
- 8002530:	200005b0 	.word	0x200005b0
- 8002534:	200005a8 	.word	0x200005a8
+ 8002530:	200005ac 	.word	0x200005ac
+ 8002534:	200005a4 	.word	0x200005a4
 
 08002538 <sound_task_state_4_win>:
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
+
 void sound_task_state_4_win(SoundTask *sound_task)
 {
  8002538:	b580      	push	{r7, lr}
@@ -5608,7 +5618,7 @@ void sound_task_state_4_win(SoundTask *sound_task)
  8002572:	4b2a      	ldr	r3, [pc, #168]	@ (800261c <sound_task_state_4_win+0xe4>)
  8002574:	2200      	movs	r2, #0
  8002576:	601a      	str	r2, [r3, #0]
-		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);  // reset PWM duty
+		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);
  8002578:	687b      	ldr	r3, [r7, #4]
  800257a:	699b      	ldr	r3, [r3, #24]
  800257c:	2b00      	cmp	r3, #0
@@ -5650,7 +5660,7 @@ void sound_task_state_4_win(SoundTask *sound_task)
  80025c2:	681b      	ldr	r3, [r3, #0]
  80025c4:	f06f 0201 	mvn.w	r2, #1
  80025c8:	611a      	str	r2, [r3, #16]
-		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);      // enable update IRQ
+		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);
  80025ca:	687b      	ldr	r3, [r7, #4]
  80025cc:	69db      	ldr	r3, [r3, #28]
  80025ce:	681b      	ldr	r3, [r3, #0]
@@ -5688,14 +5698,17 @@ void sound_task_state_4_win(SoundTask *sound_task)
  8002602:	3708      	adds	r7, #8
  8002604:	46bd      	mov	sp, r7
  8002606:	bd80      	pop	{r7, pc}
- 8002608:	200005b4 	.word	0x200005b4
- 800260c:	200005b8 	.word	0x200005b8
+ 8002608:	200005b0 	.word	0x200005b0
+ 800260c:	200005b4 	.word	0x200005b4
  8002610:	080076a8 	.word	0x080076a8
  8002614:	08017ba8 	.word	0x08017ba8
- 8002618:	200005b0 	.word	0x200005b0
- 800261c:	200005a8 	.word	0x200005a8
+ 8002618:	200005ac 	.word	0x200005ac
+ 800261c:	200005a4 	.word	0x200005a4
 
 08002620 <sound_task_state_5_start>:
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
 
 void sound_task_state_5_start(SoundTask *sound_task)
 {
@@ -5737,7 +5750,7 @@ void sound_task_state_5_start(SoundTask *sound_task)
  8002654:	4b2a      	ldr	r3, [pc, #168]	@ (8002700 <sound_task_state_5_start+0xe0>)
  8002656:	2200      	movs	r2, #0
  8002658:	601a      	str	r2, [r3, #0]
-		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);  // reset PWM duty
+		__HAL_TIM_SET_COMPARE(sound_task->htim, sound_task->chan, 0);
  800265a:	687b      	ldr	r3, [r7, #4]
  800265c:	699b      	ldr	r3, [r3, #24]
  800265e:	2b00      	cmp	r3, #0
@@ -5779,7 +5792,7 @@ void sound_task_state_5_start(SoundTask *sound_task)
  80026a4:	681b      	ldr	r3, [r3, #0]
  80026a6:	f06f 0201 	mvn.w	r2, #1
  80026aa:	611a      	str	r2, [r3, #16]
-		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);      // enable update IRQ
+		__HAL_TIM_ENABLE_IT(sound_task->htim, TIM_IT_UPDATE);
  80026ac:	687b      	ldr	r3, [r7, #4]
  80026ae:	69db      	ldr	r3, [r3, #28]
  80026b0:	681b      	ldr	r3, [r3, #0]
@@ -5819,20 +5832,25 @@ void sound_task_state_5_start(SoundTask *sound_task)
  80026e6:	46bd      	mov	sp, r7
  80026e8:	bd80      	pop	{r7, pc}
  80026ea:	bf00      	nop
- 80026ec:	200005b4 	.word	0x200005b4
- 80026f0:	200005b8 	.word	0x200005b8
+ 80026ec:	200005b0 	.word	0x200005b0
+ 80026f0:	200005b4 	.word	0x200005b4
  80026f4:	08048254 	.word	0x08048254
  80026f8:	08053f54 	.word	0x08053f54
- 80026fc:	200005b0 	.word	0x200005b0
- 8002700:	200005a8 	.word	0x200005a8
+ 80026fc:	200005ac 	.word	0x200005ac
+ 8002700:	200005a4 	.word	0x200005a4
 
 08002704 <sound_task_state_6_stop>:
+ * Stops interrupts and PWM for speaker then goes back to the waiting state.
+ *
+ * @param sound_task Pointer to the SoundTask instance.
+ */
+
 void sound_task_state_6_stop(SoundTask *sound_task){
  8002704:	b580      	push	{r7, lr}
  8002706:	b082      	sub	sp, #8
  8002708:	af00      	add	r7, sp, #0
  800270a:	6078      	str	r0, [r7, #4]
-	__HAL_TIM_DISABLE_IT(sound_task->htim, TIM_IT_UPDATE);     // turn off update IRQ
+	__HAL_TIM_DISABLE_IT(sound_task->htim, TIM_IT_UPDATE);
  800270c:	687b      	ldr	r3, [r7, #4]
  800270e:	69db      	ldr	r3, [r3, #28]
  8002710:	681b      	ldr	r3, [r3, #0]
@@ -6066,7 +6084,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
  800286c:	40012000 	.word	0x40012000
  8002870:	40023800 	.word	0x40023800
  8002874:	40020000 	.word	0x40020000
- 8002878:	20000330 	.word	0x20000330
+ 8002878:	2000032c 	.word	0x2000032c
  800287c:	40026410 	.word	0x40026410
 
 08002880 <HAL_I2C_MspInit>:
@@ -6809,9 +6827,9 @@ void SysTick_Handler(void)
 	...
 
 08002c80 <TIM1_BRK_TIM9_IRQHandler>:
-
-/**
   * @brief This function handles TIM1 break interrupt and TIM9 global interrupt.
+  *
+  * TIM9 is used to generate a 1 ms timer for non-blocking delays
   */
 void TIM1_BRK_TIM9_IRQHandler(void)
 {
@@ -6852,14 +6870,14 @@ void TIM1_BRK_TIM9_IRQHandler(void)
  8002cb2:	bf00      	nop
  8002cb4:	bd80      	pop	{r7, pc}
  8002cb6:	bf00      	nop
- 8002cb8:	2000054c 	.word	0x2000054c
- 8002cbc:	200005bc 	.word	0x200005bc
- 8002cc0:	200003e4 	.word	0x200003e4
+ 8002cb8:	20000548 	.word	0x20000548
+ 8002cbc:	200005b8 	.word	0x200005b8
+ 8002cc0:	200003e0 	.word	0x200003e0
 
 08002cc4 <TIM2_IRQHandler>:
-
-/**
-  * @brief This function handles TIM2 global interrupt.
+  * When the playing flag is set by the sound task, this interrupt feeds data from
+  * the current audio buff to the PWM duty cycle output. The PWM operates at a frequency twice
+  * that of our audio frequency which gives decent sound quality.
   */
 void TIM2_IRQHandler(void)
 {
@@ -6960,12 +6978,12 @@ void TIM2_IRQHandler(void)
  8002d5a:	46bd      	mov	sp, r7
  8002d5c:	bd80      	pop	{r7, pc}
  8002d5e:	bf00      	nop
- 8002d60:	2000042c 	.word	0x2000042c
- 8002d64:	200005b4 	.word	0x200005b4
- 8002d68:	200005ac 	.word	0x200005ac
- 8002d6c:	200005b8 	.word	0x200005b8
- 8002d70:	200005a8 	.word	0x200005a8
- 8002d74:	200005b0 	.word	0x200005b0
+ 8002d60:	20000428 	.word	0x20000428
+ 8002d64:	200005b0 	.word	0x200005b0
+ 8002d68:	200005a8 	.word	0x200005a8
+ 8002d6c:	200005b4 	.word	0x200005b4
+ 8002d70:	200005a4 	.word	0x200005a4
+ 8002d74:	200005ac 	.word	0x200005ac
  8002d78:	80008001 	.word	0x80008001
 
 08002d7c <EXTI15_10_IRQHandler>:
@@ -7014,7 +7032,7 @@ void DMA2_Stream0_IRQHandler(void)
  8002d9e:	bf00      	nop
  8002da0:	bd80      	pop	{r7, pc}
  8002da2:	bf00      	nop
- 8002da4:	20000330 	.word	0x20000330
+ 8002da4:	2000032c 	.word	0x2000032c
 
 08002da8 <_sbrk>:
  *
@@ -7094,7 +7112,7 @@ void *_sbrk(ptrdiff_t incr)
  8002e02:	bd80      	pop	{r7, pc}
  8002e04:	20020000 	.word	0x20020000
  8002e08:	00000400 	.word	0x00000400
- 8002e0c:	200005c0 	.word	0x200005c0
+ 8002e0c:	200005bc 	.word	0x200005bc
  8002e10:	20000710 	.word	0x20000710
 
 08002e14 <SystemInit>:
@@ -7211,13 +7229,13 @@ LoopFillZerobss:
   ldr r0, =_sdata
  8002e74:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 8002e78:	200002c4 	.word	0x200002c4
+ 8002e78:	200002c0 	.word	0x200002c0
   ldr r2, =_sidata
  8002e7c:	08053fbc 	.word	0x08053fbc
   ldr r2, =_sbss
- 8002e80:	200002c4 	.word	0x200002c4
+ 8002e80:	200002c0 	.word	0x200002c0
   ldr r4, =_ebss
- 8002e84:	20000710 	.word	0x20000710
+ 8002e84:	2000070c 	.word	0x2000070c
 
 08002e88 <ADC_IRQHandler>:
  * @retval None       
@@ -7351,9 +7369,9 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
  8002f1e:	3708      	adds	r7, #8
  8002f20:	46bd      	mov	sp, r7
  8002f22:	bd80      	pop	{r7, pc}
- 8002f24:	20000268 	.word	0x20000268
- 8002f28:	20000270 	.word	0x20000270
- 8002f2c:	2000026c 	.word	0x2000026c
+ 8002f24:	20000264 	.word	0x20000264
+ 8002f28:	2000026c 	.word	0x2000026c
+ 8002f2c:	20000268 	.word	0x20000268
 
 08002f30 <HAL_IncTick>:
  * @note This function is declared as __weak to be overwritten in case of other 
@@ -7379,8 +7397,8 @@ __weak void HAL_IncTick(void)
  8002f48:	f85d 7b04 	ldr.w	r7, [sp], #4
  8002f4c:	4770      	bx	lr
  8002f4e:	bf00      	nop
- 8002f50:	20000270 	.word	0x20000270
- 8002f54:	200005c4 	.word	0x200005c4
+ 8002f50:	2000026c 	.word	0x2000026c
+ 8002f54:	200005c0 	.word	0x200005c0
 
 08002f58 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -7400,7 +7418,7 @@ __weak uint32_t HAL_GetTick(void)
  8002f64:	f85d 7b04 	ldr.w	r7, [sp], #4
  8002f68:	4770      	bx	lr
  8002f6a:	bf00      	nop
- 8002f6c:	200005c4 	.word	0x200005c4
+ 8002f6c:	200005c0 	.word	0x200005c0
 
 08002f70 <HAL_Delay>:
   *       implementations in user file.
@@ -7453,7 +7471,7 @@ __weak void HAL_Delay(uint32_t Delay)
  8002fae:	46bd      	mov	sp, r7
  8002fb0:	bd80      	pop	{r7, pc}
  8002fb2:	bf00      	nop
- 8002fb4:	20000270 	.word	0x20000270
+ 8002fb4:	2000026c 	.word	0x2000026c
 
 08002fb8 <HAL_ADC_Init>:
   * @param  hadc pointer to a ADC_HandleTypeDef structure that contains
@@ -7917,7 +7935,7 @@ HAL_StatusTypeDef HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, ui
  8003206:	3720      	adds	r7, #32
  8003208:	46bd      	mov	sp, r7
  800320a:	bd80      	pop	{r7, pc}
- 800320c:	20000268 	.word	0x20000268
+ 800320c:	20000264 	.word	0x20000264
  8003210:	431bde83 	.word	0x431bde83
  8003214:	40012300 	.word	0x40012300
  8003218:	080036c1 	.word	0x080036c1
@@ -8385,7 +8403,7 @@ HAL_StatusTypeDef HAL_ADC_ConfigChannel(ADC_HandleTypeDef *hadc, ADC_ChannelConf
  80034b4:	40012300 	.word	0x40012300
  80034b8:	40012000 	.word	0x40012000
  80034bc:	10000012 	.word	0x10000012
- 80034c0:	20000268 	.word	0x20000268
+ 80034c0:	20000264 	.word	0x20000264
  80034c4:	431bde83 	.word	0x431bde83
 
 080034c8 <ADC_Init>:
@@ -10143,7 +10161,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
  8003e36:	4798      	blx	r3
  8003e38:	e02c      	b.n	8003e94 <HAL_DMA_IRQHandler+0x2a0>
  8003e3a:	bf00      	nop
- 8003e3c:	20000268 	.word	0x20000268
+ 8003e3c:	20000264 	.word	0x20000264
  8003e40:	1b4e81b5 	.word	0x1b4e81b5
           }
         }
@@ -13986,8 +14004,8 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(const RCC_ClkInitTypeDef  *RCC_ClkInitStru
  8005448:	40023c00 	.word	0x40023c00
  800544c:	40023800 	.word	0x40023800
  8005450:	08053f58 	.word	0x08053f58
- 8005454:	20000268 	.word	0x20000268
- 8005458:	2000026c 	.word	0x2000026c
+ 8005454:	20000264 	.word	0x20000264
+ 8005458:	20000268 	.word	0x20000268
 
 0800545c <HAL_RCC_GetSysClockFreq>:
   *
@@ -14216,7 +14234,7 @@ uint32_t HAL_RCC_GetHCLKFreq(void)
  80055f4:	f85d 7b04 	ldr.w	r7, [sp], #4
  80055f8:	4770      	bx	lr
  80055fa:	bf00      	nop
- 80055fc:	20000268 	.word	0x20000268
+ 80055fc:	20000264 	.word	0x20000264
 
 08005600 <HAL_RCC_GetPCLK1Freq>:
   * @note   Each time PCLK1 changes, this function must be called to update the
@@ -18236,7 +18254,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  8006c46:	b003      	add	sp, #12
  8006c48:	4770      	bx	lr
  8006c4a:	bf00      	nop
- 8006c4c:	20000274 	.word	0x20000274
+ 8006c4c:	20000270 	.word	0x20000270
  8006c50:	ffff0208 	.word	0xffff0208
 
 08006c54 <memset>:
@@ -18253,7 +18271,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  8006c66:	6818      	ldr	r0, [r3, #0]
  8006c68:	4770      	bx	lr
  8006c6a:	bf00      	nop
- 8006c6c:	20000274 	.word	0x20000274
+ 8006c6c:	20000270 	.word	0x20000270
 
 08006c70 <__libc_init_array>:
  8006c70:	b570      	push	{r4, r5, r6, lr}
@@ -18601,7 +18619,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  8006fa6:	d1f2      	bne.n	8006f8e <sbrk_aligned+0x22>
  8006fa8:	e7ef      	b.n	8006f8a <sbrk_aligned+0x1e>
  8006faa:	bf00      	nop
- 8006fac:	20000704 	.word	0x20000704
+ 8006fac:	20000700 	.word	0x20000700
 
 08006fb0 <_malloc_r>:
  8006fb0:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -18711,7 +18729,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  80070a6:	6005      	str	r5, [r0, #0]
  80070a8:	e7d6      	b.n	8007058 <_malloc_r+0xa8>
  80070aa:	bf00      	nop
- 80070ac:	20000708 	.word	0x20000708
+ 80070ac:	20000704 	.word	0x20000704
 
 080070b0 <_printf_common>:
  80070b0:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -19047,13 +19065,13 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  80073c8:	4801      	ldr	r0, [pc, #4]	@ (80073d0 <__malloc_lock+0x8>)
  80073ca:	f7ff bc75 	b.w	8006cb8 <__retarget_lock_acquire_recursive>
  80073ce:	bf00      	nop
- 80073d0:	20000700 	.word	0x20000700
+ 80073d0:	200006fc 	.word	0x200006fc
 
 080073d4 <__malloc_unlock>:
  80073d4:	4801      	ldr	r0, [pc, #4]	@ (80073dc <__malloc_unlock+0x8>)
  80073d6:	f7ff bc70 	b.w	8006cba <__retarget_lock_release_recursive>
  80073da:	bf00      	nop
- 80073dc:	20000700 	.word	0x20000700
+ 80073dc:	200006fc 	.word	0x200006fc
 
 080073e0 <_realloc_r>:
  80073e0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -19130,7 +19148,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  8007486:	b103      	cbz	r3, 800748a <_sbrk_r+0x1a>
  8007488:	6023      	str	r3, [r4, #0]
  800748a:	bd38      	pop	{r3, r4, r5, pc}
- 800748c:	2000070c 	.word	0x2000070c
+ 800748c:	20000708 	.word	0x20000708
 
 08007490 <memcpy>:
  8007490:	440a      	add	r2, r1
@@ -19214,7 +19232,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  8007536:	e7ca      	b.n	80074ce <_free_r+0x22>
  8007538:	bd38      	pop	{r3, r4, r5, pc}
  800753a:	bf00      	nop
- 800753c:	20000708 	.word	0x20000708
+ 800753c:	20000704 	.word	0x20000704
 
 08007540 <_malloc_usable_size_r>:
  8007540:	f851 3c04 	ldr.w	r3, [r1, #-4]

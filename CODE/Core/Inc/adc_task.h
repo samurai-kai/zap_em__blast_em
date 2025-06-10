@@ -47,10 +47,10 @@ struct ADCTask
 {
     int32_t              state;            /**< Current state index */
     int32_t              num_states;       /**< Total number of states */
-    ControllerTask       *red_contr_ptr;   /**< Pointer to red controller task */
-    ControllerTask       *blue_contr_ptr;  /**< Pointer to blue controller task */
-    PhotoresistorTask    *red_photor_ptr;  /**< Pointer to red photo resistor task */
-    PhotoresistorTask    *blue_photor_ptr; /**< Pointer to blue photo resistor task */
+    ControllerTask       *red_contr_ptr;   /**< Pointer to red controller task object*/
+    ControllerTask       *blue_contr_ptr;  /**< Pointer to blue controller task object*/
+    PhotoresistorTask    *red_photor_ptr;  /**< Pointer to red photo resistor task object*/
+    PhotoresistorTask    *blue_photor_ptr; /**< Pointer to blue photo resistor task object*/
     ADC_HandleTypeDef    *hadc;            /**< Pointer to the ADC channel handle */
     adc_fcn_t            state_list[];     /**< Array of function pointers for states */
 };

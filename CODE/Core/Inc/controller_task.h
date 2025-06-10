@@ -39,8 +39,8 @@ struct ControllerTask
     int32_t             dir;              /**< Direction of movement */
     int32_t             state;            /**< Current state index */
     int32_t             num_states;       /**< Total number of states */
-    uint32_t            chan1;            /**< PWM channel 1 */
-    uint32_t            chan2;            /**< PWM channel 2 */
+    uint32_t            chan1;            /**< Motor channel 1 */
+    uint32_t            chan2;            /**< Motor channel 2 */
     int32_t             pot_zero;         /**< Zero offset from ADC pot */
     int32_t             des_pos;          /**< Desired position in ticks */
     uint32_t            prev_time;        /**< Previous time reading */
@@ -48,7 +48,7 @@ struct ControllerTask
     uint32_t            prev_ticks;       /**< Last encoder tick value */
     float               k_p;              /**< Proportional gain */
     float               k_i;              /**< Integral gain */
-    uint32_t            adc_val;          /**< Current ADC value */
+    uint32_t            adc_val;          /**< Current potentiometer ADC value */
     int32_t             integral_error;   /**< Integrated error term */
     TIM_HandleTypeDef   *htim_encoder;    /**< Timer for encoder ticks */
     TIM_HandleTypeDef   *htim_dt;         /**< Timer for delta time calc */

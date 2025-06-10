@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-../Core/Src/game_task.c:27:6:game_task_run	16	static
-../Core/Src/game_task.c:47:6:game_task_state_0_init	16	static
-../Core/Src/game_task.c:62:6:game_task_state_1_home	16	static
-../Core/Src/game_task.c:87:6:game_task_state_2_play	32	static
-../Core/Src/game_task.c:161:6:game_task_state_3_end	24	static
-=======
-../Core/Src/game_task.c:17:6:game_task_run	16	static
-../Core/Src/game_task.c:42:6:game_task_state_0_init	16	static
-../Core/Src/game_task.c:54:6:game_task_state_1_home	16	static
-../Core/Src/game_task.c:71:6:game_task_state_2_play	32	static
-../Core/Src/game_task.c:173:6:game_task_state_3_end	16	static
->>>>>>> parent of 1454172 (Merge branch 'main' of https://github.com/andrewpatcarr/zap_em__blast_em)
+../Core/Src/game_task.c:29:6:game_task_run	16	static
+../Core/Src/game_task.c:50:6:game_task_state_0_init	16	static
+../Core/Src/game_task.c:64:6:game_task_state_1_home	16	static
+../Core/Src/game_task.c:88:6:game_task_state_2_play	32	static
+../Core/Src/game_task.c:179:6:game_task_state_3_end	128	static

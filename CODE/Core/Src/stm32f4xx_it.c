@@ -209,6 +209,8 @@ void SysTick_Handler(void)
 
 /**
   * @brief This function handles TIM1 break interrupt and TIM9 global interrupt.
+  *
+  * TIM9 is used to generate a 1 ms timer for non-blocking delays
   */
 void TIM1_BRK_TIM9_IRQHandler(void)
 {
@@ -227,7 +229,11 @@ void TIM1_BRK_TIM9_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles TIM2 global interrupt.
+  * @brief This function handles TIM2 global interrupt for intersective PWM generation for audio.
+  *
+  * When the playing flag is set by the sound task, this interrupt feeds data from
+  * the current audio buff to the PWM duty cycle output. The PWM operates at a frequency twice
+  * that of our audio frequency which gives decent sound quality.
   */
 void TIM2_IRQHandler(void)
 {

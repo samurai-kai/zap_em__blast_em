@@ -151,7 +151,6 @@ GameTask game_task = {.state = 0, //delay timer in .1 ms
 					  .blue_delay_flag = 0,
 					  .delay = 2000, 	// 2 second delay
 					  .end_delay = 5000,	// 3 second delay
-					  .htim = &htim9,
 					  .sound_task_ptr = &sound_task,
 					  .red_photoresistor_task_ptr = &red_photoresistor_task,
 					  .blue_photoresistor_task_ptr = &blue_photoresistor_task,
