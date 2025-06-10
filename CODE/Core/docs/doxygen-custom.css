@@ -1,4 +1,4 @@
-img[src$="ZapBlastLogo.png"] {
+img[src="transparent_logo.png"] {
   max-width: 100px !important;
   height: auto !important;
 }

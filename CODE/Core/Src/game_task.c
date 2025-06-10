@@ -1,8 +1,11 @@
-/*
+/**
+ * @file game_task.c
+ * @brief State machine for Zap'em Blast'em Robots game control logic.
+ * @author Andrew Carr and Kai De La Cruz
  * game_task.c
  *
  *  Created on: May 22, 2025
- *      Author: andrewcarr and Kai De La Cruz
+ *
  */
 #include "motor_driver.h"
 #include "game_task.h"
@@ -14,44 +17,50 @@
 
 #include <stdio.h>
 
-// A function to run the appropriate state of the task
+/**
+ * @brief Runs the current state of the GameTask.
+ *
+ * Checks whether the current state index is valid. If so, it calls the
+ * corresponding state function from the task's function pointer array.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
+
 void game_task_run(GameTask *game_task)
-{    // Check for a valid state
-    if (game_task->state >= 0 && game_task->state < game_task->num_states)
+{
+    if (game_task->state >= 0 &&
+        game_task->state < game_task->num_states)
     {
-        // Index the list of state functions and then call the appropriate
-        // method while passing in (this) task_1 object
-
-    	// game_task is a pointer right now
-    	// -> dereferences pointer and accesses class member in one step
-    	// the same as (*ptr).member
-
         game_task->state_list[game_task->state](game_task);
-
     }
-    // Big problems if the state is invalid
     else
     {
-
-        while(1){}
+        while (1) {}
     }
-
 }
 
+/**
+ * @brief Initializes the game task (state 0).
+ *
+ * Clears and sets up the LCD, then advances to state 1.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 
-// A function to initialize the task
 void game_task_state_0_init(GameTask *game_task)
 {
-    //add init stuff, display
-	lcd_init();
-	lcd_clear();
-	game_task->state = 1;
-
-
+    lcd_init();
+    lcd_clear();
+    game_task->state = 1;
 }
-// A function to implement state 1 of the task
-// keeps for user start sequence to happen then starts the game
-// Prints message and sets sound flag when game starts
+/**
+ * @brief Waits for player to initiate the game (state 1).
+ *
+ * Displays title and instructions. When play_flag is set, transitions
+ * to the next state and triggers the start sound.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 void game_task_state_1_home(GameTask *game_task)
 {
 	set_duty(game_task->mred,0);
@@ -62,15 +71,20 @@ void game_task_state_1_home(GameTask *game_task)
 	lcd_print("       Robots       ");
 	lcd_set_cursor(3, 0);
 	lcd_print("HOLD 'SHOOT' TO PLAY");
-    //play_flg enabled from button task within shoot task?? or make button task
 	if (game_task->play_flag == 1){
     	game_task->state = 2;
-    	game_task->sound_task_ptr->start_snd = 1; // sets start sound flag for sound task to play it
+    	game_task->sound_task_ptr->start_snd = 1;
     }
 
 }
-// A function to implement state 2 which is for when the game is being played
-// This keeps track of score, prints score messages
+/**
+ * @brief Handles gameplay logic and scoring (state 2).
+ *
+ * Increments scores based on photoresistor hit flags, updates LCD with
+ * score, and transitions to end state when a score threshold is reached.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 void game_task_state_2_play(GameTask *game_task)
 {
 	char r_score[5];
@@ -154,20 +168,21 @@ void game_task_state_2_play(GameTask *game_task)
 
 	}
 }
-// A function to implement state 3
-// Ends the game when the score threshold has been met
-// Prints messages and sets sound flags
+/**
+ * @brief Displays game over screen and resets (state 3).
+ *
+ * Shows a winning message based on who reached the score threshold
+ * first. After a delay, resets the game state and variables.
+ *
+ * @param game_task Pointer to the GameTask instance.
+ */
 void game_task_state_3_end(GameTask *game_task)
 {
 	char r_wins[50];
 	char b_wins[50];
 
-
-	//              01234567890123456789
-
 	if (game_task->score_blue >= game_task->score_thresh)
 	{
-		//		// print win message and set end sound
 		if(game_task->blue_delay_flag == 0)
 		{
 
@@ -198,7 +213,6 @@ void game_task_state_3_end(GameTask *game_task)
 	}
 	if (game_task->score_red >= game_task->score_thresh)
 		{
-			//		// print win message and set end sound
 			if(game_task->red_delay_flag == 0)
 			{
 				sprintf(r_wins,"       %ld to %ld       ",game_task->score_red, game_task->score_blue);

@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['shoottask_0',['ShootTask',['../struct_shoot_task.html',1,'']]],
   ['software_20design_1',['Software Design',['../index.html#softwaredesign_sec',1,'']]],
   ['soundtask_2',['SoundTask',['../struct_sound_task.html',1,'']]],
@@ -26,4 +27,12 @@ var searchData=
   ['systemcoreclockupdate_23',['SystemCoreClockUpdate',['../group___s_t_m32_f4xx___system___private___functions.html#gae0c36a9591fe6e9c45ecb21a794f0f0f',1,'system_stm32f4xx.c']]],
   ['systeminit_24',['SystemInit',['../group___s_t_m32_f4xx___system___private___functions.html#ga93f514700ccf00d08dbdcff7f1224eb2',1,'system_stm32f4xx.c']]],
   ['systick_5fhandler_25',['SysTick_Handler',['../stm32f4xx__it_8h.html#ab5e09814056d617c521549e542639b7e',1,'SysTick_Handler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8c.html#ab5e09814056d617c521549e542639b7e',1,'SysTick_Handler(void):&#160;stm32f4xx_it.c']]]
+=======
+  ['range_0',['range',['../structencoder__t.html#aa261b8160c2d80b9961b0c8b220ce568',1,'encoder_t']]],
+  ['read_5fencoder_1',['read_encoder',['../encoder__driver_8c.html#a804624cc3cce1ef0ecbfc16baffbee00',1,'read_encoder(encoder_t *p_enc):&#160;encoder_driver.c'],['../encoder__driver_8h.html#a804624cc3cce1ef0ecbfc16baffbee00',1,'read_encoder(encoder_t *p_enc):&#160;encoder_driver.c']]],
+  ['red_5fcontr_5fptr_2',['red_contr_ptr',['../struct_a_d_c_task.html#a3ab8a7a6d2d172ea82943bcaa7f73a95',1,'ADCTask']]],
+  ['red_5fphotor_5fptr_3',['red_photor_ptr',['../struct_a_d_c_task.html#ac0522422b7be935ddf767b4d492640e1',1,'ADCTask']]],
+  ['red_5fphotoresistor_5ftask_5fptr_4',['red_photoresistor_task_ptr',['../struct_game_task.html#a3105caccf06a94bd8f7245f97f966a9b',1,'GameTask']]],
+  ['robots_5',['Zap&apos;Em Blast&apos;Em Robots',['../index.html',1,'']]]
+>>>>>>> origin/kai-doxy
 ];

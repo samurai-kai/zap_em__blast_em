@@ -25,17 +25,19 @@
 var NAVTREE =
 [
   [ "Zap'Em Blast'Em Robots", "index.html", [
-    [ "Creators", "index.html#creators_sec", null ],
-    [ "Introduction", "index.html#intro_sec", null ],
-    [ "Game Premise", "index.html#gameplay_sec", null ],
-    [ "Features", "index.html#features_sec", null ],
-    [ "File Overview", "index.html#files_sec", null ],
-    [ "Technology Stack", "index.html#tech_sec", null ],
-    [ "How to Use", "index.html#usage_sec", null ],
-    [ "Mechanical Design", "index.html#mechanicaldesign_sec", null ],
-    [ "Electrical Design", "index.html#electricaldesign_sec", null ],
-    [ "Software Design", "index.html#softwaredesign_sec", null ],
-    [ "Future Ideas", "index.html#future_sec", null ],
+    [ "Creators", "index.html#Creators", null ],
+    [ "Introduction", "index.html#Introduction", null ],
+    [ "Table of Contents", "index.html#toc_section", null ],
+    [ "Game Premise &amp; Features", "gameplay_page.html", [
+      [ "Premise", "gameplay_page.html#Game", null ],
+      [ "Features", "gameplay_page.html#Features", null ]
+    ] ],
+    [ "Mechanical Design", "mechanical_page.html", [
+      [ "Manufacturing", "mechanical_page.html#Manufacturing", null ]
+    ] ],
+    [ "Electrical Design", "electrical_page.html", null ],
+    [ "Software Design", "software_page.html", null ],
+    [ "Future Implementation", "future_page.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],

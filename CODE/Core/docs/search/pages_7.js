@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ideas_0',['Future Ideas',['../index.html#future_sec',1,'']]],
-  ['introduction_1',['Introduction',['../index.html#intro_sec',1,'']]]
+  ['mechanical_20design_0',['Mechanical Design',['../mechanical_page.html',1,'']]]
 ];

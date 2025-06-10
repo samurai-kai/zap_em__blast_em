@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['main_0',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
   ['main_2ec_1',['main.c',['../main_8c.html',1,'']]],
   ['main_2eh_2',['main.h',['../main_8h.html',1,'']]],
@@ -7,4 +8,18 @@ var searchData=
   ['memmanage_5fhandler_4',['MemManage_Handler',['../stm32f4xx__it_8h.html#a3150f74512510287a942624aa9b44cc5',1,'MemManage_Handler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8c.html#a3150f74512510287a942624aa9b44cc5',1,'MemManage_Handler(void):&#160;stm32f4xx_it.c']]],
   ['motor_5',['motor',['../struct_controller_task.html#ac602ff443a11be7be2fda818f4912ad8',1,'ControllerTask']]],
   ['motor_5ft_6',['motor_t',['../structmotor__t.html',1,'']]]
+=======
+  ['laser_5fgpio_0',['laser_gpio',['../struct_shoot_task.html#a0f28c4d0104b4c344e8353a034e3fd34',1,'ShootTask']]],
+  ['last_5fticks_1',['last_ticks',['../structencoder__t.html#ab96d427b52b637e0844efa4f249d2028',1,'encoder_t']]],
+  ['lcd_2ec_2',['lcd.c',['../lcd_8c.html',1,'']]],
+  ['lcd_2eh_3',['lcd.h',['../lcd_8h.html',1,'']]],
+  ['lcd_5fclear_4',['lcd_clear',['../lcd_8c.html#ad235a86241458b1e7b8771688bfdaf9a',1,'lcd_clear(void):&#160;lcd.c'],['../lcd_8h.html#ad235a86241458b1e7b8771688bfdaf9a',1,'lcd_clear(void):&#160;lcd.c']]],
+  ['lcd_5fforce_5fbacklight_5fon_5',['lcd_force_backlight_on',['../lcd_8c.html#ac0b4f7557794d77979378390db4a02e9',1,'lcd_force_backlight_on(void):&#160;lcd.c'],['../lcd_8h.html#ac0b4f7557794d77979378390db4a02e9',1,'lcd_force_backlight_on(void):&#160;lcd.c']]],
+  ['lcd_5fi2c_5faddr_6',['LCD_I2C_ADDR',['../lcd_8h.html#af679cf68e64fdb5d310a0d9944142c76',1,'lcd.h']]],
+  ['lcd_5finit_7',['lcd_init',['../lcd_8c.html#a6842775ba83d166f02b8fef8bb63b1e6',1,'lcd_init(void):&#160;lcd.c'],['../lcd_8h.html#a6842775ba83d166f02b8fef8bb63b1e6',1,'lcd_init(void):&#160;lcd.c']]],
+  ['lcd_5fprint_8',['lcd_print',['../lcd_8c.html#a8531c55ba576c0b39c0d72bd6617c91f',1,'lcd_print(char *str):&#160;lcd.c'],['../lcd_8h.html#a8531c55ba576c0b39c0d72bd6617c91f',1,'lcd_print(char *str):&#160;lcd.c']]],
+  ['lcd_5fsend_5fcommand_9',['lcd_send_command',['../lcd_8c.html#a64386ad6108c11b9b87062542ec23c6b',1,'lcd_send_command(uint8_t cmd):&#160;lcd.c'],['../lcd_8h.html#a64386ad6108c11b9b87062542ec23c6b',1,'lcd_send_command(uint8_t cmd):&#160;lcd.c']]],
+  ['lcd_5fsend_5fdata_10',['lcd_send_data',['../lcd_8c.html#ad137f84654d6d30d773a74fc8ae3f307',1,'lcd_send_data(uint8_t data):&#160;lcd.c'],['../lcd_8h.html#ad137f84654d6d30d773a74fc8ae3f307',1,'lcd_send_data(uint8_t data):&#160;lcd.c']]],
+  ['lcd_5fset_5fcursor_11',['lcd_set_cursor',['../lcd_8c.html#a68e592603e66b23b0360f910f3356877',1,'lcd_set_cursor(uint8_t row, uint8_t col):&#160;lcd.c'],['../lcd_8h.html#a68e592603e66b23b0360f910f3356877',1,'lcd_set_cursor(uint8_t row, uint8_t col):&#160;lcd.c']]]
+>>>>>>> origin/kai-doxy
 ];

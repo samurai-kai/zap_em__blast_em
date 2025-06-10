@@ -26,11 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="ZapBlastLogo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="transparent_logo.png"/></td>
   <td id="projectalign">
    <div id="projectname">Zap&#39;Em Blast&#39;Em Robots
    </div>
-   <div id="projectbrief">laser tag robots</div>
+   <div id="projectbrief">robots that play laser tag!</div>
   </td>
  </tr>
  </tbody>
@@ -94,66 +94,25 @@ $(function(){initNavTree('index.html','',''); });
   <div class="headertitle"><div class="title">Zap'Em Blast'Em Robots </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1 class="doxsection"><a class="anchor" id="creators_sec"></a>
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="Creators"></a>
 Creators</h1>
 <ul>
 <li>Kai De La Cruz</li>
 <li>Andrew Carr</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="intro_sec"></a>
+<h2 style="text-align: left;"><a href="https://www.youtube.com/watch?v=0DWYSWJp09E" target="_blank">▶️ Watch the gameplay on YouTube </a> </h2>
+<h1 class="doxsection"><a class="anchor" id="Introduction"></a>
 Introduction</h1>
-<p>Zap'Em Blast'Em Robots is an embedded game system for the STM32 platform. Inspired by Rock'em Sock'em Robots, this game replaces fists with IR lasers. Robots battle in real time using sensors, controllers, and a state machine.</p>
-<h1 class="doxsection"><a class="anchor" id="gameplay_sec"></a>
-Game Premise</h1>
-<p>Two robots face off in a laser-tag match. Instead of punching, they "zap" each other using IR beams. Each robot has light sensors to detect hits. The first to land enough successful shots wins the match.</p>
-<h1 class="doxsection"><a class="anchor" id="features_sec"></a>
-Features</h1>
+<p>Zap'Em Blast'Em Robots is an interactive game inspired by Rock'Em Sock'Em Robots, developed as part of the Mechanical Control System Design course at Cal Poly, San Luis Obispo. Designed by graduate students in the Mechanical Engineering program, the project showcases a fully integrated system combining mechanical, electrical, and software components.</p>
+<p>Over the course of a 10-week quarter, our team engineered custom actuators, fine-tuned sensors, and iterated on game mechanics through structured testing and evaluation. The result is a dynamic, laser-tag-inspired robot duel platform with responsive control and real-time scoring.</p>
+<h1 class="doxsection"><a class="anchor" id="toc_section"></a>
+Table of Contents</h1>
 <ul>
-<li>Real-time analog sensor reads using DMA</li>
-<li>Modular task system for clear code organization</li>
-<li>State-based control for responsive gameplay</li>
-<li>Easily extendable for AI or multiplayer support</li>
-<li>Doxygen-based documentation for maintainability</li>
-</ul>
-<h1 class="doxsection"><a class="anchor" id="files_sec"></a>
-File Overview</h1>
-<ul>
-<li>adc_task.c/h: Handles ADC and DMA data acquisition</li>
-<li>controller_task.c/h: Manages game logic and reactions</li>
-<li>photoresistor_task.c/h: Reads IR sensor input</li>
-<li>main.c: Initializes system and launches tasks</li>
-</ul>
-<h1 class="doxsection"><a class="anchor" id="tech_sec"></a>
-Technology Stack</h1>
-<ul>
-<li>STM32F4 series microcontroller</li>
-<li>STM32CubeIDE (Eclipse-based)</li>
-<li>HAL drivers with DMA for ADC</li>
-<li>Doxygen for auto-generated docs</li>
-</ul>
-<h1 class="doxsection"><a class="anchor" id="usage_sec"></a>
-How to Use</h1>
-<ol type="1">
-<li>Build the project in STM32CubeIDE and flash it to the robot's board.</li>
-<li>Power the robots and align sensors and IR emitters.</li>
-<li>Start the game by triggering the user input or main controller.</li>
-<li>Watch the robots duel in laser-tag combat!</li>
-</ol>
-<h1 class="doxsection"><a class="anchor" id="mechanicaldesign_sec"></a>
-Mechanical Design</h1>
-<p>built it</p>
-<h1 class="doxsection"><a class="anchor" id="electricaldesign_sec"></a>
-Electrical Design</h1>
-<p>built it</p>
-<h1 class="doxsection"><a class="anchor" id="softwaredesign_sec"></a>
-Software Design</h1>
-<p>built it</p>
-<h1 class="doxsection"><a class="anchor" id="future_sec"></a>
-Future Ideas</h1>
-<ul>
-<li>Wireless scoring and multiplayer support</li>
-<li>AI-controlled bots</li>
-<li>UART serial output for real-time HUD or scoreboard </li>
+<li><a class="el" href="gameplay_page.html">Game Premise &amp; Features</a></li>
+<li><a class="el" href="mechanical_page.html">Mechanical Design</a></li>
+<li><a class="el" href="electrical_page.html">Electrical Design</a></li>
+<li><a class="el" href="software_page.html">Software Design</a></li>
+<li><a class="el" href="future_page.html">Future Implementation</a> </li>
 </ul>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>

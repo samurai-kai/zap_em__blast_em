@@ -2,12 +2,22 @@ var indexSectionsWithContent =
 {
   0: "_abcdefghikmnoprstuwz",
   1: "acegmps",
+<<<<<<< HEAD
   2: "acms",
   3: "_abcdehmnpsuw",
   4: "abcdehikmnprs",
   5: "acps",
   6: "cs",
   7: "bcdefghimoprstuz"
+=======
+  2: "aceglmps",
+  3: "_abcdeghlmnprsuw",
+  4: "abcdehiklmnprstuz",
+  5: "acgps",
+  6: "lps",
+  7: "cs",
+  8: "bcdefgimoprstz"
+>>>>>>> origin/kai-doxy
 };
 
 var indexSectionNames =

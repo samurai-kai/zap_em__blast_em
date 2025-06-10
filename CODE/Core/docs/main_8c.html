@@ -26,11 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="ZapBlastLogo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="transparent_logo.png"/></td>
   <td id="projectalign">
    <div id="projectname">Zap&#39;Em Blast&#39;Em Robots
    </div>
-   <div id="projectbrief">laser tag robots</div>
+   <div id="projectbrief">robots that play laser tag!</div>
   </td>
  </tr>
  </tbody>
@@ -99,14 +99,14 @@ $(function(){initNavTree('main_8c.html','',''); });
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="controller__task_8h_source.html">controller_task.h</a>&quot;</code><br />
-<code>#include &quot;motor_driver.h&quot;</code><br />
-<code>#include &quot;game_task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="motor__driver_8h_source.html">motor_driver.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="game__task_8h_source.html">game_task.h</a>&quot;</code><br />
 <code>#include &quot;sound_task.h&quot;</code><br />
-<code>#include &quot;shoot_task.h&quot;</code><br />
-<code>#include &quot;lcd.h&quot;</code><br />
-<code>#include &quot;photoresistor_task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="shoot__task_8h_source.html">shoot_task.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lcd_8h_source.html">lcd.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="photoresistor__task_8h_source.html">photoresistor_task.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="adc__task_8h_source.html">adc_task.h</a>&quot;</code><br />
-<code>#include &quot;encoder_driver.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="encoder__driver_8h_source.html">encoder_driver.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
@@ -114,7 +114,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a0b6a0b24c6bd8af032a6778166201f7e" id="r_a0b6a0b24c6bd8af032a6778166201f7e"><td class="memItemLeft" align="right" valign="top"><a id="a0b6a0b24c6bd8af032a6778166201f7e" name="a0b6a0b24c6bd8af032a6778166201f7e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>calibration</b> (void)</td></tr>
 <tr class="memitem:acde813b84e3a169a4054f15628d87596" id="r_acde813b84e3a169a4054f15628d87596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acde813b84e3a169a4054f15628d87596">wait_for_stall</a> (<a class="el" href="structencoder__t.html">encoder_t</a> *encoder)</td></tr>
-<tr class="memdesc:acde813b84e3a169a4054f15628d87596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the encoder motion stalls (no significant ticks change).  <br /></td></tr>
+<tr class="memdesc:acde813b84e3a169a4054f15628d87596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the encoder motion stalls.  <br /></td></tr>
 <tr class="memitem:a70af21c671abfcc773614a9a4f63d920" id="r_a70af21c671abfcc773614a9a4f63d920"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a> (void)</td></tr>
 <tr class="memdesc:a70af21c671abfcc773614a9a4f63d920"><td class="mdescLeft">&#160;</td><td class="mdescRight">System Clock Configuration.  <br /></td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe" id="r_a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
@@ -132,6 +132,7 @@ ADC_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hadc1</b
 DMA_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hdma_adc1</b></td></tr>
 <tr class="memitem:af7b2c26e44dadaaa798a5c3d82914ba7" id="r_af7b2c26e44dadaaa798a5c3d82914ba7"><td class="memItemLeft" align="right" valign="top"><a id="af7b2c26e44dadaaa798a5c3d82914ba7" name="af7b2c26e44dadaaa798a5c3d82914ba7"></a>
 I2C_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hi2c1</b></td></tr>
+<tr class="memdesc:af7b2c26e44dadaaa798a5c3d82914ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">External I2C handle used for communication with the LCD. <br /></td></tr>
 <tr class="memitem:a25fc663547539bc49fecc0011bd76ab5" id="r_a25fc663547539bc49fecc0011bd76ab5"><td class="memItemLeft" align="right" valign="top"><a id="a25fc663547539bc49fecc0011bd76ab5" name="a25fc663547539bc49fecc0011bd76ab5"></a>
 TIM_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>htim1</b></td></tr>
 <tr class="memitem:a2c80fd5510e2990a59a5c90d745c716c" id="r_a2c80fd5510e2990a59a5c90d745c716c"><td class="memItemLeft" align="right" valign="top"><a id="a2c80fd5510e2990a59a5c90d745c716c" name="a2c80fd5510e2990a59a5c90d745c716c"></a>
@@ -269,10 +270,11 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
       </table>
 </div><div class="memdoc">
 
-<p>Waits until the encoder motion stalls (no significant ticks change). </p>
+<p>Waits until the encoder motion stalls. </p>
+<p>Repeatedly samples encoder ticks and detects stall if no significant motion occurs over a defined interval.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p_enc</td><td>Pointer to <a class="el" href="structencoder__t.html">encoder_t</a> instance </td></tr>
+    <tr><td class="paramname">p_enc</td><td>Pointer to an <a class="el" href="structencoder__t.html" title="Structure for tracking encoder position and timing.">encoder_t</a> instance. </td></tr>
   </table>
   </dd>
 </dl>
@@ -298,12 +300,12 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                    .red_photor_ptr = &amp;red_photoresistor_task,</div>
 <div class="line">                    .blue_photor_ptr = &amp;blue_photoresistor_task,</div>
 <div class="line">                    .hadc = &amp;hadc1,</div>
-<div class="line">                    .state_list = {&amp;<a class="code hl_function" href="adc__task_8h.html#a804ed2efd3bfecfa4e7dffe7fbf1249d">adc_task_state_0_init</a>,</div>
-<div class="line">                                   &amp;<a class="code hl_function" href="adc__task_8h.html#a9535953d4539b4d8ce345c521fa43e2f">adc_task_state_1_read</a>}</div>
+<div class="line">                    .state_list = {&amp;<a class="code hl_function" href="adc__task_8c.html#a804ed2efd3bfecfa4e7dffe7fbf1249d">adc_task_state_0_init</a>,</div>
+<div class="line">                                   &amp;<a class="code hl_function" href="adc__task_8c.html#a9535953d4539b4d8ce345c521fa43e2f">adc_task_state_1_read</a>}</div>
 <div class="line"> </div>
 <div class="line">}</div>
-<div class="ttc" id="aadc__task_8h_html_a804ed2efd3bfecfa4e7dffe7fbf1249d"><div class="ttname"><a href="adc__task_8h.html#a804ed2efd3bfecfa4e7dffe7fbf1249d">adc_task_state_0_init</a></div><div class="ttdeci">void adc_task_state_0_init(ADCTask *adc_task)</div><div class="ttdoc">Initializes the ADC task (state 0).</div><div class="ttdef"><b>Definition</b> adc_task.c:58</div></div>
-<div class="ttc" id="aadc__task_8h_html_a9535953d4539b4d8ce345c521fa43e2f"><div class="ttname"><a href="adc__task_8h.html#a9535953d4539b4d8ce345c521fa43e2f">adc_task_state_1_read</a></div><div class="ttdeci">void adc_task_state_1_read(ADCTask *adc_task)</div><div class="ttdoc">Reads and assigns values from the ADC DMA buffer (state 1).</div><div class="ttdef"><b>Definition</b> adc_task.c:75</div></div>
+<div class="ttc" id="aadc__task_8c_html_a804ed2efd3bfecfa4e7dffe7fbf1249d"><div class="ttname"><a href="adc__task_8c.html#a804ed2efd3bfecfa4e7dffe7fbf1249d">adc_task_state_0_init</a></div><div class="ttdeci">void adc_task_state_0_init(ADCTask *adc_task)</div><div class="ttdoc">Initializes the ADC task.</div><div class="ttdef"><b>Definition</b> adc_task.c:58</div></div>
+<div class="ttc" id="aadc__task_8c_html_a9535953d4539b4d8ce345c521fa43e2f"><div class="ttname"><a href="adc__task_8c.html#a9535953d4539b4d8ce345c521fa43e2f">adc_task_state_1_read</a></div><div class="ttdeci">void adc_task_state_1_read(ADCTask *adc_task)</div><div class="ttdoc">Reads ADC values from DMA buffer and assigns them to respective photo resistors and controllers.</div><div class="ttdef"><b>Definition</b> adc_task.c:75</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -337,11 +339,11 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                                       .hadc = &amp;hadc1,              </div>
 <div class="line">                                       .motor = &amp;mblue,</div>
 <div class="line">                                       .encoder = &amp;blue_encoder,</div>
-<div class="line">                                       .state_list = {&amp;<a class="code hl_function" href="controller__task_8h.html#a84fa19534f15c6dc0c3cd2f880de933c">controller_task_state_0_init</a>,</div>
-<div class="line">                                                      &amp;<a class="code hl_function" href="controller__task_8h.html#a7d0612cbe9eb15e7aa9a4437f189a49b">controller_task_state_1_pos</a>}</div>
+<div class="line">                                       .state_list = {&amp;<a class="code hl_function" href="controller__task_8c.html#a84fa19534f15c6dc0c3cd2f880de933c">controller_task_state_0_init</a>,</div>
+<div class="line">                                                      &amp;<a class="code hl_function" href="controller__task_8c.html#a7d0612cbe9eb15e7aa9a4437f189a49b">controller_task_state_1_pos</a>}</div>
 <div class="line">}</div>
-<div class="ttc" id="acontroller__task_8h_html_a7d0612cbe9eb15e7aa9a4437f189a49b"><div class="ttname"><a href="controller__task_8h.html#a7d0612cbe9eb15e7aa9a4437f189a49b">controller_task_state_1_pos</a></div><div class="ttdeci">void controller_task_state_1_pos(ControllerTask *controller_task)</div><div class="ttdoc">Executes the position control logic (State 1).</div><div class="ttdef"><b>Definition</b> controller_task.c:70</div></div>
-<div class="ttc" id="acontroller__task_8h_html_a84fa19534f15c6dc0c3cd2f880de933c"><div class="ttname"><a href="controller__task_8h.html#a84fa19534f15c6dc0c3cd2f880de933c">controller_task_state_0_init</a></div><div class="ttdeci">void controller_task_state_0_init(ControllerTask *controller_task)</div><div class="ttdoc">Initializes the controller task (State 0).</div><div class="ttdef"><b>Definition</b> controller_task.c:50</div></div>
+<div class="ttc" id="acontroller__task_8c_html_a7d0612cbe9eb15e7aa9a4437f189a49b"><div class="ttname"><a href="controller__task_8c.html#a7d0612cbe9eb15e7aa9a4437f189a49b">controller_task_state_1_pos</a></div><div class="ttdeci">void controller_task_state_1_pos(ControllerTask *controller_task)</div><div class="ttdoc">Executes position control logic (State 1).</div><div class="ttdef"><b>Definition</b> controller_task.c:70</div></div>
+<div class="ttc" id="acontroller__task_8c_html_a84fa19534f15c6dc0c3cd2f880de933c"><div class="ttname"><a href="controller__task_8c.html#a84fa19534f15c6dc0c3cd2f880de933c">controller_task_state_0_init</a></div><div class="ttdeci">void controller_task_state_0_init(ControllerTask *controller_task)</div><div class="ttdoc">Initializes the controller task (State 0).</div><div class="ttdef"><b>Definition</b> controller_task.c:50</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -383,10 +385,13 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                                            .adc_val = 0,</div>
 <div class="line">                                            .thresh = 2500,</div>
 <div class="line">                                            .zero = 0,</div>
-<div class="line">                                            .state_list = {&amp;photoresistor_task_state_0_init,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_1_look,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_2_hit}</div>
+<div class="line">                                            .state_list = {&amp;<a class="code hl_function" href="photoresistor__task_8c.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8c.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8c.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a>}</div>
 <div class="line">}</div>
+<div class="ttc" id="aphotoresistor__task_8c_html_a262eb649a13220874e05226c32971f14"><div class="ttname"><a href="photoresistor__task_8c.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a></div><div class="ttdeci">void photoresistor_task_state_0_init(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Initializes the photoresistor task (state 0).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:41</div></div>
+<div class="ttc" id="aphotoresistor__task_8c_html_a4ca924555b9818de2ba88d7139559e32"><div class="ttname"><a href="photoresistor__task_8c.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a></div><div class="ttdeci">void photoresistor_task_state_1_look(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Detects light hit based on ADC value (state 1).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:55</div></div>
+<div class="ttc" id="aphotoresistor__task_8c_html_a5f6c877a2d623bb7b303c6e155f65664"><div class="ttname"><a href="photoresistor__task_8c.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a></div><div class="ttdeci">void photoresistor_task_state_2_hit(PhotoresistorTask *photoresistor_task)</div><div class="ttdoc">Waits for score acknowledgment after a hit (state 2).</div><div class="ttdef"><b>Definition</b> photoresistor_task.c:74</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -409,11 +414,15 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                            .shield_val = 2900, </div>
 <div class="line">                            .unshield_val = 400, </div>
 <div class="line">                            .laser_gpio = GPIO_PIN_14, </div>
-<div class="line">                            .state_list = {&amp;shoot_task_state_0_init,</div>
-<div class="line">                                           &amp;shoot_task_state_1_wait,</div>
-<div class="line">                                           &amp;shoot_task_state_2_unshield,</div>
-<div class="line">                                           &amp;shoot_task_state_3_shoot}</div>
+<div class="line">                            .state_list = {&amp;<a class="code hl_function" href="shoot__task_8c.html#a5c911214c8842a0cfc362cc40e3a905f">shoot_task_state_0_init</a>,</div>
+<div class="line">                                           &amp;<a class="code hl_function" href="shoot__task_8c.html#ad05d64064d0b409a3821eb3f7f5a5480">shoot_task_state_1_wait</a>,</div>
+<div class="line">                                           &amp;<a class="code hl_function" href="shoot__task_8c.html#aa36901934f504c42a844eb4d16394f25">shoot_task_state_2_unshield</a>,</div>
+<div class="line">                                           &amp;<a class="code hl_function" href="shoot__task_8c.html#a46d960c745974c85b6519c3df68ab4b1">shoot_task_state_3_shoot</a>}</div>
 <div class="line">}</div>
+<div class="ttc" id="ashoot__task_8c_html_a46d960c745974c85b6519c3df68ab4b1"><div class="ttname"><a href="shoot__task_8c.html#a46d960c745974c85b6519c3df68ab4b1">shoot_task_state_3_shoot</a></div><div class="ttdeci">void shoot_task_state_3_shoot(ShootTask *shoot_task)</div><div class="ttdoc">Fires the laser and returns to wait state (state 3).</div><div class="ttdef"><b>Definition</b> shoot_task.c:101</div></div>
+<div class="ttc" id="ashoot__task_8c_html_a5c911214c8842a0cfc362cc40e3a905f"><div class="ttname"><a href="shoot__task_8c.html#a5c911214c8842a0cfc362cc40e3a905f">shoot_task_state_0_init</a></div><div class="ttdeci">void shoot_task_state_0_init(ShootTask *shoot_task)</div><div class="ttdoc">Initializes the shoot task (state 0).</div><div class="ttdef"><b>Definition</b> shoot_task.c:45</div></div>
+<div class="ttc" id="ashoot__task_8c_html_aa36901934f504c42a844eb4d16394f25"><div class="ttname"><a href="shoot__task_8c.html#aa36901934f504c42a844eb4d16394f25">shoot_task_state_2_unshield</a></div><div class="ttdeci">void shoot_task_state_2_unshield(ShootTask *shoot_task)</div><div class="ttdoc">Lowers the shield before firing (state 2).</div><div class="ttdef"><b>Definition</b> shoot_task.c:81</div></div>
+<div class="ttc" id="ashoot__task_8c_html_ad05d64064d0b409a3821eb3f7f5a5480"><div class="ttname"><a href="shoot__task_8c.html#ad05d64064d0b409a3821eb3f7f5a5480">shoot_task_state_1_wait</a></div><div class="ttdeci">void shoot_task_state_1_wait(ShootTask *shoot_task)</div><div class="ttdoc">Waits for the shoot button press (state 1).</div><div class="ttdef"><b>Definition</b> shoot_task.c:62</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -447,13 +456,18 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                      .blue_photoresistor_task_ptr = &amp;blue_photoresistor_task,</div>
 <div class="line">                      .mred = &amp;mred,</div>
 <div class="line">                      .mblue = &amp;mblue,</div>
-<div class="line">                      .i2c_handle = &amp;hi2c1,</div>
-<div class="line">                      .state_list = {&amp;game_task_state_0_init,</div>
-<div class="line">                                     &amp;game_task_state_1_home,</div>
-<div class="line">                                     &amp;game_task_state_2_play,</div>
-<div class="line">                                     &amp;game_task_state_3_end}</div>
+<div class="line">                      .i2c_handle = &amp;<a class="code hl_variable" href="#af7b2c26e44dadaaa798a5c3d82914ba7">hi2c1</a>,</div>
+<div class="line">                      .state_list = {&amp;<a class="code hl_function" href="game__task_8c.html#adfae05d4105f92402a05cad34e4549ae">game_task_state_0_init</a>,</div>
+<div class="line">                                     &amp;<a class="code hl_function" href="game__task_8c.html#afecab4adbfa30c2a00ce021209b14084">game_task_state_1_home</a>,</div>
+<div class="line">                                     &amp;<a class="code hl_function" href="game__task_8c.html#a4c732dc57a65c2383055e3572038a9b1">game_task_state_2_play</a>,</div>
+<div class="line">                                     &amp;<a class="code hl_function" href="game__task_8c.html#a5fc6d96b904257254bf569d163d1837f">game_task_state_3_end</a>}</div>
 <div class="line"> </div>
 <div class="line">}</div>
+<div class="ttc" id="agame__task_8c_html_a4c732dc57a65c2383055e3572038a9b1"><div class="ttname"><a href="game__task_8c.html#a4c732dc57a65c2383055e3572038a9b1">game_task_state_2_play</a></div><div class="ttdeci">void game_task_state_2_play(GameTask *game_task)</div><div class="ttdoc">Handles gameplay logic and scoring (state 2).</div><div class="ttdef"><b>Definition</b> game_task.c:87</div></div>
+<div class="ttc" id="agame__task_8c_html_a5fc6d96b904257254bf569d163d1837f"><div class="ttname"><a href="game__task_8c.html#a5fc6d96b904257254bf569d163d1837f">game_task_state_3_end</a></div><div class="ttdeci">void game_task_state_3_end(GameTask *game_task)</div><div class="ttdoc">Displays game over screen and resets (state 3).</div><div class="ttdef"><b>Definition</b> game_task.c:161</div></div>
+<div class="ttc" id="agame__task_8c_html_adfae05d4105f92402a05cad34e4549ae"><div class="ttname"><a href="game__task_8c.html#adfae05d4105f92402a05cad34e4549ae">game_task_state_0_init</a></div><div class="ttdeci">void game_task_state_0_init(GameTask *game_task)</div><div class="ttdoc">Initializes the game task (state 0).</div><div class="ttdef"><b>Definition</b> game_task.c:47</div></div>
+<div class="ttc" id="agame__task_8c_html_afecab4adbfa30c2a00ce021209b14084"><div class="ttname"><a href="game__task_8c.html#afecab4adbfa30c2a00ce021209b14084">game_task_state_1_home</a></div><div class="ttdeci">void game_task_state_1_home(GameTask *game_task)</div><div class="ttdoc">Waits for player to initiate the game (state 1).</div><div class="ttdef"><b>Definition</b> game_task.c:62</div></div>
+<div class="ttc" id="amain_8c_html_af7b2c26e44dadaaa798a5c3d82914ba7"><div class="ttname"><a href="#af7b2c26e44dadaaa798a5c3d82914ba7">hi2c1</a></div><div class="ttdeci">I2C_HandleTypeDef hi2c1</div><div class="ttdoc">External I2C handle used for communication with the LCD.</div><div class="ttdef"><b>Definition</b> main.c:56</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -525,8 +539,8 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                                      .hadc = &amp;hadc1,</div>
 <div class="line">                                      .motor = &amp;mred,</div>
 <div class="line">                                      .encoder = &amp;red_encoder,</div>
-<div class="line">                                      .state_list = {&amp;<a class="code hl_function" href="controller__task_8h.html#a84fa19534f15c6dc0c3cd2f880de933c">controller_task_state_0_init</a>,</div>
-<div class="line">                                                     &amp;<a class="code hl_function" href="controller__task_8h.html#a7d0612cbe9eb15e7aa9a4437f189a49b">controller_task_state_1_pos</a>}</div>
+<div class="line">                                      .state_list = {&amp;<a class="code hl_function" href="controller__task_8c.html#a84fa19534f15c6dc0c3cd2f880de933c">controller_task_state_0_init</a>,</div>
+<div class="line">                                                     &amp;<a class="code hl_function" href="controller__task_8c.html#a7d0612cbe9eb15e7aa9a4437f189a49b">controller_task_state_1_pos</a>}</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
@@ -570,9 +584,9 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                                            .adc_val = 0,</div>
 <div class="line">                                            .thresh = 2500,</div>
 <div class="line">                                            .zero = 0,</div>
-<div class="line">                                            .state_list = {&amp;photoresistor_task_state_0_init,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_1_look,</div>
-<div class="line">                                                           &amp;photoresistor_task_state_2_hit}</div>
+<div class="line">                                            .state_list = {&amp;<a class="code hl_function" href="photoresistor__task_8c.html#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8c.html#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a>,</div>
+<div class="line">                                                           &amp;<a class="code hl_function" href="photoresistor__task_8c.html#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a>}</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
@@ -596,10 +610,10 @@ const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hold_time</
 <div class="line">                            .shield_val = 2900, </div>
 <div class="line">                            .unshield_val = 400, </div>
 <div class="line">                            .laser_gpio = GPIO_PIN_15, </div>
-<div class="line">                            .state_list = {&amp;shoot_task_state_0_init,</div>
-<div class="line">                                           &amp;shoot_task_state_1_wait,</div>
-<div class="line">                                           &amp;shoot_task_state_2_unshield,</div>
-<div class="line">                                           &amp;shoot_task_state_3_shoot}</div>
+<div class="line">                            .state_list = {&amp;<a class="code hl_function" href="shoot__task_8c.html#a5c911214c8842a0cfc362cc40e3a905f">shoot_task_state_0_init</a>,</div>
+<div class="line">                                           &amp;<a class="code hl_function" href="shoot__task_8c.html#ad05d64064d0b409a3821eb3f7f5a5480">shoot_task_state_1_wait</a>,</div>
+<div class="line">                                           &amp;<a class="code hl_function" href="shoot__task_8c.html#aa36901934f504c42a844eb4d16394f25">shoot_task_state_2_unshield</a>,</div>
+<div class="line">                                           &amp;<a class="code hl_function" href="shoot__task_8c.html#a46d960c745974c85b6519c3df68ab4b1">shoot_task_state_3_shoot</a>}</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
