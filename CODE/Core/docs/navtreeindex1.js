@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5":[9,0,5,0],
 "struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4":[9,0,5,4],
 "struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208":[9,0,5,1],
 "struct_photoresistor_task.html#a515073b369058e94f28905a2c4fcee61":[9,0,5,5],

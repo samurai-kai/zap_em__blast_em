@@ -32,7 +32,9 @@ var NAVTREE =
       [ "Premise", "gameplay_page.html#Game", null ],
       [ "Features", "gameplay_page.html#Features", null ]
     ] ],
-    [ "Mechanical Design", "mechanical_page.html", null ],
+    [ "Mechanical Design", "mechanical_page.html", [
+      [ "Manufacturing", "mechanical_page.html#Manufacturing", null ]
+    ] ],
     [ "Electrical Design", "electrical_page.html", null ],
     [ "Software Design", "software_page.html", null ],
     [ "Future Implementation", "future_page.html", null ],
@@ -61,7 +63,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "adc__task_8c.html",
-"struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4"
+"struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

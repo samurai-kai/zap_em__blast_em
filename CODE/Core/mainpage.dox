@@ -5,11 +5,11 @@
  * - Kai De La Cruz
  * - Andrew Carr
  *
- * <h1 style="text-align: left;">
+ * <h2 style="text-align: left;">
  * <a href="https://www.youtube.com/watch?v=0DWYSWJp09E" target="_blank">
  *   ▶️ Watch the gameplay on YouTube
  * </a>
- * </h1>
+ * </h2>
  *
  * @section Introduction
  * Zap'Em Blast'Em Robots is an interactive game inspired by Rock'Em Sock'Em 
@@ -47,15 +47,36 @@
  * * Robot position control via throttle inputs
  * * LCD scoreboard and game state display
  * * Sound feedback for "zap", "hit, "game start", and "game end" 
+ * * "Shoot" button to raise sheild are fire laser
+ * * Track sliders to strafe robot positions
  */
 
 /**
  * @page mechanical_page Mechanical Design
- * built it
+ * The mechanical design consists of three primary components: game housing, 
+ * sliders, and fighter controls. The housing enclosure serves as the mounting 
+ * structure for key components such as the sliders and electronics. Designed 
+ * to be approximately one square foot, the enclosure balances portability with 
+ * ease of user interaction. 
+ * 
+ * Each fighter will be mounted on a two-track slider 
+ * system, enabling movement both forward and sideways across the game arena. 
+ * A DC motor mounted directly beneath each fighter provides limited rotational 
+ * control for aiming the laser. The control system includes user-operated 
+ * throttles, allowing players to manipulate their fighters. Each throttle is 
+ * attached to an encoder, enabling rotational input to control the DC motors. 
+ * A button on top of each handle allows users to raise the shield and fire the 
+ * laser.
  *
  * <img src="media/photos/assemblyCAD.png" alt="Assembly CAD" 
  * style="display: block; margin-left: 15%; width: 600px;"/>
  *
+ * @section Manufacturing
+ * The primary manufacturing method for this project is 3D printing, chosen for 
+ * its simplicity, cost-effectiveness, and ability to produce complex geometries 
+ * needed to integrate sensors and actuators. Most components, including the 
+ * fighters and housing, will be printed using PLA filament. 
+ * 
  * <img src="media/photos/throttleassembly.jpg" alt="Controller Assembly" 
  * style="display: block; margin-left: 15%; width: 400px;"/>
  * 

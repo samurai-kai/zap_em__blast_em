@@ -115,6 +115,7 @@ var NAVTREEINDEX0 =
 "main_8h.html#ae70bce6c39d0b570a7523b86738cec4b":[10,0,0,5,1],
 "main_8h_source.html":[10,0,0,5],
 "mechanical_page.html":[4],
+"mechanical_page.html#Manufacturing":[4,0],
 "motor__driver_8c.html":[10,0,1,6],
 "motor__driver_8c.html#a241698a6835454fbaa4afb10281389bf":[10,0,1,6,3],
 "motor__driver_8c.html#a391fa1e490bd712720989b58fa0d9904":[10,0,1,6,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "struct_game_task.html#ada8674351485596cd150447bdece55bc":[9,0,3,9],
 "struct_game_task.html#af8ec6e123570f44094bcf2cb02b478f4":[9,0,3,19],
 "struct_photoresistor_task.html":[9,0,5],
-"struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788":[9,0,5,2],
-"struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5":[9,0,5,0]
+"struct_photoresistor_task.html#a0456e86c5e39324ddfd18e4185b27788":[9,0,5,2]
 };

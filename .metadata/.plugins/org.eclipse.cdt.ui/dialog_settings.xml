@@ -21,4 +21,11 @@
 	<section name="CResourceRenameRefactoringInputPage">
 		<item key="updateReferences" value="true"/>
 	</section>
+	<section name="org.eclipse.cdt.internal.corext.codemanipulation">
+		<section name=".dox">
+			<item key="id" value="org.eclipse.cdt.ui.text.codetemplates.textfile"/>
+			<item key="name" value="Default text file template"/>
+			<item key="contextId" value="org.eclipse.core.runtime.text.contenttype_context"/>
+		</section>
+	</section>
 </section>
