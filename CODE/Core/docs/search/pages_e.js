@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['use_0',['Use',['../usage_page.html',1,'How to Use'],['../C:/Users/kaidc/Documents/Github/zap_em__blast_em/CODE/Core/Src/main.c#usage_sec',1,'How to Use']]]
+  ['zap_20em_20blast_20em_20robots_0',['Zap&apos;Em Blast&apos;Em Robots',['../index.html',1,'']]]
 ];

@@ -4,7 +4,7 @@ var searchData=
   ['main_2ec_1',['main.c',['../main_8c.html',1,'']]],
   ['main_2eh_2',['main.h',['../main_8h.html',1,'']]],
   ['mblue_3',['mblue',['../struct_game_task.html#aaaa4badc37aa3851bc0164ab17b149be',1,'GameTask']]],
-  ['mechanical_20design_4',['Mechanical Design',['../mechanical_page.html',1,'Mechanical Design'],['../C:/Users/kaidc/Documents/Github/zap_em__blast_em/CODE/Core/Src/main.c#mechanicaldesign_sec',1,'Mechanical Design']]],
+  ['mechanical_20design_4',['Mechanical Design',['../mechanical_page.html',1,'']]],
   ['memmanage_5fhandler_5',['MemManage_Handler',['../stm32f4xx__it_8h.html#a3150f74512510287a942624aa9b44cc5',1,'MemManage_Handler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8c.html#a3150f74512510287a942624aa9b44cc5',1,'MemManage_Handler(void):&#160;stm32f4xx_it.c']]],
   ['motor_6',['motor',['../struct_controller_task.html#ac602ff443a11be7be2fda818f4912ad8',1,'ControllerTask']]],
   ['motor_5fdriver_2ec_7',['motor_driver.c',['../motor__driver_8c.html',1,'']]],

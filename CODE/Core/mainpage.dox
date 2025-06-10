@@ -1,66 +1,41 @@
 /**
  * @mainpage Zap'Em Blast'Em Robots
  *
- * @section creators_sec Creators
+ * 
+ * @section Game Creators
  * - Kai De La Cruz
  * - Andrew Carr
  *
- * @section intro_sec Introduction
+ * @section Introduction
  * Zap'Em Blast'Em Robots is an embedded game for STM32. See:
  * - @ref gameplay_page
- * - @ref features_page
- * - @ref files_page
- * - @ref tech_page
- * - @ref usage_page
  * - @ref mechanical_page
  * - @ref electrical_page
  * - @ref software_page
  * - @ref future_page
  */
-
+ 
 /**
- * @page gameplay_page Game Premise
+ * @page gameplay_page Game Premise & Features
+ * @section Game Premise
  * Two robots face off in a laser-tag match. Instead of punching, they "zap"
- * each other using IR beams. Each robot has light sensors to detect hits.
- * The first to land enough successful shots wins the match.
- */
-
-/**
- * @page features_page Features
- * - Real-time analog sensor reads using DMA
- * - Modular task system for clear code organization
- * - State-based control for responsive gameplay
- * - Easily extendable for AI or multiplayer support
- * - Doxygen-based documentation for maintainability
- */
-
-/**
- * @page files_page File Overview
- * - adc_task.c/h: Handles ADC and DMA data acquisition
- * - controller_task.c/h: Manages game logic and reactions
- * - photoresistor_task.c/h: Reads IR sensor input
- * - main.c: Initializes system and launches tasks
- */
-
-/**
- * @page tech_page Technology Stack
- * - STM32F4 series microcontroller
- * - STM32CubeIDE (Eclipse-based)
- * - HAL drivers with DMA for ADC
- * - Doxygen for auto-generated docs
- */
-
-/**
- * @page usage_page How to Use
- * 1. Build the project in STM32CubeIDE and flash it to the robot's board.
- * 2. Power the robots and align sensors and IR emitters.
- * 3. Start the game by triggering the user input or main controller.
- * 4. Watch the robots duel in laser-tag combat!
+ * each other using laser beams. Each robot has light sensors embedded into 
+ * their chests to detect hits.
+ * The first to land 5 successful shots wins the match.
+ *
+ * @section Features
+ * * Robot position control via throttle inputs
+ * * LCD scoreboard and game state display
+ * * Sound feedback for "zap", "hit, "game start", and "game end" 
  */
 
 /**
  * @page mechanical_page Mechanical Design
  * built it
+ *
+ * <img src="media/photos/throttleassembly.jpg" alt="Controller Assembly" 
+ * style="display: block; margin-left: 15%; width: 200px;"/>
+ * 
  */
 
 /**
@@ -74,7 +49,7 @@
  */
 
 /**
- * @page future_page Future Ideas
+ * @page future_page Future Implementation
  * - Wireless scoring and multiplayer support
  * - AI-controlled bots
  * - UART serial output for real-time HUD or scoreboard
