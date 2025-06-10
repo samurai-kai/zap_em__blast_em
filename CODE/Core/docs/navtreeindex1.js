@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"struct_photoresistor_task.html#a19ffb311eaf12b72d9c02670db4e3cd5":[12,0,5,0],
-"struct_photoresistor_task.html#a3abf8056ecd3313383ba0ecaef2a1cd4":[12,0,5,4],
 "struct_photoresistor_task.html#a50699512b038124f9871fcde12b5e208":[12,0,5,1],
 "struct_photoresistor_task.html#a515073b369058e94f28905a2c4fcee61":[12,0,5,5],
 "struct_photoresistor_task.html#aaadc1f4d2a1724c09aeafd97b495e61a":[12,0,5,6],
@@ -32,5 +30,7 @@ var NAVTREEINDEX1 =
 "sysmem_8c.html":[13,0,1,12],
 "sysmem_8c.html#a68125648bcce70b6bb3aa0be50e99700":[13,0,1,12,0],
 "system__stm32f4xx_8c.html":[13,0,1,13],
-"topics.html":[11]
+"tech_page.html":[5],
+"topics.html":[11],
+"usage_page.html":[6]
 };

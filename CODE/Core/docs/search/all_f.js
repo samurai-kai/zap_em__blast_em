@@ -11,7 +11,7 @@ var searchData=
   ['photoresistortask_8',['PhotoresistorTask',['../struct_photoresistor_task.html',1,'PhotoresistorTask'],['../adc__task_8h.html#ae9b3cb60589012712159106169307d42',1,'PhotoresistorTask:&#160;adc_task.h']]],
   ['play_5fflag_9',['play_flag',['../struct_game_task.html#a0f92b41c542892089bb278a6f6d16643',1,'GameTask']]],
   ['pot_5fzero_10',['pot_zero',['../struct_controller_task.html#ae5fdfb122ff3fe3f25d3cf60ccc9b915',1,'ControllerTask']]],
-  ['premise_11',['Game Premise',['../index.html#gameplay_sec',1,'']]],
+  ['premise_11',['Premise',['../gameplay_page.html',1,'Game Premise'],['../C:/Users/kaidc/Documents/Github/zap_em__blast_em/CODE/Core/Src/main.c#gameplay_sec',1,'Game Premise']]],
   ['prev_5ferror_12',['prev_error',['../struct_controller_task.html#a461cae71b420a0cbbb17f75db63af2b8',1,'ControllerTask']]],
   ['prev_5fticks_13',['prev_ticks',['../struct_controller_task.html#ae505eddb4daa3cf915e206d386836ad7',1,'ControllerTask']]],
   ['prev_5ftime_14',['prev_time',['../struct_controller_task.html#a7dff167b310b78ffe12f03656aebc01e',1,'ControllerTask']]],
