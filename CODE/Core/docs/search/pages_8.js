@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['premise_20features_0',['Game Premise &amp;amp; Features',['../gameplay_page.html',1,'']]]
+  ['of_20contents_0',['of Contents',['../index.html#Table',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['technology_20stack_0',['Technology Stack',['../tech_page.html',1,'']]],
-  ['to_20use_1',['How to Use',['../usage_page.html',1,'']]]
+  ['zap_20em_20blast_20em_20robots_0',['Zap&apos;Em Blast&apos;Em Robots',['../index.html',1,'']]]
 ];

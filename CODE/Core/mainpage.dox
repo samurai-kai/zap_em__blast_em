@@ -6,13 +6,21 @@
  * - Kai De La Cruz
  * - Andrew Carr
  *
- * @section Introduction
- * Zap'Em Blast'Em Robots is an embedded game for STM32. See:
+ * @section Table of Contents
  * - @ref gameplay_page
  * - @ref mechanical_page
  * - @ref electrical_page
  * - @ref software_page
  * - @ref future_page
+ *
+ * @section Introduction
+ * Zap'Em Blast'Em Robots is an embedded game for STM32. See:
+ *
+ * <video style="display: block; margin-left: 25%;" width="480" controls>
+ *   <source src="media/videos/samplegame1.mov" type="video/quicktime">
+ *   Your browser does not support the video tag.
+ * </video>
+ *
  */
  
 /**
@@ -34,13 +42,17 @@
  * built it
  *
  * <img src="media/photos/throttleassembly.jpg" alt="Controller Assembly" 
- * style="display: block; margin-left: 15%; width: 200px;"/>
+ * style="display: block; margin-left: 15%; width: 400px;"/>
  * 
  */
 
 /**
  * @page electrical_page Electrical Design
  * built it
+ *
+ * <img src="media/photos/mountedPCB.jpg" alt="Mounted PCB" 
+ * style="display: block; margin-left: 15%; width: 400px;"/>
+ *
  */
 
 /**
