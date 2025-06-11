@@ -18,8 +18,15 @@
  * platform with responsive control and real-time scoring.
  *
  * \htmlonly
- * <iframe width="560" height="315" src="https://www.youtube.com/embed/SelIsVGXWzg" title="Gameplay video" allowfullscreen></iframe>
- * \endhtmlonly 
+ * <div style="display: flex; justify-content: left; gap: 20px;">
+ *   <iframe width="560" height="315" 
+ *		src="https://www.youtube.com/embed/SelIsVGXWzg" 
+ *   	title="Gameplay video" allowfullscreen></iframe>
+ *   <iframe width="560" height="315" 
+ *		src="https://www.youtube.com/embed/AnsMpqMrh2k" title="Gameplay video" 
+ * 		allowfullscreen></iframe>
+ * </div>
+ * \endhtmlonly
  *
  * @section toc_section Table of Contents
  * - @ref gameplay_page
