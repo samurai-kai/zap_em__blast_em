@@ -34,10 +34,8 @@
  * - @ref electrical_page
  * - @ref software_page
  * - @ref future_page
- *
  */
 
- 
 /**
  * @page gameplay_page Game Premise & Features
  *
@@ -151,17 +149,9 @@
  *        style="height: 500px;"/>
  * </div>
  * \endhtmlonly
-
  */
 
 /**
  * @page software_page Software Design
- * built it
- */
-
-/**
- * @page future_page Future Implementation
- * - Wireless scoring and multiplayer support
- * - AI-controlled bots
- * - UART serial output for real-time HUD or scoreboard
+ * *FSM diagrams and discussion here*
  */
