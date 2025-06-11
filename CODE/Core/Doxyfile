@@ -1473,7 +1473,8 @@ HTML_EXTRA_FILES       = doxygen-custom.css \
                          media/photos/ZapBlastLogo.png \
                          media/videos/samplegameplay.mp4 \
                          docs/media/photos/wiringdiagram.png \
-                         docs/media/photos/assemblyCAD.png
+                         docs/media/photos/assemblyCAD.png \
+                         media/photos/LaserCaution.jpg
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.

@@ -33,19 +33,30 @@
  
 /**
  * @page gameplay_page Game Premise & Features
+ *
  * @section Game Premise
  * Two robots face off in a laser-tag match. Instead of punching, they "zap"
  * each other using laser beams. Each robot has light sensors embedded into 
  * their chests to detect hits.
  * The first to land 5 successful shots wins the match.
  *
+ * After an initial calibration sequence, players must press and hold 'shoot' 
+ * for 2 seconds to start the game. User inputs are now enabled and if a fighter 
+ * lands a shot, another shot will not register for an additional 2 second 
+ * period. After the game is over users inputs are turned off until a new game 
+ * is started. 
+ *
  * @section Features
  * * Robot position control via throttle inputs
  * * LCD scoreboard and game state display
- * * Sound feedback for "zap", "hit, "game start", and "game end" 
- * * "Shoot" button to raise sheild are fire laser
+ * * Sound feedback for "zap", "hit", "game start", and "game end"
+ * * "Shoot" button to raise shield or fire laser
  * * Track sliders to strafe robot positions
+ *
+ <img src="media/photos/LaserCaution.jpg" alt="Laser Caution"
+      style="display: block; margin-left: 15%; width: 400px;" />
  */
+
 
 /**
  * @page mechanical_page Mechanical Design
