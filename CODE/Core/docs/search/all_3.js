@@ -1,8 +1,8 @@
 var searchData=
 [
   ['chan_0',['chan',['../struct_sound_task.html#afb67f3e4e204785118073a96b76614d6',1,'SoundTask']]],
-  ['chan1_1',['chan1',['../struct_controller_task.html#a2d1c9595719149da662440337e3e6065',1,'ControllerTask']]],
-  ['chan2_2',['chan2',['../struct_controller_task.html#a161dff7a43c703b282d7053536407b8c',1,'ControllerTask']]],
+  ['chan1_1',['chan1',['../struct_controller_task.html#a2d1c9595719149da662440337e3e6065',1,'ControllerTask::chan1'],['../structmotor__t.html#a2d1c9595719149da662440337e3e6065',1,'motor_t::chan1']]],
+  ['chan2_2',['chan2',['../struct_controller_task.html#a161dff7a43c703b282d7053536407b8c',1,'ControllerTask::chan2'],['../structmotor__t.html#a161dff7a43c703b282d7053536407b8c',1,'motor_t::chan2']]],
   ['cmsis_3',['CMSIS',['../group___c_m_s_i_s.html',1,'']]],
   ['contents_4',['Table of Contents',['../index.html#toc_section',1,'']]],
   ['controller_5ffcn_5ft_5',['controller_fcn_t',['../controller__task_8h.html#aed86a54c136d57e4bc7626d94fafb37b',1,'controller_task.h']]],

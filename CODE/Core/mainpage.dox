@@ -5,11 +5,9 @@
  * - Kai De La Cruz
  * - Andrew Carr
  *
- * <h2 style="text-align: left;">
- * <a href="https://www.youtube.com/watch?v=0DWYSWJp09E" target="_blank">
- *   ▶️ Watch the gameplay on YouTube
- * </a>
- * </h2>
+ * \htmlonly
+ * <iframe width="560" height="315" src="https://www.youtube.com/embed/SelIsVGXWzg" title="Gameplay video" allowfullscreen></iframe>
+ * \endhtmlonly 
  *
  * @section Introduction
  * Zap'Em Blast'Em Robots is an interactive game inspired by Rock'Em Sock'Em 

@@ -95,7 +95,7 @@ $(function(){initNavTree('motor__driver_8c.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Motor control functions for setting duty and direction via PWM.  
+<p>Motor control functions for PWM-based direction and speed handling.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="motor__driver_8h_source.html">motor_driver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="encoder__driver_8h_source.html">encoder_driver.h</a>&quot;</code><br />
@@ -106,21 +106,21 @@ $(function(){initNavTree('motor__driver_8c.html','',''); });
 Macros</h2></td></tr>
 <tr class="memitem:a391fa1e490bd712720989b58fa0d9904" id="r_a391fa1e490bd712720989b58fa0d9904"><td class="memItemLeft" align="right" valign="top"><a id="a391fa1e490bd712720989b58fa0d9904" name="a391fa1e490bd712720989b58fa0d9904"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>PWM_MAX</b>&#160;&#160;&#160;4800</td></tr>
-<tr class="memdesc:a391fa1e490bd712720989b58fa0d9904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum PWM duty cycle value. <br /></td></tr>
+<tr class="memdesc:a391fa1e490bd712720989b58fa0d9904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum PWM value used for scaling duty cycle. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:adcde1cd0aa97d50c0b1136c125b5ae10" id="r_adcde1cd0aa97d50c0b1136c125b5ae10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcde1cd0aa97d50c0b1136c125b5ae10">set_duty</a> (<a class="el" href="structmotor__t.html">motor_t</a> *p_mot, int32_t duty)</td></tr>
-<tr class="memdesc:adcde1cd0aa97d50c0b1136c125b5ae10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets motor duty cycle and direction.  <br /></td></tr>
+<tr class="memdesc:adcde1cd0aa97d50c0b1136c125b5ae10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the motor duty cycle and direction using PWM.  <br /></td></tr>
 <tr class="memitem:a5f5eeae83ea21ae12701b0c0b78e691f" id="r_a5f5eeae83ea21ae12701b0c0b78e691f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f5eeae83ea21ae12701b0c0b78e691f">disable</a> (<a class="el" href="structmotor__t.html">motor_t</a> *p_mot)</td></tr>
-<tr class="memdesc:a5f5eeae83ea21ae12701b0c0b78e691f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables motor output by setting both channels to 0.  <br /></td></tr>
+<tr class="memdesc:a5f5eeae83ea21ae12701b0c0b78e691f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the motor by setting both channels to 0% duty.  <br /></td></tr>
 <tr class="memitem:a87e0de30f5044f896afc5ddaeff0f632" id="r_a87e0de30f5044f896afc5ddaeff0f632"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87e0de30f5044f896afc5ddaeff0f632">enable</a> (<a class="el" href="structmotor__t.html">motor_t</a> *p_mot)</td></tr>
-<tr class="memdesc:a87e0de30f5044f896afc5ddaeff0f632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables motor by setting both channels to maximum PWM.  <br /></td></tr>
+<tr class="memdesc:a87e0de30f5044f896afc5ddaeff0f632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the motor by setting both channels to 100% duty.  <br /></td></tr>
 <tr class="memitem:a241698a6835454fbaa4afb10281389bf" id="r_a241698a6835454fbaa4afb10281389bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a241698a6835454fbaa4afb10281389bf">go_to</a> (<a class="el" href="structmotor__t.html">motor_t</a> *p_mot, int k_p, int where, int from)</td></tr>
-<tr class="memdesc:a241698a6835454fbaa4afb10281389bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drives motor toward a target position using P-control.  <br /></td></tr>
+<tr class="memdesc:a241698a6835454fbaa4afb10281389bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the motor toward a target using proportional control.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Motor control functions for setting duty and direction via PWM. </p>
+<div class="textblock"><p>Motor control functions for PWM-based direction and speed handling. </p>
 <dl class="section author"><dt>Author</dt><dd>Kai De La Cruz</dd></dl>
 <p>Created on: May 29, 2025 </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
@@ -139,8 +139,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Disables motor output by setting both channels to 0. </p>
-<p>Disables the motor by setting both PWM channels to 0.</p>
+<p>Disables the motor by setting both channels to 0% duty. </p>
+<p>Disables the motor by setting both channels to zero.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p_mot</td><td>Pointer to the motor structure </td></tr>
@@ -165,8 +165,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables motor by setting both channels to maximum PWM. </p>
-<p>Enables the motor by applying max PWM on both channels.</p>
+<p>Enables the motor by setting both channels to 100% duty. </p>
+<p>Enables the motor by setting both channels to maximum.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p_mot</td><td>Pointer to the motor structure </td></tr>
@@ -205,13 +205,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Drives motor toward a target position using P-control. </p>
-<p>Moves motor to a target position using proportional control.</p>
-<p>Error is limited to +/-99 to avoid large spikes. Applies proportional control using gain <span class="tt">k_p</span>.</p>
+<p>Moves the motor toward a target using proportional control. </p>
+<p>Uses proportional control to move motor to a target.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p_mot</td><td>Pointer to the motor structure </td></tr>
-    <tr><td class="paramname">k_p</td><td>Proportional gain constant </td></tr>
+    <tr><td class="paramname">k_p</td><td>Proportional gain </td></tr>
     <tr><td class="paramname">where</td><td>Target position </td></tr>
     <tr><td class="paramname">from</td><td>Current position </td></tr>
   </table>
@@ -239,13 +238,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets motor duty cycle and direction. </p>
-<p>Sets the motor duty cycle and direction.</p>
-<p>Positive values drive forward; negative values drive reverse. Duty is scaled from percentage to raw PWM range.</p>
+<p>Sets the motor duty cycle and direction using PWM. </p>
+<p>Sets the duty cycle and direction of the motor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p_mot</td><td>Pointer to the motor structure </td></tr>
-    <tr><td class="paramname">duty</td><td>Desired duty cycle percentage (-100 to 100) </td></tr>
+    <tr><td class="paramname">duty</td><td>Desired duty cycle (-100 to 100 percent) </td></tr>
   </table>
   </dd>
 </dl>

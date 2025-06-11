@@ -9,7 +9,7 @@ var dir_f93dfce691d792349f1c14ede440e2e6 =
     [ "laser_buf.h", "laser__buf_8h_source.html", null ],
     [ "lcd.h", "lcd_8h.html", "lcd_8h" ],
     [ "main.h", "main_8h.html", "main_8h" ],
-    [ "motor_driver.h", "motor__driver_8h_source.html", null ],
+    [ "motor_driver.h", "motor__driver_8h.html", "motor__driver_8h" ],
     [ "photoresistor_task.h", "photoresistor__task_8h_source.html", null ],
     [ "shoot_task.h", "shoot__task_8h_source.html", null ],
     [ "sound_task.h", "sound__task_8h_source.html", null ],

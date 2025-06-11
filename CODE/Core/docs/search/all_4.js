@@ -5,5 +5,6 @@ var searchData=
   ['des_5fpos_2',['des_pos',['../struct_controller_task.html#ace4d8019ea855c98267989a2b3860507',1,'ControllerTask']]],
   ['design_3',['Design',['../electrical_page.html',1,'Electrical Design'],['../mechanical_page.html',1,'Mechanical Design'],['../software_page.html',1,'Software Design']]],
   ['dir_4',['dir',['../struct_controller_task.html#a6e623499d0c8b2090741bf433769d9fe',1,'ControllerTask']]],
-  ['dma2_5fstream0_5firqhandler_5',['DMA2_Stream0_IRQHandler',['../stm32f4xx__it_8c.html#aaf6ce196dde98712e1223b99766e06c0',1,'DMA2_Stream0_IRQHandler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8h.html#aaf6ce196dde98712e1223b99766e06c0',1,'DMA2_Stream0_IRQHandler(void):&#160;stm32f4xx_it.c']]]
+  ['disable_5',['disable',['../motor__driver_8c.html#a5f5eeae83ea21ae12701b0c0b78e691f',1,'disable(motor_t *p_mot):&#160;motor_driver.c'],['../motor__driver_8h.html#a5f5eeae83ea21ae12701b0c0b78e691f',1,'disable(motor_t *p_mot):&#160;motor_driver.c']]],
+  ['dma2_5fstream0_5firqhandler_6',['DMA2_Stream0_IRQHandler',['../stm32f4xx__it_8c.html#aaf6ce196dde98712e1223b99766e06c0',1,'DMA2_Stream0_IRQHandler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8h.html#aaf6ce196dde98712e1223b99766e06c0',1,'DMA2_Stream0_IRQHandler(void):&#160;stm32f4xx_it.c']]]
 ];
