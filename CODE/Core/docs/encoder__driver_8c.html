@@ -105,9 +105,12 @@ $(function(){initNavTree('encoder__driver_8c.html','',''); });
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:add45918f365cd70ffcbf77274011e501" id="r_add45918f365cd70ffcbf77274011e501"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add45918f365cd70ffcbf77274011e501">STALL_THRESHOLD</a>&#160;&#160;&#160;5</td></tr>
-<tr class="memitem:ae389de6eadc6bba35f95cdd0e4852ebb" id="r_ae389de6eadc6bba35f95cdd0e4852ebb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae389de6eadc6bba35f95cdd0e4852ebb">STALL_COUNT</a>&#160;&#160;&#160;20</td></tr>
-<tr class="memitem:abe8d2ac0ba50feb36f092275ce35ea60" id="r_abe8d2ac0ba50feb36f092275ce35ea60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe8d2ac0ba50feb36f092275ce35ea60">STALL_DELAY_MS</a>&#160;&#160;&#160;10</td></tr>
+<tr class="memitem:add45918f365cd70ffcbf77274011e501" id="r_add45918f365cd70ffcbf77274011e501"><td class="memItemLeft" align="right" valign="top"><a id="add45918f365cd70ffcbf77274011e501" name="add45918f365cd70ffcbf77274011e501"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STALL_THRESHOLD</b>&#160;&#160;&#160;5</td></tr>
+<tr class="memitem:ae389de6eadc6bba35f95cdd0e4852ebb" id="r_ae389de6eadc6bba35f95cdd0e4852ebb"><td class="memItemLeft" align="right" valign="top"><a id="ae389de6eadc6bba35f95cdd0e4852ebb" name="ae389de6eadc6bba35f95cdd0e4852ebb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STALL_COUNT</b>&#160;&#160;&#160;20</td></tr>
+<tr class="memitem:abe8d2ac0ba50feb36f092275ce35ea60" id="r_abe8d2ac0ba50feb36f092275ce35ea60"><td class="memItemLeft" align="right" valign="top"><a id="abe8d2ac0ba50feb36f092275ce35ea60" name="abe8d2ac0ba50feb36f092275ce35ea60"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STALL_DELAY_MS</b>&#160;&#160;&#160;10</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -116,58 +119,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a804624cc3cce1ef0ecbfc16baffbee00" id="r_a804624cc3cce1ef0ecbfc16baffbee00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a804624cc3cce1ef0ecbfc16baffbee00">read_encoder</a> (<a class="el" href="structencoder__t.html">encoder_t</a> *p_enc)</td></tr>
 <tr class="memdesc:a804624cc3cce1ef0ecbfc16baffbee00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read and accumulate encoder ticks since last call.  <br /></td></tr>
 <tr class="memitem:ad850a79045531c7bc613aedf9880e665" id="r_ad850a79045531c7bc613aedf9880e665"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad850a79045531c7bc613aedf9880e665">wait_for_stall</a> (<a class="el" href="structencoder__t.html">encoder_t</a> *p_enc)</td></tr>
-<tr class="memdesc:ad850a79045531c7bc613aedf9880e665"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the encoder motion stalls.  <br /></td></tr>
+<tr class="memdesc:ad850a79045531c7bc613aedf9880e665"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the encoder motion stalls (no significant ticks change).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>High-level routines for initializing and reading a rotary encoder. </p>
-<p>Created on: Jun 7, 2025 </p><dl class="section author"><dt>Author</dt><dd>Andrew Carr and Kai De La Cruz </dd></dl>
-</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
-<a id="ae389de6eadc6bba35f95cdd0e4852ebb" name="ae389de6eadc6bba35f95cdd0e4852ebb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae389de6eadc6bba35f95cdd0e4852ebb">&#9670;&#160;</a></span>STALL_COUNT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define STALL_COUNT&#160;&#160;&#160;20</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>consecutive samples to confirm stall </p>
-
-</div>
-</div>
-<a id="abe8d2ac0ba50feb36f092275ce35ea60" name="abe8d2ac0ba50feb36f092275ce35ea60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe8d2ac0ba50feb36f092275ce35ea60">&#9670;&#160;</a></span>STALL_DELAY_MS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define STALL_DELAY_MS&#160;&#160;&#160;10</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>sampling interval in milliseconds </p>
-
-</div>
-</div>
-<a id="add45918f365cd70ffcbf77274011e501" name="add45918f365cd70ffcbf77274011e501"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add45918f365cd70ffcbf77274011e501">&#9670;&#160;</a></span>STALL_THRESHOLD</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define STALL_THRESHOLD&#160;&#160;&#160;5</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>ticks change below this is considered stalled </p>
-
-</div>
-</div>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<p>Created on: Jun 7, 2025 Author: Andrew Carr and Kai De La Cruz </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a804624cc3cce1ef0ecbfc16baffbee00" name="a804624cc3cce1ef0ecbfc16baffbee00"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a804624cc3cce1ef0ecbfc16baffbee00">&#9670;&#160;</a></span>read_encoder()</h2>
 
@@ -184,18 +141,18 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read and accumulate encoder ticks since last call. </p>
-<p>Updates the encoder tick count and applies wrap-around correction.</p>
+<p>Reads encoder ticks and applies wrap-around correction.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p_enc</td><td>Pointer to an <a class="el" href="structencoder__t.html" title="Structure to hold encoder task configuration and state.">encoder_t</a> instance.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Computes the difference between the current timer count and the zero reference, applies wrap-around correction based on the encoder’s auto-reload value (p_enc-&gt;ar), and updates:</p><ul>
 <li>last_ticks: snapshot of this read</li>
 <li>ticks: cumulative total (signed)</li>
 </ul>
-<p>Wrap-around logic: If the delta exceeds half the auto-reload range, it is adjusted by ±(ar+1) to account for rollover.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p_enc</td><td>Pointer to an <a class="el" href="structencoder__t.html" title="Structure for tracking encoder position and timing.">encoder_t</a> instance. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Wrap-around logic: If the delta exceeds half the auto-reload range, it is adjusted by ±(ar+1) to account for rollover. </p>
 
 </div>
 </div>
@@ -216,13 +173,13 @@ Functions</h2></td></tr>
 
 <p>Initialize encoder state. </p>
 <p>Initializes the encoder by setting its zero reference.</p>
-<p>Captures the current hardware timer counter as the zero reference, and clears both the cumulative tick count and the last-read snapshot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p_enc</td><td>Pointer to an <a class="el" href="structencoder__t.html" title="Structure for tracking encoder position and timing.">encoder_t</a> instance. </td></tr>
+    <tr><td class="paramname">p_enc</td><td>Pointer to an <a class="el" href="structencoder__t.html" title="Structure to hold encoder task configuration and state.">encoder_t</a> instance.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Captures the current hardware timer counter as the zero reference, and clears both the cumulative tick count and the last-read snapshot. </p>
 
 </div>
 </div>
@@ -241,11 +198,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Waits until the encoder motion stalls. </p>
-<p>Repeatedly samples encoder ticks and detects stall if no significant motion occurs over a defined interval.</p>
+<p>Waits until the encoder motion stalls (no significant ticks change). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p_enc</td><td>Pointer to an <a class="el" href="structencoder__t.html" title="Structure for tracking encoder position and timing.">encoder_t</a> instance. </td></tr>
+    <tr><td class="paramname">p_enc</td><td>Pointer to <a class="el" href="structencoder__t.html" title="Structure to hold encoder task configuration and state.">encoder_t</a> instance </td></tr>
   </table>
   </dd>
 </dl>

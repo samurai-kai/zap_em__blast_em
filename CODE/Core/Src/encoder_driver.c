@@ -1,5 +1,5 @@
 /**
- * @file    encoder_task.c
+ * @file    encoder_driver.c
  * @brief   High-level routines for initializing and reading a rotary encoder.
  *
  * Created on: Jun 7, 2025
@@ -44,22 +44,6 @@ void setup_encoder(encoder_t *p_enc){
  *   If the delta exceeds half the auto-reload range, it is adjusted
  *   by ±(ar+1) to account for rollover.
  */
-//void read_encoder(encoder_t *p_enc){
-//
-//    int32_t current_ticks = (int32_t)(__HAL_TIM_GET_COUNTER(p_enc->htim))
-//                            - (int32_t)(p_enc->zero);
-//    int32_t delta = current_ticks - p_enc->last_ticks;
-//
-//    if (delta > (p_enc->ar + 1)/2){
-//        delta -= p_enc->ar + 1;
-//    }
-//    else if (delta < (-(p_enc->ar + 1)/2)){
-//        delta += p_enc->ar + 1;
-//    }
-//
-//    p_enc->last_ticks = current_ticks;
-//    p_enc->ticks     += delta;
-//}
 void read_encoder(encoder_t *p_enc)
 {
     /* Compute signed tick count relative to zero */

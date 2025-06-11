@@ -113,10 +113,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2ec8d9b09854c732e2feed549278f048"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C MSP De-Initialization This function freeze the hardware resources used in this example.  <br /></td></tr>
 <tr class="memitem:a24d5b9c609d8b753d95508419f4c1901" id="r_a24d5b9c609d8b753d95508419f4c1901"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24d5b9c609d8b753d95508419f4c1901">HAL_TIM_PWM_MspInit</a> (TIM_HandleTypeDef *htim_pwm)</td></tr>
 <tr class="memdesc:a24d5b9c609d8b753d95508419f4c1901"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM_PWM MSP Initialization This function configures the hardware resources used in this example.  <br /></td></tr>
+<tr class="memitem:abb25ade2f7e3f7aae167bd52270c2b86" id="r_abb25ade2f7e3f7aae167bd52270c2b86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb25ade2f7e3f7aae167bd52270c2b86">HAL_TIM_Base_MspInit</a> (TIM_HandleTypeDef *htim_base)</td></tr>
+<tr class="memdesc:abb25ade2f7e3f7aae167bd52270c2b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM_Base MSP Initialization This function configures the hardware resources used in this example.  <br /></td></tr>
 <tr class="memitem:a8cc723aedb4c01bc57cbe38c21f0b0a3" id="r_a8cc723aedb4c01bc57cbe38c21f0b0a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cc723aedb4c01bc57cbe38c21f0b0a3">HAL_TIM_Encoder_MspInit</a> (TIM_HandleTypeDef *htim_encoder)</td></tr>
 <tr class="memdesc:a8cc723aedb4c01bc57cbe38c21f0b0a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM_Encoder MSP Initialization This function configures the hardware resources used in this example.  <br /></td></tr>
 <tr class="memitem:af5f524564b3a99a9f87f45227309e866" id="r_af5f524564b3a99a9f87f45227309e866"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5f524564b3a99a9f87f45227309e866">HAL_TIM_PWM_MspDeInit</a> (TIM_HandleTypeDef *htim_pwm)</td></tr>
 <tr class="memdesc:af5f524564b3a99a9f87f45227309e866"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM_PWM MSP De-Initialization This function freeze the hardware resources used in this example.  <br /></td></tr>
+<tr class="memitem:a555b8a2d3c7a07341f8cb1255318fa2b" id="r_a555b8a2d3c7a07341f8cb1255318fa2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a555b8a2d3c7a07341f8cb1255318fa2b">HAL_TIM_Base_MspDeInit</a> (TIM_HandleTypeDef *htim_base)</td></tr>
+<tr class="memdesc:a555b8a2d3c7a07341f8cb1255318fa2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM_Base MSP De-Initialization This function freeze the hardware resources used in this example.  <br /></td></tr>
 <tr class="memitem:a9a53eee786f7e7e0217ce5b466c75f8a" id="r_a9a53eee786f7e7e0217ce5b466c75f8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a53eee786f7e7e0217ce5b466c75f8a">HAL_TIM_Encoder_MspDeInit</a> (TIM_HandleTypeDef *htim_encoder)</td></tr>
 <tr class="memdesc:a9a53eee786f7e7e0217ce5b466c75f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">TIM_Encoder MSP De-Initialization This function freeze the hardware resources used in this example.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -277,6 +281,69 @@ DMA_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hdma_adc
 
 </div>
 </div>
+<a id="a555b8a2d3c7a07341f8cb1255318fa2b" name="a555b8a2d3c7a07341f8cb1255318fa2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a555b8a2d3c7a07341f8cb1255318fa2b">&#9670;&#160;</a></span>HAL_TIM_Base_MspDeInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_TIM_Base_MspDeInit </td>
+          <td>(</td>
+          <td class="paramtype">TIM_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>htim_base</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM_Base MSP De-Initialization This function freeze the hardware resources used in this example. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">htim_base</td><td>TIM_Base handle pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Uncomment the line below to disable the "TIM1_BRK_TIM9_IRQn" interrupt Be aware, disabling shared interrupt may affect other IPs</p>
+
+</div>
+</div>
+<a id="abb25ade2f7e3f7aae167bd52270c2b86" name="abb25ade2f7e3f7aae167bd52270c2b86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb25ade2f7e3f7aae167bd52270c2b86">&#9670;&#160;</a></span>HAL_TIM_Base_MspInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_TIM_Base_MspInit </td>
+          <td>(</td>
+          <td class="paramtype">TIM_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>htim_base</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TIM_Base MSP Initialization This function configures the hardware resources used in this example. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">htim_base</td><td>TIM_Base handle pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a9a53eee786f7e7e0217ce5b466c75f8a" name="a9a53eee786f7e7e0217ce5b466c75f8a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a53eee786f7e7e0217ce5b466c75f8a">&#9670;&#160;</a></span>HAL_TIM_Encoder_MspDeInit()</h2>
 
@@ -391,6 +458,7 @@ DMA_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><b>hdma_adc
   </table>
   </dd>
 </dl>
+<p>Uncomment the line below to disable the "TIM1_BRK_TIM9_IRQn" interrupt Be aware, disabling shared interrupt may affect other IPs</p>
 
 </div>
 </div>

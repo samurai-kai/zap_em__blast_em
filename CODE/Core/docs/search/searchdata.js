@@ -1,23 +1,14 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefghikmnoprstuwz",
+  0: "_abcdefghiklmnoprstuwz",
   1: "acegmps",
-<<<<<<< HEAD
-  2: "acms",
-  3: "_abcdehmnpsuw",
-  4: "abcdehikmnprs",
-  5: "acps",
-  6: "cs",
-  7: "bcdefghimoprstuz"
-=======
-  2: "aceglmps",
-  3: "_abcdeghlmnprsuw",
-  4: "abcdehiklmnprstuz",
+  2: "aceglms",
+  3: "_abcdeghlmnprstuw",
+  4: "abcdehiklmnprstwz",
   5: "acgps",
-  6: "lps",
+  6: "l",
   7: "cs",
   8: "bcdefgimoprstz"
->>>>>>> origin/kai-doxy
 };
 
 var indexSectionNames =
@@ -28,8 +19,9 @@ var indexSectionNames =
   3: "functions",
   4: "variables",
   5: "typedefs",
-  6: "groups",
-  7: "pages"
+  6: "defines",
+  7: "groups",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -40,7 +32,8 @@ var indexSectionLabels =
   3: "Functions",
   4: "Variables",
   5: "Typedefs",
-  6: "Modules",
-  7: "Pages"
+  6: "Macros",
+  7: "Modules",
+  8: "Pages"
 };
 

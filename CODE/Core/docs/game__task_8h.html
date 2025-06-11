@@ -95,7 +95,7 @@ $(function(){initNavTree('game__task_8h.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Header file for Zap'em Blast'em Robots game task logic.  
+<p>Header file for the ADC task system.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;stm32f4xx_hal.h&quot;</code><br />
@@ -105,38 +105,55 @@ $(function(){initNavTree('game__task_8h.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:GameTask" id="r_GameTask"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_task.html">GameTask</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure for game task configuration and state tracking.  <a href="struct_game_task.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure that represents the game task state and configuration.  <a href="struct_game_task.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:af91677121a45db26f5ee77570149ee2d" id="r_af91677121a45db26f5ee77570149ee2d"><td class="memItemLeft" align="right" valign="top"><a id="af91677121a45db26f5ee77570149ee2d" name="af91677121a45db26f5ee77570149ee2d"></a>
 typedef struct SoundTask&#160;</td><td class="memItemRight" valign="bottom"><b>SoundTask</b></td></tr>
-<tr class="memdesc:af91677121a45db26f5ee77570149ee2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declaration of <a class="el" href="struct_sound_task.html">SoundTask</a> structure. <br /></td></tr>
+<tr class="memdesc:af91677121a45db26f5ee77570149ee2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declaration for <a class="el" href="struct_sound_task.html" title="Structure that represents the sound task state and configuration.">SoundTask</a>. <br /></td></tr>
 <tr class="memitem:a6d8059a577be390f94cc4ae504abb042" id="r_a6d8059a577be390f94cc4ae504abb042"><td class="memItemLeft" align="right" valign="top"><a id="a6d8059a577be390f94cc4ae504abb042" name="a6d8059a577be390f94cc4ae504abb042"></a>
 typedef struct GameTask&#160;</td><td class="memItemRight" valign="bottom"><b>GameTask</b></td></tr>
-<tr class="memdesc:a6d8059a577be390f94cc4ae504abb042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declaration of <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> structure. <br /></td></tr>
-<tr class="memitem:a59f6bdb124ff40178029101a95dd4d35" id="r_a59f6bdb124ff40178029101a95dd4d35"><td class="memItemLeft" align="right" valign="top"><a id="a59f6bdb124ff40178029101a95dd4d35" name="a59f6bdb124ff40178029101a95dd4d35"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>game_fcn_t</b>) (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td></tr>
-<tr class="memdesc:a59f6bdb124ff40178029101a95dd4d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer type for <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> state functions. <br /></td></tr>
+<tr class="memdesc:a6d8059a577be390f94cc4ae504abb042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declaration for <a class="el" href="struct_game_task.html" title="Structure that represents the game task state and configuration.">GameTask</a>. <br /></td></tr>
+<tr class="memitem:a59f6bdb124ff40178029101a95dd4d35" id="r_a59f6bdb124ff40178029101a95dd4d35"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59f6bdb124ff40178029101a95dd4d35">game_fcn_t</a>) (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td></tr>
+<tr class="memdesc:a59f6bdb124ff40178029101a95dd4d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer type for ADC state functions.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:adfae05d4105f92402a05cad34e4549ae" id="r_adfae05d4105f92402a05cad34e4549ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfae05d4105f92402a05cad34e4549ae">game_task_state_0_init</a> (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td></tr>
-<tr class="memdesc:adfae05d4105f92402a05cad34e4549ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> (state 0).  <br /></td></tr>
+<tr class="memdesc:adfae05d4105f92402a05cad34e4549ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the game task (state 0).  <br /></td></tr>
 <tr class="memitem:a2d7d01977d05eba38784327102f63531" id="r_a2d7d01977d05eba38784327102f63531"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d7d01977d05eba38784327102f63531">game_task_run</a> (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td></tr>
-<tr class="memdesc:a2d7d01977d05eba38784327102f63531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the current <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> state.  <br /></td></tr>
+<tr class="memdesc:a2d7d01977d05eba38784327102f63531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the current game task state.  <br /></td></tr>
 <tr class="memitem:afecab4adbfa30c2a00ce021209b14084" id="r_afecab4adbfa30c2a00ce021209b14084"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afecab4adbfa30c2a00ce021209b14084">game_task_state_1_home</a> (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td></tr>
-<tr class="memdesc:afecab4adbfa30c2a00ce021209b14084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles home screen and game start prompt (state 1).  <br /></td></tr>
+<tr class="memdesc:afecab4adbfa30c2a00ce021209b14084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for player to initiate the game (state 1).  <br /></td></tr>
 <tr class="memitem:a4c732dc57a65c2383055e3572038a9b1" id="r_a4c732dc57a65c2383055e3572038a9b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c732dc57a65c2383055e3572038a9b1">game_task_state_2_play</a> (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td></tr>
-<tr class="memdesc:a4c732dc57a65c2383055e3572038a9b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles main gameplay and scoring logic (state 2).  <br /></td></tr>
+<tr class="memdesc:a4c732dc57a65c2383055e3572038a9b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles gameplay logic and scoring (state 2).  <br /></td></tr>
 <tr class="memitem:a5fc6d96b904257254bf569d163d1837f" id="r_a5fc6d96b904257254bf569d163d1837f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fc6d96b904257254bf569d163d1837f">game_task_state_3_end</a> (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td></tr>
-<tr class="memdesc:a5fc6d96b904257254bf569d163d1837f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends the game and resets variables (state 3).  <br /></td></tr>
+<tr class="memdesc:a5fc6d96b904257254bf569d163d1837f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays game over screen and resets (state 3).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Header file for Zap'em Blast'em Robots game task logic. </p>
+<div class="textblock"><p>Header file for the ADC task system. </p>
 <dl class="section author"><dt>Author</dt><dd>Andrew Carr and Kai De La Cruz</dd></dl>
 <p>Created on: May 22, 2025 </p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a59f6bdb124ff40178029101a95dd4d35" name="a59f6bdb124ff40178029101a95dd4d35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59f6bdb124ff40178029101a95dd4d35">&#9670;&#160;</a></span>game_fcn_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* game_fcn_t) (<a class="el" href="struct_game_task.html">GameTask</a> *game_task)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function pointer type for ADC state functions. </p>
+<p>Each state function must take a pointer to <a class="el" href="struct_a_d_c_task.html" title="Structure that represents the ADC task state and configuration.">ADCTask</a> as its argument. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a2d7d01977d05eba38784327102f63531" name="a2d7d01977d05eba38784327102f63531"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d7d01977d05eba38784327102f63531">&#9670;&#160;</a></span>game_task_run()</h2>
 
@@ -152,18 +169,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Executes the current <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> state. </p>
+<p>Executes the current game task state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> structure.</td></tr>
+    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure that represents the game task state and configuration.">GameTask</a> instance.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Executes the current <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> state.</p>
+<p>Executes the current game task state.</p>
 <p>Checks whether the current state index is valid. If so, it calls the corresponding state function from the task's function pointer array.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> instance. </td></tr>
+    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure that represents the game task state and configuration.">GameTask</a> instance. </td></tr>
   </table>
   </dd>
 </dl>
@@ -185,18 +202,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> (state 0). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> structure.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Initializes the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> (state 0).</p>
+<p>Initializes the game task (state 0). </p>
 <p>Clears and sets up the LCD, then advances to state 1.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> instance. </td></tr>
+    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure that represents the game task state and configuration.">GameTask</a> instance. </td></tr>
   </table>
   </dd>
 </dl>
@@ -218,18 +228,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Handles home screen and game start prompt (state 1). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> structure.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Handles home screen and game start prompt (state 1).</p>
+<p>Waits for player to initiate the game (state 1). </p>
 <p>Displays title and instructions. When play_flag is set, transitions to the next state and triggers the start sound.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> instance. </td></tr>
+    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure that represents the game task state and configuration.">GameTask</a> instance. </td></tr>
   </table>
   </dd>
 </dl>
@@ -251,18 +254,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Handles main gameplay and scoring logic (state 2). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> structure.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Handles main gameplay and scoring logic (state 2).</p>
+<p>Handles gameplay logic and scoring (state 2). </p>
 <p>Increments scores based on photoresistor hit flags, updates LCD with score, and transitions to end state when a score threshold is reached.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> instance. </td></tr>
+    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure that represents the game task state and configuration.">GameTask</a> instance. </td></tr>
   </table>
   </dd>
 </dl>
@@ -284,18 +280,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ends the game and resets variables (state 3). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> structure.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Ends the game and resets variables (state 3).</p>
+<p>Displays game over screen and resets (state 3). </p>
 <p>Shows a winning message based on who reached the score threshold first. After a delay, resets the game state and variables.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure for game task configuration and state tracking.">GameTask</a> instance. </td></tr>
+    <tr><td class="paramname">game_task</td><td>Pointer to the <a class="el" href="struct_game_task.html" title="Structure that represents the game task state and configuration.">GameTask</a> instance. </td></tr>
   </table>
   </dd>
 </dl>

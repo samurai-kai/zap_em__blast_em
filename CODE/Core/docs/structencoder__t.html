@@ -94,22 +94,115 @@ $(function(){initNavTree('structencoder__t.html','',''); });
   <div class="headertitle"><div class="title">encoder_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure to hold encoder task configuration and state.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="encoder__driver_8h_source.html">encoder_driver.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a85a38ad3adb021b224bf4d87a0465119" id="r_a85a38ad3adb021b224bf4d87a0465119"><td class="memItemLeft" align="right" valign="top"><a id="a85a38ad3adb021b224bf4d87a0465119" name="a85a38ad3adb021b224bf4d87a0465119"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>zero</b></td></tr>
-<tr class="memitem:a5f56c1098873b91a78d51601027d09d3" id="r_a5f56c1098873b91a78d51601027d09d3"><td class="memItemLeft" align="right" valign="top"><a id="a5f56c1098873b91a78d51601027d09d3" name="a5f56c1098873b91a78d51601027d09d3"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>ar</b></td></tr>
-<tr class="memitem:a2af797d96086235139e21f38e364837f" id="r_a2af797d96086235139e21f38e364837f"><td class="memItemLeft" align="right" valign="top"><a id="a2af797d96086235139e21f38e364837f" name="a2af797d96086235139e21f38e364837f"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>ticks</b></td></tr>
-<tr class="memitem:ab96d427b52b637e0844efa4f249d2028" id="r_ab96d427b52b637e0844efa4f249d2028"><td class="memItemLeft" align="right" valign="top"><a id="ab96d427b52b637e0844efa4f249d2028" name="ab96d427b52b637e0844efa4f249d2028"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>last_ticks</b></td></tr>
-<tr class="memitem:aa261b8160c2d80b9961b0c8b220ce568" id="r_aa261b8160c2d80b9961b0c8b220ce568"><td class="memItemLeft" align="right" valign="top"><a id="aa261b8160c2d80b9961b0c8b220ce568" name="aa261b8160c2d80b9961b0c8b220ce568"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>range</b></td></tr>
-<tr class="memitem:a5dc7d1c65997ccaed48a93a3f4ffc486" id="r_a5dc7d1c65997ccaed48a93a3f4ffc486"><td class="memItemLeft" align="right" valign="top"><a id="a5dc7d1c65997ccaed48a93a3f4ffc486" name="a5dc7d1c65997ccaed48a93a3f4ffc486"></a>
-TIM_HandleTypeDef *&#160;</td><td class="memItemRight" valign="bottom"><b>htim</b></td></tr>
+<tr class="memitem:a85a38ad3adb021b224bf4d87a0465119" id="r_a85a38ad3adb021b224bf4d87a0465119"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85a38ad3adb021b224bf4d87a0465119">zero</a></td></tr>
+<tr class="memitem:a5f56c1098873b91a78d51601027d09d3" id="r_a5f56c1098873b91a78d51601027d09d3"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f56c1098873b91a78d51601027d09d3">ar</a></td></tr>
+<tr class="memitem:a2af797d96086235139e21f38e364837f" id="r_a2af797d96086235139e21f38e364837f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2af797d96086235139e21f38e364837f">ticks</a></td></tr>
+<tr class="memitem:ab96d427b52b637e0844efa4f249d2028" id="r_ab96d427b52b637e0844efa4f249d2028"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab96d427b52b637e0844efa4f249d2028">last_ticks</a></td></tr>
+<tr class="memitem:aa261b8160c2d80b9961b0c8b220ce568" id="r_aa261b8160c2d80b9961b0c8b220ce568"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa261b8160c2d80b9961b0c8b220ce568">range</a></td></tr>
+<tr class="memitem:a5dc7d1c65997ccaed48a93a3f4ffc486" id="r_a5dc7d1c65997ccaed48a93a3f4ffc486"><td class="memItemLeft" align="right" valign="top">TIM_HandleTypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dc7d1c65997ccaed48a93a3f4ffc486">htim</a></td></tr>
 </table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure to hold encoder task configuration and state. </p>
+<p>This struct includes timer values, encoder tick accumulation, and wrap-around handling through the auto-reload value. </p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a5f56c1098873b91a78d51601027d09d3" name="a5f56c1098873b91a78d51601027d09d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f56c1098873b91a78d51601027d09d3">&#9670;&#160;</a></span>ar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t ar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Auto-reload or max timer value </p>
+
+</div>
+</div>
+<a id="a5dc7d1c65997ccaed48a93a3f4ffc486" name="a5dc7d1c65997ccaed48a93a3f4ffc486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dc7d1c65997ccaed48a93a3f4ffc486">&#9670;&#160;</a></span>htim</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TIM_HandleTypeDef* htim</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Timer handle </p>
+
+</div>
+</div>
+<a id="ab96d427b52b637e0844efa4f249d2028" name="ab96d427b52b637e0844efa4f249d2028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab96d427b52b637e0844efa4f249d2028">&#9670;&#160;</a></span>last_ticks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t last_ticks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Last read relative count </p>
+
+</div>
+</div>
+<a id="aa261b8160c2d80b9961b0c8b220ce568" name="aa261b8160c2d80b9961b0c8b220ce568"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa261b8160c2d80b9961b0c8b220ce568">&#9670;&#160;</a></span>range</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t range</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Logical range of encoder </p>
+
+</div>
+</div>
+<a id="a2af797d96086235139e21f38e364837f" name="a2af797d96086235139e21f38e364837f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af797d96086235139e21f38e364837f">&#9670;&#160;</a></span>ticks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t ticks</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Accumulated ticks </p>
+
+</div>
+</div>
+<a id="a85a38ad3adb021b224bf4d87a0465119" name="a85a38ad3adb021b224bf4d87a0465119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a38ad3adb021b224bf4d87a0465119">&#9670;&#160;</a></span>zero</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t zero</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Timer value when "zeroed" </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>Inc/<a class="el" href="encoder__driver_8h_source.html">encoder_driver.h</a></li>
 </ul>
