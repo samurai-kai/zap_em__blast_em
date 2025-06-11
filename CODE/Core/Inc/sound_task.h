@@ -1,5 +1,5 @@
 /**
- *  @file sound_task.c
+ *  @file sound_task.h
  *  @brief  Header file for the sound task system
  *	@author Andrew Carr
  *

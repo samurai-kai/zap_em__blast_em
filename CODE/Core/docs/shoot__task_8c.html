@@ -95,7 +95,7 @@ $(function(){initNavTree('shoot__task_8c.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Task logic for laser shooting and servo shielding in-game.  
+<p>Task logic for laser and servo control during shooting state.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="shoot__task_8h_source.html">shoot_task.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -103,18 +103,18 @@ $(function(){initNavTree('shoot__task_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aca3f0b63a8257607041eae330fd135a8" id="r_aca3f0b63a8257607041eae330fd135a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca3f0b63a8257607041eae330fd135a8">shoot_task_run</a> (<a class="el" href="struct_shoot_task.html">ShootTask</a> *shoot_task)</td></tr>
-<tr class="memdesc:aca3f0b63a8257607041eae330fd135a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the current state of the shoot task.  <br /></td></tr>
+<tr class="memdesc:aca3f0b63a8257607041eae330fd135a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the current shoot task state function.  <br /></td></tr>
 <tr class="memitem:a5c911214c8842a0cfc362cc40e3a905f" id="r_a5c911214c8842a0cfc362cc40e3a905f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c911214c8842a0cfc362cc40e3a905f">shoot_task_state_0_init</a> (<a class="el" href="struct_shoot_task.html">ShootTask</a> *shoot_task)</td></tr>
 <tr class="memdesc:a5c911214c8842a0cfc362cc40e3a905f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the shoot task (state 0).  <br /></td></tr>
 <tr class="memitem:ad05d64064d0b409a3821eb3f7f5a5480" id="r_ad05d64064d0b409a3821eb3f7f5a5480"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad05d64064d0b409a3821eb3f7f5a5480">shoot_task_state_1_wait</a> (<a class="el" href="struct_shoot_task.html">ShootTask</a> *shoot_task)</td></tr>
-<tr class="memdesc:ad05d64064d0b409a3821eb3f7f5a5480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for the shoot button press (state 1).  <br /></td></tr>
+<tr class="memdesc:ad05d64064d0b409a3821eb3f7f5a5480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for button press to initiate action (state 1).  <br /></td></tr>
 <tr class="memitem:aa36901934f504c42a844eb4d16394f25" id="r_aa36901934f504c42a844eb4d16394f25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa36901934f504c42a844eb4d16394f25">shoot_task_state_2_unshield</a> (<a class="el" href="struct_shoot_task.html">ShootTask</a> *shoot_task)</td></tr>
-<tr class="memdesc:aa36901934f504c42a844eb4d16394f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lowers the shield before firing (state 2).  <br /></td></tr>
+<tr class="memdesc:aa36901934f504c42a844eb4d16394f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lowers the servo shield before firing (state 2).  <br /></td></tr>
 <tr class="memitem:a46d960c745974c85b6519c3df68ab4b1" id="r_a46d960c745974c85b6519c3df68ab4b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46d960c745974c85b6519c3df68ab4b1">shoot_task_state_3_shoot</a> (<a class="el" href="struct_shoot_task.html">ShootTask</a> *shoot_task)</td></tr>
-<tr class="memdesc:a46d960c745974c85b6519c3df68ab4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fires the laser and returns to wait state (state 3).  <br /></td></tr>
+<tr class="memdesc:a46d960c745974c85b6519c3df68ab4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fires the laser and resets state if button is released (state 3).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Task logic for laser shooting and servo shielding in-game. </p>
+<div class="textblock"><p>Task logic for laser and servo control during shooting state. </p>
 <dl class="section author"><dt>Author</dt><dd>Andrew Carr</dd></dl>
 <p>Created on: Jun 3, 2025 </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
@@ -133,12 +133,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Executes the current state of the shoot task. </p>
-<p>Executes the current state in the shoot task.</p>
-<p>Calls the function associated with the current state from the function pointer list. If state is invalid, enters infinite loop.</p>
+<p>Executes the current shoot task state function. </p>
+<p>Executes the current shoot task state.</p>
+<p>Checks that the current state index is valid and calls the corresponding state handler. Falls into an infinite loop if the state index is invalid.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shoot_task</td><td>Pointer to the <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state.">ShootTask</a> structure. </td></tr>
+    <tr><td class="paramname">shoot_task</td><td>Pointer to <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state tracking.">ShootTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -161,10 +161,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes the shoot task (state 0). </p>
-<p>Turns on laser, sets servo to unshielded position, and transitions to the next state.</p>
+<p>Initializes laser and servo to unshielded state and moves to state 1.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shoot_task</td><td>Pointer to the <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state.">ShootTask</a> structure. </td></tr>
+    <tr><td class="paramname">shoot_task</td><td>Pointer to <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state tracking.">ShootTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,12 +186,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Waits for the shoot button press (state 1). </p>
-<p>Waits for button press to trigger shoot action (state 1).</p>
-<p>Keeps laser on and servo in unshielded position. If button is pressed, transitions to the unshield state.</p>
+<p>Waits for button press to initiate action (state 1). </p>
+<p>Waits for user input to activate shoot sequence (state 1).</p>
+<p>Keeps laser on and servo unshielded. Advances to state 2 when button is pressed.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shoot_task</td><td>Pointer to the <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state.">ShootTask</a> structure. </td></tr>
+    <tr><td class="paramname">shoot_task</td><td>Pointer to <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state tracking.">ShootTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -213,12 +213,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lowers the shield before firing (state 2). </p>
-<p>Lowers shield before firing laser (state 2).</p>
-<p>Moves servo to shield position. After a delay (to be implemented), transitions to the shoot state.</p>
+<p>Lowers the servo shield before firing (state 2). </p>
+<p>Lowers servo shield prior to firing laser (state 2).</p>
+<p>After lowering shield, transitions to state 3. Also checks for early button release to return to state 1.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shoot_task</td><td>Pointer to the <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state.">ShootTask</a> structure. </td></tr>
+    <tr><td class="paramname">shoot_task</td><td>Pointer to <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state tracking.">ShootTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -240,12 +240,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Fires the laser and returns to wait state (state 3). </p>
-<p>Fires laser and resets to wait state (state 3).</p>
-<p>Turns off laser and returns to wait state when button is released.</p>
+<p>Fires the laser and resets state if button is released (state 3). </p>
+<p>Fires the laser and returns to wait state after release (state 3).</p>
+<p>Turns off laser and returns to wait state once the button is released.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shoot_task</td><td>Pointer to the <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state.">ShootTask</a> structure. </td></tr>
+    <tr><td class="paramname">shoot_task</td><td>Pointer to <a class="el" href="struct_shoot_task.html" title="Structure for shoot task configuration and state tracking.">ShootTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>

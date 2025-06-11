@@ -1,8 +1,9 @@
-/*
- * shoot_task.c
+/**
+ *  @file shoot_task.c
+ *  @brief Task logic for laser and servo control during shooting state.
+ *  @author Andrew Carr
  *
  *  Created on: Jun 3, 2025
- *      Author: Andrew Carr
  */
 
 #include "shoot_task.h"
@@ -10,65 +11,97 @@
 
 // game plan is to create two tasks, one for red and one for blue
 
-// A function to run the appropriate state of the task
+/**
+ * @brief Executes the current shoot task state function.
+ *
+ * Checks that the current state index is valid and calls the
+ * corresponding state handler. Falls into an infinite loop if the
+ * state index is invalid.
+ *
+ * @param shoot_task Pointer to ShootTask structure.
+ */
 void shoot_task_run(ShootTask *shoot_task)
-{    // Check for a valid state
-    if (shoot_task->state >= 0 && shoot_task->state < shoot_task->num_states)
+{
+    if (shoot_task->state >= 0 &&
+        shoot_task->state < shoot_task->num_states)
     {
-        // Index the list of state functions and then call the appropriate
-        // method while passing in (this) task_1 object
-
         shoot_task->state_list[shoot_task->state](shoot_task);
-
     }
-    // Big problems if the state is invalid
     else
     {
-        while(1){}
+        while(1) {}
     }
-
 }
-// servo -- 300 at shiel
 
-// A function to initialize the task
-// init button, laser and photoresistor
+// servo -- 300 at shield
+
+/**
+ * @brief Initializes the shoot task (state 0).
+ *
+ * Initializes laser and servo to unshielded state and moves to state 1.
+ *
+ * @param shoot_task Pointer to ShootTask structure.
+ */
 void shoot_task_state_0_init(ShootTask *shoot_task)
 {
-	shoot_task->state = 1;
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
+    shoot_task->state = 1;
+    HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
+                          shoot_task->channel,
+                          shoot_task->unshield_val);
 }
-// A function to implement state 1 of the task
-// wait for button to be pressed which should be on an interrupt that changes a flag
+
+/**
+ * @brief Waits for button press to initiate action (state 1).
+ *
+ * Keeps laser on and servo unshielded. Advances to state 2 when button
+ * is pressed.
+ *
+ * @param shoot_task Pointer to ShootTask structure.
+ */
 void shoot_task_state_1_wait(ShootTask *shoot_task)
 {
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->unshield_val);
-	if (shoot_task->button == 1){
-		shoot_task->state = 2;
-	}
+    HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_SET);
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
+                          shoot_task->channel,
+                          shoot_task->unshield_val);
+    if (shoot_task->button == 1) {
+        shoot_task->state = 2;
+    }
 }
-// A function to implement state 2 which is for when the game is being played
-// This keeps track of score, prints score messages
+
+/**
+ * @brief Lowers the servo shield before firing (state 2).
+ *
+ * After lowering shield, transitions to state 3. Also checks for early
+ * button release to return to state 1.
+ *
+ * @param shoot_task Pointer to ShootTask structure.
+ */
 void shoot_task_state_2_unshield(ShootTask *shoot_task)
 {
-	__HAL_TIM_SET_COMPARE(shoot_task->servo_tim, shoot_task->channel, shoot_task->shield_val);
-	if (1){ // add delay using some ticks and tune it
-		shoot_task->state = 3;
-	}
-	if(shoot_task->button == 0){
-		shoot_task->state = 1;
-	}
+    __HAL_TIM_SET_COMPARE(shoot_task->servo_tim,
+                          shoot_task->channel,
+                          shoot_task->shield_val);
+    if (1) { // add delay using some ticks and tune it
+        shoot_task->state = 3;
+    }
+    if (shoot_task->button == 0) {
+        shoot_task->state = 1;
+    }
 }
-// A function to implement state 3
 
+/**
+ * @brief Fires the laser and resets state if button is released (state 3).
+ *
+ * Turns off laser and returns to wait state once the button is released.
+ *
+ * @param shoot_task Pointer to ShootTask structure.
+ */
 void shoot_task_state_3_shoot(ShootTask *shoot_task)
 {
-	HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
-	if(shoot_task->button == 0){
-		shoot_task->state = 1;
-	}
-
+    HAL_GPIO_WritePin(GPIOB, shoot_task->laser_gpio, GPIO_PIN_RESET);
+    if (shoot_task->button == 0) {
+        shoot_task->state = 1;
+    }
 }
-
-

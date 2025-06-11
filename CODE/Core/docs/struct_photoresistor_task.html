@@ -94,24 +94,131 @@ $(function(){initNavTree('struct_photoresistor_task.html','',''); });
   <div class="headertitle"><div class="title">PhotoresistorTask Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure for tracking photoresistor task state and config.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="photoresistor__task_8h_source.html">photoresistor_task.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:af8ec6e123570f44094bcf2cb02b478f4" id="r_af8ec6e123570f44094bcf2cb02b478f4"><td class="memItemLeft" align="right" valign="top"><a id="af8ec6e123570f44094bcf2cb02b478f4" name="af8ec6e123570f44094bcf2cb02b478f4"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
-<tr class="memitem:a0456e86c5e39324ddfd18e4185b27788" id="r_a0456e86c5e39324ddfd18e4185b27788"><td class="memItemLeft" align="right" valign="top"><a id="a0456e86c5e39324ddfd18e4185b27788" name="a0456e86c5e39324ddfd18e4185b27788"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>num_states</b></td></tr>
-<tr class="memitem:a50699512b038124f9871fcde12b5e208" id="r_a50699512b038124f9871fcde12b5e208"><td class="memItemLeft" align="right" valign="top"><a id="a50699512b038124f9871fcde12b5e208" name="a50699512b038124f9871fcde12b5e208"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>hit_flag</b></td></tr>
-<tr class="memitem:a19ffb311eaf12b72d9c02670db4e3cd5" id="r_a19ffb311eaf12b72d9c02670db4e3cd5"><td class="memItemLeft" align="right" valign="top"><a id="a19ffb311eaf12b72d9c02670db4e3cd5" name="a19ffb311eaf12b72d9c02670db4e3cd5"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>adc_val</b></td></tr>
-<tr class="memitem:a515073b369058e94f28905a2c4fcee61" id="r_a515073b369058e94f28905a2c4fcee61"><td class="memItemLeft" align="right" valign="top"><a id="a515073b369058e94f28905a2c4fcee61" name="a515073b369058e94f28905a2c4fcee61"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>thresh</b></td></tr>
-<tr class="memitem:aaadc1f4d2a1724c09aeafd97b495e61a" id="r_aaadc1f4d2a1724c09aeafd97b495e61a"><td class="memItemLeft" align="right" valign="top"><a id="aaadc1f4d2a1724c09aeafd97b495e61a" name="aaadc1f4d2a1724c09aeafd97b495e61a"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>zero</b></td></tr>
-<tr class="memitem:a3abf8056ecd3313383ba0ecaef2a1cd4" id="r_a3abf8056ecd3313383ba0ecaef2a1cd4"><td class="memItemLeft" align="right" valign="top"><a id="a3abf8056ecd3313383ba0ecaef2a1cd4" name="a3abf8056ecd3313383ba0ecaef2a1cd4"></a>
-photoresistor_fcn_t&#160;</td><td class="memItemRight" valign="bottom"><b>state_list</b> []</td></tr>
+<tr class="memitem:af8ec6e123570f44094bcf2cb02b478f4" id="r_af8ec6e123570f44094bcf2cb02b478f4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8ec6e123570f44094bcf2cb02b478f4">state</a></td></tr>
+<tr class="memitem:a0456e86c5e39324ddfd18e4185b27788" id="r_a0456e86c5e39324ddfd18e4185b27788"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0456e86c5e39324ddfd18e4185b27788">num_states</a></td></tr>
+<tr class="memitem:a50699512b038124f9871fcde12b5e208" id="r_a50699512b038124f9871fcde12b5e208"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50699512b038124f9871fcde12b5e208">hit_flag</a></td></tr>
+<tr class="memitem:a19ffb311eaf12b72d9c02670db4e3cd5" id="r_a19ffb311eaf12b72d9c02670db4e3cd5"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19ffb311eaf12b72d9c02670db4e3cd5">adc_val</a></td></tr>
+<tr class="memitem:a515073b369058e94f28905a2c4fcee61" id="r_a515073b369058e94f28905a2c4fcee61"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a515073b369058e94f28905a2c4fcee61">thresh</a></td></tr>
+<tr class="memitem:aaadc1f4d2a1724c09aeafd97b495e61a" id="r_aaadc1f4d2a1724c09aeafd97b495e61a"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaadc1f4d2a1724c09aeafd97b495e61a">zero</a></td></tr>
+<tr class="memitem:a3abf8056ecd3313383ba0ecaef2a1cd4" id="r_a3abf8056ecd3313383ba0ecaef2a1cd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="photoresistor__task_8h.html#ad9a9774bdae04113c65f16ee2e417b09">photoresistor_fcn_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3abf8056ecd3313383ba0ecaef2a1cd4">state_list</a> []</td></tr>
 </table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure for tracking photoresistor task state and config. </p>
+<p>Holds ADC value, thresholds, state index, and a list of function pointers for state execution. </p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
+<a id="a19ffb311eaf12b72d9c02670db4e3cd5" name="a19ffb311eaf12b72d9c02670db4e3cd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19ffb311eaf12b72d9c02670db4e3cd5">&#9670;&#160;</a></span>adc_val</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t adc_val</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current ADC reading </p>
+
+</div>
+</div>
+<a id="a50699512b038124f9871fcde12b5e208" name="a50699512b038124f9871fcde12b5e208"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50699512b038124f9871fcde12b5e208">&#9670;&#160;</a></span>hit_flag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t hit_flag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set when hit is detected </p>
+
+</div>
+</div>
+<a id="a0456e86c5e39324ddfd18e4185b27788" name="a0456e86c5e39324ddfd18e4185b27788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0456e86c5e39324ddfd18e4185b27788">&#9670;&#160;</a></span>num_states</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t num_states</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of valid states </p>
+
+</div>
+</div>
+<a id="af8ec6e123570f44094bcf2cb02b478f4" name="af8ec6e123570f44094bcf2cb02b478f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8ec6e123570f44094bcf2cb02b478f4">&#9670;&#160;</a></span>state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current state index </p>
+
+</div>
+</div>
+<a id="a3abf8056ecd3313383ba0ecaef2a1cd4" name="a3abf8056ecd3313383ba0ecaef2a1cd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3abf8056ecd3313383ba0ecaef2a1cd4">&#9670;&#160;</a></span>state_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="photoresistor__task_8h.html#ad9a9774bdae04113c65f16ee2e417b09">photoresistor_fcn_t</a> state_list[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Array of state functions </p>
+
+</div>
+</div>
+<a id="a515073b369058e94f28905a2c4fcee61" name="a515073b369058e94f28905a2c4fcee61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a515073b369058e94f28905a2c4fcee61">&#9670;&#160;</a></span>thresh</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t thresh</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Threshold for hit detect </p>
+
+</div>
+</div>
+<a id="aaadc1f4d2a1724c09aeafd97b495e61a" name="aaadc1f4d2a1724c09aeafd97b495e61a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaadc1f4d2a1724c09aeafd97b495e61a">&#9670;&#160;</a></span>zero</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t zero</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Zero offset for calibration </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>Inc/<a class="el" href="photoresistor__task_8h_source.html">photoresistor_task.h</a></li>
 </ul>

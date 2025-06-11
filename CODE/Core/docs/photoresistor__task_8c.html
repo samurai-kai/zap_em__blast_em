@@ -95,7 +95,7 @@ $(function(){initNavTree('photoresistor__task_8c.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Task logic for detecting hits using photoresistor sensors.  
+<p>Task logic for hit detection using photoresistors in game loop.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="photoresistor__task_8h_source.html">photoresistor_task.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -107,12 +107,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a262eb649a13220874e05226c32971f14" id="r_a262eb649a13220874e05226c32971f14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a262eb649a13220874e05226c32971f14">photoresistor_task_state_0_init</a> (<a class="el" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task)</td></tr>
 <tr class="memdesc:a262eb649a13220874e05226c32971f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the photoresistor task (state 0).  <br /></td></tr>
 <tr class="memitem:a4ca924555b9818de2ba88d7139559e32" id="r_a4ca924555b9818de2ba88d7139559e32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ca924555b9818de2ba88d7139559e32">photoresistor_task_state_1_look</a> (<a class="el" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task)</td></tr>
-<tr class="memdesc:a4ca924555b9818de2ba88d7139559e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects light hit based on ADC value (state 1).  <br /></td></tr>
+<tr class="memdesc:a4ca924555b9818de2ba88d7139559e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for light detection and sets hit flag (state 1).  <br /></td></tr>
 <tr class="memitem:a5f6c877a2d623bb7b303c6e155f65664" id="r_a5f6c877a2d623bb7b303c6e155f65664"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f6c877a2d623bb7b303c6e155f65664">photoresistor_task_state_2_hit</a> (<a class="el" href="struct_photoresistor_task.html">PhotoresistorTask</a> *photoresistor_task)</td></tr>
-<tr class="memdesc:a5f6c877a2d623bb7b303c6e155f65664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for score acknowledgment after a hit (state 2).  <br /></td></tr>
+<tr class="memdesc:a5f6c877a2d623bb7b303c6e155f65664"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for score handling and clears hit flag (state 2).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Task logic for detecting hits using photoresistor sensors. </p>
+<div class="textblock"><p>Task logic for hit detection using photoresistors in game loop. </p>
 <dl class="section author"><dt>Author</dt><dd>Andrew Carr</dd></dl>
 <p>Created on: Jun 3, 2025 </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
@@ -132,11 +132,11 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Executes the current state of the photoresistor task. </p>
-<p>Executes the current state of the task.</p>
-<p>Calls the appropriate function from the state list if the state is within bounds. Enters infinite loop on invalid state.</p>
+<p>Executes the current task state function.</p>
+<p>Checks that the current state index is valid and invokes the corresponding state function. Traps in an infinite loop if state index is invalid.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for photoresistor task configuration and state.">PhotoresistorTask</a> instance. </td></tr>
+    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for tracking photoresistor task state and config.">PhotoresistorTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -159,10 +159,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes the photoresistor task (state 0). </p>
-<p>Sets initial state to 1. Setup for button, laser, and photoresistor has already occurred elsewhere.</p>
+<p>Sets the next state to 1. Used to initialize any required sensor/button components.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for photoresistor task configuration and state.">PhotoresistorTask</a> instance. </td></tr>
+    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for tracking photoresistor task state and config.">PhotoresistorTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -184,12 +184,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Detects light hit based on ADC value (state 1). </p>
-<p>Performs light detection logic (state 1).</p>
-<p>Compares current ADC value against threshold offset from zero. If threshold exceeded, sets hit flag and advances to next state.</p>
+<p>Checks for light detection and sets hit flag (state 1). </p>
+<p>Checks for a light-based hit (state 1).</p>
+<p>Transitions to the hit state if the difference between the current ADC value and zero calibration exceeds the threshold.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for photoresistor task configuration and state.">PhotoresistorTask</a> instance. </td></tr>
+    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for tracking photoresistor task state and config.">PhotoresistorTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -211,12 +211,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Waits for score acknowledgment after a hit (state 2). </p>
-<p>Waits for hit flag to be cleared (state 2).</p>
-<p>If hit flag is cleared externally (e.g. by game_task), resets to look state.</p>
+<p>Waits for score handling and clears hit flag (state 2). </p>
+<p>Waits for hit flag to clear (state 2).</p>
+<p>Transitions back to look state once the hit flag has been cleared externally (e.g., by the game task after scoring).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for photoresistor task configuration and state.">PhotoresistorTask</a> instance. </td></tr>
+    <tr><td class="paramname">photoresistor_task</td><td>Pointer to <a class="el" href="struct_photoresistor_task.html" title="Structure for tracking photoresistor task state and config.">PhotoresistorTask</a> structure. </td></tr>
   </table>
   </dd>
 </dl>

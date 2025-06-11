@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Zap&#39;Em Blast&#39;Em Robots: Src/sound_task.c File Reference</title>
+<title>Zap&#39;Em Blast&#39;Em Robots: Inc/sound_task.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,7 +65,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('sound__task_8c.html','',''); });
+$(function(){initNavTree('sound__task_8h.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -91,23 +91,37 @@ $(function(){initNavTree('sound__task_8c.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">sound_task.c File Reference</div></div>
+  <div class="headertitle"><div class="title">sound_task.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Sound Task state machine for playing audio files corresponding to game mechanics.  
+<p>Header file for the sound task system.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;laser_buf.h&quot;</code><br />
-<code>#include &quot;game_over_buf.h&quot;</code><br />
-<code>#include &quot;start_buf.h&quot;</code><br />
-<code>#include &quot;hit_buf.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="sound__task_8h_source.html">sound_task.h</a>&quot;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-</div><table class="memberdecls">
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;stm32f4xx_hal.h&quot;</code><br />
+</div>
+<p><a href="sound__task_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:SoundTask" id="r_SoundTask"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_sound_task.html">SoundTask</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure that represents the sound task state and configuration.  <a href="struct_sound_task.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a4b76a0c2859cfd819a343a780070ee2b" id="r_a4b76a0c2859cfd819a343a780070ee2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b76a0c2859cfd819a343a780070ee2b">SAMPLE_RATE</a>&#160;&#160;&#160;44100U</td></tr>
+<tr class="memitem:a76fe84d83b8d236bd4f0d20d7e2ed06f" id="r_a76fe84d83b8d236bd4f0d20d7e2ed06f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76fe84d83b8d236bd4f0d20d7e2ed06f">PWM_FREQ</a>&#160;&#160;&#160;88200U</td></tr>
+<tr class="memitem:a65ae212bf8be93de1ef8a39f7a4c0fec" id="r_a65ae212bf8be93de1ef8a39f7a4c0fec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65ae212bf8be93de1ef8a39f7a4c0fec">STEP_RATIO</a>&#160;&#160;&#160;(<a class="el" href="#a76fe84d83b8d236bd4f0d20d7e2ed06f">PWM_FREQ</a> / <a class="el" href="#a4b76a0c2859cfd819a343a780070ee2b">SAMPLE_RATE</a>)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a9e0ff27ceb4ef3cf9c0b59ba359ad374" id="r_a9e0ff27ceb4ef3cf9c0b59ba359ad374"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e0ff27ceb4ef3cf9c0b59ba359ad374">sound_fcn_t</a>) (<a class="el" href="struct_sound_task.html">SoundTask</a> *sound_task)</td></tr>
+<tr class="memdesc:a9e0ff27ceb4ef3cf9c0b59ba359ad374"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer type for sound state functions.  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a28ae898fbce4122968e7ca4ed5fb4485" id="r_a28ae898fbce4122968e7ca4ed5fb4485"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28ae898fbce4122968e7ca4ed5fb4485">sound_task_run</a> (<a class="el" href="struct_sound_task.html">SoundTask</a> *sound_task)</td></tr>
-<tr class="memdesc:a28ae898fbce4122968e7ca4ed5fb4485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the current state of the <a class="el" href="struct_sound_task.html" title="Structure that represents the sound task state and configuration.">SoundTask</a>.  <br /></td></tr>
+<tr class="memdesc:a28ae898fbce4122968e7ca4ed5fb4485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the current sound task state.  <br /></td></tr>
 <tr class="memitem:a6bf906a572eae9776c18f45f96a71181" id="r_a6bf906a572eae9776c18f45f96a71181"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bf906a572eae9776c18f45f96a71181">sound_task_state_0_init</a> (<a class="el" href="struct_sound_task.html">SoundTask</a> *sound_task)</td></tr>
 <tr class="memdesc:a6bf906a572eae9776c18f45f96a71181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the sound task (state 0).  <br /></td></tr>
 <tr class="memitem:abee4003d8b85be72e249cad0ac75630c" id="r_abee4003d8b85be72e249cad0ac75630c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abee4003d8b85be72e249cad0ac75630c">sound_task_state_1_wait</a> (<a class="el" href="struct_sound_task.html">SoundTask</a> *sound_task)</td></tr>
@@ -125,17 +139,81 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a3d7a6d6178562949bda1cecc3eaf21e5" id="r_a3d7a6d6178562949bda1cecc3eaf21e5"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d7a6d6178562949bda1cecc3eaf21e5">sample_index</a> = 0</td></tr>
-<tr class="memitem:a00b81d0044d217031afdc1f89b23bee9" id="r_a00b81d0044d217031afdc1f89b23bee9"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00b81d0044d217031afdc1f89b23bee9">pwm_div_count</a> = 0</td></tr>
-<tr class="memitem:a50c43d960776da64bdc4864d0200c8d6" id="r_a50c43d960776da64bdc4864d0200c8d6"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50c43d960776da64bdc4864d0200c8d6">audio_buf_len</a></td></tr>
-<tr class="memitem:a82ea5cc9e75fa1c314a45c8a88b256d6" id="r_a82ea5cc9e75fa1c314a45c8a88b256d6"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82ea5cc9e75fa1c314a45c8a88b256d6">playing</a> = 0</td></tr>
 <tr class="memitem:af6f52b2ad9f21ce28b8f7e6fa84f755a" id="r_af6f52b2ad9f21ce28b8f7e6fa84f755a"><td class="memItemLeft" align="right" valign="top">const int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6f52b2ad9f21ce28b8f7e6fa84f755a">audio_buf_ptr</a></td></tr>
+<tr class="memitem:a50c43d960776da64bdc4864d0200c8d6" id="r_a50c43d960776da64bdc4864d0200c8d6"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50c43d960776da64bdc4864d0200c8d6">audio_buf_len</a></td></tr>
+<tr class="memitem:a3d7a6d6178562949bda1cecc3eaf21e5" id="r_a3d7a6d6178562949bda1cecc3eaf21e5"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d7a6d6178562949bda1cecc3eaf21e5">sample_index</a></td></tr>
+<tr class="memitem:a00b81d0044d217031afdc1f89b23bee9" id="r_a00b81d0044d217031afdc1f89b23bee9"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00b81d0044d217031afdc1f89b23bee9">pwm_div_count</a></td></tr>
+<tr class="memitem:a82ea5cc9e75fa1c314a45c8a88b256d6" id="r_a82ea5cc9e75fa1c314a45c8a88b256d6"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82ea5cc9e75fa1c314a45c8a88b256d6">playing</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Sound Task state machine for playing audio files corresponding to game mechanics. </p>
+<div class="textblock"><p>Header file for the sound task system. </p>
 <dl class="section author"><dt>Author</dt><dd>Andrew Carr</dd></dl>
 <p>Created on: May 22, 2025 </p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a76fe84d83b8d236bd4f0d20d7e2ed06f" name="a76fe84d83b8d236bd4f0d20d7e2ed06f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76fe84d83b8d236bd4f0d20d7e2ed06f">&#9670;&#160;</a></span>PWM_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PWM_FREQ&#160;&#160;&#160;88200U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Output Timer PWM frequency </p>
+
+</div>
+</div>
+<a id="a4b76a0c2859cfd819a343a780070ee2b" name="a4b76a0c2859cfd819a343a780070ee2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b76a0c2859cfd819a343a780070ee2b">&#9670;&#160;</a></span>SAMPLE_RATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SAMPLE_RATE&#160;&#160;&#160;44100U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Audio sample rate </p>
+
+</div>
+</div>
+<a id="a65ae212bf8be93de1ef8a39f7a4c0fec" name="a65ae212bf8be93de1ef8a39f7a4c0fec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ae212bf8be93de1ef8a39f7a4c0fec">&#9670;&#160;</a></span>STEP_RATIO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STEP_RATIO&#160;&#160;&#160;(<a class="el" href="#a76fe84d83b8d236bd4f0d20d7e2ed06f">PWM_FREQ</a> / <a class="el" href="#a4b76a0c2859cfd819a343a780070ee2b">SAMPLE_RATE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Step ratio for </p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a9e0ff27ceb4ef3cf9c0b59ba359ad374" name="a9e0ff27ceb4ef3cf9c0b59ba359ad374"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e0ff27ceb4ef3cf9c0b59ba359ad374">&#9670;&#160;</a></span>sound_fcn_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* sound_fcn_t) (<a class="el" href="struct_sound_task.html">SoundTask</a> *sound_task)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function pointer type for sound state functions. </p>
+<p>Each state function must take a pointer to <a class="el" href="struct_sound_task.html" title="Structure that represents the sound task state and configuration.">SoundTask</a> as its argument. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a28ae898fbce4122968e7ca4ed5fb4485" name="a28ae898fbce4122968e7ca4ed5fb4485"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a28ae898fbce4122968e7ca4ed5fb4485">&#9670;&#160;</a></span>sound_task_run()</h2>
 
@@ -151,7 +229,13 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Runs the current state of the <a class="el" href="struct_sound_task.html" title="Structure that represents the sound task state and configuration.">SoundTask</a>. </p>
+<p>Executes the current sound task state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sound_task</td><td>Pointer to the <a class="el" href="struct_sound_task.html" title="Structure that represents the sound task state and configuration.">SoundTask</a> instance.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Executes the current sound task state.</p>
 <p>Checks whether the current state index is valid. If so, it calls the corresponding state function from the task's function pointer array.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -351,11 +435,19 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">volatile uint32_t audio_buf_len</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Length current sound buffer </p>
 
@@ -366,11 +458,19 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">const int16_t* audio_buf_ptr</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Pointer to current sound buffer </p>
 
@@ -381,11 +481,19 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">volatile uint32_t playing = 0</td>
+          <td class="memname">volatile uint32_t playing</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Flag for when a sound is playing </p>
 
@@ -396,11 +504,19 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">volatile uint8_t pwm_div_count = 0</td>
+          <td class="memname">volatile uint8_t pwm_div_count</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>counter for stepping through audio buf </p>
 
@@ -411,11 +527,19 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">volatile uint32_t sample_index = 0</td>
+          <td class="memname">volatile uint32_t sample_index</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Index of step in sound buffer </p>
 
@@ -434,7 +558,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_413f4e031a85da0d68269c6fd2f76e1c.html">Src</a></li><li class="navelem"><a href="sound__task_8c.html">sound_task.c</a></li>
+    <li class="navelem"><a href="dir_f93dfce691d792349f1c14ede440e2e6.html">Inc</a></li><li class="navelem"><a href="sound__task_8h.html">sound_task.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
