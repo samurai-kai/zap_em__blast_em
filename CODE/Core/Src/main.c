@@ -1001,18 +1001,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	            blue_shoot_task.button = 0;
 	        }
 	    }
-
-//    // === Photoresistor Hit Detection ===
-//    if (blue_photoresistor_task.adc_val > blue_photoresistor_task.zero + blue_photoresistor_task.thresh)
-//    {
-//        blue_photoresistor_task.hit_flag = 1;
-//    }
-//    if (red_photoresistor_task.adc_val > red_photoresistor_task.zero + red_photoresistor_task.thresh)
-//    {
-//        red_photoresistor_task.hit_flag = 1;
-//    }
 }
-
+/**
+  * @brief  This function runs at start to calibrate DC motors and photoresistors.
+  * @retval None
+  */
 void calibration(void) {
     const float Kp = 1.0f;
     const int  HOMING_TOL = 5;      // ticks tolerance
