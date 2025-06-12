@@ -83,9 +83,9 @@
  * \htmlonly
  * <div style="display: flex; justify-content: left; align-items: flex-start; gap: 20px;">
  * <img src="media/photos/assemblyCAD.png" alt="Assembly CAD" 
- * 		style="display: block; height: 500px;"/>
+ * 		style="display: block; height: 450px;"/>
  * <img src="media/photos/BallonAssembly.png" alt="Assembly Drawing" 
- *      style="height: 500px;"/>
+ *      style="height: 450px;"/>
  * </div>
  * \endhtmlonly 
  *
@@ -120,6 +120,12 @@
 
 /**
  * @page electrical_page Electrical Design
+ *
+ * <div style="margin-left: 0%;">
+ * <h2><a href="https://a360.co/3HyZWpD" target="_blank" 
+ *		rel="noopener noreferrer"> 🗺️ Schematic Drawings</a></h2>
+ * </div>
+ *
  * The circuit design was developed using Fusion 360, and the custom PCB manages 
  * all core aspects of game control. Debugging and firmware development were 
  * facilitated using an ST-Link programmer, with UART communication enabling 
@@ -149,12 +155,19 @@
  *
  * \htmlonly
  * <div style="display: flex; justify-content: left; align-items: flex-start; gap: 20px;">
- *   <img src="media/photos/wiringdiagram.png" alt="Wiring Diagram" 
- *        style="height: 500px;"/>
  *   <img src="media/photos/mountedPCB.jpg" alt="Mounted PCB" 
+ *        style="height: 500px;"/>
+ *	 <img src="media/photos/MCU Design v32.png" alt="PCB CAD" 
+ *        style="height: 500px;"/>
+ *   <img src="media/photos/Schematic.png" alt="Schematic" 
  *        style="height: 500px;"/>
  * </div>
  * \endhtmlonly
+ *
+ * <div style="margin-left: 10%;">
+ * 	 <img src="media/photos/wiringdiagram.png" alt="Wiring Diagram" 
+ *        style="height: 500px;"/>
+ * </div>
  */
 
 /**
