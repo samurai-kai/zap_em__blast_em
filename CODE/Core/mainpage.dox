@@ -33,7 +33,6 @@
  * - @ref mechanical_page
  * - @ref electrical_page
  * - @ref software_page
- * - @ref future_page
  */
 
 /**
@@ -172,12 +171,12 @@
 
 /**
  * @page software_page Software Design
- * Our project utilizes a task-based architecture with finite state machines(FSM). 
+ * Our project utilizes a task-based architecture with finite state machines (FSM). 
  * It is written completely in C within the STM Cube IDE which enables us to design 
  * setup pins, timers, interrupts and DMA all within the ioc file. 
  *
- * Our FSMs were implemented w/ function pointers with "psuedo-object-oriented" methods.
- * This was crucial in making our C code scalable, cooperative, organized and easy to debug. In main.c,
+ * Our FSMs were implemented using function pointers with "psuedo-object-oriented" methods.
+ * This was crucial in making our C code scalable, cooperative, organized, and easy to debug. In main.c,
  * we run each task, with some conditions, in a round robin fashion. The laser, shield, and rotational
  * controls are enabled or disabled depending on the state of the game. Calibration of the game, which includes
  * photoresistors and dc motors, occurs at start up.
