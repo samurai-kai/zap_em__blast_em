@@ -80,8 +80,14 @@
  * A button on top of each handle allows users to raise the shield and fire the 
  * laser.
  *
+ * \htmlonly
+ * <div style="display: flex; justify-content: left; align-items: flex-start; gap: 20px;">
  * <img src="media/photos/assemblyCAD.png" alt="Assembly CAD" 
- * style="display: block; margin-left: 15%; width: 600px;"/>
+ * 		style="display: block; height: 500px;"/>
+ * <img src="media/photos/BallonAssembly.png" alt="Assembly Drawing" 
+ *      style="height: 500px;"/>
+ * </div>
+ * \endhtmlonly 
  *
  * @section Manufacturing
  * The primary manufacturing method for this project is 3D printing, chosen for 
