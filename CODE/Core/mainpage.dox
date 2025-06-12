@@ -33,6 +33,9 @@
  * - @ref mechanical_page
  * - @ref electrical_page
  * - @ref software_page
+ *
+ * <img src="media/photos/me507_S25_ClassPhoto.jpeg" alt="Class Photo"
+ *     	style="display: block; margin-left: 10%; width: 600px;" />
  */
 
 /**
@@ -57,13 +60,20 @@
  * * "Shoot" button to raise shield or fire laser
  * * Track sliders to strafe robot positions
  *
- <img src="media/photos/LaserCaution.jpg" alt="Laser Caution"
-      style="display: block; margin-left: 15%; width: 400px;" />
+ * \htmlonly
+ * <div style="display: flex; justify-content: left; align-items: flex-start; gap: 20px;">
+ *    <img src="media/photos/LaserCaution.jpg" alt="Laser Caution"
+ *     		style="display: block; margin-left: 15%; height: 500px;" />
+ *     <img src="media/photos/mountedPCB.jpg" alt="Mounted PCB" 
+ *      style="height: 500px;"/>
+ * </div>
+ * \endhtmlonly
  */
 
 
 /**
  * @page mechanical_page Mechanical Design
+ * @section Design
  * The mechanical design consists of three primary components: game housing, 
  * sliders, and fighter controls. The housing enclosure serves as the mounting 
  * structure for key components such as the sliders and electronics. Designed 
@@ -119,7 +129,7 @@
 
 /**
  * @page electrical_page Electrical Design
- *
+ * @section Design
  * <div style="margin-left: 0%;">
  * <h2><a href="https://a360.co/3HyZWpD" target="_blank" 
  *		rel="noopener noreferrer"> 🗺️ Schematic Drawings</a></h2>
@@ -142,6 +152,17 @@
  * were initially soldered in the wrong orientation and had to be carefully 
  * desoldered, rotated, and reinstalled to restore full functionality.
  *
+ * \htmlonly
+ * <div style="display: flex; justify-content: left; align-items: flex-start; gap: 20px;">
+ *   <img src="media/photos/AndrewSolder.jpg" alt="Soldering" 
+ *        style="height: 500px;"/>
+ *	 <img src="media/photos/MCU Design v32.png" alt="PCB CAD" 
+ *        style="height: 500px;"/>
+ *   <img src="media/photos/Schematic.png" alt="Schematic" 
+ *        style="height: 500px;"/>
+ * </div>
+ * \endhtmlonly
+ *
  * Future iterations of the PCB may involve more deliberate pin assignments, 
  * particularly for the audio interface to improve performance and simplify 
  * routing. 
@@ -152,18 +173,8 @@
  * buffers—nearly exhausted the system’s RAM, highlighting the need for 
  * increased memory capacity in subsequent designs.
  *
- * \htmlonly
- * <div style="display: flex; justify-content: left; align-items: flex-start; gap: 20px;">
- *   <img src="media/photos/mountedPCB.jpg" alt="Mounted PCB" 
- *        style="height: 500px;"/>
- *	 <img src="media/photos/MCU Design v32.png" alt="PCB CAD" 
- *        style="height: 500px;"/>
- *   <img src="media/photos/Schematic.png" alt="Schematic" 
- *        style="height: 500px;"/>
- * </div>
- * \endhtmlonly
- *
- * <div style="margin-left: 10%;">
+* @section high_level High-Level Wiring Diagram
+ * <div style="margin-left: 0%;">
  * 	 <img src="media/photos/wiringdiagram.png" alt="Wiring Diagram" 
  *        style="height: 500px;"/>
  * </div>
@@ -171,6 +182,7 @@
 
 /**
  * @page software_page Software Design
+ * @section Design
  * Our project utilizes a task-based architecture with finite state machines (FSM). 
  * It is written completely in C within the STM Cube IDE which enables us to design 
  * setup pins, timers, interrupts and DMA all within the ioc file. 
@@ -183,4 +195,6 @@
  *
  * Our game was split into 6 tasks; however, the controller, photoresistor, and shoot tasks were duplicated 
  * for the blue and red fighters. Each task and its FSM are provided below.
+ *
+ * @section FSM_section Finite State Machines
  */
