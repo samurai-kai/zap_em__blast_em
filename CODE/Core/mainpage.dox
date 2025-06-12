@@ -28,11 +28,17 @@
  * </div>
  * \endhtmlonly
  *
+ * \htmlonly
+ * <div style="margin-left: 10%;">
+ * \endhtmlonly
  * @section toc_section Table of Contents
  * - @ref gameplay_page
  * - @ref mechanical_page
  * - @ref electrical_page
  * - @ref software_page
+ * \htmlonly
+ * </div>
+ * \endhtmlonly
  *
  * <img src="media/photos/me507_S25_ClassPhoto.jpeg" alt="Class Photo"
  *     	style="display: block; margin-left: 10%; width: 600px;" />
