@@ -203,4 +203,8 @@
  * for the blue and red fighters. Each task and its FSM are provided below.
  *
  * @section FSM_section Finite State Machines
+ * <div style="margin-left: 0%;">
+ * 	 <img src="media/photos/FSMS.jpg" alt="FSM's" 
+ *        style="height: 500px;"/>
+ * </div>
  */
