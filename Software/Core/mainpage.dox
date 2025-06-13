@@ -102,7 +102,7 @@
 | 1   | High-speed clock  | ABM3-25.000MHZ-D2Y-T                      | [HSE](https://www.digikey.com/en/products/detail/abracon-llc/ABM3-25-000MHZ-D2Y-T/2344585) |
 | 1   | Tactile switch    | For board reset button                    | [Tactile Switch](https://www.mouser.com/ProductDetail/Omron-Electronics/B3U-1000PM?qs=hnUcNC2tU0oiJUWqjOlHqA%3D%3D) |
 | 2   | B7B-XH-A          | 7-pin connector header                    | [B7B-XH-A](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B7B-XH-A-LF-SN/99130) |
-| 2   | B15B-XH-A          | 15-pin connector header                  | [B15B-XH-A](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B15B-XH-A/1651052) |
+| 2   | B15B-XH-A         | 15-pin connector header                   | [B15B-XH-A](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B15B-XH-A/1651052) |
 | 1   | Green LED         | ST-Link connection indicator              | [Green LED](https://www.mouser.com/ProductDetail/Omron-Electronics/B3U-1000PM?qs=hnUcNC2tU0oiJUWqjOlHqA%3D%3D) |
 | 1   | DRV8833CPWPR      | IC motor driver                           | [Motor driver](https://www.digikey.com/en/products/detail/texas-instruments/DRV8833CPWPR/4972147?msockid=073d36e0a1806daa32562467a0046cfb) |
 | 1   | LM2576SX-5.0/NOPB | Step-down switching regulator             | [Switching Regulator](https://www.digikey.com/en/products/detail/texas-instruments/LM2576SX-5-0-NOPB/366793) |
@@ -193,21 +193,37 @@
  * In total, 39 wire-to-board crimp connections were required to interface all 
  * peripheral components, utilizing nearly every available pin on the 
  * microcontroller. 
- * One notable revision involved the MOSFETs responsible for laser control—these 
- * were initially soldered in the wrong orientation and had to be carefully 
- * desoldered, rotated, and reinstalled to restore full functionality.
- *
+ * 
+ * 
  * \htmlonly
  * <div style="display: flex; justify-content: left; align-items: flex-start; gap: 20px;">
  *   <img src="media/photos/AndrewSolder.jpg" alt="Soldering" 
  *        style="height: 500px;"/>
- *	 <img src="media/photos/MCU Design v32.png" alt="PCB CAD" 
+ *	 <img src="media/photos/MCU_Design_v32.png" alt="PCB CAD" 
  *        style="height: 500px;"/>
  *   <img src="media/photos/Schematic.png" alt="Schematic" 
  *        style="height: 500px;"/>
  * </div>
  * \endhtmlonly
  *
+ * **Laser control**
+ * 
+ * To control our lasers, we use a PFET along with an open-drain GPIO. This allows us to 
+ * use single MOSFET and a single pin to drive our laser. The selection of MOSFET for this
+ * purpose was critical. It needed to have a source voltage that was also compatible as the 
+ * gate voltage. We connect source and gate with a 10 kOHm resitor. 
+ * When our pin is in open mode, our source voltage goes to our gate which closes
+ * the switch. When our pin is drain mode, our source voltage is pulled to ground within our microcontroller
+ * which opens the MOSFET switch, turning our laser on. When our board was delivered, our lasers did 
+ * not work as planned. This ended being due to an incorrect schematic symbol and pcb footprint.
+ * The ones provided on digikey were for a NFET which meant that our pins were all rotated by one.
+ * Luckily, this meant, with some careful heatgun work, that we could rotate our MOSFET by 120 degrees
+ * to get it working again.
+ * \htmlonly
+ * <img src="media\photos\mosfet_swap.jpg" alt="mosfet_swap" 
+ *        style="height: 500px;"/>
+ * \endhtmlonly
+
  * Future iterations of the PCB may involve more deliberate pin assignments, 
  * particularly for the audio interface to improve performance and simplify 
  * routing. 
@@ -242,9 +258,45 @@
  * for the blue and red fighters. Each task and its FSM are provided below.
  *
  * @section feature_section Key Features
+ * **Audio**
  * 
+ * After our PCB was ordered, we realized that adding audio to our game would enhance game mechanics
+ * and make it feel more like a real product. Luckily, we had one timer pin left that we had set aside
+ * as a spare attached to our 15-pin jsts. This allowed us to use intersective PWM mapping to audio signals
+ * which utilizes the low-pass filtering nature of a speaker along with the high frequency PWM abilities of
+ * our microcontroller. We take a mp3 audio file and convert it to a c array filled with audio signal voltage points.
+ * Then, we takes those points and adjust our duty cycle to represent them. Our PWM frequency runs twice as fast as the
+ * audio signal we are trying to represent which increases sound quality greatly. The sounds that we were trying to play were 
+ * not particularly advanced which led to our system doing a great job at playing them. One interesting result of this method
+ * was how space inefficient it is. A 1 sec mp3 file turned into a c-array for our uses would almost 10x in size.
+ * 
+ * <div style="margin-left: 0%;">
+ * 	 <img src="media/photos/stemma_speaker.jpeg" alt="speaker" 
+ *        style="height: 500px;"/>
+ * </div>
+ * courtesy of
+ * <h2><a href="https://www.adafruit.com/product/3885" target="_blank" 
+ *		rel="noopener noreferrer">  Adafruit </a></h2>
+ * </div>
+
+ * **Laser sensing**
+ * 
+ * To sense the lasers, we use photoresistors attached to our onboard ADC. We use a voltage divider to split our output to
+ * a readable amount. Calibration is done on startup to take a reading of the current light in the room we are in and to adjust
+ * our threshold value accordingly. When developing these, we spent over 3 hours thinking that our button was shorting into the 
+ * photoresistor line because each time we would hit the button, the ADC value would maximize. This ended up being due to the shield
+ * raising at the same moment which allowed more sunlight to hit our photoresistor. To counter this, we created a 3D printed cover that 
+ * was less sensitive to sunlight but was still sensitive to our laser.
+ * 
+ * **Control**
  *
- *
+ * To control each players fighter, they utilize a joystick. As mentioned in mechanical design, this joystick is spring loaded and can rotate on a 
+ * potentiometer. Also, it has a button integrated on the top of it. The potentiometer controls the robot through a positional proportional.
+ * In the development of the controller, we realized that having only proportional control gives the game a more springy feel
+ * which corresponds to the springy feel of the joystick. We implemented integral control for a moment but ended up removing keep this
+ * game mechanic. The button is attached to an interrupt is called on either edge change. This is because the laser and shield go up
+ * while the button is pressed and held. When the button is released, the shield comes down and laser turns off immediately. 
+ * 
  * @section FSM_section Task Finite State Machines
  * <div style="margin-left: 0%;">
  * 	 <img src="media/photos/FSMS.jpg" alt="FSM's" 

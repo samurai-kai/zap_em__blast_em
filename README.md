@@ -36,11 +36,11 @@ Over the course of a 10-week quarter, our team designed a complete mechanical de
 
 Our mechanical design focuses on game-specific mechanics, aesthetics and manufacturability. We had multiple actuators and sensors that needed to be implemented in tight spaces while minimizes structural size.
 
-** add photo
+![mech design](docs\media\photos\assemblyCAD.png)
 
 Our electrical design focused on integration and support for our significant amount of game features. It was our first time designing a PCB so lots of time was spent learning design techniques and iterating based on feedback from our instructor **Charlie Refvem**. 
 
-** add photo
+![pcb](docs\media\photos\MCU_Design_v32.png)
 
 Our software design was designed a task-based system. Each task uses a finite state machine implemented with "pseudo-object-oriented" C structs. This architecture makes our code base scalable and organized.
 
