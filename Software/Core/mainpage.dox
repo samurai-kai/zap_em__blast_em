@@ -92,7 +92,6 @@
 |  2  | Photoresistor       | Target on fighters chest to sense hit   | [Photoresistor](https://www.elexp.com/products/08gl2053920-mm-photoresistor-50-to-100k-ohm?variant=42038615572708) |
 |  1  | Speaker             | Fighter and game sound effects          | [Speaker](https://www.adafruit.com/product/3885) |
 |  2  | Linear tracks       | Fighter translation                     | [Tracks](https://www.amazon.com/KGTCN-Miniature-Sliding-Guideway-Machine/dp/B0DY4LGPS5?crid=1KNNL2R120LHU&dib=eyJ2IjoiMSJ9.pQhMeqkqSsk4FvEpuMRc10wGuMBBCR6OXF7yaOsUA-E1mvCuxoNECw632wuAwfJ--I06zHnx4p2EZtQWPbtFeHhioi3Lm2sFQ98bckiqY6_WlI0zxxqm8B3znZhSaZTt6AHLyjbVe4eN1ZBVem7RKOvUe6UI5Stwo7C5ulBrL40cd2eOcZr7mHzTSm9ZoRzIiuNWBJMAF_rtugCeRNmN13utsEC8nHiR_aFlYwNbGWY.e1xFeI0YO_vKVjkdhgQNsTKdhMS9zKK4OmPSaP7BFjU&dib_tag=se&keywords=linear%2Btrack&qid=1745006530&sprefix=linear%2Btrack%2Caps%2C198&sr=8-14&th=1) |
-
  *
  * @section Electrical
  * 
@@ -242,13 +241,13 @@
  * Our game was split into 6 tasks; however, the controller, photoresistor, and shoot tasks were duplicated 
  * for the blue and red fighters. Each task and its FSM are provided below.
  *
- * @section Key Features
+ * @section feature_section Key Features
  * 
  *
  *
  * @section FSM_section Task Finite State Machines
  * <div style="margin-left: 0%;">
  * 	 <img src="media/photos/FSMS.jpg" alt="FSM's" 
- *        style="height: 500px;"/>
+ *        style="height: 1200px;"/>
  * </div>
  */
