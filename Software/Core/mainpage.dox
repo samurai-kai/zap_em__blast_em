@@ -95,12 +95,26 @@
 
  *
  * @section Electrical
+ * 
+| QTY | PART              | DESCRIPTION                               | LINK                                                                 |
+|-----|-------------------|-------------------------------------------|----------------------------------------------------------------------|
+| 1   | Fuse              | Circuit protection                        | [Fuse](https://www.digikey.com/en/products/detail/littelfuse-inc/2016L500DR/6234821) |
+| 1   | DC power jack     | Power supply connection                   | [DC Jack](https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/694108106102/5047824?msockid=073d36e0a1806daa32562467a0046cfb) |
+| 1   | High-speed clock  | ABM3-25.000MHZ-D2Y-T                      | [HSE](https://www.digikey.com/en/products/detail/abracon-llc/ABM3-25-000MHZ-D2Y-T/2344585) |
+| 1   | Tactile switch    | For board reset button                    | [Tactile Switch](https://www.mouser.com/ProductDetail/Omron-Electronics/B3U-1000PM?qs=hnUcNC2tU0oiJUWqjOlHqA%3D%3D) |
+| 2   | B7B-XH-A          | 7-pin connector header                    | [B7B-XH-A](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B7B-XH-A-LF-SN/99130) |
+| 2   | B15B-XH-A          | 15-pin connector header                  | [B15B-XH-A](https://www.digikey.com/en/products/detail/jst-sales-america-inc/B15B-XH-A/1651052) |
+| 1   | Green LED         | ST-Link connection indicator              | [Green LED](https://www.mouser.com/ProductDetail/Omron-Electronics/B3U-1000PM?qs=hnUcNC2tU0oiJUWqjOlHqA%3D%3D) |
+| 1   | DRV8833CPWPR      | IC motor driver                           | [Motor driver](https://www.digikey.com/en/products/detail/texas-instruments/DRV8833CPWPR/4972147?msockid=073d36e0a1806daa32562467a0046cfb) |
+| 1   | LM2576SX-5.0/NOPB | Step-down switching regulator             | [Switching Regulator](https://www.digikey.com/en/products/detail/texas-instruments/LM2576SX-5-0-NOPB/366793) |
+| 1   | 1x4 pin header    | Connectors for I2C LCD screen             | [1x4 Header](https://www.digikey.com/en/products/detail/sullins-connector-solutions/GRPB041VWVN-RC/1786440) |
+| 1   | 1x6 pin header    | Connectors for UART ST-Link debugger      | [1x6 Header](https://www.digikey.com/en/products/detail/adam-tech/ADT-AMP1251106S4BS165A1/9832042) |
+| 2   | RZM002P02T2L      | P-mosfets for laser interface with button | [P-mosfet](https://www.digikey.com/en/products/detail/rohm-semiconductor/RZM002P02T2L/2336819) |
+| 1   | MBR0520LT1G       | Schottky diode from LDO circuit           | [Diode](https://www.digikey.com/en/products/detail/onsemi/MBR0520LT1G/918574?s=N4IgTCBcDaILICEBKAGArGFAZAKgRgHEQBdAXyA) |
+| 1   | STM32F411CEU6     | Microcontroller unit                      | [STM32F411CEU6](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F411CEU6/4935720) |
+| 1   | TLV73333PDBVR     | IC Linear regulator (LDO)                 | [LDO](https://www.digikey.com/en/products/detail/texas-instruments/TLV73333PDBVR/5022378) |
+ * *Resistor, capacitor, inductor parts not included*
  *
- * | QTY | PART             | DESCRIPTION          |
- * |-----|------------------|----------------------|
- * | PA0 | Laser Trigger    | Fires the laser      |
- * | PA1 | Shield Actuator  | Raises the shield    |
- * | PB6 | UART TX          | Serial communication |
  */
 
 /**
