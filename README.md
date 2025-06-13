@@ -44,5 +44,5 @@ Our electrical design focused on integration and support for our significant amo
 
 Our software design was designed a task-based system. Each task uses a finite state machine implemented with "pseudo-object-oriented" C structs. This architecture makes our code base scalable and organized.
 
-** add photo
+
 
