@@ -209,11 +209,11 @@
  * **Laser control**
  * 
  * To control our lasers, we use a PFET along with an open-drain GPIO. This allows us to 
- * use single MOSFET and a single pin to drive our laser. The selection of MOSFET for this
+ * use a single MOSFET and a single pin to drive our laser. The selection of our MOSFET for this
  * purpose was critical. It needed to have a source voltage that was also compatible as the 
- * gate voltage. We connect source and gate with a 10 kOHm resitor. 
+ * gate voltage. We connect source and gate through a 10 kOHm resistor. 
  * When our pin is in open mode, our source voltage goes to our gate which closes
- * the switch. When our pin is drain mode, our source voltage is pulled to ground within our microcontroller
+ * the switch. When our pin is drain mode, our gate voltage is pulled to ground within our microcontroller
  * which opens the MOSFET switch, turning our laser on. When our board was delivered, our lasers did 
  * not work as planned. This ended being due to an incorrect schematic symbol and pcb footprint.
  * The ones provided on digikey were for a NFET which meant that our pins were all rotated by one.
@@ -263,7 +263,7 @@
  * 
  * After our PCB was ordered, we realized that adding audio to our game would enhance game mechanics
  * and make it feel more like a real product. Luckily, we had one timer pin left that we had set aside
- * as a spare attached to our 15-pin jsts. This allowed us to use intersective PWM mapping to audio signals
+ * as a spare attached to our 15-pin jsts. This allowed us to use intersective PWM mapping for audio signals
  * which utilizes the low-pass filtering nature of a speaker along with the high frequency PWM abilities of
  * our microcontroller. We take a mp3 audio file and convert it to a c array filled with audio signal voltage points.
  * Then, we takes those points and adjust our duty cycle to represent them. Our PWM frequency runs twice as fast as the
@@ -281,7 +281,7 @@
  * **Laser sensing**
  * 
  * To sense the lasers, we use photoresistors attached to our onboard ADC. We use a voltage divider to split our output to
- * a readable amount. Calibration is done on startup to take a reading of the current light in the room we are in and to adjust
+ * a readable amount. Calibration is done on startup to take a reading of the current light in the room and to adjust
  * our threshold value accordingly. When developing these, we spent over 3 hours thinking that our button was shorting into the 
  * photoresistor line because each time we would hit the button, the ADC value would maximize. This ended up being due to the shield
  * raising at the same moment which allowed more sunlight to hit our photoresistor. To counter this, we created a 3D printed cover that 
@@ -289,11 +289,11 @@
  * 
  * **Control**
  *
- * To control each players fighter, they utilize a joystick. As mentioned in mechanical design, this joystick is spring loaded and can rotate on a 
- * potentiometer. Also, it has a button integrated on the top of it. The potentiometer controls the robot through a positional proportional.
+ * To control each players fighter, they utilize a joystick. As mentioned in mechanical design, this joystick is spring-loaded and can rotate on a 
+ * potentiometer. Also, it has a button integrated on the top of it. The potentiometer controls the robot through a positional, proportional controller.
  * In the development of the controller, we realized that having only proportional control gives the game a more springy feel
- * which corresponds to the springy feel of the joystick. We implemented integral control for a moment but ended up removing keep this
- * game mechanic. The button is attached to an interrupt is called on either edge change. This is because the laser and shield go up
+ * which corresponds to the springy feel of the joystick. We implemented integral control for a moment but ended up removing to keep this
+ * game mechanic. The button is attached to an interrupt and is called on either edge change. This is because the laser and shield go up
  * while the button is pressed and held. When the button is released, the shield comes down and laser turns off immediately. 
  * 
  * @section FSM_section Task Finite State Machines
