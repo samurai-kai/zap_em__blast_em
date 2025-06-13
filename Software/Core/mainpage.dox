@@ -202,6 +202,10 @@
  * Our game was split into 6 tasks; however, the controller, photoresistor, and shoot tasks were duplicated 
  * for the blue and red fighters. Each task and its FSM are provided below.
  *
+ * @section Key Features
+ * 
+ *
+ *
  * @section FSM_section Task Finite State Machines
  * <div style="margin-left: 0%;">
  * 	 <img src="media/photos/FSMS.jpg" alt="FSM's" 

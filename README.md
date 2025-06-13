@@ -8,7 +8,6 @@ An interactive, laser-shooting game bootlegged off Rock'Em Sock'Em Robots
 
 [Kai De La Cruz](https://sites.google.com/view/kaicustoms/home?authuser=0) 
 
-[![Watch the video](https://img.youtube.com/vi/SelIsVGXWzg/0.jpg)](https://www.youtube.com/watch?v=SelIsVGXWzg)
 
 ## Documentation:
 
@@ -23,6 +22,11 @@ All of the materials necessary to replicate this project are provided.
 /hardware has the mechanical and electrical designs. This includes CAD files, our PCB design, a bill of materials, and our MCU pinout.
 
 /software has all of the code, written in c, to run our project
+
+## Game Play:
+
+[![Watch the video](https://img.youtube.com/vi/SelIsVGXWzg/0.jpg)](https://www.youtube.com/watch?v=SelIsVGXWzg)
+
 
 ## Project Overview:
 
