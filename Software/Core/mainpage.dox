@@ -219,6 +219,7 @@
  * The ones provided on digikey were for a NFET which meant that our pins were all rotated by one.
  * Luckily, this meant, with some careful heatgun work, that we could rotate our MOSFET by 120 degrees
  * to get it working again.
+ *
  * \htmlonly
  * <img src="media\photos\mosfet_swap.jpg" alt="mosfet_swap" 
  *        style="height: 500px;"/>
@@ -274,9 +275,7 @@
  * 	 <img src="media/photos/stemma_speaker.jpeg" alt="speaker" 
  *        style="height: 500px;"/>
  * </div>
- * courtesy of
- * <h2><a href="https://www.adafruit.com/product/3885" target="_blank" 
- *		rel="noopener noreferrer">  Adafruit </a></h2>
+ * courtesy of <a href="https://www.adafruit.com/product/3885" target="_blank" rel="noopener noreferrer">  Adafruit </a>
  * </div>
 
  * **Laser sensing**
