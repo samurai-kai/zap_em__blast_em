@@ -1478,7 +1478,8 @@ HTML_EXTRA_FILES       = doxygen-custom.css \
                          media/photos/BallonAssembly.png \
                          media/photos/Schematic.png \
                          "media/photos/MCU Design v32.png" \
-                         media/photos/me507_S25_ClassPhoto.jpeg
+                         media/photos/me507_S25_ClassPhoto.jpeg \
+                         media/photos/stemma_speaker.jpg
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.

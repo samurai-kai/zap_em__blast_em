@@ -272,7 +272,7 @@
  * was how space inefficient it is. A 1 sec mp3 file turned into a c-array for our uses would almost 10x in size.
  * 
  * <div style="margin-left: 0%;">
- * 	 <img src="media/photos/stemma_speaker.jpeg" alt="speaker" 
+ * 	 <img src="media/photos/stemma_speaker.jpg" alt="speaker" 
  *        style="height: 500px;"/>
  * </div>
  * courtesy of <a href="https://www.adafruit.com/product/3885" target="_blank" rel="noopener noreferrer">  Adafruit </a>
