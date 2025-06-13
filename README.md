@@ -41,7 +41,7 @@ Our mechanical design focuses on game-specific mechanics, aesthetics and manufac
 
 Our electrical design focused on integration and support for our significant amount of game features. It was our first time designing a PCB so lots of time was spent learning design techniques and iterating based on feedback from our instructor **Charlie Refvem**. 
 
-<img src="docs\media\photos\MCU_Design_v32.png" width="500" alt="pcb">
+<img src="docs\media\photos\MCU_Design_v32.png" width="400" alt="pcb">
 
 Our software design was designed a task-based system. Each task uses a finite state machine implemented with "pseudo-object-oriented" C structs. This architecture makes our code base scalable and organized.
 
