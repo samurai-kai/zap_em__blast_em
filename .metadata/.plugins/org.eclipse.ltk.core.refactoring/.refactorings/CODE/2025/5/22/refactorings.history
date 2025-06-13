@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;CODE/Core/Inc/motor_driver&apos; to &apos;motor_driver.h&apos;" description="Rename resource &apos;motor_driver&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/motor_driver" name="motor_driver.h" stamp="1748533141564" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;CODE/Core/Src/motor_driver&apos; to &apos;motor_driver.c&apos;" description="Rename resource &apos;motor_driver&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/motor_driver" name="motor_driver.c" stamp="1748533148589" updateReferences="true"/>
-</session>
