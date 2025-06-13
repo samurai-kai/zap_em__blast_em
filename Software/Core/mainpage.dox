@@ -76,6 +76,32 @@
  * \endhtmlonly
  */
 
+/**
+ * @page hardware_page Hardware
+ * @section Mechanical
+ *
+| QTY | PART                | DESCRIPTION                             | LINK                            |
+|-----|---------------------|-----------------------------------------|---------------------------------|
+|  1  | LCD screen w/ backpack | For scoreboard and user interface    | [LCD](https://www.digikey.com/en/products/detail/sunfounder/CN0296D/18668625?gclsrc=aw.ds&&utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Medium%20ROAS%20Categories&utm_term=&utm_content=&utm_id=go_cmp-20223376311_adg-_ad-__dev-c_ext-_prd-18668625_sig-CjwKCAjwn6LABhBSEiwAsNJrjnKjY_diidke7wgz2XhMoGNyCHbKcRHyNVhZmeeQPOnZnX1fyazF0RoCxRgQAvD_BwE&gad_source=1&gbraid=0AAAAADrbLlgeRZV_NhoUv30r-iRF0RTrv&gclid=CjwKCAjwn6LABhBSEiwAsNJrjnKjY_diidke7wgz2XhMoGNyCHbKcRHyNVhZmeeQPOnZnX1fyazF0RoCxRgQAvD_BwE&gclsrc=aw.ds) |
+|  2  | Potentiometer       | User inputs for fighter rotation        | [Potentiometer](https://www.amazon.com/gp/product/B08B3SGL2L/ref=sw_img_1?smid=A1CLMBP6H6OH8Q&psc=1) |
+|  2  | Geared DC motor w/ encoder | Fighter rotation, GR = 60:1, 6V  | [DC Motor](https://www.digikey.com/en/products/detail/dfrobot/FIT0483/7087160?gclsrc=aw.ds&&utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Low%20ROAS%20Categories&utm_term=&utm_content=&utm_id=go_cmp-20243063506_adg-_ad-__dev-c_ext-_prd-7087160_sig-CjwKCAjwn6LABhBSEiwAsNJrjqj0t2M5dm91PS4w_QAQ5e77tbg0P8T0pFQD0vhHEAIXZ6_Goph4ehoCUGsQAvD_BwE&gad_source=1&gbraid=0AAAAADrbLlhbS8xtJZAHvTT2x9pSJri1O&gclid=CjwKCAjwn6LABhBSEiwAsNJrjqj0t2M5dm91PS4w_QAQ5e77tbg0P8T0pFQD0vhHEAIXZ6_Goph4ehoCUGsQAvD_BwE&gclsrc=aw.ds) |
+|  2  | Mini Servo Motors   | Shield actuation                        | [Servo](https://www.amazon.com/Miuzei-Geared-Helicopter-Arduino-Project/dp/B0BWJ4RKGV/ref=sr_1_2_sspa?dib=eyJ2IjoiMSJ9.zKdFX4LDfJj3RzL495S_2cI-8GNs_0ardkHEw4njxgYBfadK8T8rC2sFHUY_Hb4p-qGZ8tWdusV1Ilfg1L-lvQzn9-E4_lE-zJxlPlnujbUtV_QJJx4BcgeItagyeZH1fCGKXx-f4Fc2rbFp1p6ELkK0lgmPlwMKOhY4_l8lRxqavXs2x90gJk75cjQDiMvLrj7F9_-uCpzyfND23yOqS8UUZooDyeSgtIOtGcxu1lWR6-6rA5ZQS6bHHIKcWd2sVuxLzhXc3Hw-ILBZU2GTTILRLJyhp1n3CQku64iPuOk.1rgGUOqkUb1NwRlZtY9OCDg-Y4wscwnBpDU9qeHMxE4&dib_tag=se&keywords=mini%2Bservo%2Bmotor&qid=1743793456&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1) |
+|  2  | Laser pointers      | Fighter shooting mechanisms             | [Laser](https://www.amazon.com/module-Industrial-Module-adjustable-length/dp/B0CN6ZNN61/ref=sr_1_12_sspa?crid=WD1TOPCSKMJB&dib=eyJ2IjoiMSJ9.ueABioB9mz_YYXcY9gC5wXj95OzQTKtZnuwEVJpBMnZilk80mXawHAleTq6e-HdMixb7y3x_faRPFvacAeGPNeu_Ge1HqOjczblAVS51SIfEkPQ4a0aX8VZf9voQ4ojUheTWLwZkt6BARsXuLqixh7HujCAvnw9mLkfWLKDZa7OkCb8RTCwdoe6iwCkaSwm_vRo9FNumcf73yuIZhiElNRC_j_HYuQlIw0JYSP-4dZ6HMYedUsT4MAv_Q4acySOqmLo6zJ3aIklpFOsQhrv5keXIwkoxiKQhMa2355sMf08.WgHPMjP08ZWIOWClfVPHR0A5g8BFmhFxlQJyZYuQTqE&dib_tag=se&keywords=mini%2Blaser%2Bpoints&qid=1743793584&sprefix=mini%2Blaser%2Bpoint%2Caps%2C175&sr=8-12-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&th=1) |
+|  2  | Arcade push buttons | Fighter shield & firing inputs          | [Buttons](https://www.adafruit.com/product/3490) |
+|  1  | 6V, 5A Power Supply | Barrel jack interface power supply      | [Power Supply](https://www.amazon.com/6V-5A-Power-Supply-Transformer/dp/B07R1K5H56/ref=asc_df_B07R1K5H56?mcid=3df491cd0b9b3873b303a0d7c75c0171&hvocijid=3478865598265135985-B07R1K5H56-&hvexpln=73&tag=hyprod-20&linkCode=df0&hvadid=721245378154&hvpos=&hvnetw=g&hvrand=3478865598265135985&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007527&hvtargid=pla-2281435177898&psc=1) |
+|  2  | Photoresistor       | Target on fighters chest to sense hit   | [Photoresistor](https://www.elexp.com/products/08gl2053920-mm-photoresistor-50-to-100k-ohm?variant=42038615572708) |
+|  1  | Speaker             | Fighter and game sound effects          | [Speaker](https://www.adafruit.com/product/3885) |
+|  2  | Linear tracks       | Fighter translation                     | [Tracks](https://www.amazon.com/KGTCN-Miniature-Sliding-Guideway-Machine/dp/B0DY4LGPS5?crid=1KNNL2R120LHU&dib=eyJ2IjoiMSJ9.pQhMeqkqSsk4FvEpuMRc10wGuMBBCR6OXF7yaOsUA-E1mvCuxoNECw632wuAwfJ--I06zHnx4p2EZtQWPbtFeHhioi3Lm2sFQ98bckiqY6_WlI0zxxqm8B3znZhSaZTt6AHLyjbVe4eN1ZBVem7RKOvUe6UI5Stwo7C5ulBrL40cd2eOcZr7mHzTSm9ZoRzIiuNWBJMAF_rtugCeRNmN13utsEC8nHiR_aFlYwNbGWY.e1xFeI0YO_vKVjkdhgQNsTKdhMS9zKK4OmPSaP7BFjU&dib_tag=se&keywords=linear%2Btrack&qid=1745006530&sprefix=linear%2Btrack%2Caps%2C198&sr=8-14&th=1) |
+
+ *
+ * @section Electrical
+ *
+ * | QTY | PART             | DESCRIPTION          |
+ * |-----|------------------|----------------------|
+ * | PA0 | Laser Trigger    | Fires the laser      |
+ * | PA1 | Shield Actuator  | Raises the shield    |
+ * | PB6 | UART TX          | Serial communication |
+ */
 
 /**
  * @page mechanical_page Mechanical Design
