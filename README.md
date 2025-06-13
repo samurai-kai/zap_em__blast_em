@@ -28,6 +28,7 @@ All of the materials necessary to replicate this project are provided.
 [![Watch the video](https://img.youtube.com/vi/SelIsVGXWzg/0.jpg)](https://www.youtube.com/watch?v=SelIsVGXWzg)
 
 
+
 ## Project Overview:
 
 Zap'Em Blast'Em Robots is an interactive game inspired by Rock'Em Sock'Em Robots, developed as part of the Mechanical Control System Design course at Cal Poly, San Luis Obispo. Designed by graduate students in the Mechanical Engineering program, the project showcases a fully integrated system combining mechanical, electrical, and software components.
@@ -36,11 +37,11 @@ Over the course of a 10-week quarter, our team designed a complete mechanical de
 
 Our mechanical design focuses on game-specific mechanics, aesthetics and manufacturability. We had multiple actuators and sensors that needed to be implemented in tight spaces while minimizes structural size.
 
-![mech design](docs\media\photos\assemblyCAD.png)
+<img src="docs\media\photos\assemblyCAD.png" width="500" alt="mech design">
 
 Our electrical design focused on integration and support for our significant amount of game features. It was our first time designing a PCB so lots of time was spent learning design techniques and iterating based on feedback from our instructor **Charlie Refvem**. 
 
-![pcb](docs\media\photos\MCU_Design_v32.png)
+<img src="docs\media\photos\MCU_Design_v32.png" width="500" alt="pcb">
 
 Our software design was designed a task-based system. Each task uses a finite state machine implemented with "pseudo-object-oriented" C structs. This architecture makes our code base scalable and organized.
 
