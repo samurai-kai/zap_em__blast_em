@@ -8,12 +8,7 @@ An interactive, laser-shooting game bootlegged off Rock'Em Sock'Em Robots
 
 [Kai De La Cruz](https://sites.google.com/view/kaicustoms/home?authuser=0) 
 
-
-<div style="display: flex; justify-content: left; gap: 20px;">
-  <iframe width="560" height="315" 
-	src="https://www.youtube.com/embed/SelIsVGXWzg" 
-   	title="Gameplay video" allowfullscreen></iframe>
- </div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SelIsVGXWzg" frameborder="0" title="Gameplay video" allowfullscreen></iframe>
 
 
 ## Documentation:
